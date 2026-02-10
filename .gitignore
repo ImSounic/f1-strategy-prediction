@@ -41,3 +41,5 @@ frontend/.env.local
 
 # FastF1 cache
 *.ff1pkl
+f1-frontend.tar.gz
+data/processed/
