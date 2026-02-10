@@ -5,28 +5,21 @@ __pycache__/
 venv/
 .venv/
 
-# Data (too large for GitHub)
-data/raw/fastf1/
-data/raw/jolpica/
-data/raw/openf1/
-data/features/
+# Heavy data (648MB) — exclude lap/session parquets
+data/raw/fastf1/laps/
+data/raw/fastf1/sessions/
+data/raw/fastf1/track_status/
 
-# Keep supplementary (small, manually collected)
-# data/raw/supplementary/ ← tracked
+# Keep weather CSVs (small, needed by Render)
+# data/raw/fastf1/weather/ ← tracked
 
-# Models (binary, regeneratable)
-# But we NEED these for Render deployment, so track them
-# models/ ← tracked
-
-# Results (regeneratable, but figures needed for report)
+# Precomputed strategy JSONs (regeneratable)
 results/strategy_*.json
 
-# IDE
+# IDE / OS
 .vscode/
 .idea/
 *.swp
-
-# OS
 .DS_Store
 Thumbs.db
 
@@ -41,5 +34,8 @@ frontend/.env.local
 
 # FastF1 cache
 *.ff1pkl
+
+# Archive
 f1-frontend.tar.gz
-data/processed/
+*.sqlite
+data/raw/fastf1/.cache/
