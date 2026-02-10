@@ -5,13 +5,13 @@
   "sc_probability": 0.745,
   "n_sims_per_scenario": 500,
   "n_strategies": 78,
-  "elapsed_seconds": 50.1,
+  "elapsed_seconds": 51.4,
   "default_plan": {
     "name": "1-stop HARD\u2192SOFT (34/23)",
     "clean_name": "1-stop H\u2192S",
     "compound_sequence": "HARD \u2192 SOFT",
     "num_stops": 1,
-    "median_time": 5471.2682745951715
+    "median_time": 5476.0501983636605
   },
   "scenarios": [
     {
@@ -1555,7 +1555,7 @@
       "action": "1-stop M\u2192H",
       "action_stops": 1,
       "time_saved": 35.4,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "mid_sc",
@@ -1566,7 +1566,7 @@
       "action": "1-stop M\u2192S",
       "action_stops": 1,
       "time_saved": 25.7,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "late_sc",
@@ -1577,7 +1577,7 @@
       "action": "1-stop S\u2192M",
       "action_stops": 1,
       "time_saved": 22.6,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "early_sc_high_deg",
@@ -1610,7 +1610,7 @@
       "action": "1-stop M\u2192H",
       "action_stops": 1,
       "time_saved": 1.7,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "clean_race",
@@ -1621,7 +1621,7 @@
       "action": "1-stop M\u2192H",
       "action_stops": 1,
       "time_saved": 1.1,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "clean_low_deg",
@@ -1632,7 +1632,7 @@
       "action": "1-stop M\u2192H",
       "action_stops": 1,
       "time_saved": 0.9,
-      "default_rank": null
+      "default_rank": 99
     }
   ]
 }

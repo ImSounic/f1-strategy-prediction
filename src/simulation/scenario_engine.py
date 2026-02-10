@@ -554,22 +554,38 @@ def run_scenario_analysis(
     strategies = generate_strategies(circuit)
     logger.info(f"  Strategies: {len(strategies)}")
     
-    # ── Step 1: Unconditioned MC (find default best) ──
-    logger.info("\n  Step 1: Unconditioned Monte Carlo (baseline)")
-    from src.simulation.strategy_simulator import run_monte_carlo
+    # ── Step 1: Load precomputed baseline (from precompute_all_strategies) ──
+    baseline_path = Path("results") / f"strategy_{circuit_key}_{season}.json"
     
-    baseline_results = []
-    for i, strategy in enumerate(strategies):
-        result = run_monte_carlo(
-            strategy, circuit, deg_model, feature_cols,
-            fuel_config, n_sims=n_sims, seed=42 + i,
-        )
-        baseline_results.append(result)
-    
-    baseline_results.sort(key=lambda x: x["median_time"])
-    default_best = baseline_results[0]
-    default_best_name = default_best["strategy_name"]
-    default_best_median = default_best["median_time"]
+    if baseline_path.exists():
+        logger.info(f"\n  Step 1: Loading precomputed baseline from {baseline_path}")
+        with open(baseline_path) as f:
+            baseline_data = json.load(f)
+        
+        baseline_rankings = baseline_data.get("rankings", [])
+        if not baseline_rankings:
+            raise ValueError(f"No rankings found in {baseline_path}")
+        
+        default_best = baseline_rankings[0]
+        default_best_name = default_best["strategy_name"]
+        default_best_median = default_best["median_time"]
+    else:
+        # Fallback: run MC if no precomputed file exists
+        logger.info("\n  Step 1: No precomputed baseline found, running Monte Carlo...")
+        from src.simulation.strategy_simulator import run_monte_carlo
+        
+        baseline_results = []
+        for i, strategy in enumerate(strategies):
+            result = run_monte_carlo(
+                strategy, circuit, deg_model, feature_cols,
+                fuel_config, n_sims=max(n_sims, 1000), seed=42 + i,
+            )
+            baseline_results.append(result)
+        
+        baseline_results.sort(key=lambda x: x["median_time"])
+        default_best = baseline_results[0]
+        default_best_name = default_best["strategy_name"]
+        default_best_median = default_best["median_time"]
     
     logger.info(f"  Default best: {_clean_name(default_best_name)} "
                 f"(median {default_best_median:.1f}s)")

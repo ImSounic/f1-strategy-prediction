@@ -5,13 +5,13 @@
   "sc_probability": 0.527,
   "n_sims_per_scenario": 500,
   "n_strategies": 78,
-  "elapsed_seconds": 49.9,
+  "elapsed_seconds": 50.9,
   "default_plan": {
     "name": "1-stop HARD\u2192SOFT (34/23)",
     "clean_name": "1-stop H\u2192S",
     "compound_sequence": "HARD \u2192 SOFT",
     "num_stops": 1,
-    "median_time": 5416.352760572159
+    "median_time": 5416.26520458433
   },
   "scenarios": [
     {
@@ -1555,7 +1555,7 @@
       "action": "1-stop M\u2192S",
       "action_stops": 1,
       "time_saved": 29.6,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "mid_sc",

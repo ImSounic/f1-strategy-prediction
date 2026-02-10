@@ -5,13 +5,13 @@
   "sc_probability": 0.777,
   "n_sims_per_scenario": 500,
   "n_strategies": 78,
-  "elapsed_seconds": 46.6,
+  "elapsed_seconds": 48.0,
   "default_plan": {
     "name": "1-stop MEDIUM\u2192HARD (30/20)",
     "clean_name": "1-stop M\u2192H",
     "compound_sequence": "MEDIUM \u2192 HARD",
     "num_stops": 1,
-    "median_time": 4853.167284952153
+    "median_time": 4857.224442684391
   },
   "scenarios": [
     {
@@ -1566,7 +1566,7 @@
       "action": "2-stop M\u2192H\u2192M",
       "action_stops": 2,
       "time_saved": 14.1,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "early_sc",
@@ -1577,7 +1577,7 @@
       "action": "1-stop H\u2192S",
       "action_stops": 1,
       "time_saved": 12.8,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "mid_sc",
@@ -1610,7 +1610,7 @@
       "action": "1-stop M\u2192S",
       "action_stops": 1,
       "time_saved": 1.5,
-      "default_rank": null
+      "default_rank": 99
     },
     {
       "scenario_id": "clean_low_deg",
@@ -1621,7 +1621,7 @@
       "action": "1-stop M\u2192S",
       "action_stops": 1,
       "time_saved": 1.2,
-      "default_rank": null
+      "default_rank": 99
     }
   ]
 }

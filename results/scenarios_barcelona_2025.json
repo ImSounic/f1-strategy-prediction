@@ -5,13 +5,13 @@
   "sc_probability": 0.402,
   "n_sims_per_scenario": 500,
   "n_strategies": 78,
-  "elapsed_seconds": 54.8,
+  "elapsed_seconds": 55.3,
   "default_plan": {
-    "name": "1-stop MEDIUM\u2192HARD (36/30)",
-    "clean_name": "1-stop M\u2192H",
-    "compound_sequence": "MEDIUM \u2192 HARD",
+    "name": "1-stop SOFT\u2192MEDIUM (36/30)",
+    "clean_name": "1-stop S\u2192M",
+    "compound_sequence": "SOFT \u2192 MEDIUM",
     "num_stops": 1,
-    "median_time": 6169.918382190908
+    "median_time": 6169.257744253975
   },
   "scenarios": [
     {
@@ -164,8 +164,8 @@
       ],
       "scenario_best": "1-stop H\u2192M",
       "scenario_best_stops": 1,
-      "default_plan_rank": 8,
-      "time_delta_vs_default": 0.6
+      "default_plan_rank": 14,
+      "time_delta_vs_default": 1.1
     },
     {
       "scenario_id": "early_sc",
@@ -317,8 +317,8 @@
       ],
       "scenario_best": "1-stop S\u2192M",
       "scenario_best_stops": 1,
-      "default_plan_rank": 8,
-      "time_delta_vs_default": 2.3
+      "default_plan_rank": 2,
+      "time_delta_vs_default": 1.1
     },
     {
       "scenario_id": "mid_sc",
@@ -470,8 +470,8 @@
       ],
       "scenario_best": "2-stop M\u2192H\u2192S",
       "scenario_best_stops": 2,
-      "default_plan_rank": 4,
-      "time_delta_vs_default": 8.9
+      "default_plan_rank": 8,
+      "time_delta_vs_default": 11.1
     },
     {
       "scenario_id": "late_sc",
@@ -623,8 +623,8 @@
       ],
       "scenario_best": "1-stop H\u2192M",
       "scenario_best_stops": 1,
-      "default_plan_rank": 23,
-      "time_delta_vs_default": 28.8
+      "default_plan_rank": 22,
+      "time_delta_vs_default": 28.7
     },
     {
       "scenario_id": "vsc_only",
@@ -776,8 +776,8 @@
       ],
       "scenario_best": "1-stop H\u2192S",
       "scenario_best_stops": 1,
-      "default_plan_rank": 5,
-      "time_delta_vs_default": 0.5
+      "default_plan_rank": 9,
+      "time_delta_vs_default": 0.9
     },
     {
       "scenario_id": "double_sc",
@@ -929,8 +929,8 @@
       ],
       "scenario_best": "1-stop S\u2192M",
       "scenario_best_stops": 1,
-      "default_plan_rank": 4,
-      "time_delta_vs_default": 5.3
+      "default_plan_rank": 1,
+      "time_delta_vs_default": 0.0
     },
     {
       "scenario_id": "high_deg",
@@ -1082,8 +1082,8 @@
       ],
       "scenario_best": "2-stop H\u2192M\u2192S",
       "scenario_best_stops": 2,
-      "default_plan_rank": 9,
-      "time_delta_vs_default": 2.9
+      "default_plan_rank": 13,
+      "time_delta_vs_default": 4.2
     },
     {
       "scenario_id": "low_deg",
@@ -1235,8 +1235,8 @@
       ],
       "scenario_best": "1-stop H\u2192S",
       "scenario_best_stops": 1,
-      "default_plan_rank": 2,
-      "time_delta_vs_default": 0.4
+      "default_plan_rank": 4,
+      "time_delta_vs_default": 1.1
     },
     {
       "scenario_id": "early_sc_high_deg",
@@ -1388,8 +1388,8 @@
       ],
       "scenario_best": "2-stop S\u2192H\u2192H",
       "scenario_best_stops": 2,
-      "default_plan_rank": 42,
-      "time_delta_vs_default": 5.2
+      "default_plan_rank": 9,
+      "time_delta_vs_default": 3.6
     },
     {
       "scenario_id": "clean_low_deg",
@@ -1541,8 +1541,8 @@
       ],
       "scenario_best": "1-stop H\u2192M",
       "scenario_best_stops": 1,
-      "default_plan_rank": 7,
-      "time_delta_vs_default": 0.4
+      "default_plan_rank": 13,
+      "time_delta_vs_default": 0.8
     }
   ],
   "decision_triggers": [
@@ -1554,8 +1554,8 @@
       "trigger": "If late safety car (lap 40\u201363): switch to 1-stop H\u2192M",
       "action": "1-stop H\u2192M",
       "action_stops": 1,
-      "time_saved": 28.8,
-      "default_rank": null
+      "time_saved": 28.7,
+      "default_rank": 99
     },
     {
       "scenario_id": "mid_sc",
@@ -1565,30 +1565,8 @@
       "trigger": "If mid-race safety car (lap 17\u201339): switch to 2-stop M\u2192H\u2192S",
       "action": "2-stop M\u2192H\u2192S",
       "action_stops": 2,
-      "time_saved": 8.9,
-      "default_rank": 4
-    },
-    {
-      "scenario_id": "double_sc",
-      "scenario_name": "Double Safety Car",
-      "icon": "\ud83d\udd34\ud83d\udd34",
-      "probability": 0.027,
-      "trigger": "If double safety car: switch to 1-stop S\u2192M",
-      "action": "1-stop S\u2192M",
-      "action_stops": 1,
-      "time_saved": 5.3,
-      "default_rank": 4
-    },
-    {
-      "scenario_id": "early_sc_high_deg",
-      "scenario_name": "Early SC + High Degradation",
-      "icon": "\u26a0\ufe0f",
-      "probability": 0.011,
-      "trigger": "If early sc + high degradation: switch to 2-stop S\u2192H\u2192H",
-      "action": "2-stop S\u2192H\u2192H",
-      "action_stops": 2,
-      "time_saved": 5.2,
-      "default_rank": null
+      "time_saved": 11.1,
+      "default_rank": 8
     },
     {
       "scenario_id": "high_deg",
@@ -1598,19 +1576,19 @@
       "trigger": "If higher than expected degradation: switch to 2-stop H\u2192M\u2192S",
       "action": "2-stop H\u2192M\u2192S",
       "action_stops": 2,
-      "time_saved": 2.9,
-      "default_rank": 9
+      "time_saved": 4.2,
+      "default_rank": 99
     },
     {
-      "scenario_id": "early_sc",
-      "scenario_name": "Early Safety Car (Lap 1\u201316)",
-      "icon": "\ud83d\udd34",
-      "probability": 0.066,
-      "trigger": "If early safety car (lap 1\u201316): switch to 1-stop S\u2192M",
-      "action": "1-stop S\u2192M",
-      "action_stops": 1,
-      "time_saved": 2.3,
-      "default_rank": 8
+      "scenario_id": "early_sc_high_deg",
+      "scenario_name": "Early SC + High Degradation",
+      "icon": "\u26a0\ufe0f",
+      "probability": 0.011,
+      "trigger": "If early sc + high degradation: switch to 2-stop S\u2192H\u2192H",
+      "action": "2-stop S\u2192H\u2192H",
+      "action_stops": 2,
+      "time_saved": 3.6,
+      "default_rank": 9
     },
     {
       "scenario_id": "clean_race",
@@ -1620,19 +1598,19 @@
       "trigger": "If clean race \u2014 no safety car: switch to 1-stop H\u2192M",
       "action": "1-stop H\u2192M",
       "action_stops": 1,
-      "time_saved": 0.6,
-      "default_rank": 8
+      "time_saved": 1.1,
+      "default_rank": 99
     },
     {
-      "scenario_id": "vsc_only",
-      "scenario_name": "Virtual Safety Car Only",
-      "icon": "\ud83d\udd35",
-      "probability": 0.126,
-      "trigger": "If virtual safety car only: switch to 1-stop H\u2192S",
-      "action": "1-stop H\u2192S",
+      "scenario_id": "early_sc",
+      "scenario_name": "Early Safety Car (Lap 1\u201316)",
+      "icon": "\ud83d\udd34",
+      "probability": 0.066,
+      "trigger": "If early safety car (lap 1\u201316): switch to 1-stop S\u2192M",
+      "action": "1-stop S\u2192M",
       "action_stops": 1,
-      "time_saved": 0.5,
-      "default_rank": 5
+      "time_saved": 1.1,
+      "default_rank": 2
     },
     {
       "scenario_id": "low_deg",
@@ -1642,8 +1620,19 @@
       "trigger": "If lower than expected degradation: switch to 1-stop H\u2192S",
       "action": "1-stop H\u2192S",
       "action_stops": 1,
-      "time_saved": 0.4,
-      "default_rank": 2
+      "time_saved": 1.1,
+      "default_rank": 4
+    },
+    {
+      "scenario_id": "vsc_only",
+      "scenario_name": "Virtual Safety Car Only",
+      "icon": "\ud83d\udd35",
+      "probability": 0.126,
+      "trigger": "If virtual safety car only: switch to 1-stop H\u2192S",
+      "action": "1-stop H\u2192S",
+      "action_stops": 1,
+      "time_saved": 0.9,
+      "default_rank": 9
     },
     {
       "scenario_id": "clean_low_deg",
@@ -1653,8 +1642,8 @@
       "trigger": "If clean race + low degradation: switch to 1-stop H\u2192M",
       "action": "1-stop H\u2192M",
       "action_stops": 1,
-      "time_saved": 0.4,
-      "default_rank": 7
+      "time_saved": 0.8,
+      "default_rank": 99
     }
   ]
 }
