@@ -24,7 +24,7 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="w-8 h-8 bg-f1-red rounded-sm flex items-center justify-center">
             <span className="font-display font-black text-white text-sm">F1</span>
           </div>
@@ -33,11 +33,13 @@ export function Header() {
           </span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {[
+            ['How It Works', 'methodology'],
             ['Circuits', 'circuits'],
             ['Strategy', 'strategy'],
             ['Validation', 'validation'],
+            ['Limitations', 'limitations'],
             ['Tech', 'tech'],
           ].map(([label, id]) => (
             <button

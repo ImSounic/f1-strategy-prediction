@@ -11,6 +11,43 @@ interface Props {
   circuitKey: string
 }
 
+const compoundColorMap: Record<string, string> = {
+  S: '#E10600',
+  M: '#FFD700',
+  H: '#FFFFFF',
+}
+
+function CompoundPill({ compound }: { compound: string }) {
+  const bgMap: Record<string, string> = {
+    S: 'bg-red-500 text-white',
+    M: 'bg-yellow-400 text-gray-900',
+    H: 'bg-white text-gray-900',
+  }
+  const cls = bgMap[compound] || 'bg-f1-border text-white'
+  return (
+    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-[10px] font-mono font-bold ${cls}`}>
+      {compound}
+    </span>
+  )
+}
+
+function CompoundSequence({ compounds }: { compounds: string }) {
+  // Parse "M→H" or "S→M→H" format
+  const parts = compounds.split('→').map(c => c.trim())
+  return (
+    <div className="flex items-center gap-1">
+      {parts.map((comp, i) => (
+        <div key={i} className="flex items-center gap-1">
+          <CompoundPill compound={comp} />
+          {i < parts.length - 1 && (
+            <span className="text-f1-border text-xs mx-0.5">→</span>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function StrategyView({ circuitKey }: Props) {
   const matchingKey = Object.keys(strategyResults)
     .find(k => k.startsWith(circuitKey + '_')) || ''
@@ -38,9 +75,14 @@ export function StrategyView({ circuitKey }: Props) {
             </h2>
           </div>
           <div className="bg-f1-card border border-f1-border rounded-lg p-12 text-center">
-            <div className="font-display text-xl text-f1-muted">
+            <div className="text-4xl mb-4">🏎️</div>
+            <div className="font-display text-xl text-f1-muted mb-2">
               No pre-computed results for this circuit
             </div>
+            <p className="font-body text-sm text-f1-border max-w-md mx-auto">
+              Run the precompute script locally to generate Monte Carlo results
+              for all circuits, then redeploy.
+            </p>
           </div>
         </div>
       </section>
@@ -63,6 +105,11 @@ export function StrategyView({ circuitKey }: Props) {
     : confidence === 'MEDIUM'
       ? 'text-yellow-400'
       : 'text-orange-400'
+  const confDesc = confidence === 'HIGH'
+    ? 'Clear optimal strategy with significant gap to alternatives'
+    : confidence === 'MEDIUM'
+      ? 'Marginal advantage — safety car timing could swing results'
+      : 'Multiple viable strategies — track position may decide'
 
   const fmt = (n: number) => new Intl.NumberFormat('en-US').format(n)
 
@@ -83,16 +130,17 @@ export function StrategyView({ circuitKey }: Props) {
 
         {/* Recommendation banner */}
         <div className="bg-f1-card border border-f1-border rounded-lg p-6 mb-8 racing-stripe">
-          <div className="pl-4 flex items-start justify-between flex-wrap gap-4">
+          <div className="pl-4 flex items-start justify-between flex-wrap gap-6">
             <div>
               <div className="font-mono text-xs text-f1-muted uppercase tracking-wider mb-1">
                 Recommended Strategy
               </div>
-              <div className="font-display font-black text-3xl text-white">
+              <div className="font-display font-black text-3xl text-white mb-2">
                 {best.cleanName}
               </div>
-              <div className="font-body text-f1-muted mt-1">
-                {best.compounds.replace(/→/g, ' → ')} &middot; {best.stops}-stop
+              <div className="flex items-center gap-3">
+                <CompoundSequence compounds={best.compounds.replace(/→/g, '→')} />
+                <span className="font-mono text-xs text-f1-border">{best.stops}-stop</span>
               </div>
             </div>
             <div className="text-right">
@@ -104,6 +152,9 @@ export function StrategyView({ circuitKey }: Props) {
               </div>
               <div className="font-mono text-xs text-f1-border mt-1">
                 +{gap.toFixed(1)}s gap to P2
+              </div>
+              <div className="font-body text-xs text-f1-border mt-2 max-w-[200px] text-right">
+                {confDesc}
               </div>
             </div>
           </div>
@@ -184,8 +235,13 @@ export function StrategyView({ circuitKey }: Props) {
 
                 return (
                   <div key={i}>
-                    <div className="flex justify-between mb-1">
-                      <span className="font-mono text-xs text-f1-muted">{s.cleanName}</span>
+                    <div className="flex justify-between items-center mb-1">
+                      <div className="flex items-center gap-2">
+                        <span className={`font-display font-bold text-xs ${i === 0 ? 'text-f1-red' : 'text-f1-muted'}`}>
+                          P{i + 1}
+                        </span>
+                        <span className="font-mono text-xs text-f1-muted">{s.cleanName}</span>
+                      </div>
                       <span className="font-mono text-xs text-f1-border">
                         {s.p5.toFixed(0)}s &ndash; {s.p95.toFixed(0)}s
                       </span>
@@ -222,7 +278,7 @@ export function StrategyView({ circuitKey }: Props) {
           <table className="w-full">
             <thead>
               <tr className="border-b border-f1-border">
-                {['Rank', 'Strategy', 'Stops', 'Median', 'Delta', 'Std Dev', 'SC Events'].map(h => (
+                {['Rank', 'Strategy', 'Compounds', 'Stops', 'Median', 'Delta', 'Std Dev', 'SC Events'].map(h => (
                   <th key={h} className="px-4 py-3 text-left font-mono text-xs text-f1-muted uppercase tracking-wider">
                     {h}
                   </th>
@@ -244,7 +300,9 @@ export function StrategyView({ circuitKey }: Props) {
                   </td>
                   <td className="px-4 py-3">
                     <div className="font-display font-bold text-sm">{s.cleanName}</div>
-                    <div className="font-mono text-xs text-f1-border">{s.compounds}</div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <CompoundSequence compounds={s.compounds} />
                   </td>
                   <td className="px-4 py-3 font-mono text-sm">{s.stops}</td>
                   <td className="px-4 py-3 font-mono text-sm">{s.medianTime.toFixed(1)}s</td>
