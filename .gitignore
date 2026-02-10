@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+
+# Data (too large for GitHub)
+data/raw/fastf1/
+data/raw/jolpica/
+data/raw/openf1/
+data/features/
+
+# Keep supplementary (small, manually collected)
+# data/raw/supplementary/ ← tracked
+
+# Models (binary, regeneratable)
+# But we NEED these for Render deployment, so track them
+# models/ ← tracked
+
+# Results (regeneratable, but figures needed for report)
+results/strategy_*.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+
+# Jupyter
+.ipynb_checkpoints/
+
+# FastF1 cache
+*.ff1pkl

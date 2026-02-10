@@ -1,0 +1,953 @@
+{
+  "methodology": {
+    "type": "rolling_temporal_validation",
+    "description": "Expanding window: each fold adds one more season to training",
+    "folds": [
+      {
+        "train": [
+          2022
+        ],
+        "validate": 2023
+      },
+      {
+        "train": [
+          2022,
+          2023
+        ],
+        "validate": 2024
+      },
+      {
+        "train": [
+          2022,
+          2023,
+          2024
+        ],
+        "validate": 2025
+      }
+    ],
+    "data_leakage": "none"
+  },
+  "aggregate_dry": {
+    "exact_match": 34,
+    "total": 62,
+    "exact_rate": 0.548,
+    "top5_rate": 0.661
+  },
+  "folds": [
+    {
+      "train_seasons": [
+        2022
+      ],
+      "val_season": 2023,
+      "n_training_stints": 967,
+      "cv_mae": 0.1047,
+      "all_races": {
+        "total": 22,
+        "exact_match": 9,
+        "exact_rate": 0.409,
+        "top3_rate": 0.5,
+        "top5_rate": 0.5
+      },
+      "dry_races": {
+        "total": 20,
+        "exact_match": 8,
+        "exact_rate": 0.4,
+        "top3_rate": 0.5,
+        "top5_rate": 0.5
+      },
+      "races": [
+        {
+          "circuit": "Bahrain Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "SOFT \u2192 SOFT \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (34/23)",
+          "stops_match": false,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Saudi Arabian Grand Prix",
+          "winner": "PER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192MEDIUM (22/28)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Australian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 3,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 SOFT \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (34/24)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Azerbaijan Grand Prix",
+          "winner": "PER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192SOFT (28/23)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Miami Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "HARD \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (28/29)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Monaco Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 INTERMEDIATE",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192MEDIUM (46/32)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": true
+        },
+        {
+          "circuit": "Spanish Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192HARD (29/37)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Canadian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192HARD (31/39)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Austrian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 4,
+          "actual_compounds": "MEDIUM \u2192 MEDIUM \u2192 HARD \u2192 MEDIUM \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (42/29)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "British Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192SOFT (26/26)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Hungarian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 MEDIUM",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop MEDIUM\u2192HARD\u2192SOFT (23/23/24)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Belgian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "SOFT \u2192 MEDIUM \u2192 SOFT",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop HARD\u2192MEDIUM\u2192SOFT (13/15/16)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Dutch Grand Prix",
+          "winner": "VER",
+          "actual_stops": 6,
+          "actual_compounds": "SOFT \u2192 INTERMEDIATE \u2192 SOFT \u2192 SOFT \u2192 INTERMEDIATE \u2192 WET \u2192 INTERMEDIATE",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192MEDIUM (32/40)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": true
+        },
+        {
+          "circuit": "Italian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (23/30)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Singapore Grand Prix",
+          "winner": "SAI",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192MEDIUM (31/31)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Japanese Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (21/32)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Qatar Grand Prix",
+          "winner": "VER",
+          "actual_stops": 3,
+          "actual_compounds": "MEDIUM \u2192 MEDIUM \u2192 HARD \u2192 MEDIUM",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop SOFT\u2192MEDIUM\u2192MEDIUM (18/18/21)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "United States Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (22/34)",
+          "stops_match": false,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Mexico City Grand Prix",
+          "winner": "VER",
+          "actual_stops": 3,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (42/29)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "S\u00e3o Paulo Grand Prix",
+          "winner": "VER",
+          "actual_stops": 4,
+          "actual_compounds": "SOFT \u2192 SOFT \u2192 SOFT \u2192 MEDIUM \u2192 SOFT",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop HARD\u2192MEDIUM\u2192SOFT (23/23/25)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Las Vegas Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (25/25)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Abu Dhabi Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (31/27)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        }
+      ]
+    },
+    {
+      "train_seasons": [
+        2022,
+        2023
+      ],
+      "val_season": 2024,
+      "n_training_stints": 1982,
+      "cv_mae": 0.0867,
+      "all_races": {
+        "total": 24,
+        "exact_match": 12,
+        "exact_rate": 0.5,
+        "top3_rate": 0.625,
+        "top5_rate": 0.708
+      },
+      "dry_races": {
+        "total": 21,
+        "exact_match": 11,
+        "exact_rate": 0.524,
+        "top3_rate": 0.667,
+        "top5_rate": 0.714
+      },
+      "races": [
+        {
+          "circuit": "Bahrain Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "SOFT \u2192 HARD \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (34/23)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Saudi Arabian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192MEDIUM (22/28)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Australian Grand Prix",
+          "winner": "SAI",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (34/24)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Japanese Grand Prix",
+          "winner": "VER",
+          "actual_stops": 3,
+          "actual_compounds": "MEDIUM \u2192 MEDIUM \u2192 MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (21/32)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Chinese Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (28/28)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Miami Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (28/29)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Emilia Romagna Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192HARD (34/29)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Monaco Grand Prix",
+          "winner": "LEC",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192MEDIUM (46/32)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Canadian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "INTERMEDIATE \u2192 INTERMEDIATE \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192HARD (31/39)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": true
+        },
+        {
+          "circuit": "Spanish Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "SOFT \u2192 MEDIUM \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (36/30)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Austrian Grand Prix",
+          "winner": "RUS",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (42/29)",
+          "stops_match": false,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "British Grand Prix",
+          "winner": "HAM",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 INTERMEDIATE \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192SOFT (26/26)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": true,
+          "is_wet": true
+        },
+        {
+          "circuit": "Hungarian Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (38/32)",
+          "stops_match": false,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Belgian Grand Prix",
+          "winner": "HAM",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop HARD\u2192MEDIUM\u2192SOFT (13/15/16)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Dutch Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop SOFT\u2192HARD\u2192HARD (18/28/26)",
+          "stops_match": false,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Italian Grand Prix",
+          "winner": "LEC",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (23/30)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Azerbaijan Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192SOFT (28/23)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Singapore Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (27/35)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "United States Grand Prix",
+          "winner": "LEC",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (22/34)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Mexico City Grand Prix",
+          "winner": "SAI",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (42/29)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "S\u00e3o Paulo Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "INTERMEDIATE \u2192 INTERMEDIATE",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (35/36)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": true
+        },
+        {
+          "circuit": "Las Vegas Grand Prix",
+          "winner": "RUS",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (25/25)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Qatar Grand Prix",
+          "winner": "VER",
+          "actual_stops": 3,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD \u2192 HARD",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop SOFT\u2192MEDIUM\u2192MEDIUM (18/18/21)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Abu Dhabi Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192SOFT (31/27)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        }
+      ]
+    },
+    {
+      "train_seasons": [
+        2022,
+        2023,
+        2024
+      ],
+      "val_season": 2025,
+      "n_training_stints": 3006,
+      "cv_mae": 0.0794,
+      "all_races": {
+        "total": 24,
+        "exact_match": 15,
+        "exact_rate": 0.625,
+        "top3_rate": 0.75,
+        "top5_rate": 0.833
+      },
+      "dry_races": {
+        "total": 21,
+        "exact_match": 15,
+        "exact_rate": 0.714,
+        "top3_rate": 0.81,
+        "top5_rate": 0.857
+      },
+      "races": [
+        {
+          "circuit": "Australian Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 5,
+          "actual_compounds": "INTERMEDIATE \u2192 INTERMEDIATE \u2192 INTERMEDIATE \u2192 INTERMEDIATE \u2192 HARD \u2192 INTERMEDIATE",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (34/24)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": true
+        },
+        {
+          "circuit": "Chinese Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (28/28)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Japanese Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (21/32)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Bahrain Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 2,
+          "actual_compounds": "SOFT \u2192 MEDIUM \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (34/23)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Saudi Arabian Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192MEDIUM (22/28)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Miami Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (28/29)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Emilia Romagna Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192HARD (34/29)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Monaco Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop SOFT\u2192HARD\u2192HARD (27/23/28)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Spanish Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 3,
+          "actual_compounds": "SOFT \u2192 MEDIUM \u2192 SOFT \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (36/30)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Canadian Grand Prix",
+          "winner": "RUS",
+          "actual_stops": 5,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD \u2192 HARD \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192HARD (31/39)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": false,
+          "is_wet": false
+        },
+        {
+          "circuit": "Austrian Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (42/29)",
+          "stops_match": false,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "British Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 2,
+          "actual_compounds": "INTERMEDIATE \u2192 INTERMEDIATE \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192SOFT (26/26)",
+          "stops_match": false,
+          "in_top3": false,
+          "in_top5": true,
+          "is_wet": true
+        },
+        {
+          "circuit": "Belgian Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 1,
+          "actual_compounds": "INTERMEDIATE \u2192 MEDIUM",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop HARD\u2192MEDIUM\u2192SOFT (13/15/16)",
+          "stops_match": false,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": true
+        },
+        {
+          "circuit": "Hungarian Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (38/32)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Dutch Grand Prix",
+          "winner": "PIA",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 HARD \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop SOFT\u2192MEDIUM (32/40)",
+          "stops_match": false,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Italian Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (23/30)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Azerbaijan Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "HARD \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192SOFT (28/23)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Singapore Grand Prix",
+          "winner": "RUS",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192MEDIUM (31/31)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "United States Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 SOFT",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (22/34)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Mexico City Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 1,
+          "actual_compounds": "SOFT \u2192 MEDIUM",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop HARD\u2192SOFT (42/29)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "S\u00e3o Paulo Grand Prix",
+          "winner": "NOR",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 SOFT \u2192 MEDIUM",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop HARD\u2192MEDIUM\u2192SOFT (23/23/25)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Las Vegas Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192HARD (25/25)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Qatar Grand Prix",
+          "winner": "VER",
+          "actual_stops": 2,
+          "actual_compounds": "MEDIUM \u2192 MEDIUM \u2192 HARD",
+          "recommended_stops": 2,
+          "recommended_strategy": "2-stop SOFT\u2192MEDIUM\u2192MEDIUM (18/18/21)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        },
+        {
+          "circuit": "Abu Dhabi Grand Prix",
+          "winner": "VER",
+          "actual_stops": 1,
+          "actual_compounds": "MEDIUM \u2192 HARD",
+          "recommended_stops": 1,
+          "recommended_strategy": "1-stop MEDIUM\u2192SOFT (31/27)",
+          "stops_match": true,
+          "in_top3": true,
+          "in_top5": true,
+          "is_wet": false
+        }
+      ]
+    }
+  ]
+}

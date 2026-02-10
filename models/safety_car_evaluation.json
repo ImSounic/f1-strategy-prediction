@@ -1,0 +1,25 @@
+{
+  "primary_model": "Bayesian Beta-Binomial posterior (per-circuit priors)",
+  "secondary_model": "Random Forest LOO-CV (for comparison)",
+  "rf_metrics": {
+    "accuracy": 0.5108695652173914,
+    "roc_auc": 0.4916307986609278,
+    "brier_score": 0.2702129739331304,
+    "baseline_brier": 0.24704631379962194,
+    "n_samples": 92,
+    "sc_rate": 0.5543478260869565,
+    "note": "SC events are fundamentally stochastic. The Bayesian prior provides better-calibrated probabilities than the RF classifier. RF AUC near 0.5 confirms that circuit features alone cannot predict individual race SC occurrence \u2014 this is an expected and honest result."
+  },
+  "feature_columns": [
+    "asphalt_abrasiveness",
+    "traction_demand",
+    "braking_severity",
+    "lateral_forces",
+    "tyre_stress",
+    "downforce_level",
+    "circuit_length_km",
+    "total_laps",
+    "MeanTrackTemp",
+    "MeanHumidity"
+  ]
+}

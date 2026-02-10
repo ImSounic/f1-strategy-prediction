@@ -1,0 +1,198 @@
+{
+  "experiment": {
+    "target": "DegSlope (tyre degradation rate, s/lap)",
+    "level": "stint",
+    "cv_strategy": "5-fold GroupKFold (grouped by race)",
+    "n_samples": 3991,
+    "n_features": 20,
+    "feature_columns": [
+      "CompoundHardness",
+      "StintNumber",
+      "StintLength",
+      "TyreLifeStart",
+      "asphalt_abrasiveness",
+      "asphalt_grip",
+      "traction_demand",
+      "braking_severity",
+      "lateral_forces",
+      "tyre_stress",
+      "downforce_level",
+      "track_evolution",
+      "circuit_length_km",
+      "pit_loss_seconds",
+      "total_laps",
+      "MeanTrackTemp",
+      "MeanAirTemp",
+      "MeanHumidity",
+      "MeanWindSpeed",
+      "TrackTempRange"
+    ]
+  },
+  "results": {
+    "Ridge (Baseline)": {
+      "fold_metrics": [
+        {
+          "fold": 1,
+          "mae": 0.054439119078312774,
+          "rmse": 0.09051110704546196,
+          "r2": 0.13508888822756804,
+          "test_size": 804
+        },
+        {
+          "fold": 2,
+          "mae": 0.07517149229926731,
+          "rmse": 0.11652491653067258,
+          "r2": 0.03397610494010905,
+          "test_size": 788
+        },
+        {
+          "fold": 3,
+          "mae": 0.0824289128879915,
+          "rmse": 0.14115051486199215,
+          "r2": 0.042899131902666254,
+          "test_size": 798
+        },
+        {
+          "fold": 4,
+          "mae": 0.09049999032082877,
+          "rmse": 0.15075979438055362,
+          "r2": -0.03615237922627346,
+          "test_size": 800
+        },
+        {
+          "fold": 5,
+          "mae": 0.08598499513675861,
+          "rmse": 0.14197749769733758,
+          "r2": -0.00481542810072999,
+          "test_size": 801
+        }
+      ],
+      "train_time": 1.6609551906585693,
+      "best_params": {
+        "ridge__alpha": 1000.0
+      },
+      "cv_best_score": 0.0777049019446318
+    },
+    "XGBoost (Primary)": {
+      "fold_metrics": [
+        {
+          "fold": 1,
+          "mae": 0.05727810940463691,
+          "rmse": 0.09680739888037028,
+          "r2": 0.01057056675754453,
+          "test_size": 804
+        },
+        {
+          "fold": 2,
+          "mae": 0.06617919128887349,
+          "rmse": 0.11234488572248058,
+          "r2": 0.1020402266895144,
+          "test_size": 788
+        },
+        {
+          "fold": 3,
+          "mae": 0.08028897362521611,
+          "rmse": 0.13994549201044865,
+          "r2": 0.059171199357068716,
+          "test_size": 798
+        },
+        {
+          "fold": 4,
+          "mae": 0.09067501930901731,
+          "rmse": 0.15264491477500372,
+          "r2": -0.0622267576827189,
+          "test_size": 800
+        },
+        {
+          "fold": 5,
+          "mae": 0.08320378750702415,
+          "rmse": 0.13877490123562086,
+          "r2": 0.040004685687397346,
+          "test_size": 801
+        }
+      ],
+      "train_time": 3.226134777069092,
+      "best_params": {
+        "colsample_bytree": 0.9868777594207296,
+        "gamma": 0.029210748185657155,
+        "learning_rate": 0.013609328284484965,
+        "max_depth": 5,
+        "min_child_weight": 48,
+        "n_estimators": 154,
+        "reg_alpha": 8.906204386161678,
+        "reg_lambda": 0.85807606199213,
+        "subsample": 0.9439761626945282
+      },
+      "cv_best_score": 0.0755250162269536,
+      "feature_importance": {
+        "asphalt_grip": 0.22497090697288513,
+        "MeanWindSpeed": 0.09644229710102081,
+        "MeanHumidity": 0.0672159269452095,
+        "track_evolution": 0.06374764442443848,
+        "downforce_level": 0.05819018930196762,
+        "MeanTrackTemp": 0.05464246869087219,
+        "traction_demand": 0.047340452671051025,
+        "TrackTempRange": 0.046894434839487076,
+        "MeanAirTemp": 0.04554527625441551,
+        "StintLength": 0.03827529028058052,
+        "circuit_length_km": 0.03544658422470093,
+        "pit_loss_seconds": 0.03519841283559799,
+        "CompoundHardness": 0.03390978276729584,
+        "lateral_forces": 0.033808384090662,
+        "asphalt_abrasiveness": 0.031367987394332886,
+        "tyre_stress": 0.02569122426211834,
+        "TyreLifeStart": 0.021940089762210846,
+        "StintNumber": 0.02073219045996666,
+        "braking_severity": 0.0186404287815094,
+        "total_laps": 0.0
+      }
+    },
+    "MLP (Neural Net)": {
+      "fold_metrics": [
+        {
+          "fold": 1,
+          "mae": 0.06504984833303,
+          "rmse": 0.10548914690761908,
+          "r2": -0.17485233248278598,
+          "test_size": 804
+        },
+        {
+          "fold": 2,
+          "mae": 0.0848803543310908,
+          "rmse": 0.1430275215988306,
+          "r2": -0.45542387334919354,
+          "test_size": 788
+        },
+        {
+          "fold": 3,
+          "mae": 0.0837787282679911,
+          "rmse": 0.14088813347998483,
+          "r2": 0.0464540894334059,
+          "test_size": 798
+        },
+        {
+          "fold": 4,
+          "mae": 0.09757877232896262,
+          "rmse": 0.1589321554454141,
+          "r2": -0.1515322420023577,
+          "test_size": 800
+        },
+        {
+          "fold": 5,
+          "mae": 0.09265447759009278,
+          "rmse": 0.1555067745372232,
+          "r2": -0.20544079908207702,
+          "test_size": 801
+        }
+      ],
+      "train_time": 35.91974496841431,
+      "best_params": {
+        "mlp__alpha": "0.0015375920235481753",
+        "mlp__batch_size": "64",
+        "mlp__hidden_layer_sizes": "(128, 64, 32)",
+        "mlp__learning_rate_init": "0.00869299151113955"
+      },
+      "cv_best_score": 0.08478843617023345
+    }
+  }
+}

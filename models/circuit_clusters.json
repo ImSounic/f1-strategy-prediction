@@ -1,0 +1,127 @@
+{
+  "albert_park": {
+    "cluster": 2,
+    "circuit_name": "Australian Grand Prix",
+    "median_deg_slope": 0.02606213982021136
+  },
+  "bahrain": {
+    "cluster": 1,
+    "circuit_name": "Bahrain Grand Prix",
+    "median_deg_slope": 0.1340413533834507
+  },
+  "baku": {
+    "cluster": 2,
+    "circuit_name": "Azerbaijan Grand Prix",
+    "median_deg_slope": 0.028975221836985244
+  },
+  "barcelona": {
+    "cluster": 1,
+    "circuit_name": "Spanish Grand Prix",
+    "median_deg_slope": 0.09340000000000569
+  },
+  "cota": {
+    "cluster": 1,
+    "circuit_name": "United States Grand Prix",
+    "median_deg_slope": 0.0603957383842872
+  },
+  "hungaroring": {
+    "cluster": 1,
+    "circuit_name": "Hungarian Grand Prix",
+    "median_deg_slope": 0.07264105590062102
+  },
+  "imola": {
+    "cluster": 1,
+    "circuit_name": "Emilia Romagna Grand Prix",
+    "median_deg_slope": 0.06722149451259984
+  },
+  "interlagos": {
+    "cluster": 1,
+    "circuit_name": "S\u00e3o Paulo Grand Prix",
+    "median_deg_slope": 0.07134141484614902
+  },
+  "jeddah": {
+    "cluster": 2,
+    "circuit_name": "Saudi Arabian Grand Prix",
+    "median_deg_slope": 0.010217504273504539
+  },
+  "las_vegas": {
+    "cluster": 2,
+    "circuit_name": "Las Vegas Grand Prix",
+    "median_deg_slope": 0.0277186167624957
+  },
+  "lusail": {
+    "cluster": 2,
+    "circuit_name": "Qatar Grand Prix",
+    "median_deg_slope": -0.008817160257455377
+  },
+  "mexico": {
+    "cluster": 1,
+    "circuit_name": "Mexico City Grand Prix",
+    "median_deg_slope": 0.05952672726334632
+  },
+  "miami": {
+    "cluster": 2,
+    "circuit_name": "Miami Grand Prix",
+    "median_deg_slope": 0.028765903890158033
+  },
+  "monaco": {
+    "cluster": 2,
+    "circuit_name": "Monaco Grand Prix",
+    "median_deg_slope": -0.0012835557173429212
+  },
+  "montreal": {
+    "cluster": 2,
+    "circuit_name": "Canadian Grand Prix",
+    "median_deg_slope": 0.026903150099375474
+  },
+  "monza": {
+    "cluster": 1,
+    "circuit_name": "Italian Grand Prix",
+    "median_deg_slope": 0.05918807357052483
+  },
+  "paul_ricard": {
+    "cluster": 2,
+    "circuit_name": "French Grand Prix",
+    "median_deg_slope": 0.07813100721420622
+  },
+  "shanghai": {
+    "cluster": 1,
+    "circuit_name": "Chinese Grand Prix",
+    "median_deg_slope": 0.10122923076923067
+  },
+  "silverstone": {
+    "cluster": 2,
+    "circuit_name": "British Grand Prix",
+    "median_deg_slope": 0.03886603910795432
+  },
+  "singapore": {
+    "cluster": 2,
+    "circuit_name": "Singapore Grand Prix",
+    "median_deg_slope": 0.04169575213098158
+  },
+  "spa": {
+    "cluster": 1,
+    "circuit_name": "Belgian Grand Prix",
+    "median_deg_slope": 0.12073284313725867
+  },
+  "spielberg": {
+    "cluster": 1,
+    "circuit_name": "Austrian Grand Prix",
+    "median_deg_slope": 0.08605979727083135
+  },
+  "suzuka": {
+    "cluster": 1,
+    "circuit_name": "Japanese Grand Prix",
+    "median_deg_slope": 0.09064670638860965
+  },
+  "yas_marina": {
+    "cluster": 1,
+    "circuit_name": "Abu Dhabi Grand Prix",
+    "median_deg_slope": 0.07857142857143026
+  },
+  "zandvoort": {
+    "cluster": 2,
+    "circuit_name": "Dutch Grand Prix",
+    "median_deg_slope": 0.05019932844932836
+  }
+}

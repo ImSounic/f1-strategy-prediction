@@ -1,0 +1,221 @@
+{
+  "version": "v3_enhanced",
+  "improvements": [
+    "driver/team rolling performance features",
+    "explicit interaction features (compound\u00d7circuit, temp\u00d7stress)",
+    "per-compound sub-models"
+  ],
+  "global_model": {
+    "fold_metrics": [
+      {
+        "fold": 1,
+        "mae": 0.05263558882906585,
+        "rmse": 0.08947906099332771,
+        "r2": 0.15470060363213045
+      },
+      {
+        "fold": 2,
+        "mae": 0.07104059579832517,
+        "rmse": 0.11581733416083459,
+        "r2": 0.045672592507007614
+      },
+      {
+        "fold": 3,
+        "mae": 0.08038266265117354,
+        "rmse": 0.1394363078651861,
+        "r2": 0.06600505436306359
+      },
+      {
+        "fold": 4,
+        "mae": 0.095162365780218,
+        "rmse": 0.15506877758485163,
+        "r2": -0.09622898859660145
+      },
+      {
+        "fold": 5,
+        "mae": 0.08347851999988196,
+        "rmse": 0.13979714177345356,
+        "r2": 0.025809604264645403
+      }
+    ],
+    "avg_mae": 0.07653994661173291,
+    "avg_r2": 0.03919177323404912,
+    "feature_importance": {
+      "asphalt_grip": 0.09955968707799911,
+      "TrackTemp_x_Abrasiveness": 0.07174181193113327,
+      "TrackTemp_x_TyreStress": 0.053788553923368454,
+      "MeanWindSpeed": 0.05256274342536926,
+      "MeanHumidity": 0.05125002935528755,
+      "asphalt_abrasiveness": 0.04588423669338226,
+      "Humidity_x_Grip": 0.04331747069954872,
+      "pit_loss_seconds": 0.04026312008500099,
+      "downforce_level": 0.038386911153793335,
+      "TrackTempRange": 0.0380118153989315,
+      "MeanAirTemp": 0.036529745906591415,
+      "MeanTrackTemp": 0.03450687602162361,
+      "StintLength_x_Hardness": 0.03291420638561249,
+      "traction_demand": 0.03171167150139809,
+      "tyre_stress": 0.03126293420791626,
+      "RollingAvgFinish": 0.030690815299749374,
+      "StintLength": 0.030671995133161545,
+      "lateral_forces": 0.029347840696573257,
+      "TyreLifeStart": 0.028729382902383804,
+      "circuit_length_km": 0.028287755325436592,
+      "RollingAvgPoints": 0.026450103148818016,
+      "Compound_x_Grip": 0.02581169083714485,
+      "StintNumber": 0.02239096909761429,
+      "Compound_x_Abrasiveness": 0.019910212606191635,
+      "CompoundHardness": 0.01869075372815132,
+      "Compound_x_TyreStress": 0.013854783028364182,
+      "braking_severity": 0.013730054721236229,
+      "GridPosition": 0.009741675108671188,
+      "track_evolution": 0.0
+    },
+    "features_used": [
+      "CompoundHardness",
+      "StintNumber",
+      "StintLength",
+      "TyreLifeStart",
+      "asphalt_abrasiveness",
+      "asphalt_grip",
+      "traction_demand",
+      "braking_severity",
+      "lateral_forces",
+      "tyre_stress",
+      "downforce_level",
+      "track_evolution",
+      "circuit_length_km",
+      "pit_loss_seconds",
+      "MeanTrackTemp",
+      "MeanAirTemp",
+      "MeanHumidity",
+      "MeanWindSpeed",
+      "TrackTempRange",
+      "Compound_x_Abrasiveness",
+      "Compound_x_Grip",
+      "Compound_x_TyreStress",
+      "TrackTemp_x_TyreStress",
+      "TrackTemp_x_Abrasiveness",
+      "Humidity_x_Grip",
+      "StintLength_x_Hardness",
+      "RollingAvgFinish",
+      "RollingAvgPoints",
+      "GridPosition"
+    ]
+  },
+  "per_compound_models": {
+    "Hard (C1-C2)": {
+      "compounds": [
+        "C1",
+        "C2"
+      ],
+      "n_stints": 1405,
+      "fold_metrics": [
+        {
+          "fold": 1,
+          "mae": 0.0741200032613389,
+          "r2": -0.15843395799827786
+        },
+        {
+          "fold": 2,
+          "mae": 0.06574015881422446,
+          "r2": -0.026911249566474504
+        },
+        {
+          "fold": 3,
+          "mae": 0.06151748436865628,
+          "r2": -0.01682476720809567
+        },
+        {
+          "fold": 4,
+          "mae": 0.06871029189759022,
+          "r2": -0.08262534710405878
+        },
+        {
+          "fold": 5,
+          "mae": 0.07688526798728608,
+          "r2": -0.004522258371457477
+        }
+      ],
+      "avg_mae": 0.06939464126581918,
+      "avg_r2": -0.05786351604967286
+    },
+    "Medium (C3)": {
+      "compounds": [
+        "C3"
+      ],
+      "n_stints": 1744,
+      "fold_metrics": [
+        {
+          "fold": 1,
+          "mae": 0.07506502588207188,
+          "r2": 0.08734134046637365
+        },
+        {
+          "fold": 2,
+          "mae": 0.08169995064827738,
+          "r2": -0.13867738528080298
+        },
+        {
+          "fold": 3,
+          "mae": 0.06856195903148968,
+          "r2": 0.002929251715700243
+        },
+        {
+          "fold": 4,
+          "mae": 0.0602154911202588,
+          "r2": -0.011424933231897638
+        },
+        {
+          "fold": 5,
+          "mae": 0.05711532911878884,
+          "r2": -0.030108995861739762
+        }
+      ],
+      "avg_mae": 0.06853155116017731,
+      "avg_r2": -0.017988144438473297
+    },
+    "Soft (C4-C6)": {
+      "compounds": [
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "n_stints": 842,
+      "fold_metrics": [
+        {
+          "fold": 1,
+          "mae": 0.11292114044763388,
+          "r2": -0.035841098366673485
+        },
+        {
+          "fold": 2,
+          "mae": 0.13337903602760792,
+          "r2": -0.35628098954921916
+        },
+        {
+          "fold": 3,
+          "mae": 0.09654082815463404,
+          "r2": -0.23842574366929647
+        },
+        {
+          "fold": 4,
+          "mae": 0.06833761602643931,
+          "r2": 0.0761261935958335
+        },
+        {
+          "fold": 5,
+          "mae": 0.11326965241609492,
+          "r2": 0.05503111934878724
+        }
+      ],
+      "avg_mae": 0.104889654614482,
+      "avg_r2": -0.09987810372811368
+    }
+  },
+  "vs_v2": {
+    "v2_mae": 0.0755,
+    "v3_mae": 0.07653994661173291,
+    "improvement_pct": -1.3774127307720718
+  }
+}

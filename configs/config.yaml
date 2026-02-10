@@ -1,0 +1,69 @@
+extraction:
+  fastf1:
+    cache_dir: data/raw/fastf1/.cache
+    include_telemetry: false
+    session_types:
+    - R
+  jolpica:
+    base_url: https://api.jolpi.ca/ergast/f1
+    endpoints:
+    - results
+    - qualifying
+    - constructorStandings
+    - pitstops
+    - laps
+    seasons:
+    - 2018
+    - 2019
+    - 2020
+    - 2021
+    - 2022
+    - 2023
+    - 2024
+    - 2025
+  openf1:
+    base_url: https://api.openf1.org/v1
+    endpoints:
+    - stints
+    - pit
+    rate_limit_delay: 0.5
+    seasons:
+    - 2023
+    - 2024
+    - 2025
+  seasons:
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+fuel_model:
+  default_burn_rate_kg_per_lap: 1.9
+  fuel_effect_per_kg: 0.033
+  start_fuel_kg: 110.0
+modeling:
+  circuit_clustering:
+    method: hierarchical
+    n_clusters: 5
+  sc_probability:
+    class_weight: balanced
+    model_type: random_forest
+  tyre_degradation:
+    model_type: xgboost
+    random_state: 42
+    test_size: 0.2
+  fuel_model:
+    start_fuel_kg: 110
+    burn_rate_kg_per_lap: 1.9
+    fuel_effect_per_kg_seconds: 0.033
+paths:
+  features: data/features
+  processed: data/processed
+  raw:
+    fastf1: data/raw/fastf1
+    jolpica: data/raw/jolpica
+    openf1: data/raw/openf1
+    supplementary: data/raw/supplementary
+simulation:
+  monte_carlo_runs: 1000
+  pit_stop_loss_default_seconds: 23.0
+  sc_probability_integration: true

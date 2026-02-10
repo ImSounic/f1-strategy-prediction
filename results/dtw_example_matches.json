@@ -1,0 +1,86 @@
+{
+  "2024_17_ALO_S2": {
+    "query_compound": "C3",
+    "query_event": "Azerbaijan Grand Prix",
+    "query_driver": "ALO",
+    "matches": [
+      {
+        "stint_id": "2025_10_ALO_S3",
+        "compound": "C3",
+        "event": "Canadian Grand Prix",
+        "driver": "ALO",
+        "dtw_distance": 0.0792
+      },
+      {
+        "stint_id": "2025_23_LEC_S3",
+        "compound": "C1",
+        "event": "Qatar Grand Prix",
+        "driver": "LEC",
+        "dtw_distance": 0.1023
+      },
+      {
+        "stint_id": "2022_16_MSC_S2",
+        "compound": "C5",
+        "event": "Italian Grand Prix",
+        "driver": "MSC",
+        "dtw_distance": 0.1099
+      }
+    ]
+  },
+  "2024_3_MAG_S3": {
+    "query_compound": "C3",
+    "query_event": "Australian Grand Prix",
+    "query_driver": "MAG",
+    "matches": [
+      {
+        "stint_id": "2023_12_STR_S1",
+        "compound": "C2",
+        "event": "Belgian Grand Prix",
+        "driver": "STR",
+        "dtw_distance": 0.1174
+      },
+      {
+        "stint_id": "2024_22_BOT_S2",
+        "compound": "C4",
+        "event": "Las Vegas Grand Prix",
+        "driver": "BOT",
+        "dtw_distance": 0.1367
+      },
+      {
+        "stint_id": "2025_24_COL_S2",
+        "compound": "C3",
+        "event": "Abu Dhabi Grand Prix",
+        "driver": "COL",
+        "dtw_distance": 0.1438
+      }
+    ]
+  },
+  "2024_11_STR_S1": {
+    "query_compound": "C3",
+    "query_event": "Austrian Grand Prix",
+    "query_driver": "STR",
+    "matches": [
+      {
+        "stint_id": "2024_18_PER_S1",
+        "compound": "C4",
+        "event": "Singapore Grand Prix",
+        "driver": "PER",
+        "dtw_distance": 0.0354
+      },
+      {
+        "stint_id": "2024_18_ALO_S1",
+        "compound": "C4",
+        "event": "Singapore Grand Prix",
+        "driver": "ALO",
+        "dtw_distance": 0.0364
+      },
+      {
+        "stint_id": "2023_14_NOR_S1",
+        "compound": "C4",
+        "event": "Italian Grand Prix",
+        "driver": "NOR",
+        "dtw_distance": 0.0392
+      }
+    ]
+  }
+}

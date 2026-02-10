@@ -1,0 +1,54 @@
+{
+  "n_clusters": 2,
+  "silhouette_score": 0.22045744403305126,
+  "calinski_harabasz_score": 8.551945638072116,
+  "n_circuits": 25,
+  "features_used": [
+    "asphalt_abrasiveness",
+    "asphalt_grip",
+    "traction_demand",
+    "braking_severity",
+    "lateral_forces",
+    "tyre_stress",
+    "downforce_level",
+    "track_evolution",
+    "circuit_length_km",
+    "median_deg_slope",
+    "q25_deg_slope",
+    "q75_deg_slope",
+    "median_stint_length",
+    "median_deg_curvature",
+    "cliff_rate",
+    "sc_rate"
+  ],
+  "cluster_search": {
+    "2": {
+      "silhouette": 0.22045744403305126,
+      "calinski_harabasz": 8.551945638072116
+    },
+    "3": {
+      "silhouette": 0.21985751559538844,
+      "calinski_harabasz": 7.1130459514252085
+    },
+    "4": {
+      "silhouette": 0.1999179876519162,
+      "calinski_harabasz": 6.800748216384907
+    },
+    "5": {
+      "silhouette": 0.1807224995075523,
+      "calinski_harabasz": 6.781237091851401
+    },
+    "6": {
+      "silhouette": 0.1749843113390896,
+      "calinski_harabasz": 6.678284759732631
+    },
+    "7": {
+      "silhouette": 0.1686258254283325,
+      "calinski_harabasz": 6.430198676727396
+    },
+    "8": {
+      "silhouette": 0.14215418425742085,
+      "calinski_harabasz": 5.962085058962304
+    }
+  }
+}

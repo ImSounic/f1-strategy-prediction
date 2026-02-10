@@ -1,0 +1,6 @@
+{
+  "n_stints_analyzed": 200,
+  "optimal_k": 2,
+  "silhouette_score": 0.941,
+  "total_stints_available": 3719
+}

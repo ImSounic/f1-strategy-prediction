@@ -1,0 +1,22 @@
+MODEL COMPARISON SUMMARY
+==================================================
+Target: DegSlope (s/lap) | Samples: 3991 stints
+CV: 5-fold GroupKFold | Features: 20
+
+Model                          MAE     RMSE       R²
+───────────────────────── ──────── ──────── ────────
+Ridge (Baseline)           0.0777s  0.1282s  0.0342
+XGBoost (Primary)          0.0755s  0.1281s  0.0299
+MLP (Neural Net)           0.0848s  0.1408s -0.1882
+
+Top XGBoost Features:
+  asphalt_grip                   0.2250
+  MeanWindSpeed                  0.0964
+  MeanHumidity                   0.0672
+  track_evolution                0.0637
+  downforce_level                0.0582
+  MeanTrackTemp                  0.0546
+  traction_demand                0.0473
+  TrackTempRange                 0.0469
+  MeanAirTemp                    0.0455
+  StintLength                    0.0383
