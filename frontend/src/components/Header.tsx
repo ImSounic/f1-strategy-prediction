@@ -33,11 +33,12 @@ export function Header() {
           </span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-5">
           {[
             ['How It Works', 'methodology'],
             ['Circuits', 'circuits'],
             ['Strategy', 'strategy'],
+            ['Scenarios', 'scenarios'],
             ['Validation', 'validation'],
             ['Limitations', 'limitations'],
             ['Tech', 'tech'],

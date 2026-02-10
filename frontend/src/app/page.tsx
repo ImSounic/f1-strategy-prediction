@@ -7,6 +7,7 @@ import { Stats } from '@/components/Stats'
 import { Methodology } from '@/components/Methodology'
 import { CircuitExplorer } from '@/components/CircuitExplorer'
 import { StrategyView } from '@/components/StrategyView'
+import { ScenarioView } from '@/components/ScenarioView'
 import { ValidationDashboard } from '@/components/ValidationDashboard'
 import { Limitations } from '@/components/Limitations'
 import { TechStack } from '@/components/TechStack'
@@ -26,6 +27,7 @@ export default function Home() {
         onSelect={setSelectedCircuit}
       />
       <StrategyView circuitKey={selectedCircuit} />
+      <ScenarioView circuitKey={selectedCircuit} />
       <ValidationDashboard />
       <Limitations />
       <TechStack />
