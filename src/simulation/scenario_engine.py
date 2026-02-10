@@ -472,7 +472,7 @@ def extract_decision_triggers(
         scenario_best_stops = sr["rankings"][0]["num_stops"]
         default_rank = next(
             (i + 1 for i, r in enumerate(sr["rankings"]) if r["strategy_name"] == default_best),
-            None
+            -1
         )
         
         if scenario_best == default_best:
@@ -489,7 +489,7 @@ def extract_decision_triggers(
             "action": _clean_name(scenario_best),
             "action_stops": scenario_best_stops,
             "time_saved": round(time_saved, 1),
-            "default_rank": default_rank,
+            "default_rank": default_rank if default_rank > 0 else 99,
         })
     
     # Sort by impact (time saved)
@@ -607,8 +607,8 @@ def run_scenario_analysis(
             (r for r in rankings if r["strategy_name"] == default_best_name),
             None
         )
-        default_rank = default_in_scenario["rank"] if default_in_scenario else len(rankings)
-        default_delta = default_in_scenario["delta"] if default_in_scenario else 0
+        default_rank = default_in_scenario["rank"] if default_in_scenario else len(rankings) + 1
+        default_delta = default_in_scenario["delta"] if default_in_scenario else 0.0
         
         # Time saved by switching from default to scenario-optimal
         time_delta = round(default_delta, 1)
