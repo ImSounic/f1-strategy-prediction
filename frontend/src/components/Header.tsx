@@ -39,6 +39,7 @@ export function Header() {
             ['Circuits', 'circuits'],
             ['Strategy', 'strategy'],
             ['Scenarios', 'scenarios'],
+            ['RL Agent', 'rl'],
             ['Validation', 'validation'],
             ['Limitations', 'limitations'],
             ['Tech', 'tech'],
