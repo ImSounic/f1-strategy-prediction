@@ -5,7 +5,7 @@ import { rlResults, CircuitRLResult, RLSampleRace } from '@/data/rl'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell, LineChart, Line, Legend,
-  ReferenceLine, Area, AreaChart,
+  ReferenceLine, Area, AreaChart, ComposedChart,
 } from 'recharts'
 
 interface Props {
@@ -83,27 +83,65 @@ function WinRateBar({ rlWin, mcWin }: { rlWin: number; mcWin: number }) {
   )
 }
 
-function LapTrace({ race, totalLaps }: { race: RLSampleRace; totalLaps: number }) {
-  // Build lap-by-lap data for chart
+function formatTime(seconds: number): string {
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  const s = Math.floor(seconds % 60)
+  return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+}
+
+function formatDelta(seconds: number): string {
+  const sign = seconds >= 0 ? '+' : '-'
+  const abs = Math.abs(seconds)
+  if (abs >= 60) {
+    const m = Math.floor(abs / 60)
+    const s = (abs % 60).toFixed(1)
+    return `${sign}${m}m${parseFloat(s).toFixed(1)}s`
+  }
+  return `${sign}${abs.toFixed(1)}s`
+}
+
+function StrategyPills({ startCompound, pitLaps, compounds, label, color }: {
+  startCompound: string; pitLaps: number[]; compounds: string[]; label: string; color: string
+}) {
+  return (
+    <div className="flex items-center gap-1 flex-wrap">
+      <span className={`font-mono text-[10px] font-bold mr-1`} style={{ color }}>{label}</span>
+      <CompoundPill compound={startCompound} />
+      {pitLaps.map((lap, i) => {
+        const compAfter = compounds[lap] || compounds[lap - 1] || compounds[compounds.length - 1]
+        return (
+          <span key={i} className="flex items-center gap-1 font-mono text-[10px] text-f1-muted">
+            → L{lap} → <CompoundPill compound={compAfter} />
+          </span>
+        )
+      })}
+    </div>
+  )
+}
+
+function LapTrace({ race, totalLaps, mcStrategy }: { race: RLSampleRace; totalLaps: number; mcStrategy: string }) {
+  // Build lap-by-lap data with both RL and MC tyre ages
+  const hasMcData = race.mcTyreAges && race.mcTyreAges.length > 0
   const data = race.tyreAges.map((age, i) => ({
     lap: i + 1,
-    tyreAge: age,
-    compound: race.compounds[i],
+    rlTyreAge: age,
+    mcTyreAge: hasMcData ? (race.mcTyreAges[i] ?? 0) : undefined,
     isSC: race.scLaps.includes(i + 1),
-    isVSC: race.vscLaps.includes(i + 1),
     isPit: race.pitLaps.includes(i + 1),
   }))
 
-  // Starting compound is compounds[0]
   const startCompound = race.compounds[0] || 'MEDIUM'
+  const mcStartCompound = hasMcData ? (race.mcCompounds[0] || 'MEDIUM') : 'MEDIUM'
   const delta = race.mcTime - race.totalTime
 
   return (
     <div className="bg-f1-darker border border-f1-border rounded-lg p-4">
-      <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+      {/* Header: category, times, delta */}
+      <div className="flex items-center justify-between mb-1 flex-wrap gap-2">
         <div className="flex items-center gap-3">
           <div className="font-mono text-xs text-f1-muted">
-            {race.category} — {race.stops} stop{race.stops !== 1 ? 's' : ''} — {race.totalTime.toFixed(1)}s
+            {race.category} — {race.stops} stop{race.stops !== 1 ? 's' : ''}
           </div>
           {race.mcTime > 0 && (
             <span className={`font-mono text-[10px] px-1.5 py-0.5 rounded ${
@@ -111,29 +149,45 @@ function LapTrace({ race, totalLaps }: { race: RLSampleRace; totalLaps: number }
                 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                 : 'bg-red-500/20 text-red-400 border border-red-500/30'
             }`}>
-              {race.rlWon ? 'RL' : 'MC'} {race.rlWon ? '+' : ''}{delta.toFixed(1)}s
+              {race.rlWon ? 'RL wins' : 'MC wins'} by {formatDelta(Math.abs(delta)).replace(/^[+-]/, '')}
             </span>
           )}
         </div>
-        <div className="flex items-center gap-1">
-          <CompoundPill compound={startCompound} />
-          {race.pitLaps.map((lap, i) => {
-            const compAfter = race.compounds[lap] || race.compounds[lap - 1]
-            return (
-              <span key={i} className="flex items-center gap-1 font-mono text-[10px] text-f1-muted">
-                → L{lap} → <CompoundPill compound={compAfter} />
-              </span>
-            )
-          })}
-        </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={100}>
-        <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: -20 }}>
+      {/* Strategy comparison: RL vs MC */}
+      <div className="flex flex-col gap-1 mb-3">
+        <div className="flex items-center justify-between">
+          <StrategyPills
+            startCompound={startCompound}
+            pitLaps={race.pitLaps}
+            compounds={race.compounds}
+            label="RL"
+            color="#10b981"
+          />
+          <span className="font-mono text-[11px] text-emerald-400">{formatTime(race.totalTime)}</span>
+        </div>
+        {hasMcData && (
+          <div className="flex items-center justify-between">
+            <StrategyPills
+              startCompound={mcStartCompound}
+              pitLaps={race.mcPitLaps}
+              compounds={race.mcCompounds}
+              label="MC"
+              color="#f59e0b"
+            />
+            <span className="font-mono text-[11px] text-amber-400">{formatTime(race.mcTime)}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Chart with both lines */}
+      <ResponsiveContainer width="100%" height={120}>
+        <ComposedChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: -20 }}>
           <defs>
-            <linearGradient id="tyreGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#10b981" stopOpacity={0.4} />
-              <stop offset="100%" stopColor="#10b981" stopOpacity={0.05} />
+            <linearGradient id="rlGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#10b981" stopOpacity={0.3} />
+              <stop offset="100%" stopColor="#10b981" stopOpacity={0.02} />
             </linearGradient>
           </defs>
           <XAxis
@@ -145,23 +199,36 @@ function LapTrace({ race, totalLaps }: { race: RLSampleRace; totalLaps: number }
           {race.scLaps.map(lap => (
             <ReferenceLine key={`sc-${lap}`} x={lap} stroke="#ff3333" strokeDasharray="2 2" strokeOpacity={0.5} />
           ))}
-          {/* Pit laps */}
+          {/* RL pit laps */}
           {race.pitLaps.map(lap => (
-            <ReferenceLine key={`pit-${lap}`} x={lap} stroke="#ffd700" strokeWidth={2} strokeOpacity={0.8} />
+            <ReferenceLine key={`pit-${lap}`} x={lap} stroke="#10b981" strokeWidth={2} strokeOpacity={0.6} />
           ))}
+          {/* MC pit laps */}
+          {hasMcData && race.mcPitLaps.map(lap => (
+            <ReferenceLine key={`mc-pit-${lap}`} x={lap} stroke="#f59e0b" strokeWidth={2} strokeOpacity={0.6} strokeDasharray="4 2" />
+          ))}
+          {/* MC tyre age line */}
+          {hasMcData && (
+            <Line
+              type="monotone" dataKey="mcTyreAge" stroke="#f59e0b"
+              strokeWidth={1.5} strokeOpacity={0.7} strokeDasharray="4 2"
+              dot={false} isAnimationActive={false}
+            />
+          )}
+          {/* RL tyre age area */}
           <Area
-            type="monotone" dataKey="tyreAge" stroke="#10b981"
-            fill="url(#tyreGrad)" strokeWidth={1.5}
+            type="monotone" dataKey="rlTyreAge" stroke="#10b981"
+            fill="url(#rlGrad)" strokeWidth={1.5}
           />
-        </AreaChart>
+        </ComposedChart>
       </ResponsiveContainer>
 
       <div className="flex gap-4 mt-1 font-mono text-[10px] text-f1-muted">
         <span className="flex items-center gap-1">
-          <span className="inline-block w-3 h-0.5 bg-emerald-500" /> Tyre age
+          <span className="inline-block w-3 h-0.5 bg-emerald-500" /> RL tyre age
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block w-3 h-0.5 bg-yellow-400" /> Pit stop
+          <span className="inline-block w-3 h-0.5 bg-amber-400 opacity-70" style={{ borderBottom: '1px dashed' }} /> MC tyre age
         </span>
         <span className="flex items-center gap-1">
           <span className="inline-block w-3 h-0.5 bg-f1-red opacity-50" style={{ borderBottom: '1px dashed' }} /> Safety Car
@@ -259,13 +326,13 @@ export function RLView({ circuitKey }: Props) {
               <div className="font-display font-black text-3xl">
                 {rlFasterOverall ? (
                   <span className="text-emerald-400">
-                    RL faster by {absDiff.toFixed(1)}s
+                    RL faster by {formatDelta(absDiff)}
                   </span>
                 ) : absDiff < 1 ? (
-                  <span className="text-yellow-400">Effectively tied ({absDiff.toFixed(1)}s)</span>
+                  <span className="text-yellow-400">Effectively tied ({formatDelta(absDiff)})</span>
                 ) : (
                   <span className="text-f1-red">
-                    MC faster by {absDiff.toFixed(1)}s
+                    MC faster by {formatDelta(absDiff)}
                   </span>
                 )}
               </div>
@@ -283,13 +350,13 @@ export function RLView({ circuitKey }: Props) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <StatCard
             label="RL Median"
-            value={`${rl.medianTime.toFixed(1)}s`}
+            value={formatTime(rl.medianTime)}
             sub={`σ = ${rl.stdTime.toFixed(1)}s`}
             accent={rlFasterOverall}
           />
           <StatCard
             label="MC Median"
-            value={`${mc.medianTime.toFixed(1)}s`}
+            value={formatTime(mc.medianTime)}
             sub={`${data.mcStrategy} (${data.mcStops}-stop)`}
           />
           <StatCard
@@ -320,12 +387,12 @@ export function RLView({ circuitKey }: Props) {
                 <YAxis
                   tick={{ fontSize: 10, fill: '#888' }}
                   domain={['auto', 'auto']}
-                  tickFormatter={(v: number) => `${v.toFixed(0)}s`}
+                  tickFormatter={(v: number) => formatTime(v)}
                 />
                 <Tooltip
                   contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: 8 }}
                   labelStyle={{ color: '#fff' }}
-                  formatter={(value: number, name: string) => [`${value.toFixed(1)}s`, name]}
+                  formatter={(value: number, name: string) => [formatTime(value), name]}
                 />
                 <Bar dataKey="mc" fill="#e10600" name="MC" radius={[4, 4, 0, 0]} barSize={24} />
                 <Bar dataKey="rl" fill="#10b981" name="RL" radius={[4, 4, 0, 0]} barSize={24} />
@@ -405,6 +472,7 @@ export function RLView({ circuitKey }: Props) {
             <LapTrace
               race={data.sampleRaces[selectedRace]}
               totalLaps={data.sampleRaces[selectedRace].tyreAges.length}
+              mcStrategy={data.mcStrategy}
             />
           </div>
         )}

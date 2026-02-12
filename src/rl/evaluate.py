@@ -359,6 +359,22 @@ def compare_circuit(
                 if len(selected_seeds) >= 5:
                     break
     
+    # Compute MC tyre ages & pit laps from fixed strategy (deterministic)
+    mc_tyre_ages = []
+    mc_pit_laps = []
+    mc_compounds_seq = []
+    cumulative_laps = 0
+    for stint in mc_strategy.stints:
+        for lap_in_stint in range(1, stint.target_laps + 1):
+            mc_tyre_ages.append(lap_in_stint)
+            mc_compounds_seq.append(stint.compound)
+        cumulative_laps += stint.target_laps
+        if cumulative_laps < circuit.total_laps:
+            mc_pit_laps.append(cumulative_laps)
+    # Pad/trim to exact total_laps
+    mc_tyre_ages = mc_tyre_ages[:circuit.total_laps]
+    mc_compounds_seq = mc_compounds_seq[:circuit.total_laps]
+    
     # Re-run RL agent on selected seeds to get full lap-by-lap data
     for category, seed in selected_seeds:
         rl_info = run_rl_agent(rl_model, env, seed)
@@ -377,6 +393,10 @@ def compare_circuit(
             "sc_laps": rl_info["history"]["sc_laps"],
             "vsc_laps": rl_info["history"]["vsc_laps"],
             "tyre_ages": rl_info["history"]["tyre_ages"],
+            # MC overlay data (fixed strategy, same for all races)
+            "mc_tyre_ages": mc_tyre_ages,
+            "mc_pit_laps": mc_pit_laps,
+            "mc_compounds": mc_compounds_seq,
         })
     
     env.close()
@@ -497,6 +517,9 @@ def export_rl_typescript(results: list, season: int):
     lines.append("  scLaps: number[];")
     lines.append("  vscLaps: number[];")
     lines.append("  tyreAges: number[];")
+    lines.append("  mcTyreAges: number[];")
+    lines.append("  mcPitLaps: number[];")
+    lines.append("  mcCompounds: string[];")
     lines.append("}")
     lines.append("")
     lines.append("export interface RLStats {")
@@ -583,6 +606,9 @@ def export_rl_typescript(results: list, season: int):
             sc_str = json.dumps(sr["sc_laps"])
             vsc_str = json.dumps(sr["vsc_laps"])
             ages_str = json.dumps(sr["tyre_ages"])
+            mc_ages_str = json.dumps(sr.get("mc_tyre_ages", []))
+            mc_pit_str = json.dumps(sr.get("mc_pit_laps", []))
+            mc_comp_str = json.dumps(sr.get("mc_compounds", []))
             category = sr.get("category", "Race")
             mc_time = sr.get("mc_time", 0)
             rl_won = "true" if sr.get("rl_won", False) else "false"
@@ -590,7 +616,9 @@ def export_rl_typescript(results: list, season: int):
                         f'totalTime: {sr["total_time"]}, mcTime: {mc_time}, rlWon: {rl_won}, '
                         f'stops: {sr["stops"]}, compounds: {compounds_str}, '
                         f'pitLaps: {pit_str}, scLaps: {sc_str}, '
-                        f'vscLaps: {vsc_str}, tyreAges: {ages_str} }},')
+                        f'vscLaps: {vsc_str}, tyreAges: {ages_str}, '
+                        f'mcTyreAges: {mc_ages_str}, mcPitLaps: {mc_pit_str}, '
+                        f'mcCompounds: {mc_comp_str} }},')
         lines.append(f'    ],')
         
         lines.append(f'  }},')
