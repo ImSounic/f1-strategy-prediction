@@ -86,8 +86,8 @@ function WinRateBar({ rlWin, mcWin }: { rlWin: number; mcWin: number }) {
 function formatTime(seconds: number): string {
   const h = Math.floor(seconds / 3600)
   const m = Math.floor((seconds % 3600) / 60)
-  const s = Math.floor(seconds % 60)
-  return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+  const s = seconds % 60
+  return `${h}:${m.toString().padStart(2, '0')}:${s.toFixed(1).padStart(4, '0')}`
 }
 
 function formatDelta(seconds: number): string {

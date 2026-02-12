@@ -196,10 +196,12 @@ class F1StrategyEnv(gym.Env):
             next_compound = self._select_next_compound()
             
             # Pit time loss (reduced under SC/VSC)
+            # Under SC: field bunches but pit lane time is unchanged (~10-12s loss)
+            # Under VSC: smaller benefit (~14-16s loss)
             if self.sc_active:
-                pit_cost = self.circuit.pit_loss_seconds * 0.35
+                pit_cost = self.circuit.pit_loss_seconds * 0.50  # ~11.5s for typical 23s pit
             elif self.vsc_active:
-                pit_cost = self.circuit.pit_loss_seconds * 0.60
+                pit_cost = self.circuit.pit_loss_seconds * 0.65  # ~15s for typical 23s pit
             else:
                 pit_cost = self.circuit.pit_loss_seconds + self.rng.normal(0, 0.5)
             
@@ -330,9 +332,9 @@ class F1StrategyEnv(gym.Env):
         
         # 2. SC pit bonus — the KEY reactive behavior we want
         if pitted and self.sc_active:
-            reward += 3.0  # big bonus — saves ~15s of pit loss
+            reward += 2.3  # bonus scaled to ~11.5s savings (50% vs 100%)
         elif pitted and self.vsc_active:
-            reward += 1.5  # smaller — saves ~10s of pit loss
+            reward += 1.4  # bonus scaled to ~8s savings (65% vs 100%)
         
         # 3. Pit cost penalty — proportional to actual time lost
         # This discourages unnecessary stops by reflecting real cost

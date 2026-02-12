@@ -497,8 +497,15 @@ def simulate_race(
         # Pit stop at end of stint
         if (current_stint < len(strategy.stints) - 1 and
                 laps_in_stint >= stint.target_laps):
-            # Pit stop time loss
-            pit_time = circuit.pit_loss_seconds + rng.normal(0, 0.5)
+            # Pit stop time loss (reduced under SC/VSC)
+            # Under SC: field bunches but pit lane time unchanged (~10-12s loss)
+            # Under VSC: smaller benefit (~14-16s loss)
+            if sc_remaining > 0:
+                pit_time = circuit.pit_loss_seconds * 0.50  # ~11.5s for typical 23s pit
+            elif vsc_remaining > 0:
+                pit_time = circuit.pit_loss_seconds * 0.65  # ~15s for typical 23s pit
+            else:
+                pit_time = circuit.pit_loss_seconds + rng.normal(0, 0.5)
             lap_times[-1] += pit_time
             pit_laps.append(lap)
             
