@@ -191,8 +191,10 @@ export function RLView({ circuitKey }: Props) {
   }
 
   const { mc, rl, comparison } = data
-  const advantage = comparison.rlAdvantageSeconds
-  const rlWins = advantage > 0
+  // Use actual median times for the headline — not per-race delta which can mislead
+  const medianDiff = mc.medianTime - rl.medianTime  // positive = RL faster
+  const rlFasterOverall = medianDiff > 0
+  const absDiff = Math.abs(medianDiff)
 
   // Stop distribution chart data
   const stopDist = rl.stopDistribution
@@ -231,28 +233,28 @@ export function RLView({ circuitKey }: Props) {
 
         {/* Headline result */}
         <div className={`bg-f1-card border rounded-lg p-6 mb-8 ${
-          rlWins ? 'border-emerald-500/40' : 'border-f1-red/40'
+          rlFasterOverall ? 'border-emerald-500/40' : 'border-f1-red/40'
         }`}>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <div className="font-mono text-xs text-f1-muted uppercase tracking-widest mb-1">
-                Headline Result
+                Headline Result (Median Race Time)
               </div>
               <div className="font-display font-black text-3xl">
-                {rlWins ? (
+                {rlFasterOverall ? (
                   <span className="text-emerald-400">
-                    RL wins by {advantage.toFixed(1)}s
+                    RL faster by {absDiff.toFixed(1)}s
                   </span>
-                ) : advantage === 0 ? (
-                  <span className="text-yellow-400">Dead heat</span>
+                ) : absDiff < 1 ? (
+                  <span className="text-yellow-400">Effectively tied ({absDiff.toFixed(1)}s)</span>
                 ) : (
                   <span className="text-f1-red">
-                    MC wins by {Math.abs(advantage).toFixed(1)}s
+                    MC faster by {absDiff.toFixed(1)}s
                   </span>
                 )}
               </div>
               <div className="font-mono text-xs text-f1-muted mt-1">
-                Median advantage over {data.nRaces} races
+                RL wins {comparison.rlWinRate}% of {data.nRaces} head-to-head races
               </div>
             </div>
             <div className="w-full md:w-80">
@@ -267,7 +269,7 @@ export function RLView({ circuitKey }: Props) {
             label="RL Median"
             value={`${rl.medianTime.toFixed(1)}s`}
             sub={`σ = ${rl.stdTime.toFixed(1)}s`}
-            accent
+            accent={rlFasterOverall}
           />
           <StatCard
             label="MC Median"
@@ -307,7 +309,7 @@ export function RLView({ circuitKey }: Props) {
                 <Tooltip
                   contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: 8 }}
                   labelStyle={{ color: '#fff' }}
-                  formatter={(value: number, name: string) => [`${value.toFixed(1)}s`, name === 'mc' ? 'MC' : 'RL']}
+                  formatter={(value: number, name: string) => [`${value.toFixed(1)}s`, name]}
                 />
                 <Bar dataKey="mc" fill="#e10600" name="MC" radius={[4, 4, 0, 0]} barSize={24} />
                 <Bar dataKey="rl" fill="#10b981" name="RL" radius={[4, 4, 0, 0]} barSize={24} />

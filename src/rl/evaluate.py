@@ -242,7 +242,6 @@ def compare_circuit(
     # ── Compute stats ──
     mc_times = np.array(mc_times)
     rl_times = np.array(rl_times)
-    deltas = rl_times - mc_times  # negative = RL faster
     
     result = {
         "circuit_key": circuit_key,
@@ -279,9 +278,9 @@ def compare_circuit(
         "comparison": {
             "rl_win_rate": round(100 * rl_wins / n_races, 1),
             "mc_win_rate": round(100 * mc_wins / n_races, 1),
-            "median_delta": round(float(np.median(deltas)), 2),
-            "mean_delta": round(float(np.mean(deltas)), 2),
-            "rl_advantage_seconds": round(-float(np.median(deltas)), 2),
+            "median_delta": round(float(np.median(rl_times) - np.median(mc_times)), 2),
+            "mean_delta": round(float(np.mean(rl_times) - np.mean(mc_times)), 2),
+            "rl_advantage_seconds": round(float(np.median(mc_times) - np.median(rl_times)), 2),
             # SC breakdown
             "sc_races": sc_race_total,
             "sc_race_rl_win_rate": round(100 * sc_race_rl_wins / max(sc_race_total, 1), 1),

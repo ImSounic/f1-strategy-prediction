@@ -18,30 +18,42 @@ const compoundColorMap: Record<string, string> = {
 }
 
 function CompoundPill({ compound }: { compound: string }) {
-  const bgMap: Record<string, string> = {
-    S: 'bg-red-500 text-white',
-    M: 'bg-yellow-400 text-gray-900',
-    H: 'bg-white text-gray-900',
+  // Normalise: accept full names or single letters
+  const c = compound.trim()
+  const key = c === 'SOFT' || c === 'S' ? 'S'
+            : c === 'MEDIUM' || c === 'M' ? 'M'
+            : c === 'HARD' || c === 'H' ? 'H'
+            : c[0] || '?'
+
+  const label = c === 'SOFT' || c === 'S' ? 'SOFT'
+              : c === 'MEDIUM' || c === 'M' ? 'MEDIUM'
+              : c === 'HARD' || c === 'H' ? 'HARD'
+              : c
+
+  const styles: Record<string, { border: string; text: string }> = {
+    S: { border: 'border-red-500 text-red-400', text: 'text-red-400' },
+    M: { border: 'border-yellow-400 text-yellow-300', text: 'text-yellow-300' },
+    H: { border: 'border-white text-white', text: 'text-white' },
   }
-  const cls = bgMap[compound] || 'bg-f1-border text-white'
+  const s = styles[key] || { border: 'border-f1-border text-f1-muted', text: 'text-f1-muted' }
+
   return (
-    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-[10px] font-mono font-bold ${cls}`}>
-      {compound}
+    <span
+      className={`inline-block px-2 py-0.5 rounded border text-[10px] font-mono font-bold leading-tight ${s.border}`}
+    >
+      {label}
     </span>
   )
 }
 
 function CompoundSequence({ compounds }: { compounds: string }) {
-  // Parse "M→H" or "S→M→H" format
-  const parts = compounds.split('→').map(c => c.trim())
+  // Parse "HARD → MEDIUM → SOFT" or "M→H" or "H → M → S" format
+  const parts = compounds.split(/[→>]/).map(c => c.trim()).filter(Boolean)
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-1 flex-wrap">
       {parts.map((comp, i) => (
         <div key={i} className="flex items-center gap-1">
           <CompoundPill compound={comp} />
-          {i < parts.length - 1 && (
-            <span className="text-f1-border text-xs mx-0.5">→</span>
-          )}
         </div>
       ))}
     </div>
