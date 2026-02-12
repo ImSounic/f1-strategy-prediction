@@ -94,18 +94,34 @@ function LapTrace({ race, totalLaps }: { race: RLSampleRace; totalLaps: number }
     isPit: race.pitLaps.includes(i + 1),
   }))
 
+  // Starting compound is compounds[0]
+  const startCompound = race.compounds[0] || 'MEDIUM'
+  const delta = race.mcTime - race.totalTime
+
   return (
     <div className="bg-f1-darker border border-f1-border rounded-lg p-4">
-      <div className="flex items-center justify-between mb-3">
-        <div className="font-mono text-xs text-f1-muted">
-          Race #{race.seed - 4999} — {race.stops} stop{race.stops !== 1 ? 's' : ''} — {race.totalTime.toFixed(1)}s
+      <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+        <div className="flex items-center gap-3">
+          <div className="font-mono text-xs text-f1-muted">
+            {race.category} — {race.stops} stop{race.stops !== 1 ? 's' : ''} — {race.totalTime.toFixed(1)}s
+          </div>
+          {race.mcTime > 0 && (
+            <span className={`font-mono text-[10px] px-1.5 py-0.5 rounded ${
+              race.rlWon
+                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                : 'bg-red-500/20 text-red-400 border border-red-500/30'
+            }`}>
+              {race.rlWon ? 'RL' : 'MC'} {race.rlWon ? '+' : ''}{delta.toFixed(1)}s
+            </span>
+          )}
         </div>
-        <div className="flex gap-1">
+        <div className="flex items-center gap-1">
+          <CompoundPill compound={startCompound} />
           {race.pitLaps.map((lap, i) => {
             const compAfter = race.compounds[lap] || race.compounds[lap - 1]
             return (
               <span key={i} className="flex items-center gap-1 font-mono text-[10px] text-f1-muted">
-                L{lap} → <CompoundPill compound={compAfter} />
+                → L{lap} → <CompoundPill compound={compAfter} />
               </span>
             )
           })}
@@ -363,20 +379,26 @@ export function RLView({ circuitKey }: Props) {
                   Tyre age trace with pit stops and safety car events
                 </p>
               </div>
-              <div className="flex gap-2">
-                {data.sampleRaces.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setSelectedRace(i)}
-                    className={`w-8 h-8 rounded font-mono text-sm transition-all ${
-                      selectedRace === i
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-f1-darker border border-f1-border text-f1-muted hover:text-white'
-                    }`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
+              <div className="flex gap-2 flex-wrap">
+                {data.sampleRaces.map((race, i) => {
+                  const label = race.category || `Race ${i + 1}`
+                  const hasSC = race.scLaps.length > 0
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setSelectedRace(i)}
+                      className={`px-3 h-8 rounded font-mono text-[11px] transition-all whitespace-nowrap ${
+                        selectedRace === i
+                          ? hasSC
+                            ? 'bg-amber-500 text-black'
+                            : 'bg-emerald-500 text-white'
+                          : 'bg-f1-darker border border-f1-border text-f1-muted hover:text-white'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  )
+                })}
               </div>
             </div>
 

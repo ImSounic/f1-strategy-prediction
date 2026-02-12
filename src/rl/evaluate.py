@@ -167,7 +167,6 @@ def compare_circuit(
         raise ValueError(f"Could not find MC strategy: {mc_best_name}")
     
     logger.info(f"  MC best:  {clean_strategy_name(mc_best_name)}")
-    logger.info(f"  MC median (precomputed): {mc_best['median_time']:.1f}s")
     
     # Load RL agent
     model_path = Path("models/rl") / f"ppo_{circuit_key}_{season}"
@@ -287,17 +286,91 @@ def compare_circuit(
             "no_sc_races": no_sc_race_total,
             "no_sc_race_rl_win_rate": round(100 * no_sc_race_rl_wins / max(no_sc_race_total, 1), 1),
         },
-        # Sample RL lap-by-lap decisions (first 5 races for visualization)
+        # Sample RL lap-by-lap decisions (categorised for frontend)
         "sample_races": [],
     }
     
-    # Collect sample races for frontend
-    for i in range(min(5, n_races)):
-        seed = 5000 + i
+    # Collect diverse sample races by category
+    # Categorise the 500 races we already ran
+    race_categories = []
+    for i in range(n_races):
+        sc_count = int(mc_sc_counts[i]) + int(rl_sc_counts[i] if i < len(rl_sc_counts) else 0)
+        # Use the RL SC count from rl_info since both share the same seed
+        rl_sc = int(rl_sc_counts[i]) if i < len(rl_sc_counts) else 0
+        rl_won = bool(rl_times[i] < mc_times[i])
+        race_categories.append({
+            "index": i,
+            "seed": 5000 + i,
+            "sc_count": rl_sc,
+            "rl_won": rl_won,
+            "delta": float(mc_times[i] - rl_times[i]),
+        })
+    
+    # Pick diverse representative races
+    clean_races = [r for r in race_categories if r["sc_count"] == 0]
+    sc1_races = [r for r in race_categories if r["sc_count"] == 1]
+    sc2_races = [r for r in race_categories if r["sc_count"] >= 2]
+    
+    selected_seeds = []
+    
+    # 1) Clean Race
+    if clean_races:
+        # Pick one near the median delta
+        clean_races.sort(key=lambda r: abs(r["delta"]))
+        selected_seeds.append(("Clean Race", clean_races[0]["seed"]))
+    
+    # 2) Clean Race — RL Win (if different from above)
+    clean_rl_wins = [r for r in clean_races if r["rl_won"]]
+    if clean_rl_wins and (not selected_seeds or clean_rl_wins[0]["seed"] != selected_seeds[0][1]):
+        # Pick one with biggest RL advantage
+        clean_rl_wins.sort(key=lambda r: r["delta"], reverse=True)
+        selected_seeds.append(("Clean — RL Win", clean_rl_wins[0]["seed"]))
+    
+    # 3) 1 Safety Car
+    if sc1_races:
+        sc1_races.sort(key=lambda r: abs(r["delta"]))
+        selected_seeds.append(("1 Safety Car", sc1_races[0]["seed"]))
+    
+    # 4) SC — RL Adapts (RL wins with SC present)
+    sc_rl_wins = [r for r in sc1_races + sc2_races if r["rl_won"]]
+    if sc_rl_wins:
+        sc_rl_wins.sort(key=lambda r: r["delta"], reverse=True)
+        seed_already = {s for _, s in selected_seeds}
+        best = next((r for r in sc_rl_wins if r["seed"] not in seed_already), None)
+        if best:
+            selected_seeds.append(("SC — RL Adapts", best["seed"]))
+    
+    # 5) Multi Safety Car
+    if sc2_races:
+        seed_already = {s for _, s in selected_seeds}
+        remaining = [r for r in sc2_races if r["seed"] not in seed_already]
+        if remaining:
+            remaining.sort(key=lambda r: abs(r["delta"]))
+            selected_seeds.append(("Multi SC", remaining[0]["seed"]))
+    
+    # Fallback: if we have < 3 races, fill with sequential seeds
+    if len(selected_seeds) < 3:
+        for i in range(min(5, n_races)):
+            seed = 5000 + i
+            if seed not in {s for _, s in selected_seeds}:
+                sc = int(rl_sc_counts[i]) if i < len(rl_sc_counts) else 0
+                cat = "Clean Race" if sc == 0 else f"{sc} SC"
+                selected_seeds.append((cat, seed))
+                if len(selected_seeds) >= 5:
+                    break
+    
+    # Re-run RL agent on selected seeds to get full lap-by-lap data
+    for category, seed in selected_seeds:
         rl_info = run_rl_agent(rl_model, env, seed)
+        mc_time_for_seed, mc_sc_for_seed = run_mc_strategy(
+            mc_strategy, circuit, deg_model, feature_cols, fuel_config, seed
+        )
         result["sample_races"].append({
             "seed": seed,
+            "category": category,
             "total_time": round(rl_info["total_time"], 1),
+            "mc_time": round(mc_time_for_seed, 1),
+            "rl_won": bool(rl_info["total_time"] < mc_time_for_seed),
             "stops": rl_info["stops_done"],
             "compounds": rl_info["history"]["compounds"],
             "pit_laps": rl_info["history"]["pit_laps"],
@@ -414,7 +487,10 @@ def export_rl_typescript(results: list, season: int):
     lines.append("")
     lines.append("export interface RLSampleRace {")
     lines.append("  seed: number;")
+    lines.append("  category: string;")
     lines.append("  totalTime: number;")
+    lines.append("  mcTime: number;")
+    lines.append("  rlWon: boolean;")
     lines.append("  stops: number;")
     lines.append("  compounds: string[];")
     lines.append("  pitLaps: number[];")
@@ -507,7 +583,11 @@ def export_rl_typescript(results: list, season: int):
             sc_str = json.dumps(sr["sc_laps"])
             vsc_str = json.dumps(sr["vsc_laps"])
             ages_str = json.dumps(sr["tyre_ages"])
-            lines.append(f'      {{ seed: {sr["seed"]}, totalTime: {sr["total_time"]}, '
+            category = sr.get("category", "Race")
+            mc_time = sr.get("mc_time", 0)
+            rl_won = "true" if sr.get("rl_won", False) else "false"
+            lines.append(f'      {{ seed: {sr["seed"]}, category: "{category}", '
+                        f'totalTime: {sr["total_time"]}, mcTime: {mc_time}, rlWon: {rl_won}, '
                         f'stops: {sr["stops"]}, compounds: {compounds_str}, '
                         f'pitLaps: {pit_str}, scLaps: {sc_str}, '
                         f'vscLaps: {vsc_str}, tyreAges: {ages_str} }},')
