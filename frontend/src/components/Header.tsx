@@ -1,9 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const isSimulate = pathname === '/simulate'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -24,39 +28,65 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <Link href="/" className="flex items-center gap-3 cursor-pointer">
           <div className="w-8 h-8 bg-f1-red rounded-sm flex items-center justify-center">
             <span className="font-display font-black text-white text-sm">F1</span>
           </div>
           <span className="font-display font-bold text-lg tracking-tight">
             Strategy<span className="text-f1-red">Optimizer</span>
           </span>
-        </div>
+        </Link>
 
-        <nav className="hidden md:flex items-center gap-5">
-          {[
-            ['How It Works', 'methodology'],
-            ['Circuits', 'circuits'],
-            ['Strategy', 'strategy'],
-            ['Scenarios', 'scenarios'],
-            ['RL Agent', 'rl'],
-            ['Validation', 'validation'],
-            ['Limitations', 'limitations'],
-            ['Tech', 'tech'],
-          ].map(([label, id]) => (
-            <button
-              key={id}
-              onClick={() => scrollTo(id)}
-              className="text-sm font-body text-f1-muted hover:text-white transition-colors"
+        <nav className="hidden md:flex items-center gap-1">
+          {/* Page tabs */}
+          <div className="flex items-center bg-f1-darker/60 border border-f1-border rounded-lg p-0.5 mr-4">
+            <Link
+              href="/"
+              className={`text-sm font-mono px-4 py-1.5 rounded-md transition-all ${
+                !isSimulate
+                  ? 'bg-f1-red text-white'
+                  : 'text-f1-muted hover:text-white'
+              }`}
             >
-              {label}
-            </button>
-          ))}
+              Analysis
+            </Link>
+            <Link
+              href="/simulate"
+              className={`text-sm font-mono px-4 py-1.5 rounded-md transition-all ${
+                isSimulate
+                  ? 'bg-emerald-500 text-white'
+                  : 'text-f1-muted hover:text-white'
+              }`}
+            >
+              Race Simulator
+            </Link>
+          </div>
+
+          {/* Section nav (only on main page) */}
+          {!isSimulate && (
+            <>
+              {[
+                ['Circuits', 'circuits'],
+                ['Strategy', 'strategy'],
+                ['RL Agent', 'rl'],
+                ['Validation', 'validation'],
+              ].map(([label, id]) => (
+                <button
+                  key={id}
+                  onClick={() => scrollTo(id)}
+                  className="text-sm font-body text-f1-muted hover:text-white transition-colors px-2"
+                >
+                  {label}
+                </button>
+              ))}
+            </>
+          )}
+          
           <a
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-mono px-4 py-1.5 border border-f1-border rounded hover:border-f1-red hover:text-f1-red transition-colors"
+            className="text-sm font-mono px-4 py-1.5 border border-f1-border rounded hover:border-f1-red hover:text-f1-red transition-colors ml-3"
           >
             GitHub →
           </a>
