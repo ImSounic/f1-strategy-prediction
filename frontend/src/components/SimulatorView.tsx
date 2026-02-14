@@ -500,12 +500,14 @@ export function SimulatorView() {
 
   // Look up pre-computed stats from TS
   const result = useMemo(() => {
+    if (!mounted) return null
+    if (!scenarioData || typeof scenarioData !== 'object') return null
     const circuitData = scenarioData[selectedCircuit]
     if (!circuitData?.drivers?.[selectedDriver]?.[String(gridPosition)]) {
       return null
     }
     return circuitData.drivers[selectedDriver][String(gridPosition)]
-  }, [selectedCircuit, selectedDriver, gridPosition])
+  }, [selectedCircuit, selectedDriver, gridPosition, mounted])
 
   // Fetch detailed sample_races JSON when circuit changes
   useEffect(() => {
@@ -534,9 +536,9 @@ export function SimulatorView() {
 
   // Available tabs (only show SC tabs if data exists)
   const availableTabs = useMemo(() => {
-    if (!sampleRaces) return SCENARIO_TABS.filter(t => t.key === 'median')
+    if (!mounted || !sampleRaces) return SCENARIO_TABS.filter(t => t.key === 'median')
     return SCENARIO_TABS.filter(t => sampleRaces[t.key])
-  }, [sampleRaces])
+  }, [sampleRaces, mounted])
 
   // Reset to median tab when combo changes and current tab isn't available
   useEffect(() => {
