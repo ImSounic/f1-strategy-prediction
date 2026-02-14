@@ -481,12 +481,18 @@ function ScenarioPanel({
 // ── Main Component ────────────────────────────────────────────
 
 export function SimulatorView() {
+  const [mounted, setMounted] = useState(false)
   const [selectedDriver, setSelectedDriver] = useState('VER')
   const [selectedCircuit, setSelectedCircuit] = useState('bahrain')
   const [gridPosition, setGridPosition] = useState(1)
   const [activeTab, setActiveTab] = useState<ScenarioKey>('median')
   const [detailData, setDetailData] = useState<Record<string, any> | null>(null)
   const [loadingDetail, setLoadingDetail] = useState(false)
+
+  // Only render after client-side hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const driver = DRIVERS.find(d => d.code === selectedDriver)!
   const circuit = CIRCUITS.find(c => c.key === selectedCircuit)!
@@ -541,6 +547,20 @@ export function SimulatorView() {
 
   const activeRace = sampleRaces?.[activeTab] as SampleRaceData | undefined
   const activeTabConfig = SCENARIO_TABS.find(t => t.key === activeTab)!
+
+  // Prevent SSR/static generation - only render on client
+  if (!mounted) {
+    return (
+      <div className="pt-24 pb-16">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="inline-block w-8 h-8 border-3 border-f1-muted border-t-emerald-400 rounded-full animate-spin mb-4" />
+            <div className="font-mono text-sm text-f1-muted">Loading simulator...</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="pt-24 pb-16">

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { scenarioData } from '@/data/scenarios'
-import type { ScenarioResult, DecisionTrigger } from '@/data/scenarios'
+import type { ScenarioResult, DecisionTrigger, ScenarioStrategy } from '@/data/scenarios'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell,
@@ -170,7 +170,7 @@ export function ScenarioView({ circuitKey }: Props) {
   const triggers = data.triggers
 
   // Chart data for selected scenario
-  const chartData = scenario.strategies.slice(0, 6).map(s => ({
+  const chartData = scenario.strategies.slice(0, 6).map((s: ScenarioStrategy) => ({
     name: s.cleanName,
     delta: s.delta,
     stops: s.stops,
@@ -206,7 +206,7 @@ export function ScenarioView({ circuitKey }: Props) {
               Sorted by impact.
             </p>
             <div className="grid md:grid-cols-2 gap-3">
-              {triggers.slice(0, 6).map((t, i) => (
+              {triggers.slice(0, 6).map((t: DecisionTrigger, i: number) => (
                 <TriggerCard key={i} trigger={t} />
               ))}
             </div>
@@ -245,7 +245,7 @@ export function ScenarioView({ circuitKey }: Props) {
             <h4 className="font-display font-bold text-sm uppercase tracking-wider text-f1-muted mb-3">
               Scenarios ({data.scenarios.length})
             </h4>
-            {data.scenarios.map((sc, i) => (
+            {data.scenarios.map((sc: ScenarioResult, i: number) => (
               <ScenarioCard
                 key={sc.scenarioId}
                 scenario={sc}
@@ -341,7 +341,7 @@ export function ScenarioView({ circuitKey }: Props) {
                     formatter={(value: number) => [`+${value.toFixed(1)}s`, 'Delta']}
                   />
                   <Bar dataKey="delta" radius={[0, 4, 4, 0]}>
-                    {chartData.map((entry, i) => (
+                    {chartData.map((entry: any, i: number) => (
                       <Cell
                         key={i}
                         fill={entry.stops === 1 ? '#E10600' : '#0090D0'}
@@ -376,7 +376,7 @@ export function ScenarioView({ circuitKey }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {scenario.strategies.map((s, i) => {
+                  {scenario.strategies.map((s: ScenarioStrategy, i: number) => {
                     const isDefault = s.name === data.defaultPlan.name
                     return (
                       <tr
