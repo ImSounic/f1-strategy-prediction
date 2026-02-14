@@ -1,0 +1,35 @@
+04:33:51 │ INFO     │ =================================================================
+04:33:51 │ INFO     │   TRAINING RL AGENT — ZANDVOORT
+04:33:51 │ INFO     │ =================================================================
+04:33:51 │ INFO     │   Circuit:    zandvoort
+04:33:51 │ INFO     │   Timesteps:  500,000
+04:33:51 │ INFO     │   Obs space:  (14,)
+04:33:51 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+04:33:52 │ INFO     │   Policy:     MLP [128, 128]
+04:33:52 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+04:33:52 │ INFO     │ 
+  Training...
+04:35:46 │ INFO     │   Step   50,000 | Mean reward:   -17.4 | Std:   2.4 | Mean race time:   6902.5s
+04:37:34 │ INFO     │   Step  100,000 | Mean reward:   -16.7 | Std:   2.2 | Mean race time:   6957.4s
+04:39:27 │ INFO     │   Step  150,000 | Mean reward:   -17.2 | Std:   2.5 | Mean race time:   6921.1s
+04:41:19 │ INFO     │   Step  200,000 | Mean reward:   -16.9 | Std:   2.1 | Mean race time:   6916.0s
+04:43:12 │ INFO     │   Step  250,000 | Mean reward:   -16.7 | Std:   1.9 | Mean race time:   6920.6s
+04:45:03 │ INFO     │   Step  300,000 | Mean reward:   -16.9 | Std:   2.0 | Mean race time:   6929.1s
+04:46:57 │ INFO     │   Step  350,000 | Mean reward:   -16.6 | Std:   1.8 | Mean race time:   6905.4s
+04:48:50 │ INFO     │   Step  400,000 | Mean reward:   -17.5 | Std:   5.5 | Mean race time:   6934.7s
+04:50:42 │ INFO     │   Step  450,000 | Mean reward:   -16.6 | Std:   1.8 | Mean race time:   6903.7s
+04:52:36 │ INFO     │   Step  500,000 | Mean reward:   -17.0 | Std:   2.0 | Mean race time:   6901.8s
+04:52:40 │ INFO     │ 
+  ✓ Training complete in 1128s
+04:52:40 │ INFO     │     Races simulated: ~6,944
+04:52:40 │ INFO     │     Speed: 443 steps/sec
+04:52:40 │ INFO     │     Saved: models/rl/ppo_zandvoort_2025
+04:52:40 │ INFO     │ 
+  Evaluating (100 races)...
+04:52:45 │ INFO     │     Median race time: 6879.0s
+04:52:45 │ INFO     │     Mean stops:       1.21
+04:52:45 │ INFO     │     Mean SC events:   0.85
+04:52:45 │ INFO     │     Compound variety: 2.1 types
+04:52:45 │ INFO     │     Legal races:      78%

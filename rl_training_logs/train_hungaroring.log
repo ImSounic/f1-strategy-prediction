@@ -1,0 +1,35 @@
+04:13:17 │ INFO     │ =================================================================
+04:13:17 │ INFO     │   TRAINING RL AGENT — HUNGARORING
+04:13:17 │ INFO     │ =================================================================
+04:13:17 │ INFO     │   Circuit:    hungaroring
+04:13:17 │ INFO     │   Timesteps:  500,000
+04:13:17 │ INFO     │   Obs space:  (14,)
+04:13:17 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+04:13:18 │ INFO     │   Policy:     MLP [128, 128]
+04:13:18 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+04:13:18 │ INFO     │ 
+  Training...
+04:15:12 │ INFO     │   Step   50,000 | Mean reward:   -18.6 | Std:   2.6 | Mean race time:   6627.1s
+04:17:02 │ INFO     │   Step  100,000 | Mean reward:   -17.5 | Std:   1.6 | Mean race time:   6619.3s
+04:18:57 │ INFO     │   Step  150,000 | Mean reward:   -17.3 | Std:   1.3 | Mean race time:   6609.3s
+04:20:50 │ INFO     │   Step  200,000 | Mean reward:   -17.2 | Std:   1.7 | Mean race time:   6606.8s
+04:22:45 │ INFO     │   Step  250,000 | Mean reward:   -17.0 | Std:   1.5 | Mean race time:   6599.2s
+04:24:41 │ INFO     │   Step  300,000 | Mean reward:   -17.4 | Std:   1.4 | Mean race time:   6606.1s
+04:26:31 │ INFO     │   Step  350,000 | Mean reward:   -17.3 | Std:   1.5 | Mean race time:   6612.1s
+04:28:20 │ INFO     │   Step  400,000 | Mean reward:   -17.4 | Std:   1.5 | Mean race time:   6622.9s
+04:30:12 │ INFO     │   Step  450,000 | Mean reward:   -19.1 | Std:   7.4 | Mean race time:   6604.0s
+04:32:07 │ INFO     │   Step  500,000 | Mean reward:   -17.2 | Std:   1.3 | Mean race time:   6621.6s
+04:32:11 │ INFO     │ 
+  ✓ Training complete in 1133s
+04:32:11 │ INFO     │     Races simulated: ~7,142
+04:32:11 │ INFO     │     Speed: 441 steps/sec
+04:32:11 │ INFO     │     Saved: models/rl/ppo_hungaroring_2025
+04:32:11 │ INFO     │ 
+  Evaluating (100 races)...
+04:32:16 │ INFO     │     Median race time: 6548.2s
+04:32:16 │ INFO     │     Mean stops:       1.53
+04:32:16 │ INFO     │     Mean SC events:   0.28
+04:32:16 │ INFO     │     Compound variety: 2.5 types
+04:32:16 │ INFO     │     Legal races:      100%

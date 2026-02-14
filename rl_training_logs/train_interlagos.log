@@ -1,0 +1,35 @@
+22:20:25 │ INFO     │ =================================================================
+22:20:25 │ INFO     │   TRAINING RL AGENT — INTERLAGOS
+22:20:25 │ INFO     │ =================================================================
+22:20:26 │ INFO     │   Circuit:    interlagos
+22:20:26 │ INFO     │   Timesteps:  500,000
+22:20:26 │ INFO     │   Obs space:  (14,)
+22:20:26 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+22:20:27 │ INFO     │   Policy:     MLP [128, 128]
+22:20:27 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+22:20:27 │ INFO     │ 
+  Training...
+22:23:53 │ INFO     │   Step   50,000 | Mean reward:   -18.5 | Std:   2.8 | Mean race time:   6926.1s
+22:27:31 │ INFO     │   Step  100,000 | Mean reward:   -18.1 | Std:   2.6 | Mean race time:   6921.3s
+22:31:03 │ INFO     │   Step  150,000 | Mean reward:   -18.3 | Std:   2.2 | Mean race time:   6929.2s
+22:34:42 │ INFO     │   Step  200,000 | Mean reward:   -18.5 | Std:   2.2 | Mean race time:   6904.5s
+22:38:31 │ INFO     │   Step  250,000 | Mean reward:   -18.7 | Std:   2.1 | Mean race time:   6897.0s
+22:42:09 │ INFO     │   Step  300,000 | Mean reward:   -18.2 | Std:   2.0 | Mean race time:   6898.7s
+22:45:37 │ INFO     │   Step  350,000 | Mean reward:   -17.9 | Std:   2.0 | Mean race time:   6924.3s
+22:49:12 │ INFO     │   Step  400,000 | Mean reward:   -18.0 | Std:   2.1 | Mean race time:   6914.2s
+22:52:56 │ INFO     │   Step  450,000 | Mean reward:   -18.8 | Std:   2.3 | Mean race time:   6920.9s
+22:57:00 │ INFO     │   Step  500,000 | Mean reward:   -18.1 | Std:   2.0 | Mean race time:   6928.0s
+22:57:10 │ INFO     │ 
+  ✓ Training complete in 2204s
+22:57:10 │ INFO     │     Races simulated: ~7,042
+22:57:10 │ INFO     │     Speed: 227 steps/sec
+22:57:11 │ INFO     │     Saved: models/rl/ppo_interlagos_2025
+22:57:11 │ INFO     │ 
+  Evaluating (100 races)...
+22:57:21 │ INFO     │     Median race time: 6902.7s
+22:57:21 │ INFO     │     Mean stops:       1.26
+22:57:21 │ INFO     │     Mean SC events:   1.22
+22:57:21 │ INFO     │     Compound variety: 2.2 types
+22:57:21 │ INFO     │     Legal races:      75%

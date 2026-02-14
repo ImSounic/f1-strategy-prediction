@@ -1,0 +1,27 @@
+20:36:08 │ INFO     │ =================================================================
+20:36:08 │ INFO     │   RL vs MC COMPARISON — SPA
+20:36:08 │ INFO     │ =================================================================
+20:36:08 │ INFO     │   Generated 78 candidate strategies (30 1-stop, 48 2-stop)
+20:36:08 │ INFO     │   MC best:  1-stop H→S
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+20:36:09 │ INFO     │   Races:    1000
+20:36:09 │ INFO     │ 
+  Running head-to-head comparison...
+20:37:25 │ INFO     │ 
+  ───────────────────────────────────────────────────────
+20:37:25 │ INFO     │                           RESULTS                        
+20:37:25 │ INFO     │   ───────────────────────────────────────────────────────
+20:37:25 │ INFO     │                                     MC              RL
+20:37:25 │ INFO     │   Median time                  4207.5s         4197.0s
+20:37:25 │ INFO     │   Std time                      144.8s          144.9s
+20:37:25 │ INFO     │   Mean stops                         1           1.17
+20:37:25 │ INFO     │   Mean SC events                 0.67           0.66
+20:37:25 │ INFO     │   ───────────────────────────────────────────────────────
+20:37:25 │ INFO     │   RL advantage:  +10.50s (median)
+20:37:25 │ INFO     │   RL win rate:   49.1%
+20:37:25 │ INFO     │     SC races:    56.2% (719 races)
+20:37:25 │ INFO     │     No-SC races: 31.0% (281 races)
+20:37:25 │ INFO     │ 
+  ✓ Saved: results/rl_comparison_spa_2025.json
+20:37:25 │ INFO     │ ✓ Written: frontend/src/data/rl.ts (1 circuits)

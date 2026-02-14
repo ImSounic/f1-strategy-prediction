@@ -1,0 +1,27 @@
+20:14:09 │ INFO     │ =================================================================
+20:14:09 │ INFO     │   RL vs MC COMPARISON — SUZUKA
+20:14:09 │ INFO     │ =================================================================
+20:14:10 │ INFO     │   Generated 78 candidate strategies (30 1-stop, 48 2-stop)
+20:14:10 │ INFO     │   MC best:  1-stop H→S
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+20:14:13 │ INFO     │   Races:    1000
+20:14:13 │ INFO     │ 
+  Running head-to-head comparison...
+20:15:22 │ INFO     │ 
+  ───────────────────────────────────────────────────────
+20:15:22 │ INFO     │                           RESULTS                        
+20:15:22 │ INFO     │   ───────────────────────────────────────────────────────
+20:15:22 │ INFO     │                                     MC              RL
+20:15:22 │ INFO     │   Median time                  5061.3s         5051.8s
+20:15:22 │ INFO     │   Std time                      148.1s          144.7s
+20:15:22 │ INFO     │   Mean stops                         1           0.65
+20:15:22 │ INFO     │   Mean SC events                 0.67           0.66
+20:15:22 │ INFO     │   ───────────────────────────────────────────────────────
+20:15:22 │ INFO     │   RL advantage:  +9.46s (median)
+20:15:22 │ INFO     │   RL win rate:   44.0%
+20:15:22 │ INFO     │     SC races:    51.3% (698 races)
+20:15:22 │ INFO     │     No-SC races: 27.2% (302 races)
+20:15:22 │ INFO     │ 
+  ✓ Saved: results/rl_comparison_suzuka_2025.json
+20:15:22 │ INFO     │ ✓ Written: frontend/src/data/rl.ts (1 circuits)

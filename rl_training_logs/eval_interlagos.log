@@ -1,0 +1,27 @@
+22:57:27 │ INFO     │ =================================================================
+22:57:27 │ INFO     │   RL vs MC COMPARISON — INTERLAGOS
+22:57:27 │ INFO     │ =================================================================
+22:57:27 │ INFO     │   Generated 78 candidate strategies (30 1-stop, 48 2-stop)
+22:57:27 │ INFO     │   MC best:  2-stop M→H→S
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+22:57:29 │ INFO     │   Races:    1000
+22:57:29 │ INFO     │ 
+  Running head-to-head comparison...
+23:00:46 │ INFO     │ 
+  ───────────────────────────────────────────────────────
+23:00:46 │ INFO     │                           RESULTS                        
+23:00:46 │ INFO     │   ───────────────────────────────────────────────────────
+23:00:46 │ INFO     │                                     MC              RL
+23:00:46 │ INFO     │   Median time                  6878.2s         6908.5s
+23:00:46 │ INFO     │   Std time                      186.7s          177.3s
+23:00:46 │ INFO     │   Mean stops                         2           1.30
+23:00:46 │ INFO     │   Mean SC events                 1.26           1.27
+23:00:46 │ INFO     │   ───────────────────────────────────────────────────────
+23:00:46 │ INFO     │   RL advantage:  -30.30s (median)
+23:00:46 │ INFO     │   RL win rate:   43.7%
+23:00:46 │ INFO     │     SC races:    46.7% (915 races)
+23:00:46 │ INFO     │     No-SC races: 11.8% (85 races)
+23:00:46 │ INFO     │ 
+  ✓ Saved: results/rl_comparison_interlagos_2025.json
+23:00:46 │ INFO     │ ✓ Written: frontend/src/data/rl.ts (1 circuits)

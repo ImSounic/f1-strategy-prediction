@@ -1,0 +1,35 @@
+01:26:33 │ INFO     │ =================================================================
+01:26:33 │ INFO     │   TRAINING RL AGENT — SHANGHAI
+01:26:33 │ INFO     │ =================================================================
+01:26:33 │ INFO     │   Circuit:    shanghai
+01:26:33 │ INFO     │   Timesteps:  500,000
+01:26:33 │ INFO     │   Obs space:  (14,)
+01:26:33 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+01:26:34 │ INFO     │   Policy:     MLP [128, 128]
+01:26:34 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+01:26:34 │ INFO     │ 
+  Training...
+01:28:18 │ INFO     │   Step   50,000 | Mean reward:   -15.6 | Std:   1.9 | Mean race time:   5379.8s
+01:30:06 │ INFO     │   Step  100,000 | Mean reward:   -15.7 | Std:   2.0 | Mean race time:   5374.5s
+01:31:51 │ INFO     │   Step  150,000 | Mean reward:   -15.3 | Std:   2.1 | Mean race time:   5400.5s
+01:33:38 │ INFO     │   Step  200,000 | Mean reward:   -15.4 | Std:   2.1 | Mean race time:   5388.2s
+01:35:32 │ INFO     │   Step  250,000 | Mean reward:   -15.4 | Std:   1.9 | Mean race time:   5367.9s
+01:37:16 │ INFO     │   Step  300,000 | Mean reward:   -15.5 | Std:   2.1 | Mean race time:   5387.8s
+01:39:06 │ INFO     │   Step  350,000 | Mean reward:   -15.8 | Std:   1.9 | Mean race time:   5364.6s
+01:40:49 │ INFO     │   Step  400,000 | Mean reward:   -15.3 | Std:   1.7 | Mean race time:   5365.3s
+01:42:40 │ INFO     │   Step  450,000 | Mean reward:   -15.8 | Std:   1.7 | Mean race time:   5383.3s
+01:44:33 │ INFO     │   Step  500,000 | Mean reward:   -15.6 | Std:   1.8 | Mean race time:   5391.3s
+01:44:37 │ INFO     │ 
+  ✓ Training complete in 1083s
+01:44:37 │ INFO     │     Races simulated: ~8,928
+01:44:37 │ INFO     │     Speed: 462 steps/sec
+01:44:37 │ INFO     │     Saved: models/rl/ppo_shanghai_2025
+01:44:37 │ INFO     │ 
+  Evaluating (100 races)...
+01:44:41 │ INFO     │     Median race time: 5352.5s
+01:44:41 │ INFO     │     Mean stops:       1.19
+01:44:41 │ INFO     │     Mean SC events:   0.60
+01:44:41 │ INFO     │     Compound variety: 2.2 types
+01:44:41 │ INFO     │     Legal races:      100%

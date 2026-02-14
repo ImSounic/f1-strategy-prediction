@@ -1,0 +1,35 @@
+03:32:20 │ INFO     │ =================================================================
+03:32:20 │ INFO     │   TRAINING RL AGENT — LUSAIL
+03:32:20 │ INFO     │ =================================================================
+03:32:21 │ INFO     │   Circuit:    lusail
+03:32:21 │ INFO     │   Timesteps:  500,000
+03:32:21 │ INFO     │   Obs space:  (14,)
+03:32:21 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+03:32:22 │ INFO     │   Policy:     MLP [128, 128]
+03:32:22 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+03:32:22 │ INFO     │ 
+  Training...
+03:34:10 │ INFO     │   Step   50,000 | Mean reward:   -14.0 | Std:   5.3 | Mean race time:   5518.6s
+03:36:01 │ INFO     │   Step  100,000 | Mean reward:   -12.3 | Std:   2.3 | Mean race time:   5523.6s
+03:37:56 │ INFO     │   Step  150,000 | Mean reward:   -12.5 | Std:   2.5 | Mean race time:   5514.3s
+03:39:50 │ INFO     │   Step  200,000 | Mean reward:   -14.1 | Std:   6.8 | Mean race time:   5535.2s
+03:41:40 │ INFO     │   Step  250,000 | Mean reward:   -13.8 | Std:   7.1 | Mean race time:   5513.1s
+03:43:35 │ INFO     │   Step  300,000 | Mean reward:   -13.7 | Std:   5.0 | Mean race time:   5530.6s
+03:45:29 │ INFO     │   Step  350,000 | Mean reward:   -13.0 | Std:   2.2 | Mean race time:   5510.5s
+03:47:24 │ INFO     │   Step  400,000 | Mean reward:   -12.8 | Std:   1.9 | Mean race time:   5459.1s
+03:49:15 │ INFO     │   Step  450,000 | Mean reward:   -13.4 | Std:   5.3 | Mean race time:   5468.9s
+03:51:09 │ INFO     │   Step  500,000 | Mean reward:   -12.9 | Std:   2.1 | Mean race time:   5506.8s
+03:51:13 │ INFO     │ 
+  ✓ Training complete in 1131s
+03:51:13 │ INFO     │     Races simulated: ~8,771
+03:51:13 │ INFO     │     Speed: 442 steps/sec
+03:51:13 │ INFO     │     Saved: models/rl/ppo_lusail_2025
+03:51:13 │ INFO     │ 
+  Evaluating (100 races)...
+03:51:18 │ INFO     │     Median race time: 5482.1s
+03:51:18 │ INFO     │     Mean stops:       1.61
+03:51:18 │ INFO     │     Mean SC events:   1.07
+03:51:18 │ INFO     │     Compound variety: 2.4 types
+03:51:18 │ INFO     │     Legal races:      100%

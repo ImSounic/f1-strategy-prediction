@@ -1,0 +1,27 @@
+00:26:21 │ INFO     │ =================================================================
+00:26:21 │ INFO     │   RL vs MC COMPARISON — MIAMI
+00:26:21 │ INFO     │ =================================================================
+00:26:21 │ INFO     │   Generated 78 candidate strategies (30 1-stop, 48 2-stop)
+00:26:21 │ INFO     │   MC best:  1-stop H→S
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+00:26:22 │ INFO     │   Races:    1000
+00:26:22 │ INFO     │ 
+  Running head-to-head comparison...
+00:27:27 │ INFO     │ 
+  ───────────────────────────────────────────────────────
+00:27:27 │ INFO     │                           RESULTS                        
+00:27:27 │ INFO     │   ───────────────────────────────────────────────────────
+00:27:27 │ INFO     │                                     MC              RL
+00:27:27 │ INFO     │   Median time                  5431.3s         5428.7s
+00:27:27 │ INFO     │   Std time                      153.9s          155.7s
+00:27:27 │ INFO     │   Mean stops                         1           1.43
+00:27:27 │ INFO     │   Mean SC events                 0.67           0.67
+00:27:27 │ INFO     │   ───────────────────────────────────────────────────────
+00:27:27 │ INFO     │   RL advantage:  +2.58s (median)
+00:27:27 │ INFO     │   RL win rate:   46.1%
+00:27:27 │ INFO     │     SC races:    51.4% (702 races)
+00:27:27 │ INFO     │     No-SC races: 33.6% (298 races)
+00:27:27 │ INFO     │ 
+  ✓ Saved: results/rl_comparison_miami_2025.json
+00:27:27 │ INFO     │ ✓ Written: frontend/src/data/rl.ts (1 circuits)

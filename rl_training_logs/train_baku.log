@@ -1,0 +1,35 @@
+23:42:26 │ INFO     │ =================================================================
+23:42:26 │ INFO     │   TRAINING RL AGENT — BAKU
+23:42:26 │ INFO     │ =================================================================
+23:42:27 │ INFO     │   Circuit:    baku
+23:42:27 │ INFO     │   Timesteps:  500,000
+23:42:27 │ INFO     │   Obs space:  (14,)
+23:42:27 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+23:42:28 │ INFO     │   Policy:     MLP [128, 128]
+23:42:28 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+23:42:28 │ INFO     │ 
+  Training...
+23:45:45 │ INFO     │   Step   50,000 | Mean reward:   -14.8 | Std:   9.2 | Mean race time:   4918.5s
+23:49:12 │ INFO     │   Step  100,000 | Mean reward:   -12.7 | Std:   6.7 | Mean race time:   4886.4s
+23:52:46 │ INFO     │   Step  150,000 | Mean reward:   -11.8 | Std:   1.8 | Mean race time:   4872.2s
+23:55:49 │ INFO     │   Step  200,000 | Mean reward:   -13.0 | Std:   6.7 | Mean race time:   4870.1s
+23:57:41 │ INFO     │   Step  250,000 | Mean reward:   -12.0 | Std:   2.0 | Mean race time:   4851.9s
+23:59:30 │ INFO     │   Step  300,000 | Mean reward:   -11.9 | Std:   1.9 | Mean race time:   4841.1s
+00:01:19 │ INFO     │   Step  350,000 | Mean reward:   -11.9 | Std:   2.4 | Mean race time:   4852.0s
+00:03:13 │ INFO     │   Step  400,000 | Mean reward:   -13.5 | Std:   9.3 | Mean race time:   4849.0s
+00:04:59 │ INFO     │   Step  450,000 | Mean reward:   -12.5 | Std:   4.9 | Mean race time:   4844.9s
+00:06:52 │ INFO     │   Step  500,000 | Mean reward:   -12.2 | Std:   2.6 | Mean race time:   4887.4s
+00:06:55 │ INFO     │ 
+  ✓ Training complete in 1467s
+00:06:55 │ INFO     │     Races simulated: ~9,803
+00:06:55 │ INFO     │     Speed: 341 steps/sec
+00:06:55 │ INFO     │     Saved: models/rl/ppo_baku_2025
+00:06:55 │ INFO     │ 
+  Evaluating (100 races)...
+00:06:59 │ INFO     │     Median race time: 4839.1s
+00:06:59 │ INFO     │     Mean stops:       1.15
+00:06:59 │ INFO     │     Mean SC events:   0.61
+00:06:59 │ INFO     │     Compound variety: 2.1 types
+00:06:59 │ INFO     │     Legal races:      100%

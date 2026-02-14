@@ -1,0 +1,635 @@
+nohup: ignoring input
+03:58:21 │ INFO     │ Loaded XGBoost degradation model
+03:58:21 │ INFO     │ Circuits: ['albert_park', 'bahrain', 'baku', 'barcelona', 'cota', 'hungaroring', 'imola', 'interlagos', 'jeddah', 'las_vegas', 'lusail', 'mexico', 'miami', 'monaco', 'montreal', 'monza', 'shanghai', 'silverstone', 'singapore', 'spa', 'spielberg', 'suzuka', 'yas_marina', 'zandvoort']
+03:58:21 │ INFO     │ Drivers: 20
+03:58:21 │ INFO     │ Sims per combo: 50
+03:58:21 │ INFO     │ Total combos: 9600
+03:58:21 │ INFO     │ ============================================================
+03:58:21 │ INFO     │   PRECOMPUTING: Australian Grand Prix
+03:58:21 │ INFO     │   20 drivers × 20 positions = 400 combos
+03:58:21 │ INFO     │ ============================================================
+03:59:24 │ INFO     │   20/400 (5%) — 63s elapsed, ~1199s remaining
+04:00:28 │ INFO     │   40/400 (10%) — 127s elapsed, ~1142s remaining
+04:01:31 │ INFO     │   60/400 (15%) — 189s elapsed, ~1073s remaining
+04:02:29 │ INFO     │   80/400 (20%) — 248s elapsed, ~992s remaining
+04:03:17 │ INFO     │   100/400 (25%) — 295s elapsed, ~886s remaining
+04:04:03 │ INFO     │   120/400 (30%) — 342s elapsed, ~798s remaining
+04:04:49 │ INFO     │   140/400 (35%) — 388s elapsed, ~721s remaining
+04:05:36 │ INFO     │   160/400 (40%) — 434s elapsed, ~652s remaining
+04:06:23 │ INFO     │   180/400 (45%) — 481s elapsed, ~588s remaining
+04:07:10 │ INFO     │   200/400 (50%) — 529s elapsed, ~529s remaining
+04:07:59 │ INFO     │   220/400 (55%) — 578s elapsed, ~473s remaining
+04:08:48 │ INFO     │   240/400 (60%) — 627s elapsed, ~418s remaining
+04:09:37 │ INFO     │   260/400 (65%) — 676s elapsed, ~364s remaining
+04:10:25 │ INFO     │   280/400 (70%) — 724s elapsed, ~310s remaining
+04:11:14 │ INFO     │   300/400 (75%) — 773s elapsed, ~258s remaining
+04:12:03 │ INFO     │   320/400 (80%) — 822s elapsed, ~206s remaining
+04:12:53 │ INFO     │   340/400 (85%) — 871s elapsed, ~154s remaining
+04:13:42 │ INFO     │   360/400 (90%) — 921s elapsed, ~102s remaining
+04:14:31 │ INFO     │   380/400 (95%) — 970s elapsed, ~51s remaining
+04:15:20 │ INFO     │   400/400 (100%) — 1019s elapsed, ~0s remaining
+04:15:20 │ INFO     │   ✓ Australian Grand Prix: 400 combos in 1019s
+04:15:20 │ INFO     │   Saved: results/scenarios/scenarios_albert_park.json
+04:15:20 │ INFO     │ ============================================================
+04:15:20 │ INFO     │   PRECOMPUTING: Bahrain Grand Prix
+04:15:20 │ INFO     │   20 drivers × 20 positions = 400 combos
+04:15:20 │ INFO     │ ============================================================
+04:16:10 │ INFO     │   20/400 (5%) — 50s elapsed, ~947s remaining
+04:17:00 │ INFO     │   40/400 (10%) — 100s elapsed, ~900s remaining
+04:17:50 │ INFO     │   60/400 (15%) — 150s elapsed, ~851s remaining
+04:18:40 │ INFO     │   80/400 (20%) — 200s elapsed, ~800s remaining
+04:19:30 │ INFO     │   100/400 (25%) — 250s elapsed, ~749s remaining
+04:20:20 │ INFO     │   120/400 (30%) — 299s elapsed, ~699s remaining
+04:21:09 │ INFO     │   140/400 (35%) — 349s elapsed, ~648s remaining
+04:21:59 │ INFO     │   160/400 (40%) — 399s elapsed, ~599s remaining
+04:22:49 │ INFO     │   180/400 (45%) — 449s elapsed, ~549s remaining
+04:23:38 │ INFO     │   200/400 (50%) — 498s elapsed, ~498s remaining
+04:24:26 │ INFO     │   220/400 (55%) — 546s elapsed, ~447s remaining
+04:25:14 │ INFO     │   240/400 (60%) — 594s elapsed, ~396s remaining
+04:26:02 │ INFO     │   260/400 (65%) — 642s elapsed, ~346s remaining
+04:26:50 │ INFO     │   280/400 (70%) — 690s elapsed, ~296s remaining
+04:27:39 │ INFO     │   300/400 (75%) — 738s elapsed, ~246s remaining
+04:28:26 │ INFO     │   320/400 (80%) — 786s elapsed, ~197s remaining
+04:29:13 │ INFO     │   340/400 (85%) — 833s elapsed, ~147s remaining
+04:30:01 │ INFO     │   360/400 (90%) — 881s elapsed, ~98s remaining
+04:30:48 │ INFO     │   380/400 (95%) — 928s elapsed, ~49s remaining
+04:31:36 │ INFO     │   400/400 (100%) — 976s elapsed, ~0s remaining
+04:31:36 │ INFO     │   ✓ Bahrain Grand Prix: 400 combos in 976s
+04:31:36 │ INFO     │   Saved: results/scenarios/scenarios_bahrain.json
+04:31:36 │ INFO     │ ============================================================
+04:31:36 │ INFO     │   PRECOMPUTING: Azerbaijan Grand Prix
+04:31:36 │ INFO     │   20 drivers × 20 positions = 400 combos
+04:31:36 │ INFO     │ ============================================================
+04:32:19 │ INFO     │   20/400 (5%) — 43s elapsed, ~809s remaining
+04:33:02 │ INFO     │   40/400 (10%) — 86s elapsed, ~770s remaining
+04:33:44 │ INFO     │   60/400 (15%) — 128s elapsed, ~727s remaining
+04:34:27 │ INFO     │   80/400 (20%) — 171s elapsed, ~682s remaining
+04:35:09 │ INFO     │   100/400 (25%) — 213s elapsed, ~639s remaining
+04:35:52 │ INFO     │   120/400 (30%) — 255s elapsed, ~596s remaining
+04:36:34 │ INFO     │   140/400 (35%) — 298s elapsed, ~553s remaining
+04:37:17 │ INFO     │   160/400 (40%) — 341s elapsed, ~511s remaining
+04:37:59 │ INFO     │   180/400 (45%) — 383s elapsed, ~468s remaining
+04:38:41 │ INFO     │   200/400 (50%) — 425s elapsed, ~425s remaining
+04:39:24 │ INFO     │   220/400 (55%) — 468s elapsed, ~383s remaining
+04:40:08 │ INFO     │   240/400 (60%) — 511s elapsed, ~341s remaining
+04:40:51 │ INFO     │   260/400 (65%) — 555s elapsed, ~299s remaining
+04:41:34 │ INFO     │   280/400 (70%) — 598s elapsed, ~256s remaining
+04:42:18 │ INFO     │   300/400 (75%) — 641s elapsed, ~214s remaining
+04:43:00 │ INFO     │   320/400 (80%) — 684s elapsed, ~171s remaining
+04:43:44 │ INFO     │   340/400 (85%) — 728s elapsed, ~129s remaining
+04:44:28 │ INFO     │   360/400 (90%) — 772s elapsed, ~86s remaining
+04:45:12 │ INFO     │   380/400 (95%) — 816s elapsed, ~43s remaining
+04:45:55 │ INFO     │   400/400 (100%) — 858s elapsed, ~0s remaining
+04:45:55 │ INFO     │   ✓ Azerbaijan Grand Prix: 400 combos in 858s
+04:45:55 │ INFO     │   Saved: results/scenarios/scenarios_baku.json
+04:45:55 │ INFO     │ ============================================================
+04:45:55 │ INFO     │   PRECOMPUTING: Spanish Grand Prix
+04:45:55 │ INFO     │   20 drivers × 20 positions = 400 combos
+04:45:55 │ INFO     │ ============================================================
+04:46:50 │ INFO     │   20/400 (5%) — 56s elapsed, ~1060s remaining
+04:47:46 │ INFO     │   40/400 (10%) — 111s elapsed, ~1003s remaining
+04:48:42 │ INFO     │   60/400 (15%) — 167s elapsed, ~947s remaining
+04:49:38 │ INFO     │   80/400 (20%) — 223s elapsed, ~892s remaining
+04:50:33 │ INFO     │   100/400 (25%) — 278s elapsed, ~835s remaining
+04:51:28 │ INFO     │   120/400 (30%) — 334s elapsed, ~778s remaining
+04:52:24 │ INFO     │   140/400 (35%) — 389s elapsed, ~723s remaining
+04:53:19 │ INFO     │   160/400 (40%) — 445s elapsed, ~667s remaining
+04:54:14 │ INFO     │   180/400 (45%) — 499s elapsed, ~610s remaining
+04:55:08 │ INFO     │   200/400 (50%) — 554s elapsed, ~554s remaining
+04:56:03 │ INFO     │   220/400 (55%) — 609s elapsed, ~498s remaining
+04:56:58 │ INFO     │   240/400 (60%) — 663s elapsed, ~442s remaining
+04:57:54 │ INFO     │   260/400 (65%) — 719s elapsed, ~387s remaining
+04:58:49 │ INFO     │   280/400 (70%) — 774s elapsed, ~332s remaining
+04:59:44 │ INFO     │   300/400 (75%) — 829s elapsed, ~276s remaining
+05:00:39 │ INFO     │   320/400 (80%) — 884s elapsed, ~221s remaining
+05:01:34 │ INFO     │   340/400 (85%) — 939s elapsed, ~166s remaining
+05:02:29 │ INFO     │   360/400 (90%) — 994s elapsed, ~110s remaining
+05:03:24 │ INFO     │   380/400 (95%) — 1049s elapsed, ~55s remaining
+05:04:20 │ INFO     │   400/400 (100%) — 1105s elapsed, ~0s remaining
+05:04:20 │ INFO     │   ✓ Spanish Grand Prix: 400 combos in 1105s
+05:04:20 │ INFO     │   Saved: results/scenarios/scenarios_barcelona.json
+05:04:20 │ INFO     │ ============================================================
+05:04:20 │ INFO     │   PRECOMPUTING: United States Grand Prix
+05:04:20 │ INFO     │   20 drivers × 20 positions = 400 combos
+05:04:20 │ INFO     │ ============================================================
+05:05:07 │ INFO     │   20/400 (5%) — 47s elapsed, ~890s remaining
+05:05:54 │ INFO     │   40/400 (10%) — 94s elapsed, ~845s remaining
+05:06:40 │ INFO     │   60/400 (15%) — 140s elapsed, ~794s remaining
+05:07:26 │ INFO     │   80/400 (20%) — 186s elapsed, ~744s remaining
+05:08:11 │ INFO     │   100/400 (25%) — 232s elapsed, ~695s remaining
+05:08:57 │ INFO     │   120/400 (30%) — 278s elapsed, ~648s remaining
+05:09:43 │ INFO     │   140/400 (35%) — 323s elapsed, ~600s remaining
+05:10:29 │ INFO     │   160/400 (40%) — 369s elapsed, ~554s remaining
+05:11:16 │ INFO     │   180/400 (45%) — 416s elapsed, ~509s remaining
+05:12:02 │ INFO     │   200/400 (50%) — 462s elapsed, ~462s remaining
+05:12:49 │ INFO     │   220/400 (55%) — 510s elapsed, ~417s remaining
+05:13:36 │ INFO     │   240/400 (60%) — 557s elapsed, ~371s remaining
+05:14:23 │ INFO     │   260/400 (65%) — 603s elapsed, ~325s remaining
+05:15:10 │ INFO     │   280/400 (70%) — 650s elapsed, ~279s remaining
+05:15:56 │ INFO     │   300/400 (75%) — 696s elapsed, ~232s remaining
+05:16:42 │ INFO     │   320/400 (80%) — 742s elapsed, ~186s remaining
+05:17:29 │ INFO     │   340/400 (85%) — 789s elapsed, ~139s remaining
+05:18:15 │ INFO     │   360/400 (90%) — 835s elapsed, ~93s remaining
+05:19:01 │ INFO     │   380/400 (95%) — 881s elapsed, ~46s remaining
+05:19:47 │ INFO     │   400/400 (100%) — 927s elapsed, ~0s remaining
+05:19:47 │ INFO     │   ✓ United States Grand Prix: 400 combos in 927s
+05:19:47 │ INFO     │   Saved: results/scenarios/scenarios_cota.json
+05:19:47 │ INFO     │ ============================================================
+05:19:47 │ INFO     │   PRECOMPUTING: Hungarian Grand Prix
+05:19:47 │ INFO     │   20 drivers × 20 positions = 400 combos
+05:19:47 │ INFO     │ ============================================================
+05:20:44 │ INFO     │   20/400 (5%) — 57s elapsed, ~1086s remaining
+05:21:42 │ INFO     │   40/400 (10%) — 115s elapsed, ~1034s remaining
+05:22:39 │ INFO     │   60/400 (15%) — 172s elapsed, ~976s remaining
+05:23:37 │ INFO     │   80/400 (20%) — 230s elapsed, ~919s remaining
+05:24:34 │ INFO     │   100/400 (25%) — 287s elapsed, ~860s remaining
+05:25:32 │ INFO     │   120/400 (30%) — 345s elapsed, ~805s remaining
+05:26:30 │ INFO     │   140/400 (35%) — 403s elapsed, ~749s remaining
+05:27:28 │ INFO     │   160/400 (40%) — 461s elapsed, ~691s remaining
+05:28:25 │ INFO     │   180/400 (45%) — 518s elapsed, ~633s remaining
+05:29:23 │ INFO     │   200/400 (50%) — 576s elapsed, ~576s remaining
+05:30:20 │ INFO     │   220/400 (55%) — 633s elapsed, ~518s remaining
+05:31:18 │ INFO     │   240/400 (60%) — 691s elapsed, ~461s remaining
+05:32:16 │ INFO     │   260/400 (65%) — 749s elapsed, ~403s remaining
+05:33:14 │ INFO     │   280/400 (70%) — 807s elapsed, ~346s remaining
+05:34:11 │ INFO     │   300/400 (75%) — 865s elapsed, ~288s remaining
+05:35:10 │ INFO     │   320/400 (80%) — 924s elapsed, ~231s remaining
+05:36:09 │ INFO     │   340/400 (85%) — 982s elapsed, ~173s remaining
+05:37:08 │ INFO     │   360/400 (90%) — 1041s elapsed, ~116s remaining
+05:38:05 │ INFO     │   380/400 (95%) — 1098s elapsed, ~58s remaining
+05:39:02 │ INFO     │   400/400 (100%) — 1155s elapsed, ~0s remaining
+05:39:02 │ INFO     │   ✓ Hungarian Grand Prix: 400 combos in 1155s
+05:39:02 │ INFO     │   Saved: results/scenarios/scenarios_hungaroring.json
+05:39:02 │ INFO     │ ============================================================
+05:39:02 │ INFO     │   PRECOMPUTING: Emilia Romagna Grand Prix
+05:39:02 │ INFO     │   20 drivers × 20 positions = 400 combos
+05:39:02 │ INFO     │ ============================================================
+05:39:53 │ INFO     │   20/400 (5%) — 51s elapsed, ~975s remaining
+05:40:45 │ INFO     │   40/400 (10%) — 103s elapsed, ~924s remaining
+05:41:36 │ INFO     │   60/400 (15%) — 154s elapsed, ~870s remaining
+05:42:27 │ INFO     │   80/400 (20%) — 205s elapsed, ~819s remaining
+05:43:18 │ INFO     │   100/400 (25%) — 256s elapsed, ~768s remaining
+05:44:09 │ INFO     │   120/400 (30%) — 307s elapsed, ~716s remaining
+05:45:00 │ INFO     │   140/400 (35%) — 358s elapsed, ~665s remaining
+05:45:52 │ INFO     │   160/400 (40%) — 410s elapsed, ~615s remaining
+05:46:44 │ INFO     │   180/400 (45%) — 462s elapsed, ~564s remaining
+05:47:35 │ INFO     │   200/400 (50%) — 513s elapsed, ~513s remaining
+05:48:26 │ INFO     │   220/400 (55%) — 563s elapsed, ~461s remaining
+05:49:18 │ INFO     │   240/400 (60%) — 616s elapsed, ~410s remaining
+05:50:09 │ INFO     │   260/400 (65%) — 667s elapsed, ~359s remaining
+05:51:02 │ INFO     │   280/400 (70%) — 719s elapsed, ~308s remaining
+05:51:53 │ INFO     │   300/400 (75%) — 771s elapsed, ~257s remaining
+05:52:44 │ INFO     │   320/400 (80%) — 822s elapsed, ~205s remaining
+05:53:36 │ INFO     │   340/400 (85%) — 874s elapsed, ~154s remaining
+05:54:28 │ INFO     │   360/400 (90%) — 926s elapsed, ~103s remaining
+05:55:20 │ INFO     │   380/400 (95%) — 977s elapsed, ~51s remaining
+05:56:11 │ INFO     │   400/400 (100%) — 1029s elapsed, ~0s remaining
+05:56:11 │ INFO     │   ✓ Emilia Romagna Grand Prix: 400 combos in 1029s
+05:56:11 │ INFO     │   Saved: results/scenarios/scenarios_imola.json
+05:56:11 │ INFO     │ ============================================================
+05:56:11 │ INFO     │   PRECOMPUTING: São Paulo Grand Prix
+05:56:11 │ INFO     │   20 drivers × 20 positions = 400 combos
+05:56:11 │ INFO     │ ============================================================
+05:57:08 │ INFO     │   20/400 (5%) — 57s elapsed, ~1077s remaining
+05:58:05 │ INFO     │   40/400 (10%) — 114s elapsed, ~1023s remaining
+05:59:01 │ INFO     │   60/400 (15%) — 170s elapsed, ~962s remaining
+05:59:57 │ INFO     │   80/400 (20%) — 226s elapsed, ~904s remaining
+06:00:54 │ INFO     │   100/400 (25%) — 283s elapsed, ~848s remaining
+06:01:51 │ INFO     │   120/400 (30%) — 340s elapsed, ~793s remaining
+06:02:48 │ INFO     │   140/400 (35%) — 397s elapsed, ~737s remaining
+06:03:44 │ INFO     │   160/400 (40%) — 452s elapsed, ~679s remaining
+06:04:40 │ INFO     │   180/400 (45%) — 508s elapsed, ~621s remaining
+06:05:37 │ INFO     │   200/400 (50%) — 566s elapsed, ~566s remaining
+06:06:33 │ INFO     │   220/400 (55%) — 622s elapsed, ~509s remaining
+06:07:31 │ INFO     │   240/400 (60%) — 680s elapsed, ~453s remaining
+06:08:28 │ INFO     │   260/400 (65%) — 737s elapsed, ~397s remaining
+06:09:24 │ INFO     │   280/400 (70%) — 793s elapsed, ~340s remaining
+06:10:22 │ INFO     │   300/400 (75%) — 851s elapsed, ~284s remaining
+06:11:19 │ INFO     │   320/400 (80%) — 907s elapsed, ~227s remaining
+06:12:15 │ INFO     │   340/400 (85%) — 964s elapsed, ~170s remaining
+06:13:12 │ INFO     │   360/400 (90%) — 1021s elapsed, ~113s remaining
+06:14:09 │ INFO     │   380/400 (95%) — 1078s elapsed, ~57s remaining
+06:15:06 │ INFO     │   400/400 (100%) — 1134s elapsed, ~0s remaining
+06:15:06 │ INFO     │   ✓ São Paulo Grand Prix: 400 combos in 1134s
+06:15:06 │ INFO     │   Saved: results/scenarios/scenarios_interlagos.json
+06:15:06 │ INFO     │ ============================================================
+06:15:06 │ INFO     │   PRECOMPUTING: Saudi Arabian Grand Prix
+06:15:06 │ INFO     │   20 drivers × 20 positions = 400 combos
+06:15:06 │ INFO     │ ============================================================
+06:15:46 │ INFO     │   20/400 (5%) — 40s elapsed, ~767s remaining
+06:16:26 │ INFO     │   40/400 (10%) — 81s elapsed, ~726s remaining
+06:17:08 │ INFO     │   60/400 (15%) — 122s elapsed, ~694s remaining
+06:17:48 │ INFO     │   80/400 (20%) — 163s elapsed, ~651s remaining
+06:18:29 │ INFO     │   100/400 (25%) — 203s elapsed, ~609s remaining
+06:19:09 │ INFO     │   120/400 (30%) — 243s elapsed, ~568s remaining
+06:19:50 │ INFO     │   140/400 (35%) — 284s elapsed, ~527s remaining
+06:20:30 │ INFO     │   160/400 (40%) — 324s elapsed, ~486s remaining
+06:21:10 │ INFO     │   180/400 (45%) — 364s elapsed, ~445s remaining
+06:21:50 │ INFO     │   200/400 (50%) — 405s elapsed, ~405s remaining
+06:22:31 │ INFO     │   220/400 (55%) — 445s elapsed, ~364s remaining
+06:23:12 │ INFO     │   240/400 (60%) — 486s elapsed, ~324s remaining
+06:23:52 │ INFO     │   260/400 (65%) — 527s elapsed, ~284s remaining
+06:24:33 │ INFO     │   280/400 (70%) — 567s elapsed, ~243s remaining
+06:25:13 │ INFO     │   300/400 (75%) — 608s elapsed, ~203s remaining
+06:25:54 │ INFO     │   320/400 (80%) — 648s elapsed, ~162s remaining
+06:26:34 │ INFO     │   340/400 (85%) — 688s elapsed, ~121s remaining
+06:27:14 │ INFO     │   360/400 (90%) — 728s elapsed, ~81s remaining
+06:27:55 │ INFO     │   380/400 (95%) — 769s elapsed, ~40s remaining
+06:28:35 │ INFO     │   400/400 (100%) — 809s elapsed, ~0s remaining
+06:28:35 │ INFO     │   ✓ Saudi Arabian Grand Prix: 400 combos in 809s
+06:28:35 │ INFO     │   Saved: results/scenarios/scenarios_jeddah.json
+06:28:35 │ INFO     │ ============================================================
+06:28:35 │ INFO     │   PRECOMPUTING: Las Vegas Grand Prix
+06:28:35 │ INFO     │   20 drivers × 20 positions = 400 combos
+06:28:35 │ INFO     │ ============================================================
+06:29:16 │ INFO     │   20/400 (5%) — 41s elapsed, ~772s remaining
+06:29:57 │ INFO     │   40/400 (10%) — 82s elapsed, ~737s remaining
+06:30:38 │ INFO     │   60/400 (15%) — 123s elapsed, ~698s remaining
+06:31:19 │ INFO     │   80/400 (20%) — 164s elapsed, ~657s remaining
+06:32:00 │ INFO     │   100/400 (25%) — 205s elapsed, ~616s remaining
+06:32:42 │ INFO     │   120/400 (30%) — 247s elapsed, ~577s remaining
+06:33:23 │ INFO     │   140/400 (35%) — 288s elapsed, ~536s remaining
+06:34:05 │ INFO     │   160/400 (40%) — 330s elapsed, ~494s remaining
+06:34:45 │ INFO     │   180/400 (45%) — 371s elapsed, ~453s remaining
+06:35:26 │ INFO     │   200/400 (50%) — 412s elapsed, ~412s remaining
+06:36:07 │ INFO     │   220/400 (55%) — 452s elapsed, ~370s remaining
+06:36:48 │ INFO     │   240/400 (60%) — 493s elapsed, ~329s remaining
+06:37:29 │ INFO     │   260/400 (65%) — 534s elapsed, ~287s remaining
+06:38:10 │ INFO     │   280/400 (70%) — 575s elapsed, ~247s remaining
+06:38:51 │ INFO     │   300/400 (75%) — 616s elapsed, ~205s remaining
+06:39:32 │ INFO     │   320/400 (80%) — 658s elapsed, ~164s remaining
+06:40:14 │ INFO     │   340/400 (85%) — 699s elapsed, ~123s remaining
+06:40:55 │ INFO     │   360/400 (90%) — 740s elapsed, ~82s remaining
+06:41:36 │ INFO     │   380/400 (95%) — 781s elapsed, ~41s remaining
+06:42:18 │ INFO     │   400/400 (100%) — 823s elapsed, ~0s remaining
+06:42:18 │ INFO     │   ✓ Las Vegas Grand Prix: 400 combos in 823s
+06:42:18 │ INFO     │   Saved: results/scenarios/scenarios_las_vegas.json
+06:42:18 │ INFO     │ ============================================================
+06:42:18 │ INFO     │   PRECOMPUTING: Qatar Grand Prix
+06:42:18 │ INFO     │   20 drivers × 20 positions = 400 combos
+06:42:18 │ INFO     │ ============================================================
+06:43:03 │ INFO     │   20/400 (5%) — 45s elapsed, ~864s remaining
+06:43:48 │ INFO     │   40/400 (10%) — 90s elapsed, ~812s remaining
+06:44:34 │ INFO     │   60/400 (15%) — 136s elapsed, ~771s remaining
+06:45:19 │ INFO     │   80/400 (20%) — 181s elapsed, ~724s remaining
+06:46:04 │ INFO     │   100/400 (25%) — 226s elapsed, ~679s remaining
+06:46:50 │ INFO     │   120/400 (30%) — 272s elapsed, ~634s remaining
+06:47:36 │ INFO     │   140/400 (35%) — 318s elapsed, ~591s remaining
+06:48:21 │ INFO     │   160/400 (40%) — 364s elapsed, ~546s remaining
+06:49:08 │ INFO     │   180/400 (45%) — 410s elapsed, ~502s remaining
+06:49:54 │ INFO     │   200/400 (50%) — 457s elapsed, ~457s remaining
+06:50:40 │ INFO     │   220/400 (55%) — 503s elapsed, ~411s remaining
+06:51:26 │ INFO     │   240/400 (60%) — 548s elapsed, ~365s remaining
+06:52:11 │ INFO     │   260/400 (65%) — 593s elapsed, ~320s remaining
+06:52:56 │ INFO     │   280/400 (70%) — 638s elapsed, ~274s remaining
+06:53:42 │ INFO     │   300/400 (75%) — 684s elapsed, ~228s remaining
+06:54:29 │ INFO     │   320/400 (80%) — 731s elapsed, ~183s remaining
+06:55:15 │ INFO     │   340/400 (85%) — 777s elapsed, ~137s remaining
+06:56:02 │ INFO     │   360/400 (90%) — 824s elapsed, ~92s remaining
+06:56:48 │ INFO     │   380/400 (95%) — 870s elapsed, ~46s remaining
+06:57:33 │ INFO     │   400/400 (100%) — 915s elapsed, ~0s remaining
+06:57:33 │ INFO     │   ✓ Qatar Grand Prix: 400 combos in 915s
+06:57:33 │ INFO     │   Saved: results/scenarios/scenarios_lusail.json
+06:57:33 │ INFO     │ ============================================================
+06:57:33 │ INFO     │   PRECOMPUTING: Mexico City Grand Prix
+06:57:33 │ INFO     │   20 drivers × 20 positions = 400 combos
+06:57:33 │ INFO     │ ============================================================
+06:58:31 │ INFO     │   20/400 (5%) — 58s elapsed, ~1110s remaining
+06:59:29 │ INFO     │   40/400 (10%) — 116s elapsed, ~1047s remaining
+07:00:26 │ INFO     │   60/400 (15%) — 173s elapsed, ~981s remaining
+07:01:23 │ INFO     │   80/400 (20%) — 230s elapsed, ~921s remaining
+07:02:20 │ INFO     │   100/400 (25%) — 287s elapsed, ~862s remaining
+07:03:17 │ INFO     │   120/400 (30%) — 345s elapsed, ~804s remaining
+07:04:14 │ INFO     │   140/400 (35%) — 402s elapsed, ~746s remaining
+07:05:11 │ INFO     │   160/400 (40%) — 459s elapsed, ~688s remaining
+07:06:09 │ INFO     │   180/400 (45%) — 516s elapsed, ~631s remaining
+07:07:05 │ INFO     │   200/400 (50%) — 573s elapsed, ~573s remaining
+07:08:03 │ INFO     │   220/400 (55%) — 630s elapsed, ~516s remaining
+07:09:00 │ INFO     │   240/400 (60%) — 687s elapsed, ~458s remaining
+07:09:59 │ INFO     │   260/400 (65%) — 746s elapsed, ~402s remaining
+07:10:57 │ INFO     │   280/400 (70%) — 804s elapsed, ~345s remaining
+07:11:55 │ INFO     │   300/400 (75%) — 862s elapsed, ~287s remaining
+07:12:51 │ INFO     │   320/400 (80%) — 919s elapsed, ~230s remaining
+07:13:48 │ INFO     │   340/400 (85%) — 975s elapsed, ~172s remaining
+07:14:45 │ INFO     │   360/400 (90%) — 1032s elapsed, ~115s remaining
+07:15:41 │ INFO     │   380/400 (95%) — 1089s elapsed, ~57s remaining
+07:16:38 │ INFO     │   400/400 (100%) — 1146s elapsed, ~0s remaining
+07:16:38 │ INFO     │   ✓ Mexico City Grand Prix: 400 combos in 1146s
+07:16:38 │ INFO     │   Saved: results/scenarios/scenarios_mexico.json
+07:16:38 │ INFO     │ ============================================================
+07:16:38 │ INFO     │   PRECOMPUTING: Miami Grand Prix
+07:16:38 │ INFO     │   20 drivers × 20 positions = 400 combos
+07:16:38 │ INFO     │ ============================================================
+07:17:25 │ INFO     │   20/400 (5%) — 47s elapsed, ~890s remaining
+07:18:12 │ INFO     │   40/400 (10%) — 93s elapsed, ~840s remaining
+07:18:58 │ INFO     │   60/400 (15%) — 140s elapsed, ~792s remaining
+07:19:45 │ INFO     │   80/400 (20%) — 187s elapsed, ~746s remaining
+07:20:32 │ INFO     │   100/400 (25%) — 233s elapsed, ~700s remaining
+07:21:17 │ INFO     │   120/400 (30%) — 279s elapsed, ~651s remaining
+07:22:04 │ INFO     │   140/400 (35%) — 326s elapsed, ~606s remaining
+07:22:51 │ INFO     │   160/400 (40%) — 373s elapsed, ~559s remaining
+07:23:37 │ INFO     │   180/400 (45%) — 419s elapsed, ~512s remaining
+07:24:23 │ INFO     │   200/400 (50%) — 465s elapsed, ~465s remaining
+07:25:09 │ INFO     │   220/400 (55%) — 510s elapsed, ~418s remaining
+07:25:55 │ INFO     │   240/400 (60%) — 557s elapsed, ~371s remaining
+07:26:41 │ INFO     │   260/400 (65%) — 603s elapsed, ~325s remaining
+07:27:28 │ INFO     │   280/400 (70%) — 649s elapsed, ~278s remaining
+07:28:13 │ INFO     │   300/400 (75%) — 695s elapsed, ~232s remaining
+07:28:59 │ INFO     │   320/400 (80%) — 741s elapsed, ~185s remaining
+07:29:46 │ INFO     │   340/400 (85%) — 787s elapsed, ~139s remaining
+07:30:32 │ INFO     │   360/400 (90%) — 833s elapsed, ~93s remaining
+07:31:17 │ INFO     │   380/400 (95%) — 879s elapsed, ~46s remaining
+07:32:04 │ INFO     │   400/400 (100%) — 925s elapsed, ~0s remaining
+07:32:04 │ INFO     │   ✓ Miami Grand Prix: 400 combos in 925s
+07:32:04 │ INFO     │   Saved: results/scenarios/scenarios_miami.json
+07:32:04 │ INFO     │ ============================================================
+07:32:04 │ INFO     │   PRECOMPUTING: Monaco Grand Prix
+07:32:04 │ INFO     │   20 drivers × 20 positions = 400 combos
+07:32:04 │ INFO     │ ============================================================
+07:33:07 │ INFO     │   20/400 (5%) — 63s elapsed, ~1201s remaining
+07:34:09 │ INFO     │   40/400 (10%) — 125s elapsed, ~1128s remaining
+07:35:11 │ INFO     │   60/400 (15%) — 187s elapsed, ~1062s remaining
+07:36:13 │ INFO     │   80/400 (20%) — 250s elapsed, ~999s remaining
+07:37:16 │ INFO     │   100/400 (25%) — 312s elapsed, ~936s remaining
+07:38:18 │ INFO     │   120/400 (30%) — 374s elapsed, ~872s remaining
+07:39:19 │ INFO     │   140/400 (35%) — 435s elapsed, ~808s remaining
+07:40:21 │ INFO     │   160/400 (40%) — 497s elapsed, ~745s remaining
+07:41:22 │ INFO     │   180/400 (45%) — 559s elapsed, ~683s remaining
+07:42:24 │ INFO     │   200/400 (50%) — 621s elapsed, ~621s remaining
+07:43:26 │ INFO     │   220/400 (55%) — 683s elapsed, ~559s remaining
+07:44:30 │ INFO     │   240/400 (60%) — 746s elapsed, ~497s remaining
+07:45:32 │ INFO     │   260/400 (65%) — 809s elapsed, ~435s remaining
+07:46:35 │ INFO     │   280/400 (70%) — 872s elapsed, ~374s remaining
+07:47:37 │ INFO     │   300/400 (75%) — 934s elapsed, ~311s remaining
+07:48:40 │ INFO     │   320/400 (80%) — 996s elapsed, ~249s remaining
+07:49:42 │ INFO     │   340/400 (85%) — 1059s elapsed, ~187s remaining
+07:50:44 │ INFO     │   360/400 (90%) — 1120s elapsed, ~124s remaining
+07:51:46 │ INFO     │   380/400 (95%) — 1183s elapsed, ~62s remaining
+07:52:49 │ INFO     │   400/400 (100%) — 1245s elapsed, ~0s remaining
+07:52:49 │ INFO     │   ✓ Monaco Grand Prix: 400 combos in 1245s
+07:52:49 │ INFO     │   Saved: results/scenarios/scenarios_monaco.json
+07:52:49 │ INFO     │ ============================================================
+07:52:49 │ INFO     │   PRECOMPUTING: Canadian Grand Prix
+07:52:49 │ INFO     │   20 drivers × 20 positions = 400 combos
+07:52:49 │ INFO     │ ============================================================
+07:53:44 │ INFO     │   20/400 (5%) — 55s elapsed, ~1044s remaining
+07:54:40 │ INFO     │   40/400 (10%) — 111s elapsed, ~996s remaining
+07:55:35 │ INFO     │   60/400 (15%) — 166s elapsed, ~940s remaining
+07:56:30 │ INFO     │   80/400 (20%) — 221s elapsed, ~886s remaining
+07:57:26 │ INFO     │   100/400 (25%) — 277s elapsed, ~832s remaining
+07:58:22 │ INFO     │   120/400 (30%) — 333s elapsed, ~777s remaining
+07:59:18 │ INFO     │   140/400 (35%) — 389s elapsed, ~722s remaining
+08:00:14 │ INFO     │   160/400 (40%) — 445s elapsed, ~667s remaining
+08:01:10 │ INFO     │   180/400 (45%) — 501s elapsed, ~612s remaining
+08:02:05 │ INFO     │   200/400 (50%) — 556s elapsed, ~556s remaining
+08:03:01 │ INFO     │   220/400 (55%) — 612s elapsed, ~501s remaining
+08:03:56 │ INFO     │   240/400 (60%) — 667s elapsed, ~445s remaining
+08:04:50 │ INFO     │   260/400 (65%) — 721s elapsed, ~388s remaining
+08:05:46 │ INFO     │   280/400 (70%) — 777s elapsed, ~333s remaining
+08:06:41 │ INFO     │   300/400 (75%) — 832s elapsed, ~277s remaining
+08:07:35 │ INFO     │   320/400 (80%) — 886s elapsed, ~222s remaining
+08:08:30 │ INFO     │   340/400 (85%) — 941s elapsed, ~166s remaining
+08:09:26 │ INFO     │   360/400 (90%) — 997s elapsed, ~111s remaining
+08:10:22 │ INFO     │   380/400 (95%) — 1053s elapsed, ~55s remaining
+08:11:17 │ INFO     │   400/400 (100%) — 1108s elapsed, ~0s remaining
+08:11:17 │ INFO     │   ✓ Canadian Grand Prix: 400 combos in 1108s
+08:11:17 │ INFO     │   Saved: results/scenarios/scenarios_montreal.json
+08:11:17 │ INFO     │ ============================================================
+08:11:17 │ INFO     │   PRECOMPUTING: Italian Grand Prix
+08:11:17 │ INFO     │   20 drivers × 20 positions = 400 combos
+08:11:17 │ INFO     │ ============================================================
+08:12:01 │ INFO     │   20/400 (5%) — 44s elapsed, ~835s remaining
+08:12:46 │ INFO     │   40/400 (10%) — 88s elapsed, ~796s remaining
+08:13:29 │ INFO     │   60/400 (15%) — 132s elapsed, ~749s remaining
+08:14:14 │ INFO     │   80/400 (20%) — 177s elapsed, ~706s remaining
+08:14:58 │ INFO     │   100/400 (25%) — 220s elapsed, ~661s remaining
+08:15:42 │ INFO     │   120/400 (30%) — 265s elapsed, ~618s remaining
+08:16:27 │ INFO     │   140/400 (35%) — 310s elapsed, ~576s remaining
+08:17:12 │ INFO     │   160/400 (40%) — 355s elapsed, ~532s remaining
+08:17:56 │ INFO     │   180/400 (45%) — 399s elapsed, ~487s remaining
+08:18:39 │ INFO     │   200/400 (50%) — 442s elapsed, ~442s remaining
+08:19:23 │ INFO     │   220/400 (55%) — 486s elapsed, ~397s remaining
+08:20:07 │ INFO     │   240/400 (60%) — 529s elapsed, ~353s remaining
+08:20:51 │ INFO     │   260/400 (65%) — 574s elapsed, ~309s remaining
+08:21:35 │ INFO     │   280/400 (70%) — 618s elapsed, ~265s remaining
+08:22:19 │ INFO     │   300/400 (75%) — 662s elapsed, ~221s remaining
+08:23:03 │ INFO     │   320/400 (80%) — 706s elapsed, ~176s remaining
+08:23:48 │ INFO     │   340/400 (85%) — 750s elapsed, ~132s remaining
+08:24:32 │ INFO     │   360/400 (90%) — 795s elapsed, ~88s remaining
+08:25:16 │ INFO     │   380/400 (95%) — 839s elapsed, ~44s remaining
+08:26:01 │ INFO     │   400/400 (100%) — 883s elapsed, ~0s remaining
+08:26:01 │ INFO     │   ✓ Italian Grand Prix: 400 combos in 883s
+08:26:01 │ INFO     │   Saved: results/scenarios/scenarios_monza.json
+08:26:01 │ INFO     │ ============================================================
+08:26:01 │ INFO     │   PRECOMPUTING: Chinese Grand Prix
+08:26:01 │ INFO     │   20 drivers × 20 positions = 400 combos
+08:26:01 │ INFO     │ ============================================================
+08:26:47 │ INFO     │   20/400 (5%) — 46s elapsed, ~874s remaining
+08:27:31 │ INFO     │   40/400 (10%) — 91s elapsed, ~816s remaining
+08:28:16 │ INFO     │   60/400 (15%) — 135s elapsed, ~767s remaining
+08:29:01 │ INFO     │   80/400 (20%) — 181s elapsed, ~723s remaining
+08:29:47 │ INFO     │   100/400 (25%) — 226s elapsed, ~678s remaining
+08:30:32 │ INFO     │   120/400 (30%) — 271s elapsed, ~633s remaining
+08:31:18 │ INFO     │   140/400 (35%) — 317s elapsed, ~589s remaining
+08:32:03 │ INFO     │   160/400 (40%) — 363s elapsed, ~544s remaining
+08:32:49 │ INFO     │   180/400 (45%) — 408s elapsed, ~499s remaining
+08:33:34 │ INFO     │   200/400 (50%) — 453s elapsed, ~453s remaining
+08:34:19 │ INFO     │   220/400 (55%) — 498s elapsed, ~408s remaining
+08:35:04 │ INFO     │   240/400 (60%) — 543s elapsed, ~362s remaining
+08:35:49 │ INFO     │   260/400 (65%) — 588s elapsed, ~317s remaining
+08:36:35 │ INFO     │   280/400 (70%) — 635s elapsed, ~272s remaining
+08:37:21 │ INFO     │   300/400 (75%) — 680s elapsed, ~227s remaining
+08:38:06 │ INFO     │   320/400 (80%) — 726s elapsed, ~181s remaining
+08:38:51 │ INFO     │   340/400 (85%) — 771s elapsed, ~136s remaining
+08:39:37 │ INFO     │   360/400 (90%) — 816s elapsed, ~91s remaining
+08:40:23 │ INFO     │   380/400 (95%) — 862s elapsed, ~45s remaining
+08:41:08 │ INFO     │   400/400 (100%) — 908s elapsed, ~0s remaining
+08:41:08 │ INFO     │   ✓ Chinese Grand Prix: 400 combos in 908s
+08:41:08 │ INFO     │   Saved: results/scenarios/scenarios_shanghai.json
+08:41:08 │ INFO     │ ============================================================
+08:41:08 │ INFO     │   PRECOMPUTING: British Grand Prix
+08:41:08 │ INFO     │   20 drivers × 20 positions = 400 combos
+08:41:08 │ INFO     │ ============================================================
+08:41:50 │ INFO     │   20/400 (5%) — 41s elapsed, ~782s remaining
+08:42:32 │ INFO     │   40/400 (10%) — 84s elapsed, ~752s remaining
+08:43:13 │ INFO     │   60/400 (15%) — 124s elapsed, ~705s remaining
+08:43:54 │ INFO     │   80/400 (20%) — 166s elapsed, ~663s remaining
+08:44:35 │ INFO     │   100/400 (25%) — 207s elapsed, ~620s remaining
+08:45:17 │ INFO     │   120/400 (30%) — 248s elapsed, ~579s remaining
+08:45:58 │ INFO     │   140/400 (35%) — 290s elapsed, ~538s remaining
+08:46:40 │ INFO     │   160/400 (40%) — 331s elapsed, ~497s remaining
+08:47:22 │ INFO     │   180/400 (45%) — 374s elapsed, ~457s remaining
+08:48:03 │ INFO     │   200/400 (50%) — 415s elapsed, ~415s remaining
+08:48:44 │ INFO     │   220/400 (55%) — 456s elapsed, ~373s remaining
+08:49:26 │ INFO     │   240/400 (60%) — 497s elapsed, ~332s remaining
+08:50:07 │ INFO     │   260/400 (65%) — 538s elapsed, ~290s remaining
+08:50:49 │ INFO     │   280/400 (70%) — 581s elapsed, ~249s remaining
+08:51:30 │ INFO     │   300/400 (75%) — 622s elapsed, ~207s remaining
+08:52:12 │ INFO     │   320/400 (80%) — 664s elapsed, ~166s remaining
+08:52:53 │ INFO     │   340/400 (85%) — 704s elapsed, ~124s remaining
+08:53:35 │ INFO     │   360/400 (90%) — 746s elapsed, ~83s remaining
+08:54:16 │ INFO     │   380/400 (95%) — 788s elapsed, ~41s remaining
+08:54:58 │ INFO     │   400/400 (100%) — 829s elapsed, ~0s remaining
+08:54:58 │ INFO     │   ✓ British Grand Prix: 400 combos in 829s
+08:54:58 │ INFO     │   Saved: results/scenarios/scenarios_silverstone.json
+08:54:58 │ INFO     │ ============================================================
+08:54:58 │ INFO     │   PRECOMPUTING: Singapore Grand Prix
+08:54:58 │ INFO     │   20 drivers × 20 positions = 400 combos
+08:54:58 │ INFO     │ ============================================================
+08:55:47 │ INFO     │   20/400 (5%) — 49s elapsed, ~935s remaining
+08:56:37 │ INFO     │   40/400 (10%) — 99s elapsed, ~892s remaining
+08:57:26 │ INFO     │   60/400 (15%) — 148s elapsed, ~840s remaining
+08:58:15 │ INFO     │   80/400 (20%) — 197s elapsed, ~789s remaining
+08:59:05 │ INFO     │   100/400 (25%) — 247s elapsed, ~742s remaining
+08:59:54 │ INFO     │   120/400 (30%) — 297s elapsed, ~693s remaining
+09:00:44 │ INFO     │   140/400 (35%) — 346s elapsed, ~643s remaining
+09:01:33 │ INFO     │   160/400 (40%) — 396s elapsed, ~594s remaining
+09:02:23 │ INFO     │   180/400 (45%) — 445s elapsed, ~544s remaining
+09:03:13 │ INFO     │   200/400 (50%) — 495s elapsed, ~495s remaining
+09:04:03 │ INFO     │   220/400 (55%) — 545s elapsed, ~446s remaining
+09:04:53 │ INFO     │   240/400 (60%) — 595s elapsed, ~397s remaining
+09:05:43 │ INFO     │   260/400 (65%) — 646s elapsed, ~348s remaining
+09:06:32 │ INFO     │   280/400 (70%) — 695s elapsed, ~298s remaining
+09:07:22 │ INFO     │   300/400 (75%) — 745s elapsed, ~248s remaining
+09:08:12 │ INFO     │   320/400 (80%) — 795s elapsed, ~199s remaining
+09:09:03 │ INFO     │   340/400 (85%) — 845s elapsed, ~149s remaining
+09:09:51 │ INFO     │   360/400 (90%) — 894s elapsed, ~99s remaining
+09:10:42 │ INFO     │   380/400 (95%) — 944s elapsed, ~50s remaining
+09:11:32 │ INFO     │   400/400 (100%) — 995s elapsed, ~0s remaining
+09:11:32 │ INFO     │   ✓ Singapore Grand Prix: 400 combos in 995s
+09:11:32 │ INFO     │   Saved: results/scenarios/scenarios_singapore.json
+09:11:32 │ INFO     │ ============================================================
+09:11:32 │ INFO     │   PRECOMPUTING: Belgian Grand Prix
+09:11:32 │ INFO     │   20 drivers × 20 positions = 400 combos
+09:11:32 │ INFO     │ ============================================================
+09:12:09 │ INFO     │   20/400 (5%) — 36s elapsed, ~689s remaining
+09:12:45 │ INFO     │   40/400 (10%) — 73s elapsed, ~656s remaining
+09:13:21 │ INFO     │   60/400 (15%) — 108s elapsed, ~614s remaining
+09:13:57 │ INFO     │   80/400 (20%) — 145s elapsed, ~579s remaining
+09:14:33 │ INFO     │   100/400 (25%) — 181s elapsed, ~542s remaining
+09:15:10 │ INFO     │   120/400 (30%) — 217s elapsed, ~507s remaining
+09:15:45 │ INFO     │   140/400 (35%) — 253s elapsed, ~470s remaining
+09:16:22 │ INFO     │   160/400 (40%) — 289s elapsed, ~434s remaining
+09:16:59 │ INFO     │   180/400 (45%) — 326s elapsed, ~399s remaining
+09:17:35 │ INFO     │   200/400 (50%) — 363s elapsed, ~363s remaining
+09:18:11 │ INFO     │   220/400 (55%) — 399s elapsed, ~327s remaining
+09:18:48 │ INFO     │   240/400 (60%) — 436s elapsed, ~290s remaining
+09:19:24 │ INFO     │   260/400 (65%) — 472s elapsed, ~254s remaining
+09:20:00 │ INFO     │   280/400 (70%) — 508s elapsed, ~218s remaining
+09:20:36 │ INFO     │   300/400 (75%) — 544s elapsed, ~181s remaining
+09:21:12 │ INFO     │   320/400 (80%) — 580s elapsed, ~145s remaining
+09:21:48 │ INFO     │   340/400 (85%) — 616s elapsed, ~109s remaining
+09:22:25 │ INFO     │   360/400 (90%) — 653s elapsed, ~73s remaining
+09:23:02 │ INFO     │   380/400 (95%) — 689s elapsed, ~36s remaining
+09:23:38 │ INFO     │   400/400 (100%) — 725s elapsed, ~0s remaining
+09:23:38 │ INFO     │   ✓ Belgian Grand Prix: 400 combos in 725s
+09:23:38 │ INFO     │   Saved: results/scenarios/scenarios_spa.json
+09:23:38 │ INFO     │ ============================================================
+09:23:38 │ INFO     │   PRECOMPUTING: Austrian Grand Prix
+09:23:38 │ INFO     │   20 drivers × 20 positions = 400 combos
+09:23:38 │ INFO     │ ============================================================
+09:24:34 │ INFO     │   20/400 (5%) — 56s elapsed, ~1073s remaining
+09:25:31 │ INFO     │   40/400 (10%) — 113s elapsed, ~1017s remaining
+09:26:27 │ INFO     │   60/400 (15%) — 170s elapsed, ~961s remaining
+09:27:25 │ INFO     │   80/400 (20%) — 227s elapsed, ~907s remaining
+09:28:21 │ INFO     │   100/400 (25%) — 283s elapsed, ~848s remaining
+09:29:17 │ INFO     │   120/400 (30%) — 339s elapsed, ~791s remaining
+09:30:13 │ INFO     │   140/400 (35%) — 395s elapsed, ~734s remaining
+09:31:10 │ INFO     │   160/400 (40%) — 452s elapsed, ~678s remaining
+09:32:07 │ INFO     │   180/400 (45%) — 509s elapsed, ~622s remaining
+09:33:04 │ INFO     │   200/400 (50%) — 566s elapsed, ~566s remaining
+09:34:00 │ INFO     │   220/400 (55%) — 622s elapsed, ~509s remaining
+09:34:55 │ INFO     │   240/400 (60%) — 678s elapsed, ~452s remaining
+09:35:51 │ INFO     │   260/400 (65%) — 734s elapsed, ~395s remaining
+09:36:47 │ INFO     │   280/400 (70%) — 790s elapsed, ~338s remaining
+09:37:45 │ INFO     │   300/400 (75%) — 848s elapsed, ~283s remaining
+09:38:42 │ INFO     │   320/400 (80%) — 905s elapsed, ~226s remaining
+09:39:39 │ INFO     │   340/400 (85%) — 961s elapsed, ~170s remaining
+09:40:36 │ INFO     │   360/400 (90%) — 1018s elapsed, ~113s remaining
+09:41:34 │ INFO     │   380/400 (95%) — 1076s elapsed, ~57s remaining
+09:42:31 │ INFO     │   400/400 (100%) — 1133s elapsed, ~0s remaining
+09:42:31 │ INFO     │   ✓ Austrian Grand Prix: 400 combos in 1133s
+09:42:31 │ INFO     │   Saved: results/scenarios/scenarios_spielberg.json
+09:42:31 │ INFO     │ ============================================================
+09:42:31 │ INFO     │   PRECOMPUTING: Japanese Grand Prix
+09:42:31 │ INFO     │   20 drivers × 20 positions = 400 combos
+09:42:31 │ INFO     │ ============================================================
+09:43:14 │ INFO     │   20/400 (5%) — 43s elapsed, ~821s remaining
+09:43:57 │ INFO     │   40/400 (10%) — 86s elapsed, ~772s remaining
+09:44:40 │ INFO     │   60/400 (15%) — 128s elapsed, ~728s remaining
+09:45:22 │ INFO     │   80/400 (20%) — 171s elapsed, ~684s remaining
+09:46:06 │ INFO     │   100/400 (25%) — 214s elapsed, ~643s remaining
+09:46:48 │ INFO     │   120/400 (30%) — 257s elapsed, ~599s remaining
+09:47:30 │ INFO     │   140/400 (35%) — 299s elapsed, ~555s remaining
+09:48:13 │ INFO     │   160/400 (40%) — 342s elapsed, ~513s remaining
+09:48:57 │ INFO     │   180/400 (45%) — 385s elapsed, ~471s remaining
+09:49:39 │ INFO     │   200/400 (50%) — 428s elapsed, ~428s remaining
+09:50:22 │ INFO     │   220/400 (55%) — 470s elapsed, ~385s remaining
+09:51:05 │ INFO     │   240/400 (60%) — 514s elapsed, ~343s remaining
+09:51:48 │ INFO     │   260/400 (65%) — 557s elapsed, ~300s remaining
+09:52:32 │ INFO     │   280/400 (70%) — 600s elapsed, ~257s remaining
+09:53:15 │ INFO     │   300/400 (75%) — 644s elapsed, ~215s remaining
+09:53:58 │ INFO     │   320/400 (80%) — 687s elapsed, ~172s remaining
+09:54:41 │ INFO     │   340/400 (85%) — 729s elapsed, ~129s remaining
+09:55:24 │ INFO     │   360/400 (90%) — 773s elapsed, ~86s remaining
+09:56:07 │ INFO     │   380/400 (95%) — 815s elapsed, ~43s remaining
+09:56:49 │ INFO     │   400/400 (100%) — 858s elapsed, ~0s remaining
+09:56:49 │ INFO     │   ✓ Japanese Grand Prix: 400 combos in 858s
+09:56:49 │ INFO     │   Saved: results/scenarios/scenarios_suzuka.json
+09:56:49 │ INFO     │ ============================================================
+09:56:49 │ INFO     │   PRECOMPUTING: Abu Dhabi Grand Prix
+09:56:49 │ INFO     │   20 drivers × 20 positions = 400 combos
+09:56:49 │ INFO     │ ============================================================
+09:57:37 │ INFO     │   20/400 (5%) — 48s elapsed, ~910s remaining
+09:58:26 │ INFO     │   40/400 (10%) — 97s elapsed, ~870s remaining
+09:59:15 │ INFO     │   60/400 (15%) — 146s elapsed, ~829s remaining
+10:00:03 │ INFO     │   80/400 (20%) — 194s elapsed, ~774s remaining
+10:00:52 │ INFO     │   100/400 (25%) — 243s elapsed, ~728s remaining
+10:01:40 │ INFO     │   120/400 (30%) — 291s elapsed, ~679s remaining
+10:02:28 │ INFO     │   140/400 (35%) — 339s elapsed, ~630s remaining
+10:03:15 │ INFO     │   160/400 (40%) — 385s elapsed, ~578s remaining
+10:04:02 │ INFO     │   180/400 (45%) — 433s elapsed, ~529s remaining
+10:04:52 │ INFO     │   200/400 (50%) — 483s elapsed, ~483s remaining
+10:05:40 │ INFO     │   220/400 (55%) — 531s elapsed, ~434s remaining
+10:06:28 │ INFO     │   240/400 (60%) — 579s elapsed, ~386s remaining
+10:07:16 │ INFO     │   260/400 (65%) — 627s elapsed, ~338s remaining
+10:08:04 │ INFO     │   280/400 (70%) — 675s elapsed, ~289s remaining
+10:08:51 │ INFO     │   300/400 (75%) — 722s elapsed, ~241s remaining
+10:09:39 │ INFO     │   320/400 (80%) — 770s elapsed, ~192s remaining
+10:10:27 │ INFO     │   340/400 (85%) — 818s elapsed, ~144s remaining
+10:11:16 │ INFO     │   360/400 (90%) — 867s elapsed, ~96s remaining
+10:12:04 │ INFO     │   380/400 (95%) — 915s elapsed, ~48s remaining
+10:12:54 │ INFO     │   400/400 (100%) — 965s elapsed, ~0s remaining
+10:12:54 │ INFO     │   ✓ Abu Dhabi Grand Prix: 400 combos in 965s
+10:12:54 │ INFO     │   Saved: results/scenarios/scenarios_yas_marina.json
+10:12:54 │ INFO     │ ============================================================
+10:12:54 │ INFO     │   PRECOMPUTING: Dutch Grand Prix
+10:12:54 │ INFO     │   20 drivers × 20 positions = 400 combos
+10:12:54 │ INFO     │ ============================================================
+10:13:51 │ INFO     │   20/400 (5%) — 57s elapsed, ~1080s remaining
+10:14:48 │ INFO     │   40/400 (10%) — 114s elapsed, ~1029s remaining
+10:15:46 │ INFO     │   60/400 (15%) — 172s elapsed, ~975s remaining
+10:16:43 │ INFO     │   80/400 (20%) — 229s elapsed, ~916s remaining
+10:17:40 │ INFO     │   100/400 (25%) — 286s elapsed, ~859s remaining
+10:18:36 │ INFO     │   120/400 (30%) — 342s elapsed, ~797s remaining
+10:19:32 │ INFO     │   140/400 (35%) — 398s elapsed, ~739s remaining
+10:20:29 │ INFO     │   160/400 (40%) — 455s elapsed, ~682s remaining
+10:21:25 │ INFO     │   180/400 (45%) — 511s elapsed, ~625s remaining
+10:22:22 │ INFO     │   200/400 (50%) — 568s elapsed, ~568s remaining
+10:23:18 │ INFO     │   220/400 (55%) — 624s elapsed, ~510s remaining
+10:24:14 │ INFO     │   240/400 (60%) — 680s elapsed, ~453s remaining
+10:25:09 │ INFO     │   260/400 (65%) — 735s elapsed, ~396s remaining
+10:26:06 │ INFO     │   280/400 (70%) — 792s elapsed, ~339s remaining
+10:27:03 │ INFO     │   300/400 (75%) — 849s elapsed, ~283s remaining
+10:28:00 │ INFO     │   320/400 (80%) — 906s elapsed, ~226s remaining
+10:28:56 │ INFO     │   340/400 (85%) — 962s elapsed, ~170s remaining
+10:29:54 │ INFO     │   360/400 (90%) — 1020s elapsed, ~113s remaining
+10:30:50 │ INFO     │   380/400 (95%) — 1076s elapsed, ~57s remaining
+10:31:47 │ INFO     │   400/400 (100%) — 1133s elapsed, ~0s remaining
+10:31:47 │ INFO     │   ✓ Dutch Grand Prix: 400 combos in 1133s
+10:31:47 │ INFO     │   Saved: results/scenarios/scenarios_zandvoort.json
+10:31:47 │ INFO     │ ✓ Written: frontend/src/data/scenarios.ts (24 circuits, 12509 KB)
+10:31:47 │ INFO     │ 
+============================================================
+10:31:47 │ INFO     │   COMPLETE: 24 circuits pre-computed
+10:31:47 │ INFO     │ ============================================================

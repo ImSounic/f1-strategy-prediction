@@ -1,0 +1,35 @@
+00:27:30 │ INFO     │ =================================================================
+00:27:30 │ INFO     │   TRAINING RL AGENT — LAS_VEGAS
+00:27:30 │ INFO     │ =================================================================
+00:27:30 │ INFO     │   Circuit:    las_vegas
+00:27:30 │ INFO     │   Timesteps:  500,000
+00:27:30 │ INFO     │   Obs space:  (14,)
+00:27:30 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+00:27:31 │ INFO     │   Policy:     MLP [128, 128]
+00:27:31 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+00:27:31 │ INFO     │ 
+  Training...
+00:29:20 │ INFO     │   Step   50,000 | Mean reward:   -16.1 | Std:   9.2 | Mean race time:   4790.6s
+00:31:09 │ INFO     │   Step  100,000 | Mean reward:   -13.2 | Std:   1.9 | Mean race time:   4798.3s
+00:33:01 │ INFO     │   Step  150,000 | Mean reward:   -13.3 | Std:   1.9 | Mean race time:   4775.5s
+00:34:47 │ INFO     │   Step  200,000 | Mean reward:   -13.7 | Std:   2.3 | Mean race time:   4801.7s
+00:36:41 │ INFO     │   Step  250,000 | Mean reward:   -13.8 | Std:   2.4 | Mean race time:   4802.6s
+00:38:31 │ INFO     │   Step  300,000 | Mean reward:   -13.7 | Std:   5.2 | Mean race time:   4777.7s
+00:40:16 │ INFO     │   Step  350,000 | Mean reward:   -13.8 | Std:   1.8 | Mean race time:   4782.4s
+00:42:08 │ INFO     │   Step  400,000 | Mean reward:   -14.1 | Std:   2.5 | Mean race time:   4800.7s
+00:43:55 │ INFO     │   Step  450,000 | Mean reward:   -13.2 | Std:   2.2 | Mean race time:   4794.2s
+00:45:47 │ INFO     │   Step  500,000 | Mean reward:   -13.6 | Std:   2.1 | Mean race time:   4801.1s
+00:45:51 │ INFO     │ 
+  ✓ Training complete in 1100s
+00:45:51 │ INFO     │     Races simulated: ~10,000
+00:45:51 │ INFO     │     Speed: 454 steps/sec
+00:45:51 │ INFO     │     Saved: models/rl/ppo_las_vegas_2025
+00:45:51 │ INFO     │ 
+  Evaluating (100 races)...
+00:45:54 │ INFO     │     Median race time: 4714.0s
+00:45:54 │ INFO     │     Mean stops:       1.35
+00:45:54 │ INFO     │     Mean SC events:   0.52
+00:45:54 │ INFO     │     Compound variety: 2.2 types
+00:45:54 │ INFO     │     Legal races:      100%

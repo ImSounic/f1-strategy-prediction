@@ -1,0 +1,35 @@
+03:52:37 │ INFO     │ =================================================================
+03:52:37 │ INFO     │   TRAINING RL AGENT — SPIELBERG
+03:52:37 │ INFO     │ =================================================================
+03:52:38 │ INFO     │   Circuit:    spielberg
+03:52:38 │ INFO     │   Timesteps:  500,000
+03:52:38 │ INFO     │   Obs space:  (14,)
+03:52:38 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+03:52:38 │ INFO     │   Policy:     MLP [128, 128]
+03:52:38 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+03:52:38 │ INFO     │ 
+  Training...
+03:54:35 │ INFO     │   Step   50,000 | Mean reward:   -18.9 | Std:   2.2 | Mean race time:   6823.2s
+03:56:31 │ INFO     │   Step  100,000 | Mean reward:   -18.4 | Std:   2.0 | Mean race time:   6806.6s
+03:58:28 │ INFO     │   Step  150,000 | Mean reward:   -19.1 | Std:   2.3 | Mean race time:   6807.0s
+04:00:24 │ INFO     │   Step  200,000 | Mean reward:   -18.0 | Std:   1.8 | Mean race time:   6810.4s
+04:02:17 │ INFO     │   Step  250,000 | Mean reward:   -18.1 | Std:   1.6 | Mean race time:   6817.8s
+04:04:09 │ INFO     │   Step  300,000 | Mean reward:   -18.0 | Std:   2.0 | Mean race time:   6798.8s
+04:06:03 │ INFO     │   Step  350,000 | Mean reward:   -17.8 | Std:   2.0 | Mean race time:   6813.4s
+04:07:57 │ INFO     │   Step  400,000 | Mean reward:   -18.0 | Std:   2.0 | Mean race time:   6836.2s
+04:09:52 │ INFO     │   Step  450,000 | Mean reward:   -18.2 | Std:   2.1 | Mean race time:   6803.8s
+04:11:42 │ INFO     │   Step  500,000 | Mean reward:   -18.0 | Std:   1.9 | Mean race time:   6810.9s
+04:11:45 │ INFO     │ 
+  ✓ Training complete in 1147s
+04:11:45 │ INFO     │     Races simulated: ~7,042
+04:11:45 │ INFO     │     Speed: 436 steps/sec
+04:11:45 │ INFO     │     Saved: models/rl/ppo_spielberg_2025
+04:11:45 │ INFO     │ 
+  Evaluating (100 races)...
+04:11:50 │ INFO     │     Median race time: 6763.5s
+04:11:50 │ INFO     │     Mean stops:       1.66
+04:11:50 │ INFO     │     Mean SC events:   0.58
+04:11:50 │ INFO     │     Compound variety: 2.5 types
+04:11:50 │ INFO     │     Legal races:      100%

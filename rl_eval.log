@@ -1,0 +1,27 @@
+15:20:02 │ INFO     │ =================================================================
+15:20:02 │ INFO     │   RL vs MC COMPARISON — BAHRAIN
+15:20:02 │ INFO     │ =================================================================
+15:20:03 │ INFO     │   Generated 78 candidate strategies (30 1-stop, 48 2-stop)
+15:20:03 │ INFO     │   MC best:  2-stop H→M→S
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+15:20:10 │ INFO     │   Races:    1000
+15:20:10 │ INFO     │ 
+  Running head-to-head comparison...
+15:23:42 │ INFO     │ 
+  ───────────────────────────────────────────────────────
+15:23:42 │ INFO     │                           RESULTS                        
+15:23:42 │ INFO     │   ───────────────────────────────────────────────────────
+15:23:42 │ INFO     │                                     MC              RL
+15:23:42 │ INFO     │   Median time                  5475.4s         5470.2s
+15:23:42 │ INFO     │   Std time                      149.8s          147.7s
+15:23:42 │ INFO     │   Mean stops                         2           1.30
+15:23:42 │ INFO     │   Mean SC events                 0.64           0.68
+15:23:42 │ INFO     │   ───────────────────────────────────────────────────────
+15:23:42 │ INFO     │   RL advantage:  +5.18s (median)
+15:23:42 │ INFO     │   RL win rate:   45.1%
+15:23:42 │ INFO     │     SC races:    49.6% (703 races)
+15:23:42 │ INFO     │     No-SC races: 34.3% (297 races)
+15:23:42 │ INFO     │ 
+  ✓ Saved: results/rl_comparison_bahrain_2025.json
+15:23:42 │ INFO     │ ✓ Written: frontend/src/data/rl.ts (1 circuits)

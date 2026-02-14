@@ -1,0 +1,35 @@
+18:05:02 │ INFO     │ =================================================================
+18:05:02 │ INFO     │   TRAINING RL AGENT — JEDDAH
+18:05:02 │ INFO     │ =================================================================
+18:05:03 │ INFO     │   Circuit:    jeddah
+18:05:03 │ INFO     │   Timesteps:  500,000
+18:05:03 │ INFO     │   Obs space:  (14,)
+18:05:03 │ INFO     │   Action:     Discrete(2) — stay/pit
+/home/imsounic/f1-strategy-optimizer/venv/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:150: UserWarning: You are trying to run PPO on the GPU, but it is primarily intended to run on the CPU when not using a CNN policy (you are using ActorCriticPolicy which should be a MlpPolicy). See https://github.com/DLR-RM/stable-baselines3/issues/1245 for more info. You can pass `device='cpu'` or `export CUDA_VISIBLE_DEVICES=` to force using the CPU.Note: The model will train, but the GPU utilization will be poor and the training might take longer than on CPU.
+  warnings.warn(
+18:05:04 │ INFO     │   Policy:     MLP [128, 128]
+18:05:04 │ INFO     │   Algorithm:  PPO (gamma=0.998, lr=0.0003)
+18:05:04 │ INFO     │ 
+  Training...
+18:11:46 │ INFO     │   Step   50,000 | Mean reward:   -15.4 | Std:   5.2 | Mean race time:   4897.5s
+18:18:15 │ INFO     │   Step  100,000 | Mean reward:   -14.8 | Std:   2.2 | Mean race time:   4894.5s
+18:24:59 │ INFO     │   Step  150,000 | Mean reward:   -15.1 | Std:   2.4 | Mean race time:   4903.9s
+18:31:45 │ INFO     │   Step  200,000 | Mean reward:   -15.2 | Std:   2.7 | Mean race time:   4896.7s
+18:37:59 │ INFO     │   Step  250,000 | Mean reward:   -15.1 | Std:   2.2 | Mean race time:   4897.5s
+18:44:49 │ INFO     │   Step  300,000 | Mean reward:   -14.7 | Std:   2.5 | Mean race time:   4877.8s
+18:51:20 │ INFO     │   Step  350,000 | Mean reward:   -15.5 | Std:   2.8 | Mean race time:   4894.4s
+18:57:53 │ INFO     │   Step  400,000 | Mean reward:   -15.4 | Std:   2.5 | Mean race time:   4913.3s
+19:04:28 │ INFO     │   Step  450,000 | Mean reward:   -15.0 | Std:   2.2 | Mean race time:   4876.7s
+19:10:35 │ INFO     │   Step  500,000 | Mean reward:   -15.3 | Std:   2.6 | Mean race time:   4931.7s
+19:10:46 │ INFO     │ 
+  ✓ Training complete in 3942s
+19:10:46 │ INFO     │     Races simulated: ~10,000
+19:10:46 │ INFO     │     Speed: 127 steps/sec
+19:10:46 │ INFO     │     Saved: models/rl/ppo_jeddah_2025
+19:10:46 │ INFO     │ 
+  Evaluating (100 races)...
+19:10:56 │ INFO     │     Median race time: 4878.7s
+19:10:56 │ INFO     │     Mean stops:       1.24
+19:10:56 │ INFO     │     Mean SC events:   1.19
+19:10:56 │ INFO     │     Compound variety: 2.0 types
+19:10:56 │ INFO     │     Legal races:      74%
