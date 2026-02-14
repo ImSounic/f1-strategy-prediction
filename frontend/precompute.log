@@ -1,2 +1,0 @@
-nohup: ignoring input
-/home/imsounic/f1-strategy-optimizer/venv/bin/python: Error while finding module specification for 'src.simulation.precompute_scenarios' (ModuleNotFoundError: No module named 'src.simulation')
