@@ -1,0 +1,165 @@
+{
+  "season": 2024,
+  "reference_driver": "VER",
+  "notes": "Pace deltas from 2024 qualifying medians relative to Verstappen. Overtaking/tyre management are subjective 0-1 ratings based on race data.",
+  "teams": {
+    "red_bull": { "color": "#3671C6", "name": "Red Bull Racing" },
+    "mclaren": { "color": "#FF8000", "name": "McLaren" },
+    "ferrari": { "color": "#E8002D", "name": "Ferrari" },
+    "mercedes": { "color": "#27F4D2", "name": "Mercedes" },
+    "aston_martin": { "color": "#229971", "name": "Aston Martin" },
+    "alpine": { "color": "#FF87BC", "name": "Alpine" },
+    "williams": { "color": "#64C4FF", "name": "Williams" },
+    "rb": { "color": "#6692FF", "name": "RB" },
+    "kick_sauber": { "color": "#52E252", "name": "Kick Sauber" },
+    "haas": { "color": "#B6BABD", "name": "Haas" }
+  },
+  "drivers": [
+    {
+      "code": "VER", "name": "Max Verstappen", "team": "red_bull",
+      "pace_delta": 0.0,
+      "overtaking": 0.95, "tyre_management": 0.90,
+      "teammate": "PER"
+    },
+    {
+      "code": "PER", "name": "Sergio Perez", "team": "red_bull",
+      "pace_delta": 0.35,
+      "overtaking": 0.70, "tyre_management": 0.75,
+      "teammate": "VER"
+    },
+    {
+      "code": "NOR", "name": "Lando Norris", "team": "mclaren",
+      "pace_delta": 0.10,
+      "overtaking": 0.85, "tyre_management": 0.85,
+      "teammate": "PIA"
+    },
+    {
+      "code": "PIA", "name": "Oscar Piastri", "team": "mclaren",
+      "pace_delta": 0.18,
+      "overtaking": 0.80, "tyre_management": 0.82,
+      "teammate": "NOR"
+    },
+    {
+      "code": "LEC", "name": "Charles Leclerc", "team": "ferrari",
+      "pace_delta": 0.12,
+      "overtaking": 0.82, "tyre_management": 0.78,
+      "teammate": "SAI"
+    },
+    {
+      "code": "SAI", "name": "Carlos Sainz", "team": "ferrari",
+      "pace_delta": 0.15,
+      "overtaking": 0.78, "tyre_management": 0.85,
+      "teammate": "LEC"
+    },
+    {
+      "code": "HAM", "name": "Lewis Hamilton", "team": "mercedes",
+      "pace_delta": 0.20,
+      "overtaking": 0.88, "tyre_management": 0.92,
+      "teammate": "RUS"
+    },
+    {
+      "code": "RUS", "name": "George Russell", "team": "mercedes",
+      "pace_delta": 0.18,
+      "overtaking": 0.80, "tyre_management": 0.80,
+      "teammate": "HAM"
+    },
+    {
+      "code": "ALO", "name": "Fernando Alonso", "team": "aston_martin",
+      "pace_delta": 0.40,
+      "overtaking": 0.82, "tyre_management": 0.90,
+      "teammate": "STR"
+    },
+    {
+      "code": "STR", "name": "Lance Stroll", "team": "aston_martin",
+      "pace_delta": 0.55,
+      "overtaking": 0.55, "tyre_management": 0.65,
+      "teammate": "ALO"
+    },
+    {
+      "code": "GAS", "name": "Pierre Gasly", "team": "alpine",
+      "pace_delta": 0.50,
+      "overtaking": 0.72, "tyre_management": 0.78,
+      "teammate": "OCO"
+    },
+    {
+      "code": "OCO", "name": "Esteban Ocon", "team": "alpine",
+      "pace_delta": 0.52,
+      "overtaking": 0.68, "tyre_management": 0.72,
+      "teammate": "GAS"
+    },
+    {
+      "code": "ALB", "name": "Alexander Albon", "team": "williams",
+      "pace_delta": 0.55,
+      "overtaking": 0.75, "tyre_management": 0.80,
+      "teammate": "SAR"
+    },
+    {
+      "code": "SAR", "name": "Logan Sargeant", "team": "williams",
+      "pace_delta": 0.85,
+      "overtaking": 0.50, "tyre_management": 0.55,
+      "teammate": "ALB"
+    },
+    {
+      "code": "TSU", "name": "Yuki Tsunoda", "team": "rb",
+      "pace_delta": 0.48,
+      "overtaking": 0.72, "tyre_management": 0.70,
+      "teammate": "RIC"
+    },
+    {
+      "code": "RIC", "name": "Daniel Ricciardo", "team": "rb",
+      "pace_delta": 0.58,
+      "overtaking": 0.78, "tyre_management": 0.72,
+      "teammate": "TSU"
+    },
+    {
+      "code": "BOT", "name": "Valtteri Bottas", "team": "kick_sauber",
+      "pace_delta": 0.70,
+      "overtaking": 0.60, "tyre_management": 0.82,
+      "teammate": "ZHO"
+    },
+    {
+      "code": "ZHO", "name": "Zhou Guanyu", "team": "kick_sauber",
+      "pace_delta": 0.80,
+      "overtaking": 0.55, "tyre_management": 0.68,
+      "teammate": "BOT"
+    },
+    {
+      "code": "MAG", "name": "Kevin Magnussen", "team": "haas",
+      "pace_delta": 0.60,
+      "overtaking": 0.70, "tyre_management": 0.65,
+      "teammate": "HUL"
+    },
+    {
+      "code": "HUL", "name": "Nico Hulkenberg", "team": "haas",
+      "pace_delta": 0.55,
+      "overtaking": 0.68, "tyre_management": 0.75,
+      "teammate": "MAG"
+    }
+  ],
+  "circuit_overtaking_difficulty": {
+    "bahrain": 0.70,
+    "jeddah": 0.75,
+    "albert_park": 0.55,
+    "suzuka": 0.40,
+    "shanghai": 0.65,
+    "miami": 0.60,
+    "imola": 0.35,
+    "monaco": 0.10,
+    "montreal": 0.55,
+    "barcelona": 0.35,
+    "spielberg": 0.55,
+    "silverstone": 0.55,
+    "hungaroring": 0.30,
+    "spa": 0.65,
+    "zandvoort": 0.25,
+    "monza": 0.80,
+    "baku": 0.65,
+    "singapore": 0.30,
+    "cota": 0.60,
+    "mexico": 0.55,
+    "interlagos": 0.65,
+    "las_vegas": 0.70,
+    "lusail": 0.55,
+    "yas_marina": 0.55
+  }
+}
