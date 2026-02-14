@@ -1,6 +1,45 @@
 // Auto-generated from multi-car simulation data
 // Do not edit manually
 
+// Legacy types for ScenarioView component (contingency planning)
+export interface ScenarioStrategy {
+  rank: number
+  name: string
+  cleanName: string
+  compounds: string
+  stops: number
+  medianTime: number
+  delta: number
+  stdTime: number
+  scEvents: number
+}
+
+export interface DecisionTrigger {
+  scenarioId: string
+  scenarioName: string
+  icon: string
+  probability: number
+  trigger: string
+  action: string
+  actionStops: number
+  timeSaved: number
+  defaultRank: number
+}
+
+export interface ScenarioResult {
+  scenarioId: string
+  scenarioName: string
+  description: string
+  icon: string
+  probability: number
+  scenarioBest: string
+  scenarioBestStops: number
+  defaultPlanRank: number
+  timeDelta: number
+  strategies: ScenarioStrategy[]
+}
+
+
 export const scenarioData: Record<string, any> = {
   "albert_park": {
     circuitKey: "albert_park",
