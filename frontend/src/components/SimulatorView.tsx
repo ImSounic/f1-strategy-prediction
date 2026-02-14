@@ -5,6 +5,7 @@ import {
   Line, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, ReferenceLine, ReferenceArea, Area, ComposedChart,
 } from 'recharts'
+import { scenarioData } from '@/data/scenarios'
 
 // ── Driver & Team Data ────────────────────────────────────────
 
@@ -86,15 +87,6 @@ const SCENARIO_TABS = [
 ] as const
 
 type ScenarioKey = typeof SCENARIO_TABS[number]['key']
-
-// ── Try to import pre-computed stats ──
-let scenarioData: Record<string, any> = {}
-try {
-  const mod = require('@/data/scenarios')
-  scenarioData = mod.scenarioData || {}
-} catch {
-  // Data not yet generated
-}
 
 // ── Sub-Components ────────────────────────────────────────────
 
