@@ -45,6 +45,26 @@ def clean_strategy_name(raw: str) -> str:
     return name.strip()
 
 
+def parse_stint_info(strategy_name: str) -> tuple:
+    """Extract stint lengths and pit laps from strategy name.
+
+    '2-stop HARD→MEDIUM→SOFT (18/18/21)' -> ([18, 18, 21], [18, 36])
+    '1-stop HARD→SOFT (26/32)'           -> ([26, 32], [26])
+    """
+    match = re.search(r'\((\d+(?:/\d+)*)\)', strategy_name)
+    if not match:
+        return [], []
+
+    stint_lengths = [int(x) for x in match.group(1).split('/')]
+    pit_laps = []
+    cumulative = 0
+    for length in stint_lengths[:-1]:
+        cumulative += length
+        pit_laps.append(cumulative)
+
+    return stint_lengths, pit_laps
+
+
 def deduplicate_rankings(rankings: list) -> list:
     """Keep only the best (lowest median_time) variant of each unique
     clean strategy name. Re-rank and recalculate deltas."""
@@ -177,6 +197,8 @@ def main():
     lines.append("  p95: number;")
     lines.append("  delta: number;")
     lines.append("  scEvents: number;")
+    lines.append("  stintLengths: number[];")
+    lines.append("  pitLaps: number[];")
     lines.append("}")
     lines.append("")
     lines.append("export interface CircuitStrategy {")
@@ -210,6 +232,7 @@ def main():
             sc = r.get("mean_sc_events", 0)
             raw_name = r["strategy_name"].replace('"', '\\"')
             clean = clean_strategy_name(r["strategy_name"]).replace('"', '\\"')
+            stint_lengths, pit_laps = parse_stint_info(r["strategy_name"])
 
             lines.append(
                 f'      {{ rank: {i+1}, name: "{raw_name}", '
@@ -218,7 +241,8 @@ def main():
                 f'medianTime: {r["median_time"]:.1f}, meanTime: {r["mean_time"]:.1f}, '
                 f'stdTime: {r["std_time"]:.1f}, p5: {r["p5_time"]:.1f}, '
                 f'p95: {r["p95_time"]:.1f}, delta: {delta}, '
-                f'scEvents: {sc:.1f} }},'
+                f'scEvents: {sc:.1f}, '
+                f'stintLengths: {json.dumps(stint_lengths)}, pitLaps: {json.dumps(pit_laps)} }},'
             )
 
         lines.append("    ],")

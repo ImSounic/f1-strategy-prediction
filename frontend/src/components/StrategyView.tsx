@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { strategyResults } from '@/data/strategies'
+import { strategyResults, StrategyResult } from '@/data/strategies'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell,
@@ -56,6 +56,46 @@ function CompoundSequence({ compounds }: { compounds: string }) {
           <CompoundPill compound={comp} />
         </div>
       ))}
+    </div>
+  )
+}
+
+function StintTimeline({ strategy }: { strategy: StrategyResult }) {
+  if (!strategy.stintLengths || strategy.stintLengths.length === 0) return null
+
+  const compounds = strategy.compounds.split(/\s*→\s*/)
+  const total = strategy.stintLengths.reduce((a, b) => a + b, 0)
+
+  const compoundBg: Record<string, string> = {
+    SOFT: 'bg-red-500',
+    MEDIUM: 'bg-yellow-400',
+    HARD: 'bg-white',
+  }
+  const compoundText: Record<string, string> = {
+    SOFT: 'text-white',
+    MEDIUM: 'text-gray-900',
+    HARD: 'text-gray-900',
+  }
+
+  return (
+    <div className="flex h-6 rounded overflow-hidden w-full mt-3">
+      {strategy.stintLengths.map((len, i) => {
+        const compound = compounds[i]?.trim() || ''
+        return (
+          <div
+            key={i}
+            className={`${compoundBg[compound] || 'bg-f1-border'} relative flex items-center justify-center`}
+            style={{ width: `${(len / total) * 100}%` }}
+          >
+            <span className={`text-[10px] font-mono font-bold ${compoundText[compound] || 'text-white'} opacity-90`}>
+              {len}L
+            </span>
+            {i < strategy.stintLengths.length - 1 && (
+              <div className="absolute right-0 top-0 bottom-0 w-0.5 bg-f1-darker" />
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -154,6 +194,12 @@ export function StrategyView({ circuitKey }: Props) {
                 <CompoundSequence compounds={best.compounds.replace(/→/g, '→')} />
                 <span className="font-mono text-xs text-f1-border">{best.stops}-stop</span>
               </div>
+              {best.pitLaps && best.pitLaps.length > 0 && (
+                <div className="font-mono text-xs text-f1-muted mt-2">
+                  Pit on Lap {best.pitLaps.join(', ')}
+                </div>
+              )}
+              <StintTimeline strategy={best} />
             </div>
             <div className="text-right">
               <div className="font-mono text-xs text-f1-muted uppercase tracking-wider mb-1">
@@ -290,7 +336,7 @@ export function StrategyView({ circuitKey }: Props) {
           <table className="w-full">
             <thead>
               <tr className="border-b border-f1-border">
-                {['Rank', 'Strategy', 'Compounds', 'Stops', 'Median', 'Delta', 'Std Dev', 'SC Events'].map(h => (
+                {['Rank', 'Strategy', 'Compounds', 'Stops', 'Pit Laps', 'Median', 'Delta', 'Std Dev', 'SC Events'].map(h => (
                   <th key={h} className="px-4 py-3 text-left font-mono text-xs text-f1-muted uppercase tracking-wider">
                     {h}
                   </th>
@@ -317,6 +363,13 @@ export function StrategyView({ circuitKey }: Props) {
                     <CompoundSequence compounds={s.compounds} />
                   </td>
                   <td className="px-4 py-3 font-mono text-sm">{s.stops}</td>
+                  <td className="px-4 py-3">
+                    <span className="font-mono text-xs text-f1-muted">
+                      {s.pitLaps && s.pitLaps.length > 0
+                        ? s.pitLaps.map(lap => `L${lap}`).join(', ')
+                        : '-'}
+                    </span>
+                  </td>
                   <td className="px-4 py-3 font-mono text-sm">{s.medianTime.toFixed(1)}s</td>
                   <td className="px-4 py-3">
                     <span className={`font-mono text-sm ${i === 0 ? 'text-green-400 font-bold' : 'text-f1-muted'}`}>

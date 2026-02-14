@@ -51,7 +51,12 @@ export const circuits: Circuit[] = [
     characteristics: { abrasiveness: 1, grip: 1, traction: 4, braking: 3, lateral: 1, stress: 2, downforce: 5, evolution: 3 },
   },
   {
-    key: "catalunya", name: "Circuit de Barcelona-Catalunya", country: "ES",
+    key: "montreal", name: "Circuit Gilles Villeneuve", country: "CA",
+    totalLaps: 70, pitLoss: 22.0, scProbability: 0.78, compounds: "C3/C4/C5",
+    characteristics: { abrasiveness: 2, grip: 2, traction: 3, braking: 4, lateral: 2, stress: 3, downforce: 2, evolution: 3 },
+  },
+  {
+    key: "barcelona", name: "Circuit de Barcelona-Catalunya", country: "ES",
     totalLaps: 66, pitLoss: 22.0, scProbability: 0.29, compounds: "C1/C2/C3",
     characteristics: { abrasiveness: 3, grip: 3, traction: 3, braking: 2, lateral: 4, stress: 4, downforce: 3, evolution: 2 },
   },
@@ -71,7 +76,7 @@ export const circuits: Circuit[] = [
     characteristics: { abrasiveness: 2, grip: 3, traction: 3, braking: 3, lateral: 3, stress: 3, downforce: 3, evolution: 2 },
   },
   {
-    key: "budapest", name: "Hungaroring", country: "HU",
+    key: "hungaroring", name: "Hungaroring", country: "HU",
     totalLaps: 70, pitLoss: 22.0, scProbability: 0.42, compounds: "C2/C3/C4",
     characteristics: { abrasiveness: 2, grip: 2, traction: 4, braking: 3, lateral: 3, stress: 3, downforce: 4, evolution: 3 },
   },
@@ -96,12 +101,12 @@ export const circuits: Circuit[] = [
     characteristics: { abrasiveness: 1, grip: 2, traction: 4, braking: 4, lateral: 2, stress: 3, downforce: 4, evolution: 4 },
   },
   {
-    key: "austin", name: "Circuit of the Americas", country: "US",
+    key: "cota", name: "Circuit of the Americas", country: "US",
     totalLaps: 56, pitLoss: 23.0, scProbability: 0.54, compounds: "C2/C3/C4",
     characteristics: { abrasiveness: 3, grip: 3, traction: 3, braking: 3, lateral: 3, stress: 3, downforce: 3, evolution: 2 },
   },
   {
-    key: "mexico_city", name: "Autódromo Hermanos Rodríguez", country: "MX",
+    key: "mexico", name: "Autódromo Hermanos Rodríguez", country: "MX",
     totalLaps: 71, pitLoss: 22.0, scProbability: 0.54, compounds: "C2/C3/C4",
     characteristics: { abrasiveness: 2, grip: 2, traction: 4, braking: 3, lateral: 2, stress: 2, downforce: 3, evolution: 3 },
   },
