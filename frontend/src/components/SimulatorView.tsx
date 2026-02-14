@@ -523,7 +523,7 @@ export function SimulatorView() {
   // Get sample_races for current combo
   const sampleRaces = useMemo(() => {
     if (!detailData) return null
-    return detailData?.drivers?.[selectedDriver]?.[String(gridPosition)] || null
+    return detailData?.[selectedDriver]?.[String(gridPosition)] || null
   }, [detailData, selectedDriver, gridPosition])
 
   // Available tabs (only show SC tabs if data exists)
