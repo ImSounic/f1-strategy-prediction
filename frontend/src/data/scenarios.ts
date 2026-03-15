@@ -52,6 +52,7 @@ export interface CircuitScenarios {
   }
   scenarios: ScenarioResult[]
   triggers: DecisionTrigger[]
+  drivers?: Record<string, Record<string, any>>
 }
 
 export const scenarioData: Record<string, CircuitScenarios> = {
