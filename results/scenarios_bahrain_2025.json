@@ -5,7 +5,7 @@
   "sc_probability": 0.527,
   "n_sims_per_scenario": 500,
   "n_strategies": 78,
-  "elapsed_seconds": 51.8,
+  "elapsed_seconds": 46.0,
   "default_plan": {
     "name": "2-stop HARD\u2192MEDIUM\u2192SOFT (18/18/21)",
     "clean_name": "2-stop H\u2192M\u2192S",

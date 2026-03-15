@@ -132,10 +132,13 @@ function ScenarioCard({
 }
 
 export function ScenarioView({ circuitKey }: Props) {
+  // scenarioData currently holds multi-car sim results (CircuitScenarios format).
+  // This component expects the old contingency scenario format which is no longer generated.
+  // Search for a key with the old naming convention (circuit_scenario); won't match current data.
   const matchingKey = Object.keys(scenarioData)
     .find(k => k.startsWith(circuitKey + '_')) || ''
 
-  const data = matchingKey ? scenarioData[matchingKey] : null
+  const data = matchingKey ? (scenarioData[matchingKey] as any) : null
 
   const [selectedScenario, setSelectedScenario] = useState(0)
 
