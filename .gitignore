@@ -39,3 +39,6 @@ frontend/.env.local
 f1-frontend.tar.gz
 *.sqlite
 data/raw/fastf1/.cache/
+
+# Local Context
+LOCALCONTEXT.md

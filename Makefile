@@ -1,13 +1,10 @@
-.PHONY: all setup ingest prepare model simulate analyze visualize demo api clean
+.PHONY: all setup ingest prepare model simulate analyze visualize clean
 
 # ════════════════════════════════════════════════
 #  F1 Race Strategy Optimizer — Build Pipeline
 # ════════════════════════════════════════════════
 # Usage:
 #   make setup     — Install dependencies
-#   make all       — Run full pipeline (~15 min)
-#   make demo      — Launch Streamlit app
-#   make api       — Launch FastAPI server
 #   make clean     — Remove generated outputs
 
 PYTHON = python -m
@@ -54,19 +51,6 @@ analyze:
 	$(PYTHON) src.analysis.dtw_similarity
 	$(PYTHON) src.analysis.strategy_validation_rolling
 	@echo "✓ Phase 5a: Analysis complete"
-
-# Phase 5b: Visualization
-visualize:
-	$(PYTHON) src.visualization.report_figures
-	@echo "✓ Phase 5b: Figures generated in results/figures/"
-
-# Interactive demo
-demo:
-	streamlit run src/demo/app.py
-
-# API server
-api:
-	uvicorn src.api.main:app --reload --host 0.0.0.0 --port 8000
 
 # Clean outputs (keeps raw data)
 clean:

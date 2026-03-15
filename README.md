@@ -80,12 +80,6 @@ make model       # Phase 3: Model training
 make simulate    # Phase 4: Monte Carlo simulation
 make analyze     # Phase 5a: SHAP, DTW, validation
 make visualize   # Phase 5b: Report figures
-
-# Interactive demo
-make demo
-
-# API server
-make api
 ```
 
 ## Project Structure
@@ -111,54 +105,17 @@ f1-strategy-optimizer/
 │   ├── modeling/               # Model training & comparison
 │   ├── simulation/             # Monte Carlo strategy simulator
 │   ├── analysis/               # SHAP, DTW, validation
-│   ├── visualization/          # Report figure generation
-│   ├── api/                    # FastAPI REST backend
-│   └── demo/                   # Streamlit interactive app
+│   └── visualization/          # Report figure generation
 ├── Makefile                    # One-command pipeline
-├── Procfile                    # Production deployment
-├── render.yaml                 # Render.com config
 ├── requirements.txt            # Dependencies
 └── README.md
-```
-
-## API
-
-The FastAPI backend provides a REST API for programmatic access:
-
-```bash
-# Start locally
-uvicorn src.api.main:app --reload
-# Open http://localhost:8000/docs for interactive Swagger UI
-
-# Endpoints
-GET  /                          # Health check
-GET  /circuits/2025             # List circuits for a season
-GET  /circuit/bahrain/2024      # Circuit details & characteristics
-POST /simulate                  # Run Monte Carlo simulation
-GET  /validation                # Model validation results
-```
-
-### Example: Simulate a race
-
-```bash
-curl -X POST http://localhost:8000/simulate \
-  -H "Content-Type: application/json" \
-  -d '{"circuit_key": "bahrain", "season": 2024, "n_sims": 500}'
 ```
 
 ## Deployment
 
 | Component | Platform | Tier |
 |-----------|----------|------|
-| Backend API | Render | Free |
-| Frontend (future) | Vercel | Free |
-
-```bash
-# Deploy to Render
-# 1. Push to GitHub
-# 2. Connect repo at render.com
-# 3. Auto-detects render.yaml
-```
+| Frontend | Vercel | Free |
 
 ## Limitations & Future Work
 
@@ -170,7 +127,7 @@ curl -X POST http://localhost:8000/simulate \
 
 ## Technology Stack
 
-Python 3.10+ · XGBoost · scikit-learn · SHAP · SciPy · FastF1 · FastAPI · Streamlit · Matplotlib
+Python 3.10+ · XGBoost · scikit-learn · SHAP · SciPy · FastF1 · Matplotlib
 
 ## References
 
