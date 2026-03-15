@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import type { DecisionTrigger, ScenarioStrategy } from '@/data/scenarios'
+import { scenarioData } from '@/data/scenarios'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell,
@@ -10,30 +11,6 @@ import {
 interface Props {
   circuitKey: string
 }
-
-// Legacy contingency planning data structure (not currently available)
-interface LegacyScenarioResult {
-  scenarioId: string
-  scenarioName: string
-  description: string
-  icon: string
-  probability: number
-  scenarioBest: string
-  scenarioBestStops: number
-  defaultPlanRank: number
-  timeDelta: number
-  strategies: ScenarioStrategy[]
-}
-
-// Placeholder data - contingency planning feature temporarily disabled
-const legacyScenarioData: Record<string, {
-  scenarios: LegacyScenarioResult[],
-  defaultPlanName: string,
-  triggers: DecisionTrigger[],
-  nSims: number,
-  defaultPlan: { cleanName: string, compounds: string, name: string },
-  scProbability: number
-}> = {}
 
 function CompoundPill({ compound }: { compound: string }) {
   const bgMap: Record<string, string> = {
@@ -105,7 +82,7 @@ function ScenarioCard({
   onClick,
   defaultPlanName,
 }: {
-  scenario: LegacyScenarioResult
+  scenario: any
   isSelected: boolean
   onClick: () => void
   defaultPlanName: string
@@ -155,10 +132,10 @@ function ScenarioCard({
 }
 
 export function ScenarioView({ circuitKey }: Props) {
-  const matchingKey = Object.keys(legacyScenarioData)
+  const matchingKey = Object.keys(scenarioData)
     .find(k => k.startsWith(circuitKey + '_')) || ''
 
-  const data = matchingKey ? legacyScenarioData[matchingKey] : null
+  const data = matchingKey ? scenarioData[matchingKey] : null
 
   const [selectedScenario, setSelectedScenario] = useState(0)
 
@@ -268,7 +245,7 @@ export function ScenarioView({ circuitKey }: Props) {
             <h4 className="font-display font-bold text-sm uppercase tracking-wider text-f1-muted mb-3">
               Scenarios ({data.scenarios.length})
             </h4>
-            {data.scenarios.map((sc: LegacyScenarioResult, i: number) => (
+            {data.scenarios.map((sc: any, i: number) => (
               <ScenarioCard
                 key={sc.scenarioId}
                 scenario={sc}
