@@ -89,24 +89,27 @@ export function CircuitExplorer({ selected, onSelect }: Props) {
 
         {/* Horizontal scrollable circuit carousel */}
         <div className="relative mb-10">
-          {/* Scroll buttons */}
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-f1-card/90 backdrop-blur border border-f1-border rounded-full flex items-center justify-center text-f1-muted hover:text-f1-red hover:border-f1-red transition-all shadow-card -ml-2"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-f1-card/90 backdrop-blur border border-f1-border rounded-full flex items-center justify-center text-f1-muted hover:text-f1-red hover:border-f1-red transition-all shadow-card -mr-2"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
+          {/* Scroll buttons - outside the scroll area */}
+          <div className="flex items-center gap-3 mb-4">
+            <button
+              onClick={() => scroll('left')}
+              className="w-9 h-9 bg-f1-card border border-f1-border rounded-full flex items-center justify-center text-f1-muted hover:text-f1-red hover:border-f1-red transition-all shadow-card flex-shrink-0"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="w-9 h-9 bg-f1-card border border-f1-border rounded-full flex items-center justify-center text-f1-muted hover:text-f1-red hover:border-f1-red transition-all shadow-card flex-shrink-0"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+            <span className="font-mono text-xs text-f1-muted ml-1">Scroll to browse circuits</span>
+          </div>
 
           {/* Carousel track */}
           <div
             ref={scrollRef}
-            className="circuit-carousel flex gap-3 overflow-x-auto px-6 py-2 -mx-6"
+            className="circuit-carousel flex gap-3 overflow-x-auto py-2"
           >
             {circuits.map(c => {
               const isSelected = selected === c.key
