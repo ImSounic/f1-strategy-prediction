@@ -12,6 +12,13 @@ interface Props {
   circuitKey: string
 }
 
+function formatTime(seconds: number): string {
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  const s = seconds % 60
+  return `${h}:${m.toString().padStart(2, '0')}:${s.toFixed(1).padStart(4, '0')}`
+}
+
 function CompoundPill({ compound }: { compound: string }) {
   const bgMap: Record<string, string> = {
     S: 'bg-red-500 text-white',
@@ -406,7 +413,7 @@ export function ScenarioView({ circuitKey }: Props) {
                           <CompoundSequence compounds={s.compounds} />
                         </td>
                         <td className="px-3 py-2 font-mono text-xs">{s.stops}</td>
-                        <td className="px-3 py-2 font-mono text-xs">{s.medianTime.toFixed(1)}s</td>
+                        <td className="px-3 py-2 font-mono text-xs">{formatTime(s.medianTime)}</td>
                         <td className="px-3 py-2">
                           <span className={`font-mono text-xs ${
                             i === 0 ? 'text-green-400 font-bold' : 'text-f1-muted'

@@ -351,7 +351,7 @@ export function RLView({ circuitKey }: Props) {
           <StatCard
             label="RL Median"
             value={formatTime(rl.medianTime)}
-            sub={`σ = ${rl.stdTime.toFixed(1)}s`}
+            sub={`σ = ${formatTime(rl.stdTime)}`}
             accent={rlFasterOverall}
           />
           <StatCard

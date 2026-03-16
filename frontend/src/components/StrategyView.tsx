@@ -11,6 +11,13 @@ interface Props {
   circuitKey: string
 }
 
+function formatTime(seconds: number): string {
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  const s = seconds % 60
+  return `${h}:${m.toString().padStart(2, '0')}:${s.toFixed(1).padStart(4, '0')}`
+}
+
 const compoundColorMap: Record<string, string> = {
   S: '#E10600',
   M: '#FFD700',
@@ -301,7 +308,7 @@ export function StrategyView({ circuitKey }: Props) {
                         <span className="font-mono text-xs text-f1-muted">{s.cleanName}</span>
                       </div>
                       <span className="font-mono text-xs text-f1-border">
-                        {s.p5.toFixed(0)}s &ndash; {s.p95.toFixed(0)}s
+                        {formatTime(s.p5)} &ndash; {formatTime(s.p95)}
                       </span>
                     </div>
                     <div className="relative h-4 bg-f1-darker rounded-full">
@@ -370,7 +377,7 @@ export function StrategyView({ circuitKey }: Props) {
                         : '-'}
                     </span>
                   </td>
-                  <td className="px-4 py-3 font-mono text-sm">{s.medianTime.toFixed(1)}s</td>
+                  <td className="px-4 py-3 font-mono text-sm">{formatTime(s.medianTime)}</td>
                   <td className="px-4 py-3">
                     <span className={`font-mono text-sm ${i === 0 ? 'text-green-400 font-bold' : 'text-f1-muted'}`}>
                       {i === 0 ? 'BEST' : `+${s.delta.toFixed(1)}s`}
