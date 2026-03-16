@@ -106,10 +106,12 @@ export function CircuitExplorer({ selected, onSelect }: Props) {
             <span className="font-mono text-xs text-f1-muted ml-1">Scroll to browse circuits</span>
           </div>
 
-          {/* Carousel track */}
+          {/* Carousel track - 2 rows */}
           <div
             ref={scrollRef}
-            className="circuit-carousel flex gap-3 overflow-x-auto py-2"
+            className="circuit-carousel overflow-x-auto py-2"
+          >
+            <div className="grid grid-rows-2 grid-flow-col gap-3"
           >
             {circuits.map(c => {
               const isSelected = selected === c.key
@@ -153,6 +155,7 @@ export function CircuitExplorer({ selected, onSelect }: Props) {
                 </button>
               )
             })}
+            </div>
           </div>
         </div>
 
