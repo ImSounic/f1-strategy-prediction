@@ -211,7 +211,7 @@ def main():
     
     # Write TypeScript
     ts_code = generate_typescript(all_results)
-    output_path = Path("frontend/src/data/scenarios.ts")
+    output_path = Path("frontend/src/data/scenarioResults.ts")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(ts_code)
     logger.info(f"\n✓ Written: {output_path} ({len(all_results)} circuits)")

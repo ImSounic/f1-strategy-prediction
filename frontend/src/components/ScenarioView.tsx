@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import type { DecisionTrigger, ScenarioStrategy } from '@/data/scenarios'
-import { scenarioData } from '@/data/scenarios'
+import type { DecisionTrigger, ScenarioStrategy } from '@/data/scenarioResults'
+import { scenarioData } from '@/data/scenarioResults'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell,
@@ -132,13 +132,10 @@ function ScenarioCard({
 }
 
 export function ScenarioView({ circuitKey }: Props) {
-  // scenarioData currently holds multi-car sim results (CircuitScenarios format).
-  // This component expects the old contingency scenario format which is no longer generated.
-  // Search for a key with the old naming convention (circuit_scenario); won't match current data.
   const matchingKey = Object.keys(scenarioData)
     .find(k => k.startsWith(circuitKey + '_')) || ''
 
-  const data = matchingKey ? (scenarioData[matchingKey] as any) : null
+  const data = matchingKey ? scenarioData[matchingKey] : null
 
   const [selectedScenario, setSelectedScenario] = useState(0)
 
