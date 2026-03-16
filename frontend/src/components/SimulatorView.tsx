@@ -6,6 +6,7 @@ import {
   ResponsiveContainer, ReferenceLine, ReferenceArea, Area, ComposedChart,
 } from 'recharts'
 import { scenarioData } from '@/data/scenarios'
+import { useChartTheme } from '@/lib/ThemeProvider'
 
 // ── Driver & Team Data ────────────────────────────────────────
 
@@ -119,7 +120,7 @@ function DriverCard({
       className={`relative flex items-center gap-3 px-3 py-2.5 rounded-lg border transition-all text-left w-full ${
         selected
           ? 'border-white/40 bg-white/10 ring-1 ring-white/20'
-          : 'border-f1-border bg-f1-darker hover:border-white/20 hover:bg-white/5'
+          : 'border-f1-border bg-f1-dark hover:border-white/20 hover:bg-white/5'
       }`}
     >
       <div
@@ -162,7 +163,7 @@ function GridPositionSlider({
           max={20}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full h-2 appearance-none bg-f1-darker rounded-full cursor-pointer
+          className="w-full h-2 appearance-none bg-f1-dark rounded-full cursor-pointer
             [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 
             [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full 
             [&::-webkit-slider-thumb]:bg-f1-red [&::-webkit-slider-thumb]:cursor-pointer
@@ -196,6 +197,7 @@ function PositionChart({
   scLaps: number[]
   driverColor: string
 }) {
+  const chart = useChartTheme()
   const data = positions.map((pos, i) => ({
     lap: i + 1,
     position: pos,
@@ -225,7 +227,7 @@ function PositionChart({
     const isSC = scLaps.includes(d.lap)
     const compColor = COMPOUND_COLORS[d.compound] || '#888'
     return (
-      <div className="bg-[#1a1a2e] border border-[#333] rounded-lg px-3 py-2 shadow-xl">
+      <div className="rounded-lg px-3 py-2 shadow-xl" style={{ backgroundColor: chart.tooltipBg, border: `1px solid ${chart.tooltipBorder}` }}>
         <div className="font-mono text-xs text-f1-muted mb-1">Lap {d.lap}</div>
         <div className="font-display font-bold text-lg" style={{ color: driverColor }}>P{d.position}</div>
         <div className="flex items-center gap-2 mt-1">
@@ -241,7 +243,7 @@ function PositionChart({
   return (
     <ResponsiveContainer width="100%" height={280}>
       <ComposedChart data={data} margin={{ top: 5, right: 10, bottom: 5, left: -10 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#222" />
+        <CartesianGrid strokeDasharray="3 3" stroke={chart.grid} />
         
         {stintBands.map((band, i) => {
           const color = COMPOUND_COLORS[band.compound] || '#888'
@@ -257,14 +259,14 @@ function PositionChart({
         
         <XAxis
           dataKey="lap"
-          tick={{ fontSize: 10, fill: '#666' }}
-          label={{ value: 'Lap', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#888' }}
+          tick={{ fontSize: 10, fill: chart.text }}
+          label={{ value: 'Lap', position: 'insideBottom', offset: -2, fontSize: 11, fill: chart.text }}
         />
         <YAxis
           reversed
           domain={[1, 20]}
-          tick={{ fontSize: 10, fill: '#666' }}
-          label={{ value: 'Position', angle: -90, position: 'insideLeft', offset: 15, fontSize: 11, fill: '#888' }}
+          tick={{ fontSize: 10, fill: chart.text }}
+          label={{ value: 'Position', angle: -90, position: 'insideLeft', offset: 15, fontSize: 11, fill: chart.text }}
           ticks={[1, 5, 10, 15, 20]}
         />
         <Tooltip content={<CustomTooltip />} />
@@ -280,7 +282,7 @@ function PositionChart({
           <ReferenceLine
             key={`pit-${lap}`} x={lap}
             stroke="#ffd700" strokeWidth={2} strokeOpacity={0.9}
-            label={{ value: 'PIT', position: 'top', fontSize: 9, fill: '#ffd700', fontFamily: 'monospace' }}
+            label={{ value: 'PIT', position: 'top', fontSize: 9, fill: '#ffd700', fontFamily: 'var(--font-mono)' }}
           />
         ))}
         
@@ -308,6 +310,7 @@ function TyreChart({
   pitLaps: number[]
   scLaps: number[]
 }) {
+  const chart = useChartTheme()
   const data = tyreAges.map((age, i) => ({
     lap: i + 1,
     tyreAge: age,
@@ -322,8 +325,8 @@ function TyreChart({
             <stop offset="100%" stopColor="#10b981" stopOpacity={0.02} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="lap" tick={{ fontSize: 9, fill: '#666' }} tickLine={false} axisLine={false} />
-        <YAxis tick={{ fontSize: 9, fill: '#666' }} tickLine={false} axisLine={false} />
+        <XAxis dataKey="lap" tick={{ fontSize: 9, fill: chart.text }} tickLine={false} axisLine={false} />
+        <YAxis tick={{ fontSize: 9, fill: chart.text }} tickLine={false} axisLine={false} />
         {scLaps.map(lap => (
           <ReferenceLine key={`sc-${lap}`} x={lap} stroke="#ff3333" strokeDasharray="2 2" strokeOpacity={0.5} />
         ))}
@@ -480,6 +483,7 @@ export function SimulatorView() {
   const [activeTab, setActiveTab] = useState<ScenarioKey>('median')
   const [detailData, setDetailData] = useState<Record<string, any> | null>(null)
   const [loadingDetail, setLoadingDetail] = useState(false)
+  const chart = useChartTheme()
 
   // Only render after client-side hydration
   useEffect(() => {
@@ -577,7 +581,7 @@ export function SimulatorView() {
         {/* Controls grid */}
         <div className="grid lg:grid-cols-[1fr_320px] gap-8 mb-12">
           {/* Left: Driver selection */}
-          <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+          <div className="theme-card rounded-xl p-6">
             <h2 className="font-display font-bold text-lg mb-4">Select Driver</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               {DRIVERS.map(d => (
@@ -593,13 +597,13 @@ export function SimulatorView() {
 
           {/* Right: Circuit + Grid Position */}
           <div className="flex flex-col gap-6">
-            <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+            <div className="theme-card rounded-xl p-6">
               <h2 className="font-display font-bold text-lg mb-4">Circuit</h2>
               <select
                 value={selectedCircuit}
                 onChange={(e) => setSelectedCircuit(e.target.value)}
-                className="w-full bg-f1-darker border border-f1-border rounded-lg px-4 py-3 
-                  font-mono text-sm text-white appearance-none cursor-pointer
+                className="w-full bg-f1-dark border border-f1-border rounded-lg px-4 py-3 
+                  font-mono text-sm text-f1-light appearance-none cursor-pointer
                   focus:outline-none focus:border-emerald-500/50"
               >
                 {CIRCUITS.map(c => (
@@ -610,7 +614,7 @@ export function SimulatorView() {
               </select>
             </div>
 
-            <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+            <div className="theme-card rounded-xl p-6">
               <GridPositionSlider value={gridPosition} onChange={setGridPosition} />
             </div>
 
@@ -636,7 +640,7 @@ export function SimulatorView() {
         {result ? (
           <div className="space-y-6">
             {/* Strategy recommendation */}
-            <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+            <div className="theme-card rounded-xl p-6">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                 <div>
                   <div className="font-mono text-xs text-emerald-400 uppercase tracking-widest mb-1">
@@ -670,7 +674,7 @@ export function SimulatorView() {
                   { label: 'Mean Finish', value: `P${result.meanPos.toFixed(1)}`, color: '#888' },
                   { label: 'Worst Case', value: `P${result.worstPos}`, color: '#ef4444' },
                 ].map(stat => (
-                  <div key={stat.label} className="bg-f1-darker border border-f1-border rounded-lg p-4">
+                  <div key={stat.label} className="bg-f1-dark border border-f1-border rounded-lg p-4">
                     <div className="font-mono text-[10px] text-f1-muted uppercase tracking-widest mb-1">
                       {stat.label}
                     </div>
@@ -683,7 +687,7 @@ export function SimulatorView() {
             </div>
 
             {/* Scenario tabs + charts */}
-            <div className="bg-f1-card border border-f1-border rounded-lg overflow-hidden">
+            <div className="theme-card rounded-xl overflow-hidden">
               {/* Tab bar */}
               <div className="flex border-b border-f1-border overflow-x-auto">
                 {availableTabs.map(tab => {
@@ -694,8 +698,8 @@ export function SimulatorView() {
                       onClick={() => setActiveTab(tab.key)}
                       className={`flex items-center gap-2 px-5 py-3.5 font-mono text-sm whitespace-nowrap transition-all border-b-2 ${
                         isActive
-                          ? 'text-white border-current'
-                          : 'text-f1-muted border-transparent hover:text-white/70 hover:bg-white/5'
+                          ? 'text-f1-light border-current'
+                          : 'text-f1-muted border-transparent hover:text-f1-light/70 hover:bg-white/5'
                       }`}
                       style={isActive ? { color: tab.color, borderColor: tab.color } : undefined}
                     >
@@ -756,14 +760,14 @@ export function SimulatorView() {
             </div>
 
             {/* Position gain/loss analysis */}
-            <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+            <div className="theme-card rounded-xl p-6">
               <h3 className="font-display font-bold text-lg mb-4">Position Analysis</h3>
               <div className="grid md:grid-cols-3 gap-4">
                 {(() => {
                   const gain = gridPosition - result.medianPos
                   return (
                     <>
-                      <div className="bg-f1-darker border border-f1-border rounded-lg p-4">
+                      <div className="bg-f1-dark border border-f1-border rounded-lg p-4">
                         <div className="font-mono text-[10px] text-f1-muted uppercase tracking-widest mb-1">
                           Expected Gain/Loss
                         </div>
@@ -776,22 +780,22 @@ export function SimulatorView() {
                           P{gridPosition} → P{result.medianPos} (median)
                         </div>
                       </div>
-                      <div className="bg-f1-darker border border-f1-border rounded-lg p-4">
+                      <div className="bg-f1-dark border border-f1-border rounded-lg p-4">
                         <div className="font-mono text-[10px] text-f1-muted uppercase tracking-widest mb-1">
                           Position Range
                         </div>
-                        <div className="font-display font-black text-2xl text-white">
+                        <div className="font-display font-black text-2xl text-f1-light">
                           P{result.bestPos} – P{result.worstPos}
                         </div>
                         <div className="font-mono text-[10px] text-f1-muted mt-1">
                           5th to 95th percentile
                         </div>
                       </div>
-                      <div className="bg-f1-darker border border-f1-border rounded-lg p-4">
+                      <div className="bg-f1-dark border border-f1-border rounded-lg p-4">
                         <div className="font-mono text-[10px] text-f1-muted uppercase tracking-widest mb-1">
                           Strategy Type
                         </div>
-                        <div className="font-display font-black text-2xl text-white">
+                        <div className="font-display font-black text-2xl text-f1-light">
                           {result.stops}-Stop
                         </div>
                         <div className="font-mono text-[10px] text-f1-muted mt-1">
@@ -805,7 +809,7 @@ export function SimulatorView() {
             </div>
           </div>
         ) : (
-          <div className="bg-f1-card border border-f1-border rounded-lg p-12 text-center">
+          <div className="theme-card rounded-xl p-12 text-center">
             <div className="font-display font-bold text-xl mb-2 text-f1-muted">
               Scenario Data Not Yet Available
             </div>

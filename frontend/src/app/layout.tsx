@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { ThemeProvider } from '@/lib/ThemeProvider'
 
 export const metadata: Metadata = {
   title: 'F1 Strategy Optimizer',
@@ -12,9 +13,27 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-f1-darker">
-        {children}
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              try {
+                var theme = localStorage.getItem('f1-theme');
+                if (theme === 'light') {
+                  document.documentElement.classList.remove('dark');
+                } else if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch(e) {}
+            })();
+          `,
+        }} />
+      </head>
+      <body className="min-h-screen bg-f1-darker transition-colors duration-300">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -2,14 +2,14 @@
 
 export function Footer() {
   return (
-    <footer className="py-16 bg-f1-darker">
+    <footer className="py-16 bg-f1-dark">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 bg-f1-red rounded-sm flex items-center justify-center">
-                <span className="font-display font-black text-white text-sm">F1</span>
+                <span className="font-display font-black text-f1-light text-sm">F1</span>
               </div>
               <span className="font-display font-bold text-lg">
                 Strategy<span className="text-f1-red">Optimizer</span>

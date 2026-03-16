@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { rlResults, CircuitRLResult, RLSampleRace } from '@/data/rl'
+import { useChartTheme } from '@/lib/ThemeProvider'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell, LineChart, Line, Legend,
@@ -36,11 +37,11 @@ function StatCard({ label, value, sub, accent }: {
   label: string; value: string; sub?: string; accent?: boolean
 }) {
   return (
-    <div className="bg-f1-darker border border-f1-border rounded-lg p-4">
+    <div className="theme-card rounded-xl p-4">
       <div className="font-mono text-[10px] text-f1-muted uppercase tracking-widest mb-1">
         {label}
       </div>
-      <div className={`font-display font-black text-2xl ${accent ? 'text-f1-red' : 'text-white'}`}>
+      <div className={`font-display font-black text-2xl ${accent ? 'text-f1-red' : 'text-f1-light'}`}>
         {value}
       </div>
       {sub && (
@@ -63,7 +64,7 @@ function WinRateBar({ rlWin, mcWin }: { rlWin: number; mcWin: number }) {
           style={{ width: `${rlWin}%` }}
         >
           {rlWin >= 15 && (
-            <span className="font-mono text-[11px] font-bold text-white">
+            <span className="font-mono text-[11px] font-bold text-f1-light">
               {rlWin.toFixed(1)}%
             </span>
           )}
@@ -73,7 +74,7 @@ function WinRateBar({ rlWin, mcWin }: { rlWin: number; mcWin: number }) {
           style={{ width: `${mcWin}%` }}
         >
           {mcWin >= 15 && (
-            <span className="font-mono text-[11px] font-bold text-white">
+            <span className="font-mono text-[11px] font-bold text-f1-light">
               {mcWin.toFixed(1)}%
             </span>
           )}
@@ -121,6 +122,7 @@ function StrategyPills({ startCompound, pitLaps, compounds, label, color }: {
 }
 
 function LapTrace({ race, totalLaps, mcStrategy }: { race: RLSampleRace; totalLaps: number; mcStrategy: string }) {
+  const chart = useChartTheme()
   // Build lap-by-lap data with both RL and MC tyre ages
   const hasMcData = race.mcTyreAges && race.mcTyreAges.length > 0
   const data = race.tyreAges.map((age, i) => ({
@@ -136,7 +138,7 @@ function LapTrace({ race, totalLaps, mcStrategy }: { race: RLSampleRace; totalLa
   const delta = race.mcTime - race.totalTime
 
   return (
-    <div className="bg-f1-darker border border-f1-border rounded-lg p-4">
+    <div className="theme-card rounded-xl p-4">
       {/* Header: category, times, delta */}
       <div className="flex items-center justify-between mb-1 flex-wrap gap-2">
         <div className="flex items-center gap-3">
@@ -191,10 +193,10 @@ function LapTrace({ race, totalLaps, mcStrategy }: { race: RLSampleRace; totalLa
             </linearGradient>
           </defs>
           <XAxis
-            dataKey="lap" tick={{ fontSize: 9, fill: '#666' }}
+            dataKey="lap" tick={{ fontSize: 9, fill: chart.text }}
             tickLine={false} axisLine={false}
           />
-          <YAxis tick={{ fontSize: 9, fill: '#666' }} tickLine={false} axisLine={false} />
+          <YAxis tick={{ fontSize: 9, fill: chart.text }} tickLine={false} axisLine={false} />
           {/* SC zones */}
           {race.scLaps.map(lap => (
             <ReferenceLine key={`sc-${lap}`} x={lap} stroke="#ff3333" strokeDasharray="2 2" strokeOpacity={0.5} />
@@ -239,6 +241,7 @@ function LapTrace({ race, totalLaps, mcStrategy }: { race: RLSampleRace; totalLa
 }
 
 export function RLView({ circuitKey }: Props) {
+  const chart = useChartTheme()
   const [selectedRace, setSelectedRace] = useState(0)
 
   // Look up data with flexible key matching
@@ -259,7 +262,7 @@ export function RLView({ circuitKey }: Props) {
               RL Agent Comparison
             </h2>
           </div>
-          <div className="bg-f1-card border border-f1-border rounded-lg p-12 text-center">
+          <div className="theme-card rounded-xl p-12 text-center">
             <div className="font-mono text-f1-muted text-sm">
               No RL data available for this circuit yet.
               <br />
@@ -310,12 +313,12 @@ export function RLView({ circuitKey }: Props) {
           <p className="font-body text-f1-muted mt-3 max-w-2xl">
             A PPO agent trained entirely in simulation learns lap-by-lap pit stop timing.
             Compared head-to-head against the MC-optimized fixed strategy on{' '}
-            <span className="text-white">{data.nRaces.toLocaleString()} identical race simulations</span>.
+            <span className="text-f1-light">{data.nRaces.toLocaleString()} identical race simulations</span>.
           </p>
         </div>
 
         {/* Headline result */}
-        <div className={`bg-f1-card border rounded-lg p-6 mb-8 ${
+        <div className={`theme-card rounded-xl p-6 mb-8 ${
           rlFasterOverall ? 'border-emerald-500/40' : 'border-f1-red/40'
         }`}>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -376,22 +379,22 @@ export function RLView({ circuitKey }: Props) {
         {/* Two-column: time distribution + stop distribution */}
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Time distribution comparison */}
-          <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+          <div className="theme-card rounded-xl p-6">
             <h3 className="font-display font-bold text-lg mb-4">
               Race Time Distribution
             </h3>
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={timeComparison} margin={{ top: 5, right: 10, bottom: 5, left: -10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                <XAxis dataKey="metric" tick={{ fontSize: 11, fill: '#888' }} />
+                <CartesianGrid strokeDasharray="3 3" stroke={chart.grid} />
+                <XAxis dataKey="metric" tick={{ fontSize: 11, fill: chart.text }} />
                 <YAxis
-                  tick={{ fontSize: 10, fill: '#888' }}
+                  tick={{ fontSize: 10, fill: chart.text }}
                   domain={['auto', 'auto']}
                   tickFormatter={(v: number) => formatTime(v)}
                 />
                 <Tooltip
-                  contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: 8 }}
-                  labelStyle={{ color: '#fff' }}
+                  contentStyle={{ background: chart.tooltipBg, border: `1px solid ${chart.tooltipBorder}`, borderRadius: 8, fontFamily: 'var(--font-mono)' }}
+                  labelStyle={{ color: chart.tooltipText }}
                   formatter={(value: number, name: string) => [formatTime(value), name]}
                 />
                 <Bar dataKey="mc" fill="#e10600" name="MC" radius={[4, 4, 0, 0]} barSize={24} />
@@ -401,7 +404,7 @@ export function RLView({ circuitKey }: Props) {
           </div>
 
           {/* RL stop distribution */}
-          <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+          <div className="theme-card rounded-xl p-6">
             <h3 className="font-display font-bold text-lg mb-2">
               RL Stop Distribution
             </h3>
@@ -412,11 +415,11 @@ export function RLView({ circuitKey }: Props) {
             {stopDist.length > 0 ? (
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={stopDist} margin={{ top: 5, right: 10, bottom: 5, left: -10 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                  <XAxis dataKey="stops" tick={{ fontSize: 11, fill: '#888' }} />
-                  <YAxis tick={{ fontSize: 10, fill: '#888' }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={chart.grid} />
+                  <XAxis dataKey="stops" tick={{ fontSize: 11, fill: chart.text }} />
+                  <YAxis tick={{ fontSize: 10, fill: chart.text }} />
                   <Tooltip
-                    contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: 8 }}
+                    contentStyle={{ background: chart.tooltipBg, border: `1px solid ${chart.tooltipBorder}`, borderRadius: 8, fontFamily: 'var(--font-mono)' }}
                     formatter={(value: number) => [`${value} races`, 'Count']}
                   />
                   <Bar dataKey="count" fill="#10b981" radius={[4, 4, 0, 0]} barSize={40}>
@@ -436,7 +439,7 @@ export function RLView({ circuitKey }: Props) {
 
         {/* Lap-by-lap traces */}
         {data.sampleRaces && data.sampleRaces.length > 0 && (
-          <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+          <div className="theme-card rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h3 className="font-display font-bold text-lg">
@@ -459,7 +462,7 @@ export function RLView({ circuitKey }: Props) {
                           ? hasSC
                             ? 'bg-amber-500 text-black'
                             : 'bg-emerald-500 text-white'
-                          : 'bg-f1-darker border border-f1-border text-f1-muted hover:text-white'
+                          : 'bg-f1-darker border border-f1-border text-f1-muted hover:text-f1-light'
                       }`}
                     >
                       {label}

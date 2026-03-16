@@ -64,7 +64,7 @@ export function TechStack() {
           {categories.map((cat, i) => (
             <div
               key={i}
-              className="bg-f1-card border border-f1-border rounded-lg p-6 relative overflow-hidden"
+              className="theme-card rounded-xl p-6 relative overflow-hidden"
             >
               {/* Accent stripe */}
               <div

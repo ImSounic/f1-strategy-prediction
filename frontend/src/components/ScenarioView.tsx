@@ -7,6 +7,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell,
 } from 'recharts'
+import { useChartTheme } from '@/lib/ThemeProvider'
 
 interface Props {
   circuitKey: string
@@ -110,7 +111,7 @@ function ScenarioCard({
         <div className="flex items-center gap-2">
           <span className="text-xl">{scenario.icon}</span>
           <div>
-            <div className="font-display font-bold text-sm text-white leading-tight">
+            <div className="font-display font-bold text-sm text-f1-light leading-tight">
               {scenario.scenarioName.split('(')[0].trim()}
             </div>
             <div className="font-mono text-[10px] text-f1-muted mt-0.5">
@@ -139,6 +140,7 @@ function ScenarioCard({
 }
 
 export function ScenarioView({ circuitKey }: Props) {
+  const chart = useChartTheme()
   const matchingKey = Object.keys(scenarioData)
     .find(k => k.startsWith(circuitKey + '_')) || ''
 
@@ -158,7 +160,7 @@ export function ScenarioView({ circuitKey }: Props) {
               Race Scenarios
             </h2>
           </div>
-          <div className="bg-f1-card border border-f1-border rounded-lg p-12 text-center">
+          <div className="theme-card rounded-xl p-12 text-center">
             <div className="text-4xl mb-4">📋</div>
             <div className="font-display text-xl text-f1-muted mb-2">
               No scenario analysis for this circuit
@@ -221,14 +223,14 @@ export function ScenarioView({ circuitKey }: Props) {
         )}
 
         {/* Default plan banner */}
-        <div className="bg-f1-card border border-f1-border rounded-lg p-5 mb-8 racing-stripe">
+        <div className="theme-card rounded-xl p-5 mb-8 racing-stripe">
           <div className="pl-4 flex items-center justify-between flex-wrap gap-4">
             <div>
               <div className="font-mono text-xs text-f1-muted uppercase tracking-wider mb-1">
                 Default Pre-Race Plan
               </div>
               <div className="flex items-center gap-3">
-                <span className="font-display font-bold text-xl text-white">
+                <span className="font-display font-bold text-xl text-f1-light">
                   {data.defaultPlan.cleanName}
                 </span>
                 <CompoundSequence compounds={data.defaultPlan.compounds} />
@@ -238,7 +240,7 @@ export function ScenarioView({ circuitKey }: Props) {
               <div className="font-mono text-xs text-f1-muted">
                 SC probability at this circuit
               </div>
-              <div className="font-display font-bold text-2xl text-white">
+              <div className="font-display font-bold text-2xl text-f1-light">
                 {(data.scProbability * 100).toFixed(0)}%
               </div>
             </div>
@@ -266,11 +268,11 @@ export function ScenarioView({ circuitKey }: Props) {
           {/* Right: Scenario detail */}
           <div className="lg:col-span-2 space-y-6">
             {/* Scenario header */}
-            <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+            <div className="theme-card rounded-xl p-6">
               <div className="flex items-start gap-3 mb-4">
                 <span className="text-3xl">{scenario.icon}</span>
                 <div>
-                  <h4 className="font-display font-bold text-xl text-white">
+                  <h4 className="font-display font-bold text-xl text-f1-light">
                     {scenario.scenarioName}
                   </h4>
                   <p className="font-body text-sm text-f1-muted mt-1 leading-relaxed">
@@ -285,7 +287,7 @@ export function ScenarioView({ circuitKey }: Props) {
                   <div className="font-mono text-xs text-f1-muted uppercase tracking-wider">
                     Best Strategy
                   </div>
-                  <div className="font-display font-bold text-lg text-white mt-1">
+                  <div className="font-display font-bold text-lg text-f1-light mt-1">
                     {scenario.scenarioBest}
                   </div>
                 </div>
@@ -308,7 +310,7 @@ export function ScenarioView({ circuitKey }: Props) {
                   <div className="font-mono text-xs text-f1-muted uppercase tracking-wider">
                     Probability
                   </div>
-                  <div className="font-display font-bold text-lg text-white mt-1">
+                  <div className="font-display font-bold text-lg text-f1-light mt-1">
                     {(scenario.probability * 100).toFixed(0)}%
                   </div>
                 </div>
@@ -316,33 +318,33 @@ export function ScenarioView({ circuitKey }: Props) {
             </div>
 
             {/* Strategy ranking chart */}
-            <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+            <div className="theme-card rounded-xl p-6">
               <h4 className="font-display font-bold text-lg mb-6">
                 Strategy Ranking — {scenario.scenarioName.split('(')[0].trim()}
               </h4>
               <ResponsiveContainer width="100%" height={260}>
                 <BarChart data={chartData} layout="vertical" margin={{ left: 80, right: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#2A2A3A" horizontal={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={chart.grid} horizontal={false} />
                   <XAxis
                     type="number"
-                    tick={{ fill: '#8A8A9A', fontSize: 11, fontFamily: 'JetBrains Mono' }}
-                    axisLine={{ stroke: '#2A2A3A' }}
+                    tick={{ fill: chart.text, fontSize: 11, fontFamily: 'var(--font-mono)' }}
+                    axisLine={{ stroke: chart.grid }}
                     tickLine={false}
                   />
                   <YAxis
                     dataKey="name"
                     type="category"
-                    tick={{ fill: '#E8E8F0', fontSize: 11, fontFamily: 'JetBrains Mono' }}
+                    tick={{ fill: chart.text, fontSize: 11, fontFamily: 'var(--font-mono)' }}
                     axisLine={false}
                     tickLine={false}
                     width={75}
                   />
                   <Tooltip
                     contentStyle={{
-                      background: '#1A1A26',
-                      border: '1px solid #2A2A3A',
+                      background: chart.tooltipBg,
+                      border: `1px solid ${chart.tooltipBorder}`,
                       borderRadius: '4px',
-                      fontFamily: 'JetBrains Mono',
+                      fontFamily: 'var(--font-mono)',
                       fontSize: '12px',
                     }}
                     formatter={(value: number) => [`+${value.toFixed(1)}s`, 'Delta']}
@@ -371,7 +373,7 @@ export function ScenarioView({ circuitKey }: Props) {
             </div>
 
             {/* Strategy table for this scenario */}
-            <div className="bg-f1-card border border-f1-border rounded-lg overflow-hidden">
+            <div className="theme-card rounded-xl overflow-hidden">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-f1-border">

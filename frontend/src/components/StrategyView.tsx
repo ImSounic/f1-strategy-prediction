@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { strategyResults, StrategyResult } from '@/data/strategies'
+import { useChartTheme } from '@/lib/ThemeProvider'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell,
@@ -108,6 +109,7 @@ function StintTimeline({ strategy }: { strategy: StrategyResult }) {
 }
 
 export function StrategyView({ circuitKey }: Props) {
+  const chart = useChartTheme()
   const matchingKey = Object.keys(strategyResults)
     .find(k => k.startsWith(circuitKey + '_')) || ''
 
@@ -133,7 +135,7 @@ export function StrategyView({ circuitKey }: Props) {
               Monte Carlo Results
             </h2>
           </div>
-          <div className="bg-f1-card border border-f1-border rounded-lg p-12 text-center">
+          <div className="theme-card rounded-xl p-12 text-center">
             <div className="text-4xl mb-4">🏎️</div>
             <div className="font-display text-xl text-f1-muted mb-2">
               No pre-computed results for this circuit
@@ -188,13 +190,13 @@ export function StrategyView({ circuitKey }: Props) {
         </div>
 
         {/* Recommendation banner */}
-        <div className="bg-f1-card border border-f1-border rounded-lg p-6 mb-8 racing-stripe">
+        <div className="theme-card rounded-xl p-6 mb-8 racing-stripe">
           <div className="pl-4 flex items-start justify-between flex-wrap gap-6">
             <div>
               <div className="font-mono text-xs text-f1-muted uppercase tracking-wider mb-1">
                 Recommended Strategy
               </div>
-              <div className="font-display font-black text-3xl text-white mb-2">
+              <div className="font-display font-black text-3xl text-f1-light mb-2">
                 {best.cleanName}
               </div>
               <div className="flex items-center gap-3">
@@ -228,33 +230,33 @@ export function StrategyView({ circuitKey }: Props) {
         {/* Charts */}
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
           {/* Delta bar chart */}
-          <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+          <div className="theme-card rounded-xl p-6">
             <h4 className="font-display font-bold text-lg mb-6">
               Strategy Rankings &mdash; Delta to Best
             </h4>
             <ResponsiveContainer width="100%" height={320}>
               <BarChart data={chartData} layout="vertical" margin={{ left: 90, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#2A2A3A" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke={chart.grid} horizontal={false} />
                 <XAxis
                   type="number"
-                  tick={{ fill: '#8A8A9A', fontSize: 11, fontFamily: 'JetBrains Mono' }}
-                  axisLine={{ stroke: '#2A2A3A' }}
+                  tick={{ fill: chart.text, fontSize: 11, fontFamily: 'var(--font-mono)' }}
+                  axisLine={{ stroke: chart.grid }}
                   tickLine={false}
                 />
                 <YAxis
                   dataKey="name"
                   type="category"
-                  tick={{ fill: '#E8E8F0', fontSize: 11, fontFamily: 'JetBrains Mono' }}
+                  tick={{ fill: chart.text, fontSize: 11, fontFamily: 'var(--font-mono)' }}
                   axisLine={false}
                   tickLine={false}
                   width={85}
                 />
                 <Tooltip
                   contentStyle={{
-                    background: '#1A1A26',
-                    border: '1px solid #2A2A3A',
+                    background: chart.tooltipBg,
+                    border: `1px solid ${chart.tooltipBorder}`,
                     borderRadius: '4px',
-                    fontFamily: 'JetBrains Mono',
+                    fontFamily: 'var(--font-mono)',
                     fontSize: '12px',
                   }}
                   formatter={(value: number) => [`+${value.toFixed(1)}s`, 'Delta']}
@@ -283,7 +285,7 @@ export function StrategyView({ circuitKey }: Props) {
           </div>
 
           {/* Confidence intervals */}
-          <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+          <div className="theme-card rounded-xl p-6">
             <h4 className="font-display font-bold text-lg mb-6">
               Confidence Intervals (P5&ndash;P95)
             </h4>
@@ -339,7 +341,7 @@ export function StrategyView({ circuitKey }: Props) {
         </div>
 
         {/* Strategy table */}
-        <div className="bg-f1-card border border-f1-border rounded-lg overflow-hidden">
+        <div className="theme-card rounded-xl overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="border-b border-f1-border">

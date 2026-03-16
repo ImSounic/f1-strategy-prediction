@@ -96,7 +96,7 @@ export function Limitations() {
               <div className="flex items-start gap-3">
                 <span className="text-2xl">{lim.icon}</span>
                 <div>
-                  <h4 className="font-display font-bold text-sm text-white mb-1">
+                  <h4 className="font-display font-bold text-sm text-f1-light mb-1">
                     {lim.title}
                   </h4>
                   <p className="font-body text-xs text-f1-muted leading-relaxed">
@@ -117,7 +117,7 @@ export function Limitations() {
             {futureWork.map((item, i) => (
               <div
                 key={i}
-                className="bg-f1-card border border-f1-border rounded-lg p-5 flex items-start gap-4"
+                className="theme-card rounded-xl p-5 flex items-start gap-4"
               >
                 <div className={`mt-1 px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${
                   item.status === 'planned'
@@ -127,7 +127,7 @@ export function Limitations() {
                   {item.status}
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-sm text-white mb-1">
+                  <h4 className="font-display font-bold text-sm text-f1-light mb-1">
                     {item.title}
                   </h4>
                   <p className="font-body text-xs text-f1-muted">

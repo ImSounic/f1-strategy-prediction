@@ -1,12 +1,14 @@
 'use client'
 
 import { validationData } from '@/data/strategies'
+import { useChartTheme } from '@/lib/ThemeProvider'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell, LineChart, Line, Legend,
 } from 'recharts'
 
 export function ValidationDashboard() {
+  const chart = useChartTheme()
   const { folds, models, shapFeatures } = validationData
 
   // Learning curve data
@@ -40,8 +42,8 @@ export function ValidationDashboard() {
           {folds.map((fold, i) => (
             <div
               key={i}
-              className={`bg-f1-card border rounded-lg p-6 ${
-                i === 2 ? 'border-f1-red glow-red' : 'border-f1-border'
+              className={`theme-card rounded-xl p-6 ${
+                i === 2 ? 'border-f1-red glow-red' : ''
               }`}
             >
               <div className="font-mono text-xs text-f1-muted uppercase tracking-wider mb-4">
@@ -49,7 +51,7 @@ export function ValidationDashboard() {
               </div>
 
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="font-display font-black text-4xl text-white">
+                <span className="font-display font-black text-4xl text-f1-light">
                   {fold.exactMatch}%
                 </span>
                 <span className="font-body text-f1-muted">exact</span>
@@ -65,11 +67,11 @@ export function ValidationDashboard() {
               <div className="pt-4 border-t border-f1-border space-y-2">
                 <div className="flex justify-between">
                   <span className="font-mono text-xs text-f1-muted">Training stints</span>
-                  <span className="font-mono text-xs text-white">{new Intl.NumberFormat('en-US').format(fold.trainStints)}</span>
+                  <span className="font-mono text-xs text-f1-light">{new Intl.NumberFormat('en-US').format(fold.trainStints)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-mono text-xs text-f1-muted">CV MAE</span>
-                  <span className="font-mono text-xs text-white">{fold.cvMae.toFixed(4)}s</span>
+                  <span className="font-mono text-xs text-f1-light">{fold.cvMae.toFixed(4)}s</span>
                 </div>
               </div>
 
@@ -87,31 +89,31 @@ export function ValidationDashboard() {
         {/* Charts row */}
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           {/* Learning curve */}
-          <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+          <div className="theme-card rounded-xl p-6">
             <h4 className="font-display font-bold text-lg mb-6">
               Accuracy Improves with Data
             </h4>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={learningData} margin={{ left: 10, right: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#2A2A3A" />
+                <CartesianGrid strokeDasharray="3 3" stroke={chart.grid} />
                 <XAxis
                   dataKey="label"
-                  tick={{ fill: '#8A8A9A', fontSize: 11, fontFamily: 'JetBrains Mono' }}
-                  axisLine={{ stroke: '#2A2A3A' }}
+                  tick={{ fill: chart.text, fontSize: 11, fontFamily: 'var(--font-mono)' }}
+                  axisLine={{ stroke: chart.grid }}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fill: '#8A8A9A', fontSize: 11, fontFamily: 'JetBrains Mono' }}
+                  tick={{ fill: chart.text, fontSize: 11, fontFamily: 'var(--font-mono)' }}
                   axisLine={false}
                   tickLine={false}
                   domain={[0, 100]}
                 />
                 <Tooltip
                   contentStyle={{
-                    background: '#1A1A26',
-                    border: '1px solid #2A2A3A',
+                    background: chart.tooltipBg,
+                    border: `1px solid ${chart.tooltipBorder}`,
                     borderRadius: '4px',
-                    fontFamily: 'JetBrains Mono',
+                    fontFamily: 'var(--font-mono)',
                     fontSize: '12px',
                   }}
                   formatter={(value: number, name: string) => [
@@ -136,31 +138,31 @@ export function ValidationDashboard() {
           </div>
 
           {/* Model comparison */}
-          <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+          <div className="theme-card rounded-xl p-6">
             <h4 className="font-display font-bold text-lg mb-6">
               Model Comparison — MAE
             </h4>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={models} margin={{ left: 20, right: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#2A2A3A" />
+                <CartesianGrid strokeDasharray="3 3" stroke={chart.grid} />
                 <XAxis
                   dataKey="name"
-                  tick={{ fill: '#8A8A9A', fontSize: 10, fontFamily: 'JetBrains Mono' }}
-                  axisLine={{ stroke: '#2A2A3A' }}
+                  tick={{ fill: chart.text, fontSize: 10, fontFamily: 'var(--font-mono)' }}
+                  axisLine={{ stroke: chart.grid }}
                   tickLine={false}
                 />
                 <YAxis
-                  tick={{ fill: '#8A8A9A', fontSize: 11, fontFamily: 'JetBrains Mono' }}
+                  tick={{ fill: chart.text, fontSize: 11, fontFamily: 'var(--font-mono)' }}
                   axisLine={false}
                   tickLine={false}
                   domain={[0.06, 0.10]}
                 />
                 <Tooltip
                   contentStyle={{
-                    background: '#1A1A26',
-                    border: '1px solid #2A2A3A',
+                    background: chart.tooltipBg,
+                    border: `1px solid ${chart.tooltipBorder}`,
                     borderRadius: '4px',
-                    fontFamily: 'JetBrains Mono',
+                    fontFamily: 'var(--font-mono)',
                     fontSize: '12px',
                   }}
                   formatter={(value: number) => [`${value.toFixed(4)}s`, 'MAE']}
@@ -184,7 +186,7 @@ export function ValidationDashboard() {
         </div>
 
         {/* SHAP feature importance */}
-        <div className="bg-f1-card border border-f1-border rounded-lg p-6">
+        <div className="theme-card rounded-xl p-6">
           <h4 className="font-display font-bold text-lg mb-2">
             SHAP Feature Importance
           </h4>
@@ -201,7 +203,7 @@ export function ValidationDashboard() {
                   <div className="w-32 font-mono text-xs text-f1-muted text-right">
                     {feat.name}
                   </div>
-                  <div className="flex-1 h-5 bg-f1-darker rounded overflow-hidden">
+                  <div className="flex-1 h-5 bg-f1-dark rounded overflow-hidden">
                     <div
                       className="h-full rounded transition-all duration-700"
                       style={{
@@ -214,7 +216,7 @@ export function ValidationDashboard() {
                       }}
                     />
                   </div>
-                  <div className="w-16 font-mono text-xs text-white text-right">
+                  <div className="w-16 font-mono text-xs text-f1-light text-right">
                     {feat.importance.toFixed(4)}
                   </div>
                 </div>

@@ -167,7 +167,7 @@ export function Methodology() {
                   }`}
                   style={{
                     borderColor: i <= activeStep ? s.color : '#2A2A3A',
-                    background: i === activeStep ? `${s.color}20` : '#1A1A26',
+                    background: i === activeStep ? `${s.color}20` : 'var(--f1-card)',
                   }}
                 >
                   <span>{s.icon}</span>
@@ -182,7 +182,7 @@ export function Methodology() {
                     {s.phase}
                   </div>
                   <div className={`font-display font-bold text-xs md:text-sm mt-0.5 transition-colors ${
-                    i === activeStep ? 'text-white' : 'text-f1-muted'
+                    i === activeStep ? 'text-f1-light' : 'text-f1-muted'
                   }`}>
                     {s.title}
                   </div>
@@ -194,7 +194,7 @@ export function Methodology() {
 
         {/* Active step detail */}
         <div
-          className="bg-f1-card border rounded-lg overflow-hidden transition-all duration-300"
+          className="theme-card rounded-xl overflow-hidden transition-all duration-300"
           style={{ borderColor: `${step.color}40` }}
         >
           {/* Top accent bar */}
@@ -217,12 +217,12 @@ export function Methodology() {
               {step.metrics.map((m, i) => (
                 <div
                   key={i}
-                  className="bg-f1-darker rounded-lg p-3 border border-f1-border"
+                  className="bg-f1-dark rounded-lg p-3 border border-f1-border"
                 >
                   <div className="font-mono text-xs text-f1-muted uppercase tracking-wider">
                     {m.label}
                   </div>
-                  <div className="font-display font-black text-xl text-white mt-1">
+                  <div className="font-display font-black text-xl text-f1-light mt-1">
                     {m.value}
                   </div>
                 </div>
@@ -243,7 +243,7 @@ export function Methodology() {
                     <div className="font-body text-sm">
                       {desc ? (
                         <>
-                          <span className="text-white font-semibold">{prefix}</span>
+                          <span className="text-f1-light font-semibold">{prefix}</span>
                           <span className="text-f1-muted"> — {desc}</span>
                         </>
                       ) : (
@@ -262,14 +262,14 @@ export function Methodology() {
           <button
             onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
             disabled={activeStep === 0}
-            className="font-mono text-sm text-f1-muted hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="font-mono text-sm text-f1-muted hover:text-f1-light disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             ← Previous Phase
           </button>
           <button
             onClick={() => setActiveStep(Math.min(steps.length - 1, activeStep + 1))}
             disabled={activeStep === steps.length - 1}
-            className="font-mono text-sm text-f1-muted hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="font-mono text-sm text-f1-muted hover:text-f1-light disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             Next Phase →
           </button>

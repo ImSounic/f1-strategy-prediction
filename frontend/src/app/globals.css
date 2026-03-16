@@ -4,28 +4,68 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
 
+/* ── Theme Variables ── */
 :root {
   --font-display: 'Titillium Web', sans-serif;
   --font-body: 'Source Sans 3', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Light mode */
+  --f1-darker: #f5f5f9;
+  --f1-dark: #eaeaf0;
+  --f1-card: #ffffff;
+  --f1-border: #d8d8e5;
+  --f1-muted: #6a6a80;
+  --f1-light: #12121e;
+
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+
+  --chart-grid: #e0e0ea;
+  --chart-text: #5a5a72;
+  --tooltip-bg: #ffffff;
+  --tooltip-border: #d8d8e5;
+  --scrollbar-track: #eaeaf0;
+  --scrollbar-thumb: #c8c8d5;
 }
 
+.dark {
+  --f1-darker: #08080f;
+  --f1-dark: #101018;
+  --f1-card: #141422;
+  --f1-border: #252538;
+  --f1-muted: #7a7a95;
+  --f1-light: #eeeef5;
+
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --card-shadow-hover: 0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3);
+
+  --chart-grid: #252538;
+  --chart-text: #7a7a95;
+  --tooltip-bg: #141422;
+  --tooltip-border: #252538;
+  --scrollbar-track: #101018;
+  --scrollbar-thumb: #252538;
+}
+
+/* ── Base ── */
 * { box-sizing: border-box; }
 
 body {
-  background: #0D0D14;
-  color: #E8E8F0;
+  background: var(--f1-darker);
+  color: var(--f1-light);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #15151E; }
-::-webkit-scrollbar-thumb { background: #2A2A3A; border-radius: 3px; }
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #E10600; }
 
-/* Animations */
+/* ── Animations ── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -41,11 +81,6 @@ body {
   50% { box-shadow: 0 0 40px rgba(225, 6, 0, 0.3); }
 }
 
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes racingLineDraw {
   from { stroke-dashoffset: 2000; }
   to { stroke-dashoffset: 0; }
@@ -54,6 +89,11 @@ body {
 @keyframes racingLineDraw2 {
   from { stroke-dashoffset: 2000; }
   to { stroke-dashoffset: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .animate-fade-in-up {
@@ -73,7 +113,7 @@ body {
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
 
-/* Racing line SVG animations */
+/* ── Racing Elements ── */
 .racing-line-path {
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
@@ -86,7 +126,6 @@ body {
   animation: racingLineDraw2 3.5s ease-out 1.2s forwards;
 }
 
-/* Racing stripe accent */
 .racing-stripe {
   position: relative;
 }
@@ -98,35 +137,81 @@ body {
   bottom: 0;
   width: 3px;
   background: #E10600;
+  border-radius: 3px 0 0 3px;
 }
 
-/* Grid pattern background */
+/* ── Grid Pattern ── */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(42, 42, 58, 0.3) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 42, 58, 0.3) 1px, transparent 1px);
+    linear-gradient(var(--f1-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--f1-border) 1px, transparent 1px);
   background-size: 40px 40px;
+  opacity: 0.3;
 }
 
-/* Glow effect */
+/* ── Checkered Flag Pattern ── */
+.checkered-accent {
+  background-image:
+    linear-gradient(45deg, var(--f1-border) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--f1-border) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--f1-border) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--f1-border) 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+}
+
+/* ── Effects ── */
 .glow-red {
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
-/* Smooth section transitions */
+/* ── Smooth Sections ── */
 section {
   scroll-margin-top: 5rem;
 }
 
-/* Table hover improvements */
+/* ── Table Transitions ── */
 table tbody tr {
   transition: background-color 0.15s ease;
 }
 
-/* Compound pill smooth transitions */
+/* ── Compound Pills ── */
 .compound-pill {
   transition: transform 0.2s ease;
 }
 .compound-pill:hover {
   transform: scale(1.1);
+}
+
+/* ── Circuit Carousel ── */
+.circuit-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.circuit-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Card Transitions ── */
+.theme-card {
+  background: var(--f1-card);
+  border: 1px solid var(--f1-border);
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.theme-card:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* ── Recharts Overrides ── */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: var(--chart-grid) !important;
+}
+
+/* ── Focus Styles ── */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #E10600;
+  outline-offset: 2px;
 }
