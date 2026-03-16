@@ -17,7 +17,7 @@ interface Props {
 const COMPOUND_COLORS: Record<string, string> = {
   SOFT: '#ff3333',
   MEDIUM: '#ffd700',
-  HARD: '#e0e0e0',
+  HARD: '#a0a0ae',
 }
 
 function CompoundPill({ compound }: { compound: string }) {
@@ -394,6 +394,7 @@ export function RLView({ circuitKey }: Props) {
                 />
                 <Tooltip
                   contentStyle={{ background: chart.tooltipBg, border: `1px solid ${chart.tooltipBorder}`, borderRadius: 8, fontFamily: 'var(--font-mono)' }}
+                  itemStyle={{ color: chart.tooltipText }}
                   labelStyle={{ color: chart.tooltipText }}
                   formatter={(value: number, name: string) => [formatTime(value), name]}
                 />
@@ -420,6 +421,8 @@ export function RLView({ circuitKey }: Props) {
                   <YAxis tick={{ fontSize: 10, fill: chart.text }} />
                   <Tooltip
                     contentStyle={{ background: chart.tooltipBg, border: `1px solid ${chart.tooltipBorder}`, borderRadius: 8, fontFamily: 'var(--font-mono)' }}
+                    itemStyle={{ color: chart.tooltipText }}
+                    labelStyle={{ color: chart.tooltipText }}
                     formatter={(value: number) => [`${value} races`, 'Count']}
                   />
                   <Bar dataKey="count" fill="#10b981" radius={[4, 4, 0, 0]} barSize={40}>

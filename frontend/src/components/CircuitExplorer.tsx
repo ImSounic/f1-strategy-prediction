@@ -21,8 +21,8 @@ const charLabels: Record<string, string> = {
 }
 
 const compoundColors: Record<string, { bg: string; text: string }> = {
-  C1: { bg: 'bg-white', text: 'text-gray-900' },
-  C2: { bg: 'bg-white', text: 'text-gray-900' },
+  C1: { bg: 'bg-gray-300', text: 'text-gray-900' },
+  C2: { bg: 'bg-gray-300', text: 'text-gray-900' },
   C3: { bg: 'bg-yellow-400', text: 'text-gray-900' },
   C4: { bg: 'bg-red-500', text: 'text-white' },
   C5: { bg: 'bg-red-500', text: 'text-white' },
@@ -39,7 +39,7 @@ function CompoundBadge({ compound }: { compound: string }) {
 
 function CompoundWithRole({ compound, role }: { compound: string; role: string }) {
   const colorMap: Record<string, string> = {
-    HARD: 'bg-white text-gray-900 border-gray-300',
+    HARD: 'bg-gray-300 text-gray-900 border-gray-400',
     MEDIUM: 'bg-yellow-400 text-gray-900 border-yellow-500',
     SOFT: 'bg-red-500 text-white border-red-600',
   }

@@ -22,7 +22,7 @@ function formatTime(seconds: number): string {
 const compoundColorMap: Record<string, string> = {
   S: '#E10600',
   M: '#FFD700',
-  H: '#FFFFFF',
+  H: '#C0C0C8',
 }
 
 function CompoundPill({ compound }: { compound: string }) {
@@ -41,7 +41,7 @@ function CompoundPill({ compound }: { compound: string }) {
   const styles: Record<string, { border: string; text: string }> = {
     S: { border: 'border-red-500 text-red-400', text: 'text-red-400' },
     M: { border: 'border-yellow-400 text-yellow-300', text: 'text-yellow-300' },
-    H: { border: 'border-white text-white', text: 'text-white' },
+    H: { border: 'border-gray-400 text-gray-400', text: 'text-gray-400' },
   }
   const s = styles[key] || { border: 'border-f1-border text-f1-muted', text: 'text-f1-muted' }
 
@@ -77,7 +77,7 @@ function StintTimeline({ strategy }: { strategy: StrategyResult }) {
   const compoundBg: Record<string, string> = {
     SOFT: 'bg-red-500',
     MEDIUM: 'bg-yellow-400',
-    HARD: 'bg-white',
+    HARD: 'bg-gray-300',
   }
   const compoundText: Record<string, string> = {
     SOFT: 'text-white',
@@ -259,6 +259,8 @@ export function StrategyView({ circuitKey }: Props) {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '12px',
                   }}
+                  itemStyle={{ color: chart.tooltipText }}
+                  labelStyle={{ color: chart.tooltipText }}
                   formatter={(value: number) => [`+${value.toFixed(1)}s`, 'Delta']}
                 />
                 <Bar dataKey="delta" radius={[0, 4, 4, 0]}>

@@ -116,6 +116,8 @@ export function ValidationDashboard() {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '12px',
                   }}
+                  itemStyle={{ color: chart.tooltipText }}
+                  labelStyle={{ color: chart.tooltipText }}
                   formatter={(value: number, name: string) => [
                     `${value}%`,
                     name === 'exactMatch' ? 'Exact Match' : 'Top 5 Match',
@@ -165,6 +167,8 @@ export function ValidationDashboard() {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '12px',
                   }}
+                  itemStyle={{ color: chart.tooltipText }}
+                  labelStyle={{ color: chart.tooltipText }}
                   formatter={(value: number) => [`${value.toFixed(4)}s`, 'MAE']}
                 />
                 <Bar dataKey="mae" radius={[4, 4, 0, 0]}>

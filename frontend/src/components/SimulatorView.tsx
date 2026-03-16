@@ -75,7 +75,7 @@ const CIRCUITS = [
 const COMPOUND_COLORS: Record<string, string> = {
   SOFT: '#ff3333',
   MEDIUM: '#ffd700',
-  HARD: '#e0e0e0',
+  HARD: '#a0a0ae',
 }
 
 // Scenario tab config

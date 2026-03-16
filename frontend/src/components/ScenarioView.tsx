@@ -24,7 +24,7 @@ function CompoundPill({ compound }: { compound: string }) {
   const bgMap: Record<string, string> = {
     S: 'bg-red-500 text-white',
     M: 'bg-yellow-400 text-gray-900',
-    H: 'bg-white text-gray-900',
+    H: 'bg-gray-300 text-gray-900',
   }
   const cls = bgMap[compound] || 'bg-f1-border text-white'
   return (
@@ -347,6 +347,8 @@ export function ScenarioView({ circuitKey }: Props) {
                       fontFamily: 'var(--font-mono)',
                       fontSize: '12px',
                     }}
+                    itemStyle={{ color: chart.tooltipText }}
+                    labelStyle={{ color: chart.tooltipText }}
                     formatter={(value: number) => [`+${value.toFixed(1)}s`, 'Delta']}
                   />
                   <Bar dataKey="delta" radius={[0, 4, 4, 0]}>
