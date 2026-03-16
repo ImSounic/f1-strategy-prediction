@@ -485,13 +485,20 @@ def main():
     
     elif args.circuit:
         result = compare_circuit(args.circuit, args.season, args.n_races, args.config)
-        
+
         out_path = results_dir / f"rl_comparison_{args.circuit}_{args.season}.json"
         with open(out_path, "w") as f:
             json.dump(result, f, indent=2)
         logger.info(f"\n  ✓ Saved: {out_path}")
-        
-        export_rl_typescript([result], args.season)
+
+        # Merge with existing results from other circuits
+        all_results = []
+        for existing in results_dir.glob(f"rl_comparison_*_{args.season}.json"):
+            if existing.name.startswith("rl_comparison_summary"):
+                continue
+            with open(existing) as f:
+                all_results.append(json.load(f))
+        export_rl_typescript(all_results, args.season)
     
     else:
         parser.print_help()
