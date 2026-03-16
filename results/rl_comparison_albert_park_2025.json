@@ -3,7 +3,7 @@
   "circuit_name": "Australian Grand Prix",
   "season": 2025,
   "n_races": 1000,
-  "elapsed_seconds": 93.3,
+  "elapsed_seconds": 27.3,
   "mc_strategy": "1-stop H\u2192S",
   "mc_strategy_stops": 1,
   "mc_compound_sequence": "HARD \u2192 SOFT",
@@ -16,31 +16,31 @@
     "mean_sc": 0.89
   },
   "rl": {
-    "median_time": 5598.5,
-    "mean_time": 5625.0,
-    "std_time": 167.3,
-    "p5_time": 5426.8,
-    "p95_time": 5945.2,
-    "mean_stops": 1.48,
+    "median_time": 5602.4,
+    "mean_time": 5627.8,
+    "std_time": 165.2,
+    "p5_time": 5432.2,
+    "p95_time": 5934.9,
+    "mean_stops": 1.76,
     "stop_distribution": {
-      "1": 596,
-      "2": 328,
-      "3": 76
+      "1": 590,
+      "2": 63,
+      "3": 347
     },
-    "mean_compounds": 2.4,
-    "mean_sc": 0.91,
+    "mean_compounds": 2.41,
+    "mean_sc": 0.89,
     "legal_pct": 100.0
   },
   "comparison": {
-    "rl_win_rate": 46.1,
-    "mc_win_rate": 53.9,
-    "median_delta": -5.7,
-    "mean_delta": 5.55,
-    "rl_advantage_seconds": 5.7,
-    "sc_races": 809,
-    "sc_race_rl_win_rate": 50.2,
-    "no_sc_races": 191,
-    "no_sc_race_rl_win_rate": 28.8
+    "rl_win_rate": 45.6,
+    "mc_win_rate": 54.4,
+    "median_delta": -1.79,
+    "mean_delta": 8.33,
+    "rl_advantage_seconds": 1.79,
+    "sc_races": 812,
+    "sc_race_rl_win_rate": 49.6,
+    "no_sc_races": 188,
+    "no_sc_race_rl_win_rate": 28.2
   },
   "sample_races": [
     {
@@ -307,10 +307,10 @@
     {
       "seed": 5350,
       "category": "Clean \u2014 RL Win",
-      "total_time": 5512.7,
+      "total_time": 5532.9,
       "mc_time": 6270.1,
       "rl_won": true,
-      "stops": 2,
+      "stops": 3,
       "compounds": [
         "MEDIUM",
         "MEDIUM",
@@ -358,22 +358,23 @@
         "MEDIUM",
         "MEDIUM",
         "MEDIUM",
-        "HARD",
-        "HARD",
+        "MEDIUM",
+        "MEDIUM",
         "HARD",
         "HARD",
         "HARD",
         "HARD",
         "SOFT",
         "SOFT",
-        "SOFT",
-        "SOFT",
-        "SOFT",
-        "SOFT"
+        "HARD",
+        "HARD",
+        "HARD",
+        "HARD"
       ],
       "pit_laps": [
-        47,
-        53
+        49,
+        53,
+        55
       ],
       "sc_laps": [],
       "vsc_laps": [
@@ -429,18 +430,18 @@
         44,
         45,
         46,
+        47,
+        48,
         1,
         2,
         3,
         4,
-        5,
-        6,
+        1,
+        2,
         1,
         2,
         3,
-        4,
-        5,
-        6
+        4
       ],
       "mc_tyre_ages": [
         1,
@@ -567,10 +568,10 @@
       ]
     },
     {
-      "seed": 5722,
+      "seed": 5377,
       "category": "1 Safety Car",
-      "total_time": 5536.6,
-      "mc_time": 5537.4,
+      "total_time": 5780.9,
+      "mc_time": 5781.1,
       "rl_won": true,
       "stops": 1,
       "compounds": [
@@ -591,14 +592,14 @@
         "MEDIUM",
         "MEDIUM",
         "MEDIUM",
-        "MEDIUM",
-        "MEDIUM",
-        "MEDIUM",
-        "MEDIUM",
-        "MEDIUM",
-        "MEDIUM",
-        "MEDIUM",
-        "MEDIUM",
+        "HARD",
+        "HARD",
+        "HARD",
+        "HARD",
+        "HARD",
+        "HARD",
+        "HARD",
+        "HARD",
         "HARD",
         "HARD",
         "HARD",
@@ -634,15 +635,31 @@
         "HARD"
       ],
       "pit_laps": [
-        26
+        18
       ],
       "sc_laps": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "vsc_laps": [
+        16,
+        17,
+        18,
+        19,
+        22,
+        23,
+        24,
         25,
         26,
         27,
-        28
+        28,
+        29,
+        30,
+        31
       ],
-      "vsc_laps": [],
       "tyre_ages": [
         1,
         2,
@@ -661,14 +678,6 @@
         15,
         16,
         17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
         1,
         2,
         3,
@@ -701,7 +710,15 @@
         30,
         31,
         32,
-        33
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
       ],
       "mc_tyre_ages": [
         1,
