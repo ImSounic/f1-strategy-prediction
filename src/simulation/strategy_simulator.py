@@ -335,18 +335,14 @@ def generate_strategies(circuit: CircuitConfig) -> list:
 #  DEGRADATION PREDICTION
 # ═══════════════════════════════════════════════════════════════════════════
 
-def predict_degradation(
-    model: xgb.XGBRegressor,
+def _build_feature_vector(
     compound_hardness: int,
     stint_number: int,
     stint_length: int,
     circuit: CircuitConfig,
     feature_cols: list,
-) -> float:
-    """
-    Predict degradation rate (DegSlope) for a given stint configuration.
-    Returns predicted DegSlope in seconds/lap.
-    """
+) -> np.ndarray:
+    """Build feature vector for degradation prediction."""
     features = {
         "CompoundHardness": compound_hardness,
         "StintNumber": stint_number,
@@ -368,16 +364,44 @@ def predict_degradation(
         "MeanWindSpeed": circuit.mean_wind_speed,
         "TrackTempRange": circuit.track_temp_range,
     }
-    
-    # Build feature vector in correct order
-    X = np.array([[features.get(col, 0) for col in feature_cols]])
-    
+    return np.array([[features.get(col, 0) for col in feature_cols]])
+
+
+def predict_degradation(
+    model: xgb.XGBRegressor,
+    compound_hardness: int,
+    stint_number: int,
+    stint_length: int,
+    circuit: CircuitConfig,
+    feature_cols: list,
+) -> float:
+    """
+    Predict degradation rate (DegSlope) for a given stint configuration.
+    Returns predicted DegSlope in seconds/lap.
+    """
+    X = _build_feature_vector(compound_hardness, stint_number, stint_length, circuit, feature_cols)
     deg_slope = model.predict(X)[0]
-    
-    # Clamp to physical bounds (can't have negative degradation realistically)
     deg_slope = max(0.005, min(deg_slope, 0.5))
-    
     return float(deg_slope)
+
+
+def predict_curvature(
+    curvature_model: xgb.XGBRegressor,
+    compound_hardness: int,
+    stint_number: int,
+    stint_length: int,
+    circuit: CircuitConfig,
+    feature_cols: list,
+) -> float:
+    """
+    Predict degradation curvature (quadratic coefficient) for a stint.
+    Returns predicted DegCurvature: positive = accelerating degradation (cliff).
+    """
+    X = _build_feature_vector(compound_hardness, stint_number, stint_length, circuit, feature_cols)
+    curvature = curvature_model.predict(X)[0]
+    # Clamp: curvature should be small and mostly positive
+    curvature = max(-0.01, min(curvature, 0.1))
+    return float(curvature)
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -546,8 +570,9 @@ def precompute_deg_rates(
     circuit: CircuitConfig,
     deg_model: xgb.XGBRegressor,
     feature_cols: list,
+    curvature_model: xgb.XGBRegressor | None = None,
 ) -> list:
-    """Precompute degradation rates once per strategy (avoid repeated predict calls)."""
+    """Precompute degradation rates (and curvatures) once per strategy."""
     rates = []
     for i, stint in enumerate(strategy.stints):
         deg_rate = predict_degradation(
@@ -556,6 +581,23 @@ def precompute_deg_rates(
         )
         rates.append(float(max(0.005, min(deg_rate, 0.5))))
     return rates
+
+
+def precompute_deg_curvatures(
+    strategy: Strategy,
+    circuit: CircuitConfig,
+    curvature_model: xgb.XGBRegressor,
+    feature_cols: list,
+) -> list:
+    """Precompute degradation curvatures once per strategy."""
+    curvatures = []
+    for i, stint in enumerate(strategy.stints):
+        curv = predict_curvature(
+            curvature_model, stint.compound_hardness, i + 1,
+            stint.target_laps, circuit, feature_cols,
+        )
+        curvatures.append(curv)
+    return curvatures
 
 
 def simulate_race_fast(
@@ -570,6 +612,7 @@ def simulate_race_fast(
     start_fuel: float,
     fuel_effect: float,
     rng: np.random.Generator,
+    precomputed_curvatures: list | None = None,
 ) -> tuple:
     """Optimised simulation — no model calls, pure numpy."""
     total_laps = circuit.total_laps
@@ -589,7 +632,13 @@ def simulate_race_fast(
 
         deg_rate = precomputed_deg_rates[current_stint] + rng.normal(0, 0.01)
         deg_rate = max(0.005, deg_rate)
-        tyre_deg = deg_rate * laps_in_stint + 0.002 * (laps_in_stint ** 1.3)
+
+        # Non-linear degradation: use predicted curvature if available
+        if precomputed_curvatures is not None:
+            curv = precomputed_curvatures[current_stint]
+            tyre_deg = deg_rate * laps_in_stint + curv * (laps_in_stint ** 2)
+        else:
+            tyre_deg = deg_rate * laps_in_stint + 0.002 * (laps_in_stint ** 1.3)
 
         if sc_remaining > 0:
             lap_time = base_pace * 1.40
@@ -628,12 +677,20 @@ def run_monte_carlo(
     fuel_config: dict,
     n_sims: int = 1000,
     seed: int = 42,
+    curvature_model: xgb.XGBRegressor | None = None,
+    curvature_feature_cols: list | None = None,
 ) -> dict:
     """Run N simulations with precomputed degradation rates."""
     rng = np.random.default_rng(seed)
 
     # Precompute once
     deg_rates = precompute_deg_rates(strategy, circuit, deg_model, feature_cols)
+
+    # Precompute curvatures if model available
+    curvatures = None
+    if curvature_model is not None:
+        curv_cols = curvature_feature_cols or feature_cols
+        curvatures = precompute_deg_curvatures(strategy, circuit, curvature_model, curv_cols)
 
     start_fuel = fuel_config["start_fuel_kg"]
     fuel_effect = fuel_config["fuel_effect_per_kg_seconds"]
@@ -657,6 +714,7 @@ def run_monte_carlo(
             strategy, circuit, deg_rates, fuel_config,
             sc_prob_per_lap, vsc_prob_per_lap, base_pace,
             burn_rate, start_fuel, fuel_effect, rng,
+            precomputed_curvatures=curvatures,
         )
         total_times.append(t)
         sc_counts.append(sc)
@@ -715,15 +773,27 @@ def run_simulator(
     # Load degradation model
     deg_model = xgb.XGBRegressor()
     deg_model.load_model("models/tyre_deg_production.json")
-    
+
+    # Load curvature model (non-linear degradation)
+    curvature_model = None
+    curvature_feature_cols = None
+    curvature_path = Path("models/tyre_curvature_model.json")
+    curvature_results_path = Path("models/curvature_results.json")
+    if curvature_path.exists() and curvature_results_path.exists():
+        curvature_model = xgb.XGBRegressor()
+        curvature_model.load_model(str(curvature_path))
+        with open(curvature_results_path) as f:
+            curvature_feature_cols = json.load(f)["feature_columns"]
+        logger.info("  Curvature model loaded (non-linear degradation enabled)")
+
     # Load feature columns
     with open("models/comparison_results.json") as f:
         comp = json.load(f)
     feature_cols = comp["experiment"]["feature_columns"]
-    
+
     # Generate strategies
     strategies = generate_strategies(circuit)
-    
+
     # Run Monte Carlo for each strategy
     logger.info(f"\n  Running {n_sims} simulations per strategy...")
     t0 = time.time()
@@ -733,6 +803,8 @@ def run_simulator(
         result = run_monte_carlo(
             strategy, circuit, deg_model, feature_cols,
             fuel_config, n_sims=n_sims, seed=42 + i,
+            curvature_model=curvature_model,
+            curvature_feature_cols=curvature_feature_cols,
         )
         all_results.append(result)
     

@@ -136,24 +136,86 @@ def extract_degradation_features(laps: pd.DataFrame) -> tuple[pd.DataFrame, pd.D
             tyre_ages = np.arange(n_laps)
             slope, intercept = np.polyfit(tyre_ages, times, 1)
             residuals = times - (intercept + slope * tyre_ages)
-            
+
             # Quadratic fit for curvature
             if n_laps >= 5:
                 quad_coeffs = np.polyfit(tyre_ages, times, 2)
                 curvature = quad_coeffs[0]  # coefficient of x²
+                quad_residuals = times - np.polyval(quad_coeffs, tyre_ages)
+                quad_rmse = float(np.sqrt(np.mean(quad_residuals ** 2)))
+                linear_rmse = float(np.sqrt(np.mean(residuals ** 2)))
             else:
                 curvature = 0.0
+                quad_rmse = 0.0
+                linear_rmse = float(np.sqrt(np.mean(residuals ** 2)))
         else:
             slope = 0.0
             intercept = times[0] if n_laps > 0 else np.nan
             curvature = 0.0
             residuals = np.zeros_like(times)
-        
-        # Cliff detection: is there a lap where deg_rate spikes > 2x mean?
-        mean_deg = np.mean(np.abs(deg_rate)) if n_laps >= 3 else 0
-        cliff_detected = bool(np.any(deg_rate > max(2 * mean_deg, 0.15))) if n_laps >= 5 else False
-        cliff_lap = int(lap_nums[np.argmax(deg_rate)]) if cliff_detected else None
-        
+            quad_rmse = 0.0
+            linear_rmse = 0.0
+
+        # ── Piecewise slopes (early vs late stint) ──
+        if n_laps >= 8:
+            mid = n_laps // 2
+            early_slope = np.polyfit(tyre_ages[:mid], times[:mid], 1)[0]
+            late_slope = np.polyfit(tyre_ages[mid:], times[mid:], 1)[0]
+            slope_ratio = late_slope / max(abs(early_slope), 0.001)
+        elif n_laps >= 5:
+            split = max(3, n_laps // 2)
+            early_slope = np.polyfit(tyre_ages[:split], times[:split], 1)[0]
+            late_slope = np.polyfit(tyre_ages[split:], times[split:], 1)[0]
+            slope_ratio = late_slope / max(abs(early_slope), 0.001)
+        else:
+            early_slope = slope
+            late_slope = slope
+            slope_ratio = 1.0
+
+        # ── CUSUM-based cliff detection ──
+        # Detects structural change in degradation rate
+        cliff_detected = False
+        cliff_lap = None
+        cliff_magnitude = 0.0
+
+        if n_laps >= 8:
+            # CUSUM on degradation rate: detect upward shift
+            target = np.mean(deg_rate[:n_laps // 2])  # baseline from first half
+            cusum = np.zeros(n_laps)
+            for k in range(1, n_laps):
+                cusum[k] = max(0, cusum[k - 1] + deg_rate[k] - target - 0.02)
+
+            # Cliff = CUSUM exceeds threshold (adaptive to stint length)
+            threshold = max(0.3, 0.015 * n_laps)
+            if np.max(cusum) > threshold:
+                cliff_onset = int(np.argmax(cusum > threshold * 0.5))
+                cliff_detected = True
+                cliff_lap = int(lap_nums[cliff_onset])
+                cliff_magnitude = float(np.mean(deg_rate[cliff_onset:]) - target)
+        elif n_laps >= 5:
+            # Fallback: simple spike detection for shorter stints
+            mean_deg = np.mean(np.abs(deg_rate))
+            if np.any(deg_rate > max(2 * mean_deg, 0.15)):
+                cliff_detected = True
+                cliff_lap = int(lap_nums[np.argmax(deg_rate)])
+                cliff_magnitude = float(np.max(deg_rate) - mean_deg)
+
+        # ── Degradation shape classification ──
+        # linear: curvature near zero, slope_ratio ~1
+        # accelerating: positive curvature, late_slope > early_slope
+        # cliff: CUSUM cliff detected
+        # flat: near-zero slope
+        if cliff_detected:
+            deg_shape = "cliff"
+        elif abs(slope) < 0.01:
+            deg_shape = "flat"
+        elif curvature > 0.001 and slope_ratio > 1.5:
+            deg_shape = "accelerating"
+        elif curvature < -0.001 and slope_ratio < 0.7:
+            deg_shape = "decelerating"
+        else:
+            deg_shape = "linear"
+
         stint_records.append({
             "Season": season,
             "RoundNumber": rnd,
@@ -172,7 +234,7 @@ def extract_degradation_features(laps: pd.DataFrame) -> tuple[pd.DataFrame, pd.D
             "MedianLapTime": np.median(times),
             "BestLapTime": np.min(times),
             "StdLapTime": np.std(times),
-            # Degradation (Time Series features)
+            # Degradation — linear (Time Series features)
             "DegSlope": slope,
             "DegIntercept": intercept,
             "DegCurvature": curvature,
@@ -180,9 +242,18 @@ def extract_degradation_features(laps: pd.DataFrame) -> tuple[pd.DataFrame, pd.D
             "MeanDegRate": np.mean(deg_rate),
             "MaxDegRate": np.max(deg_rate) if n_laps >= 3 else 0,
             "DegRateVariance": np.var(deg_rate),
-            # Cliff
+            # Degradation — non-linear (new)
+            "EarlySlope": early_slope,
+            "LateSlope": late_slope,
+            "SlopeRatio": slope_ratio,
+            "QuadRMSE": quad_rmse,
+            "LinearRMSE": linear_rmse,
+            "DegShape": deg_shape,
+            # Cliff (CUSUM-based)
             "CliffDetected": cliff_detected,
             "CliffLap": cliff_lap,
+            "CliffMagnitude": cliff_magnitude,
+            "CliffLapFraction": (cliff_lap - int(lap_nums[0])) / max(n_laps, 1) if cliff_lap else None,
             # Smoothed deltas
             "SmoothedFirst": smoothed[0] if n_laps > 0 else np.nan,
             "SmoothedLast": smoothed[-1] if n_laps > 0 else np.nan,

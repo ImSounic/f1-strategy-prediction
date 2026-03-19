@@ -130,7 +130,7 @@ export const backtestData: BacktestData = {
       "stopsMatchRate": 71.4,
       "compoundExactRate": 38.1,
       "compoundPartialRate": 76.2,
-      "top3Rate": 85.7,
+      "top3Rate": 81.0,
       "top5Rate": 85.7,
       "avgPitLapError": 7.0
     }
@@ -2440,10 +2440,10 @@ export const backtestData: BacktestData = {
           "error": 8
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": null,
-      "closestMatchRank": 1,
-      "closestMatchName": "2-stop HARD\u2192MEDIUM\u2192SOFT (18/18/21)"
+      "actualStrategyRankByStops": 5,
+      "actualStrategyRankByCompounds": 45,
+      "closestMatchRank": 45,
+      "closestMatchName": "2-stop SOFT\u2192MEDIUM\u2192MEDIUM (19/17/21)"
     },
     {
       "season": 2025,
