@@ -96,6 +96,8 @@ export function Header() {
                 ['Strategy', 'strategy'],
                 ['RL Agent', 'rl'],
                 ['Validation', 'validation'],
+                ['Backtest', 'backtest'],
+                ['Sensitivity', 'sensitivity'],
               ].map(([label, id]) => (
                 <button
                   key={id}

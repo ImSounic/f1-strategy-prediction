@@ -10,6 +10,8 @@ import { StrategyView } from '@/components/StrategyView'
 import { ScenarioView } from '@/components/ScenarioView'
 import { RLView } from '@/components/RLView'
 import { ValidationDashboard } from '@/components/ValidationDashboard'
+import { BacktestDashboard } from '@/components/BacktestDashboard'
+import { SensitivityDashboard } from '@/components/SensitivityDashboard'
 import { Limitations } from '@/components/Limitations'
 import { TechStack } from '@/components/TechStack'
 import { Footer } from '@/components/Footer'
@@ -31,6 +33,8 @@ export default function Home() {
       <ScenarioView circuitKey={selectedCircuit} />
       <RLView circuitKey={selectedCircuit} />
       <ValidationDashboard />
+      <BacktestDashboard />
+      <SensitivityDashboard />
       <Limitations />
       <TechStack />
       <Footer />

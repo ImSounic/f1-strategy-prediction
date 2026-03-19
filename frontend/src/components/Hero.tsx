@@ -85,7 +85,8 @@ export function Hero() {
           <p className="animate-fade-in-up stagger-3 font-body text-xl md:text-2xl text-f1-muted max-w-2xl leading-relaxed mb-12">
             Monte Carlo simulation meets machine learning. Predicting optimal
             pit stop strategies with{' '}
-            <span className="text-f1-light font-semibold">71% accuracy</span> on
+            <span className="text-f1-light font-semibold">71% stop-count accuracy</span> and{' '}
+            <span className="text-f1-light font-semibold">38% compound-exact match</span> on
             unseen 2025 races.
           </p>
 
@@ -110,7 +111,7 @@ export function Hero() {
         {/* Animated Key Metrics */}
         <div className="animate-fade-in-up stagger-5 mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { value: 71, suffix: '%', label: 'Strategy Accuracy', detail: 'unseen 2025 races' },
+            { value: 71, suffix: '%', label: 'Stop Match', detail: 'unseen 2025 races' },
             { value: 0.079, suffix: 's', label: 'Model MAE', detail: 'per-lap prediction' },
             { value: 92, suffix: '', label: 'Races Analyzed', detail: '2022-2025 seasons' },
             { value: 9000, suffix: '', label: 'Sims / Second', detail: 'Monte Carlo speed' },
@@ -137,7 +138,7 @@ export function Hero() {
               { label: 'Feature Engineering', detail: 'Savitzky-Golay', color: '#00D2BE' },
               { label: 'XGBoost Model', detail: 'MAE 0.079s', color: '#E10600' },
               { label: 'Monte Carlo', detail: '1K sims/strategy', color: '#FF8700' },
-              { label: 'Strategy Output', detail: '71% accuracy', color: '#A855F7' },
+              { label: 'Strategy Output', detail: '71% stop match', color: '#A855F7' },
             ].map((step, i) => (
               <div key={i} className="flex items-center">
                 <div

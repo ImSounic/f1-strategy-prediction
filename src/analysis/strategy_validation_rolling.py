@@ -40,6 +40,7 @@ from src.simulation.strategy_simulator import (
     load_circuit_config, generate_strategies, run_monte_carlo,
     COMPOUND_HARDNESS,
 )
+from src.simulation.compound_prior import CompoundPrior
 
 
 def load_config(config_path: str = "configs/config.yaml") -> dict:
@@ -127,10 +128,20 @@ def train_temporal_model(features_dir, circuit_csv, train_seasons):
 
 
 def reconstruct_actual_strategies(laps_dir, pitstops_path, circuits_csv, season):
-    """Reconstruct what the race winner actually did."""
+    """Reconstruct what the race winner actually did.
+
+    Uses stint_features.parquet as primary source for compound data
+    (always available), falling back to raw laps parquet if needed.
+    """
     results = pd.read_parquet(pitstops_path.parent / "results.parquet")
     pitstops = pd.read_parquet(pitstops_path)
     circuits = pd.read_csv(circuits_csv)
+
+    # Load stint features for compound data (more reliable than raw laps)
+    features_dir = Path("data/features")
+    stints_df = None
+    if (features_dir / "stint_features.parquet").exists():
+        stints_df = pd.read_parquet(features_dir / "stint_features.parquet")
 
     actual = {}
     winners = results[(results["season"] == season) & (results["position"] == 1)]
@@ -156,19 +167,51 @@ def reconstruct_actual_strategies(laps_dir, pitstops_path, circuits_csv, season)
 
         circuit_name = circuit_row.iloc[0]["circuit_name"]
         circuit_key = circuit_row.iloc[0]["circuit_key"]
+        hard_c = circuit_row.iloc[0]["hard_compound"]
+        med_c = circuit_row.iloc[0]["medium_compound"]
+        soft_c = circuit_row.iloc[0]["soft_compound"]
 
         compounds = []
-        laps_files = list(laps_dir.glob(f"{season}_{rnd:02d}_*_R.parquet"))
-        if not laps_files:
-            laps_files = list(laps_dir.glob(f"{season}_{rnd}_*_R.parquet"))
 
-        if laps_files:
-            laps_df = pd.read_parquet(laps_files[0])
-            wlaps = laps_df[laps_df["Driver"] == driver_code]
-            if not wlaps.empty and "Stint" in wlaps.columns:
-                compounds = wlaps.groupby("Stint")["Compound"].first().tolist()
+        # Primary: use stint features (always available)
+        if stints_df is not None:
+            driver_stints = stints_df[
+                (stints_df["Season"] == season) &
+                (stints_df["RoundNumber"] == rnd) &
+                (stints_df["Driver"] == driver_code)
+            ].sort_values("StintNumber")
+
+            if not driver_stints.empty:
+                for _, stint in driver_stints.iterrows():
+                    c = stint["Compound"]
+                    # Map C1-C6 to compound names
+                    if c == soft_c:
+                        compounds.append("SOFT")
+                    elif c == med_c:
+                        compounds.append("MEDIUM")
+                    elif c == hard_c:
+                        compounds.append("HARD")
+                    else:
+                        compounds.append(c)  # INTERMEDIATE, WET, etc.
+
+        # Fallback: raw laps parquet
+        if not compounds:
+            laps_files = list(laps_dir.glob(f"{season}_{rnd:02d}_*_R.parquet"))
+            if not laps_files:
+                laps_files = list(laps_dir.glob(f"{season}_{rnd}_*_R.parquet"))
+
+            if laps_files:
+                laps_df = pd.read_parquet(laps_files[0])
+                wlaps = laps_df[laps_df["Driver"] == driver_code]
+                if not wlaps.empty and "Stint" in wlaps.columns:
+                    compounds = wlaps.groupby("Stint")["Compound"].first().tolist()
 
         is_wet = any(c in ["INTERMEDIATE", "WET"] for c in compounds)
+
+        # Heuristic: if we see far fewer stints than stops+1, compounds
+        # were likely INTERMEDIATE/WET that got filtered during feature engineering
+        if not is_wet and n_stops >= 2 and len(compounds) <= n_stops - 1:
+            is_wet = True
 
         actual[(season, rnd)] = {
             "circuit_name": circuit_name,
@@ -186,6 +229,8 @@ def reconstruct_actual_strategies(laps_dir, pitstops_path, circuits_csv, season)
 def validate_fold(
     train_seasons, val_season, features_dir, circuit_csv,
     sc_priors_path, weather_dir, laps_dir, pitstops_path, fuel_config,
+    compound_prior: CompoundPrior | None = None,
+    prior_blend: float = 0.3,
 ):
     """Run one fold of rolling validation."""
     logger.info(f"\n{'─' * 70}")
@@ -230,6 +275,12 @@ def validate_fold(
             sim_results.append(result)
 
         sim_results.sort(key=lambda x: x["median_time"])
+
+        # Rerank with compound prior if available
+        if compound_prior is not None:
+            sim_results = compound_prior.rerank_strategies(
+                sim_results, real["circuit_key"], blend_weight=prior_blend,
+            )
 
         our_stops = sim_results[0]["num_stops"]
         real_stops = real["n_stops"]
@@ -302,6 +353,105 @@ def validate_fold(
     return fold_result
 
 
+def _build_temporal_prior(features_dir, circuit_csv, results_path, train_seasons):
+    """Build compound prior from training seasons only (no data leakage)."""
+    from src.simulation.compound_prior import CompoundPrior
+    from collections import Counter, defaultdict
+
+    features_dir = Path(features_dir)
+    stints = pd.read_parquet(features_dir / "stint_features.parquet")
+    circuits = pd.read_csv(circuit_csv)
+    results = pd.read_parquet(results_path)
+
+    # Filter to training seasons ONLY
+    stints = stints[stints["Season"].isin(train_seasons)]
+    results = results[results["season"].isin(train_seasons)]
+
+    merged = stints.merge(
+        circuits[["season", "round_number", "circuit_key",
+                   "hard_compound", "medium_compound", "soft_compound",
+                   "tyre_stress"]],
+        left_on=["Season", "RoundNumber"],
+        right_on=["season", "round_number"],
+        how="inner",
+    )
+
+    def _map(row):
+        c = row["Compound"]
+        if c == row["soft_compound"]: return "SOFT"
+        elif c == row["medium_compound"]: return "MEDIUM"
+        elif c == row["hard_compound"]: return "HARD"
+        return c
+
+    merged["CompoundName"] = merged.apply(_map, axis=1)
+    dry = merged[merged["CompoundName"].isin(["SOFT", "MEDIUM", "HARD"])]
+
+    # Circuit categories
+    circuit_stress = circuits.groupby("circuit_key")["tyre_stress"].mean().to_dict()
+    def _cat(ck):
+        s = circuit_stress.get(ck, 50)
+        return "low_stress" if s < 35 else "high_stress" if s >= 55 else "med_stress"
+    circuit_cats = {ck: _cat(ck) for ck in circuit_stress}
+
+    # Build sequences
+    sequences = (
+        dry.sort_values(["Season", "RoundNumber", "Driver", "StintNumber"])
+        .groupby(["Season", "RoundNumber", "Driver", "circuit_key"])
+        .agg(
+            Strategy=("CompoundName", lambda x: "-".join(x)),
+            FirstCompound=("CompoundName", "first"),
+            NumStints=("CompoundName", "count"),
+        )
+        .reset_index()
+    )
+    sequences["NumStops"] = sequences["NumStints"] - 1
+    sequences["Category"] = sequences["circuit_key"].map(circuit_cats)
+
+    # Starting compound priors
+    start_probs = {}
+    for cat in ["low_stress", "med_stress", "high_stress"]:
+        subset = sequences[sequences["Category"] == cat]
+        counts = subset["FirstCompound"].value_counts()
+        total = counts.sum()
+        start_probs[cat] = {c: counts.get(c, 0) / max(total, 1) for c in ["SOFT", "MEDIUM", "HARD"]}
+
+    # Transitions
+    transitions = defaultdict(Counter)
+    for (_, _, driver), group in dry.sort_values(
+        ["Season", "RoundNumber", "Driver", "StintNumber"]
+    ).groupby(["Season", "RoundNumber", "Driver"]):
+        compounds = group.sort_values("StintNumber")["CompoundName"].tolist()
+        for i in range(len(compounds) - 1):
+            transitions[compounds[i]][compounds[i + 1]] += 1
+
+    transition_probs = {}
+    for from_c, to_counts in transitions.items():
+        total = sum(to_counts.values())
+        transition_probs[from_c] = {to_c: count / total for to_c, count in to_counts.items()}
+
+    # Stop count distribution
+    stop_probs = {}
+    for cat in ["low_stress", "med_stress", "high_stress"]:
+        subset = sequences[sequences["Category"] == cat]
+        counts = subset["NumStops"].value_counts()
+        total = counts.sum()
+        stop_probs[cat] = {int(s): c / max(total, 1) for s, c in counts.items()}
+
+    # Per-circuit strategy counts
+    circuit_strat_counts = {}
+    for ck, group in sequences.groupby("circuit_key"):
+        if group["Season"].nunique() >= 1:
+            circuit_strat_counts[ck] = Counter(group["Strategy"].tolist())
+
+    return CompoundPrior(
+        start_probs=start_probs,
+        transition_probs=transition_probs,
+        stop_probs=stop_probs,
+        circuit_strategy_counts=circuit_strat_counts,
+        circuit_categories=circuit_cats,
+    )
+
+
 def run_rolling_validation(config_path: str = "configs/config.yaml"):
     config = load_config(config_path)
     raw_paths = config["paths"]["raw"]
@@ -315,7 +465,7 @@ def run_rolling_validation(config_path: str = "configs/config.yaml"):
     pitstops_path = Path(raw_paths["jolpica"]) / "pitstops.parquet"
 
     logger.info("=" * 70)
-    logger.info("  ROLLING TEMPORAL VALIDATION (Expanding Window)")
+    logger.info("  ROLLING TEMPORAL VALIDATION (Expanding Window + Compound Prior)")
     logger.info("=" * 70)
     logger.info("  Fold 1: Train 2022         → Validate 2023")
     logger.info("  Fold 2: Train 2022-2023    → Validate 2024")
@@ -331,9 +481,17 @@ def run_rolling_validation(config_path: str = "configs/config.yaml"):
     all_folds = []
 
     for train_seasons, val_season in folds:
+        # Build compound prior from training seasons only (no data leakage)
+        compound_prior = _build_temporal_prior(
+            features_dir, circuit_csv, pitstops_path.parent / "results.parquet",
+            train_seasons,
+        )
+        logger.info(f"  Compound prior built from seasons {train_seasons}")
+
         fold = validate_fold(
             train_seasons, val_season, features_dir, circuit_csv,
             sc_priors_path, weather_dir, laps_dir, pitstops_path, fuel_config,
+            compound_prior=compound_prior, prior_blend=0.15,
         )
         all_folds.append(fold)
 

@@ -1,0 +1,3299 @@
+{
+  "overall": {
+    "totalRaces": 70,
+    "dryRaces": 62,
+    "wetRaces": 8,
+    "stopsMatchRate": 58.1,
+    "compoundExactRate": 30.6,
+    "compoundPartialRate": 75.8,
+    "verdictCounts": {
+      "EXACT": 19,
+      "PARTIAL": 9,
+      "STOPS_ONLY": 9,
+      "MISS": 25,
+      "WET": 8
+    },
+    "avgPitLapError": 8.0
+  },
+  "seasonSummaries": [
+    {
+      "season": 2023,
+      "trainSeasons": [
+        2022
+      ],
+      "totalRaces": 22,
+      "dryRaces": 19,
+      "stopsMatchRate": 47.4,
+      "compoundExactRate": 21.1,
+      "compoundPartialRate": 78.9,
+      "top3Rate": 0.0,
+      "top5Rate": 0.0,
+      "avgPitLapError": 8.2
+    },
+    {
+      "season": 2024,
+      "trainSeasons": [
+        2022,
+        2023
+      ],
+      "totalRaces": 24,
+      "dryRaces": 22,
+      "stopsMatchRate": 54.5,
+      "compoundExactRate": 31.8,
+      "compoundPartialRate": 72.7,
+      "top3Rate": 0.0,
+      "top5Rate": 0.0,
+      "avgPitLapError": 8.6
+    },
+    {
+      "season": 2025,
+      "trainSeasons": [
+        2022,
+        2023,
+        2024
+      ],
+      "totalRaces": 24,
+      "dryRaces": 21,
+      "stopsMatchRate": 71.4,
+      "compoundExactRate": 38.1,
+      "compoundPartialRate": 76.2,
+      "top3Rate": 85.7,
+      "top5Rate": 85.7,
+      "avgPitLapError": 7.0
+    }
+  ],
+  "races": [
+    {
+      "season": 2023,
+      "round": 1,
+      "circuit": "Bahrain Grand Prix",
+      "circuitKey": "bahrain",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "SOFT",
+        "SOFT",
+        "HARD"
+      ],
+      "actualCompoundNorm": "S-S-H",
+      "actualPitLaps": [
+        14,
+        36
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192SOFT (28/29)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-S",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 8.0,
+      "pitLapMaxError": 8,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 36,
+          "error": 8
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 2,
+      "circuit": "Saudi Arabian Grand Prix",
+      "circuitKey": "jeddah",
+      "winner": "PER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        18
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (20/30)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        20
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 2.0,
+      "pitLapMaxError": 2,
+      "pitLapErrors": [
+        {
+          "predicted": 20,
+          "actual": 18,
+          "error": 2
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 3,
+      "circuit": "Australian Grand Prix",
+      "circuitKey": "albert_park",
+      "winner": "VER",
+      "isWet": true,
+      "verdict": "WET",
+      "actualStops": 3,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        8,
+        55,
+        57
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (34/24)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        34
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 21.0,
+      "pitLapMaxError": 21,
+      "pitLapErrors": [
+        {
+          "predicted": 34,
+          "actual": 55,
+          "error": 21
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 4,
+      "circuit": "Azerbaijan Grand Prix",
+      "circuitKey": "baku",
+      "winner": "PER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        11
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (25/26)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        25
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 14.0,
+      "pitLapMaxError": 14,
+      "pitLapErrors": [
+        {
+          "predicted": 25,
+          "actual": 11,
+          "error": 14
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 5,
+      "circuit": "Miami Grand Prix",
+      "circuitKey": "miami",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 1,
+      "actualCompounds": [
+        "HARD",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "H-M",
+      "actualPitLaps": [
+        45
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (28/29)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 17.0,
+      "pitLapMaxError": 17,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 45,
+          "error": 17
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 6,
+      "circuit": "Monaco Grand Prix",
+      "circuitKey": "monaco",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M",
+      "actualPitLaps": [
+        55
+      ],
+      "predictedStrategy": "1-stop SOFT\u2192MEDIUM (46/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "SOFT",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "S-M",
+      "predictedPitLaps": [
+        46
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 9.0,
+      "pitLapMaxError": 9,
+      "pitLapErrors": [
+        {
+          "predicted": 46,
+          "actual": 55,
+          "error": 9
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 7,
+      "circuit": "Spanish Grand Prix",
+      "circuitKey": "barcelona",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "M-H-S",
+      "actualPitLaps": [
+        26,
+        52
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (36/30)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        36
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 10.0,
+      "pitLapMaxError": 10,
+      "pitLapErrors": [
+        {
+          "predicted": 36,
+          "actual": 26,
+          "error": 10
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 8,
+      "circuit": "Canadian Grand Prix",
+      "circuitKey": "montreal",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M-H-M",
+      "actualPitLaps": [
+        12,
+        42
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (28/42)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 14.0,
+      "pitLapMaxError": 14,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 42,
+          "error": 14
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 9,
+      "circuit": "Austrian Grand Prix",
+      "circuitKey": "spielberg",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 4,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "M-H-M-S",
+      "actualPitLaps": [
+        2,
+        24,
+        49,
+        69
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (39/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        39
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 10.0,
+      "pitLapMaxError": 10,
+      "pitLapErrors": [
+        {
+          "predicted": 39,
+          "actual": 49,
+          "error": 10
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 10,
+      "circuit": "British Grand Prix",
+      "circuitKey": "silverstone",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "M-S",
+      "actualPitLaps": [
+        33
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192SOFT (26/26)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-S",
+      "predictedPitLaps": [
+        26
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 7.0,
+      "pitLapMaxError": 7,
+      "pitLapErrors": [
+        {
+          "predicted": 26,
+          "actual": 33,
+          "error": 7
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 11,
+      "circuit": "Hungarian Grand Prix",
+      "circuitKey": "hungaroring",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M-H-M",
+      "actualPitLaps": [
+        23,
+        51
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192SOFT (23/23/24)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-H-S",
+      "predictedPitLaps": [
+        23,
+        46
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 2.5,
+      "pitLapMaxError": 5,
+      "pitLapErrors": [
+        {
+          "predicted": 23,
+          "actual": 23,
+          "error": 0
+        },
+        {
+          "predicted": 46,
+          "actual": 51,
+          "error": 5
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 12,
+      "circuit": "Belgian Grand Prix",
+      "circuitKey": "spa",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 2,
+      "actualCompounds": [
+        "SOFT",
+        "MEDIUM",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "S-M-S",
+      "actualPitLaps": [
+        14,
+        30
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (11/15/18)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "M-H-M",
+      "predictedPitLaps": [
+        11,
+        26
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 3.5,
+      "pitLapMaxError": 4,
+      "pitLapErrors": [
+        {
+          "predicted": 11,
+          "actual": 14,
+          "error": 3
+        },
+        {
+          "predicted": 26,
+          "actual": 30,
+          "error": 4
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 13,
+      "circuit": "Dutch Grand Prix",
+      "circuitKey": "zandvoort",
+      "winner": "VER",
+      "isWet": true,
+      "verdict": "WET",
+      "actualStops": 6,
+      "actualCompounds": [
+        "SOFT",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "S-S",
+      "actualPitLaps": [
+        2,
+        11,
+        49,
+        61,
+        63,
+        64
+      ],
+      "predictedStrategy": "1-stop SOFT\u2192MEDIUM (32/40)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "SOFT",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "S-M",
+      "predictedPitLaps": [
+        32
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 17.0,
+      "pitLapMaxError": 17,
+      "pitLapErrors": [
+        {
+          "predicted": 32,
+          "actual": 49,
+          "error": 17
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 14,
+      "circuit": "Italian Grand Prix",
+      "circuitKey": "monza",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        20
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (31/22)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        31
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 11.0,
+      "pitLapMaxError": 11,
+      "pitLapErrors": [
+        {
+          "predicted": 31,
+          "actual": 20,
+          "error": 11
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 15,
+      "circuit": "Singapore Grand Prix",
+      "circuitKey": "singapore",
+      "winner": "SAI",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        20
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192SOFT (34/28)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-S",
+      "predictedPitLaps": [
+        34
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 14.0,
+      "pitLapMaxError": 14,
+      "pitLapErrors": [
+        {
+          "predicted": 34,
+          "actual": 20,
+          "error": 14
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 16,
+      "circuit": "Japanese Grand Prix",
+      "circuitKey": "suzuka",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-M-H",
+      "actualPitLaps": [
+        16,
+        37
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (21/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        21
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 5.0,
+      "pitLapMaxError": 5,
+      "pitLapErrors": [
+        {
+          "predicted": 21,
+          "actual": 16,
+          "error": 5
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 17,
+      "circuit": "Qatar Grand Prix",
+      "circuitKey": "lusail",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 3,
+      "actualCompounds": [
+        "MEDIUM",
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M-M-H-M",
+      "actualPitLaps": [
+        17,
+        34,
+        51
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (14/19/24)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "M-H-M",
+      "predictedPitLaps": [
+        14,
+        33
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 2.0,
+      "pitLapMaxError": 3,
+      "pitLapErrors": [
+        {
+          "predicted": 14,
+          "actual": 17,
+          "error": 3
+        },
+        {
+          "predicted": 33,
+          "actual": 34,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 18,
+      "circuit": "United States Grand Prix",
+      "circuitKey": "cota",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-M-H",
+      "actualPitLaps": [
+        16,
+        35
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (22/34)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        22
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 6.0,
+      "pitLapMaxError": 6,
+      "pitLapErrors": [
+        {
+          "predicted": 22,
+          "actual": 16,
+          "error": 6
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 19,
+      "circuit": "Mexico City Grand Prix",
+      "circuitKey": "mexico",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 3,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        19,
+        33,
+        34
+      ],
+      "predictedStrategy": "1-stop SOFT\u2192MEDIUM (42/29)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "SOFT",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "S-M",
+      "predictedPitLaps": [
+        42
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 8.0,
+      "pitLapMaxError": 8,
+      "pitLapErrors": [
+        {
+          "predicted": 42,
+          "actual": 34,
+          "error": 8
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 20,
+      "circuit": "S\u00e3o Paulo Grand Prix",
+      "circuitKey": "interlagos",
+      "winner": "VER",
+      "isWet": true,
+      "verdict": "WET",
+      "actualStops": 4,
+      "actualCompounds": [
+        "SOFT",
+        "MEDIUM",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "S-M-S",
+      "actualPitLaps": [
+        1,
+        2,
+        27,
+        56
+      ],
+      "predictedStrategy": "2-stop HARD\u2192MEDIUM\u2192SOFT (23/23/25)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "HARD",
+        "MEDIUM",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "H-M-S",
+      "predictedPitLaps": [
+        23,
+        46
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 7.0,
+      "pitLapMaxError": 10,
+      "pitLapErrors": [
+        {
+          "predicted": 23,
+          "actual": 27,
+          "error": 4
+        },
+        {
+          "predicted": 46,
+          "actual": 56,
+          "error": 10
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 21,
+      "circuit": "Las Vegas Grand Prix",
+      "circuitKey": "las_vegas",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        16,
+        26
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (25/25)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        25
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 1.0,
+      "pitLapMaxError": 1,
+      "pitLapErrors": [
+        {
+          "predicted": 25,
+          "actual": 26,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2023,
+      "round": 22,
+      "circuit": "Abu Dhabi Grand Prix",
+      "circuitKey": "yas_marina",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        16,
+        43
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (31/27)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        31
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 12.0,
+      "pitLapMaxError": 12,
+      "pitLapErrors": [
+        {
+          "predicted": 31,
+          "actual": 43,
+          "error": 12
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 1,
+      "circuit": "Bahrain Grand Prix",
+      "circuitKey": "bahrain",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "SOFT",
+        "HARD",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "S-H-S",
+      "actualPitLaps": [
+        17,
+        37
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192SOFT (28/29)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-S",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 9.0,
+      "pitLapMaxError": 9,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 37,
+          "error": 9
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 2,
+      "circuit": "Saudi Arabian Grand Prix",
+      "circuitKey": "jeddah",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        7
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (20/30)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        20
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 13.0,
+      "pitLapMaxError": 13,
+      "pitLapErrors": [
+        {
+          "predicted": 20,
+          "actual": 7,
+          "error": 13
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 3,
+      "circuit": "Australian Grand Prix",
+      "circuitKey": "albert_park",
+      "winner": "SAI",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        16,
+        41
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (34/24)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        34
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 7.0,
+      "pitLapMaxError": 7,
+      "pitLapErrors": [
+        {
+          "predicted": 34,
+          "actual": 41,
+          "error": 7
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 4,
+      "circuit": "Japanese Grand Prix",
+      "circuitKey": "suzuka",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 3,
+      "actualCompounds": [
+        "MEDIUM",
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-M-H",
+      "actualPitLaps": [
+        1,
+        16,
+        34
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (21/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        21
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 5.0,
+      "pitLapMaxError": 5,
+      "pitLapErrors": [
+        {
+          "predicted": 21,
+          "actual": 16,
+          "error": 5
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 5,
+      "circuit": "Chinese Grand Prix",
+      "circuitKey": "shanghai",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        13,
+        23
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (28/28)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 5.0,
+      "pitLapMaxError": 5,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 23,
+          "error": 5
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 6,
+      "circuit": "Miami Grand Prix",
+      "circuitKey": "miami",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        29
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (28/29)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 1.0,
+      "pitLapMaxError": 1,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 29,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 7,
+      "circuit": "Emilia Romagna Grand Prix",
+      "circuitKey": "imola",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        24
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192SOFT (37/26)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-S",
+      "predictedPitLaps": [
+        37
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 13.0,
+      "pitLapMaxError": 13,
+      "pitLapErrors": [
+        {
+          "predicted": 37,
+          "actual": 24,
+          "error": 13
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 8,
+      "circuit": "Monaco Grand Prix",
+      "circuitKey": "monaco",
+      "winner": "LEC",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 1,
+      "actualCompounds": [
+        "HARD"
+      ],
+      "actualCompoundNorm": "H",
+      "actualPitLaps": [
+        1
+      ],
+      "predictedStrategy": "1-stop SOFT\u2192MEDIUM (46/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "SOFT",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "S-M",
+      "predictedPitLaps": [
+        46
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 45.0,
+      "pitLapMaxError": 45,
+      "pitLapErrors": [
+        {
+          "predicted": 46,
+          "actual": 1,
+          "error": 45
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 9,
+      "circuit": "Canadian Grand Prix",
+      "circuitKey": "montreal",
+      "winner": "VER",
+      "isWet": true,
+      "verdict": "WET",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M",
+      "actualPitLaps": [
+        25,
+        45
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (28/42)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 3.0,
+      "pitLapMaxError": 3,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 25,
+          "error": 3
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 10,
+      "circuit": "Spanish Grand Prix",
+      "circuitKey": "barcelona",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "SOFT",
+        "MEDIUM",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "S-M-S",
+      "actualPitLaps": [
+        17,
+        44
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (36/30)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        36
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 8.0,
+      "pitLapMaxError": 8,
+      "pitLapErrors": [
+        {
+          "predicted": 36,
+          "actual": 44,
+          "error": 8
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 11,
+      "circuit": "Austrian Grand Prix",
+      "circuitKey": "spielberg",
+      "winner": "RUS",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-M-H",
+      "actualPitLaps": [
+        22,
+        46
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (39/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        39
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 7.0,
+      "pitLapMaxError": 7,
+      "pitLapErrors": [
+        {
+          "predicted": 39,
+          "actual": 46,
+          "error": 7
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 12,
+      "circuit": "British Grand Prix",
+      "circuitKey": "silverstone",
+      "winner": "HAM",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "M-S",
+      "actualPitLaps": [
+        27,
+        38
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192SOFT (26/26)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-S",
+      "predictedPitLaps": [
+        26
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 1.0,
+      "pitLapMaxError": 1,
+      "pitLapErrors": [
+        {
+          "predicted": 26,
+          "actual": 27,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 13,
+      "circuit": "Hungarian Grand Prix",
+      "circuitKey": "hungaroring",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M-H-M",
+      "actualPitLaps": [
+        18,
+        47
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (38/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        38
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 9.0,
+      "pitLapMaxError": 9,
+      "pitLapErrors": [
+        {
+          "predicted": 38,
+          "actual": 47,
+          "error": 9
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 14,
+      "circuit": "Belgian Grand Prix",
+      "circuitKey": "spa",
+      "winner": "HAM",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        11,
+        26
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (11/15/18)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "M-H-M",
+      "predictedPitLaps": [
+        11,
+        26
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 0.0,
+      "pitLapMaxError": 0,
+      "pitLapErrors": [
+        {
+          "predicted": 11,
+          "actual": 11,
+          "error": 0
+        },
+        {
+          "predicted": 26,
+          "actual": 26,
+          "error": 0
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 15,
+      "circuit": "Dutch Grand Prix",
+      "circuitKey": "zandvoort",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        28
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (25/21/26)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "M-H-M",
+      "predictedPitLaps": [
+        25,
+        46
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 3.0,
+      "pitLapMaxError": 3,
+      "pitLapErrors": [
+        {
+          "predicted": 25,
+          "actual": 28,
+          "error": 3
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 16,
+      "circuit": "Italian Grand Prix",
+      "circuitKey": "monza",
+      "winner": "LEC",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        15
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (31/22)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        31
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 16.0,
+      "pitLapMaxError": 16,
+      "pitLapErrors": [
+        {
+          "predicted": 31,
+          "actual": 15,
+          "error": 16
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 17,
+      "circuit": "Azerbaijan Grand Prix",
+      "circuitKey": "baku",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        15
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (25/26)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        25
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 10.0,
+      "pitLapMaxError": 10,
+      "pitLapErrors": [
+        {
+          "predicted": 25,
+          "actual": 15,
+          "error": 10
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 18,
+      "circuit": "Singapore Grand Prix",
+      "circuitKey": "singapore",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        30
+      ],
+      "predictedStrategy": "1-stop HARD\u2192MEDIUM (31/31)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "H-M",
+      "predictedPitLaps": [
+        31
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 1.0,
+      "pitLapMaxError": 1,
+      "pitLapErrors": [
+        {
+          "predicted": 31,
+          "actual": 30,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 19,
+      "circuit": "United States Grand Prix",
+      "circuitKey": "cota",
+      "winner": "LEC",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        26
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (22/34)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        22
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 4.0,
+      "pitLapMaxError": 4,
+      "pitLapErrors": [
+        {
+          "predicted": 22,
+          "actual": 26,
+          "error": 4
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 20,
+      "circuit": "Mexico City Grand Prix",
+      "circuitKey": "mexico",
+      "winner": "SAI",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        32
+      ],
+      "predictedStrategy": "1-stop SOFT\u2192MEDIUM (42/29)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "SOFT",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "S-M",
+      "predictedPitLaps": [
+        42
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 10.0,
+      "pitLapMaxError": 10,
+      "pitLapErrors": [
+        {
+          "predicted": 42,
+          "actual": 32,
+          "error": 10
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 21,
+      "circuit": "S\u00e3o Paulo Grand Prix",
+      "circuitKey": "interlagos",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 1,
+      "actualCompounds": [
+        "Unknown"
+      ],
+      "actualCompoundNorm": "U",
+      "actualPitLaps": [
+        32
+      ],
+      "predictedStrategy": "1-stop SOFT\u2192MEDIUM (42/29)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "SOFT",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "S-M",
+      "predictedPitLaps": [
+        42
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 10.0,
+      "pitLapMaxError": 10,
+      "pitLapErrors": [
+        {
+          "predicted": 42,
+          "actual": 32,
+          "error": 10
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 22,
+      "circuit": "Las Vegas Grand Prix",
+      "circuitKey": "las_vegas",
+      "winner": "RUS",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        12,
+        32
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (25/25)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        25
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 7.0,
+      "pitLapMaxError": 7,
+      "pitLapErrors": [
+        {
+          "predicted": 25,
+          "actual": 32,
+          "error": 7
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 23,
+      "circuit": "Qatar Grand Prix",
+      "circuitKey": "lusail",
+      "winner": "VER",
+      "isWet": true,
+      "verdict": "WET",
+      "actualStops": 3,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        35,
+        36,
+        37
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (14/19/24)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "M-H-M",
+      "predictedPitLaps": [
+        14,
+        33
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 12.0,
+      "pitLapMaxError": 21,
+      "pitLapErrors": [
+        {
+          "predicted": 14,
+          "actual": 35,
+          "error": 21
+        },
+        {
+          "predicted": 33,
+          "actual": 36,
+          "error": 3
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2024,
+      "round": 24,
+      "circuit": "Abu Dhabi Grand Prix",
+      "circuitKey": "yas_marina",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        26
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (31/27)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        31
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 5.0,
+      "pitLapMaxError": 5,
+      "pitLapErrors": [
+        {
+          "predicted": 31,
+          "actual": 26,
+          "error": 5
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2025,
+      "round": 1,
+      "circuit": "Australian Grand Prix",
+      "circuitKey": "albert_park",
+      "winner": "NOR",
+      "isWet": true,
+      "verdict": "WET",
+      "actualStops": 5,
+      "actualCompounds": [
+        "HARD"
+      ],
+      "actualCompoundNorm": "H",
+      "actualPitLaps": [
+        2,
+        3,
+        4,
+        34,
+        44
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (34/24)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        34
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 0.0,
+      "pitLapMaxError": 0,
+      "pitLapErrors": [
+        {
+          "predicted": 34,
+          "actual": 34,
+          "error": 0
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2025,
+      "round": 2,
+      "circuit": "Chinese Grand Prix",
+      "circuitKey": "shanghai",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        14
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (28/28)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 14.0,
+      "pitLapMaxError": 14,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 14,
+          "error": 14
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 5,
+      "closestMatchRank": 5,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (33/23)"
+    },
+    {
+      "season": 2025,
+      "round": 3,
+      "circuit": "Japanese Grand Prix",
+      "circuitKey": "suzuka",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        21
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (21/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        21
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 0.0,
+      "pitLapMaxError": 0,
+      "pitLapErrors": [
+        {
+          "predicted": 21,
+          "actual": 21,
+          "error": 0
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 3,
+      "closestMatchRank": 3,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (29/24)"
+    },
+    {
+      "season": 2025,
+      "round": 4,
+      "circuit": "Bahrain Grand Prix",
+      "circuitKey": "bahrain",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "SOFT",
+        "MEDIUM",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "S-M-M",
+      "actualPitLaps": [
+        14,
+        32
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (22/35)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        22
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 8.0,
+      "pitLapMaxError": 8,
+      "pitLapErrors": [
+        {
+          "predicted": 22,
+          "actual": 14,
+          "error": 8
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 1,
+      "closestMatchName": "2-stop HARD\u2192MEDIUM\u2192SOFT (18/18/21)"
+    },
+    {
+      "season": 2025,
+      "round": 5,
+      "circuit": "Saudi Arabian Grand Prix",
+      "circuitKey": "jeddah",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        19
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (20/30)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        20
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 1.0,
+      "pitLapMaxError": 1,
+      "pitLapErrors": [
+        {
+          "predicted": 20,
+          "actual": 19,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 1,
+      "closestMatchRank": 1,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (30/20)"
+    },
+    {
+      "season": 2025,
+      "round": 6,
+      "circuit": "Miami Grand Prix",
+      "circuitKey": "miami",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        29
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (28/29)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 1.0,
+      "pitLapMaxError": 1,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 29,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 3,
+      "closestMatchRank": 3,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (31/26)"
+    },
+    {
+      "season": 2025,
+      "round": 7,
+      "circuit": "Emilia Romagna Grand Prix",
+      "circuitKey": "imola",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        29,
+        46
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (31/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        31
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 2.0,
+      "pitLapMaxError": 2,
+      "pitLapErrors": [
+        {
+          "predicted": 31,
+          "actual": 29,
+          "error": 2
+        }
+      ],
+      "actualStrategyRankByStops": 6,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 6,
+      "closestMatchName": "2-stop HARD\u2192MEDIUM\u2192SOFT (22/18/23)"
+    },
+    {
+      "season": 2025,
+      "round": 8,
+      "circuit": "Monaco Grand Prix",
+      "circuitKey": "monaco",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        19,
+        50
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192SOFT (27/23/28)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-H-S",
+      "predictedPitLaps": [
+        27,
+        50
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 4.0,
+      "pitLapMaxError": 8,
+      "pitLapErrors": [
+        {
+          "predicted": 27,
+          "actual": 19,
+          "error": 8
+        },
+        {
+          "predicted": 50,
+          "actual": 50,
+          "error": 0
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 1,
+      "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192SOFT (23/27/28)"
+    },
+    {
+      "season": 2025,
+      "round": 9,
+      "circuit": "Spanish Grand Prix",
+      "circuitKey": "barcelona",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 3,
+      "actualCompounds": [
+        "SOFT",
+        "MEDIUM",
+        "SOFT",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "S-M-S-S",
+      "actualPitLaps": [
+        22,
+        49,
+        55
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (36/30)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        36
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 13.0,
+      "pitLapMaxError": 13,
+      "pitLapErrors": [
+        {
+          "predicted": 36,
+          "actual": 49,
+          "error": 13
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 1,
+      "closestMatchName": "1-stop SOFT\u2192MEDIUM (36/30)"
+    },
+    {
+      "season": 2025,
+      "round": 10,
+      "circuit": "Canadian Grand Prix",
+      "circuitKey": "montreal",
+      "winner": "RUS",
+      "isWet": true,
+      "verdict": "WET",
+      "actualStops": 5,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        13,
+        42,
+        67,
+        68,
+        69
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (28/42)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        28
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 14.0,
+      "pitLapMaxError": 14,
+      "pitLapErrors": [
+        {
+          "predicted": 28,
+          "actual": 42,
+          "error": 14
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2025,
+      "round": 11,
+      "circuit": "Austrian Grand Prix",
+      "circuitKey": "spielberg",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M-H-M",
+      "actualPitLaps": [
+        20,
+        52
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (39/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        39
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 13.0,
+      "pitLapMaxError": 13,
+      "pitLapErrors": [
+        {
+          "predicted": 39,
+          "actual": 52,
+          "error": 13
+        }
+      ],
+      "actualStrategyRankByStops": 2,
+      "actualStrategyRankByCompounds": 2,
+      "closestMatchRank": 2,
+      "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (24/21/26)"
+    },
+    {
+      "season": 2025,
+      "round": 12,
+      "circuit": "British Grand Prix",
+      "circuitKey": "silverstone",
+      "winner": "NOR",
+      "isWet": true,
+      "verdict": "WET",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M",
+      "actualPitLaps": [
+        11,
+        44
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192SOFT (26/26)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "predictedCompoundNorm": "M-S",
+      "predictedPitLaps": [
+        26
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 15.0,
+      "pitLapMaxError": 15,
+      "pitLapErrors": [
+        {
+          "predicted": 26,
+          "actual": 11,
+          "error": 15
+        }
+      ],
+      "actualStrategyRankByStops": null,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": null,
+      "closestMatchName": null
+    },
+    {
+      "season": 2025,
+      "round": 13,
+      "circuit": "Belgian Grand Prix",
+      "circuitKey": "spa",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M",
+      "actualPitLaps": [
+        12
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (11/15/18)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "M-H-M",
+      "predictedPitLaps": [
+        11,
+        26
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 1.0,
+      "pitLapMaxError": 1,
+      "pitLapErrors": [
+        {
+          "predicted": 11,
+          "actual": 12,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 2,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (26/18)"
+    },
+    {
+      "season": 2025,
+      "round": 14,
+      "circuit": "Hungarian Grand Prix",
+      "circuitKey": "hungaroring",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        31
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (38/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        38
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 7.0,
+      "pitLapMaxError": 7,
+      "pitLapErrors": [
+        {
+          "predicted": 38,
+          "actual": 31,
+          "error": 7
+        }
+      ],
+      "actualStrategyRankByStops": 3,
+      "actualStrategyRankByCompounds": 4,
+      "closestMatchRank": 4,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (38/32)"
+    },
+    {
+      "season": 2025,
+      "round": 15,
+      "circuit": "Dutch Grand Prix",
+      "circuitKey": "zandvoort",
+      "winner": "PIA",
+      "isWet": false,
+      "verdict": "MISS",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H-H",
+      "actualPitLaps": [
+        23,
+        53
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (36/36)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        36
+      ],
+      "stopsMatch": false,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 13.0,
+      "pitLapMaxError": 13,
+      "pitLapErrors": [
+        {
+          "predicted": 36,
+          "actual": 23,
+          "error": 13
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 1,
+      "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (23/23/26)"
+    },
+    {
+      "season": 2025,
+      "round": 16,
+      "circuit": "Italian Grand Prix",
+      "circuitKey": "monza",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        37
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (26/27)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        26
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 11.0,
+      "pitLapMaxError": 11,
+      "pitLapErrors": [
+        {
+          "predicted": 26,
+          "actual": 37,
+          "error": 11
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 1,
+      "closestMatchRank": 1,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (26/27)"
+    },
+    {
+      "season": 2025,
+      "round": 17,
+      "circuit": "Azerbaijan Grand Prix",
+      "circuitKey": "baku",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 1,
+      "actualCompounds": [
+        "HARD",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "H-M",
+      "actualPitLaps": [
+        40
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (25/26)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        25
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 15.0,
+      "pitLapMaxError": 15,
+      "pitLapErrors": [
+        {
+          "predicted": 25,
+          "actual": 40,
+          "error": 15
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 1,
+      "closestMatchRank": 1,
+      "closestMatchName": "1-stop HARD\u2192MEDIUM (22/29)"
+    },
+    {
+      "season": 2025,
+      "round": 18,
+      "circuit": "Singapore Grand Prix",
+      "circuitKey": "singapore",
+      "winner": "RUS",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        25
+      ],
+      "predictedStrategy": "1-stop HARD\u2192MEDIUM (31/31)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "H-M",
+      "predictedPitLaps": [
+        31
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 6.0,
+      "pitLapMaxError": 6,
+      "pitLapErrors": [
+        {
+          "predicted": 31,
+          "actual": 25,
+          "error": 6
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 5,
+      "closestMatchRank": 5,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (31/31)"
+    },
+    {
+      "season": 2025,
+      "round": 19,
+      "circuit": "United States Grand Prix",
+      "circuitKey": "cota",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "SOFT"
+      ],
+      "actualCompoundNorm": "M-S",
+      "actualPitLaps": [
+        33
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (22/34)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        22
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 11.0,
+      "pitLapMaxError": 11,
+      "pitLapErrors": [
+        {
+          "predicted": 22,
+          "actual": 33,
+          "error": 11
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 1,
+      "closestMatchName": "1-stop SOFT\u2192MEDIUM (28/28)"
+    },
+    {
+      "season": 2025,
+      "round": 20,
+      "circuit": "Mexico City Grand Prix",
+      "circuitKey": "mexico",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 1,
+      "actualCompounds": [
+        "SOFT",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "S-M",
+      "actualPitLaps": [
+        34
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (39/32)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        39
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 5.0,
+      "pitLapMaxError": 5,
+      "pitLapErrors": [
+        {
+          "predicted": 39,
+          "actual": 34,
+          "error": 5
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 2,
+      "closestMatchRank": 2,
+      "closestMatchName": "1-stop SOFT\u2192MEDIUM (42/29)"
+    },
+    {
+      "season": 2025,
+      "round": 21,
+      "circuit": "S\u00e3o Paulo Grand Prix",
+      "circuitKey": "interlagos",
+      "winner": "NOR",
+      "isWet": false,
+      "verdict": "STOPS_ONLY",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "SOFT",
+        "MEDIUM"
+      ],
+      "actualCompoundNorm": "M-S-M",
+      "actualPitLaps": [
+        30,
+        50
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (17/24/30)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "M-H-M",
+      "predictedPitLaps": [
+        17,
+        41
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": false,
+      "pitLapMeanError": 11.0,
+      "pitLapMaxError": 13,
+      "pitLapErrors": [
+        {
+          "predicted": 17,
+          "actual": 30,
+          "error": 13
+        },
+        {
+          "predicted": 41,
+          "actual": 50,
+          "error": 9
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 1,
+      "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192SOFT (24/21/26)"
+    },
+    {
+      "season": 2025,
+      "round": 22,
+      "circuit": "Las Vegas Grand Prix",
+      "circuitKey": "las_vegas",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        25
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (25/25)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        25
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 0.0,
+      "pitLapMaxError": 0,
+      "pitLapErrors": [
+        {
+          "predicted": 25,
+          "actual": 25,
+          "error": 0
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 4,
+      "closestMatchRank": 4,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (22/28)"
+    },
+    {
+      "season": 2025,
+      "round": 23,
+      "circuit": "Qatar Grand Prix",
+      "circuitKey": "lusail",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "PARTIAL",
+      "actualStops": 2,
+      "actualCompounds": [
+        "MEDIUM",
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-M-H",
+      "actualPitLaps": [
+        7,
+        32
+      ],
+      "predictedStrategy": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (14/19/24)",
+      "predictedStops": 2,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD",
+        "MEDIUM"
+      ],
+      "predictedCompoundNorm": "M-H-M",
+      "predictedPitLaps": [
+        14,
+        33
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": false,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 4.0,
+      "pitLapMaxError": 7,
+      "pitLapErrors": [
+        {
+          "predicted": 14,
+          "actual": 7,
+          "error": 7
+        },
+        {
+          "predicted": 33,
+          "actual": 32,
+          "error": 1
+        }
+      ],
+      "actualStrategyRankByStops": 7,
+      "actualStrategyRankByCompounds": null,
+      "closestMatchRank": 8,
+      "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192SOFT (11/22/24)"
+    },
+    {
+      "season": 2025,
+      "round": 24,
+      "circuit": "Abu Dhabi Grand Prix",
+      "circuitKey": "yas_marina",
+      "winner": "VER",
+      "isWet": false,
+      "verdict": "EXACT",
+      "actualStops": 1,
+      "actualCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "actualCompoundNorm": "M-H",
+      "actualPitLaps": [
+        23
+      ],
+      "predictedStrategy": "1-stop MEDIUM\u2192HARD (31/27)",
+      "predictedStops": 1,
+      "predictedCompounds": [
+        "MEDIUM",
+        "HARD"
+      ],
+      "predictedCompoundNorm": "M-H",
+      "predictedPitLaps": [
+        31
+      ],
+      "stopsMatch": true,
+      "compoundExactMatch": true,
+      "compoundPartialMatch": true,
+      "pitLapMeanError": 8.0,
+      "pitLapMaxError": 8,
+      "pitLapErrors": [
+        {
+          "predicted": 31,
+          "actual": 23,
+          "error": 8
+        }
+      ],
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 2,
+      "closestMatchRank": 2,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (31/27)"
+    }
+  ]
+}

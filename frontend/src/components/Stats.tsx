@@ -2,8 +2,8 @@
 
 export function Stats() {
   const stats = [
-    { value: '71%', label: 'Exact Match', sub: '2025 dry races' },
-    { value: '86%', label: 'Top-5 Match', sub: 'unseen season' },
+    { value: '71%', label: 'Stop Match', sub: '2025 dry races' },
+    { value: '38%', label: 'Compound Exact', sub: 'sequence + order' },
     { value: '0.079s', label: 'Model MAE', sub: 'per lap' },
     { value: '9,000', label: 'Simulations/sec', sub: 'Monte Carlo' },
     { value: '92', label: 'Races Analyzed', sub: '2022-2025' },
