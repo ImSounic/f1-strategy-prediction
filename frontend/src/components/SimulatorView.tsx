@@ -23,6 +23,9 @@ const TEAMS: Record<string, { color: string; name: string }> = {
   haas: { color: '#B6BABD', name: 'Haas' },
 }
 
+// Note: Simulation data was precomputed with the 2024 driver grid.
+// Driver codes here must match the precomputed scenario data.
+// To update to 2025 grid, re-run: python -m src.simulation.precompute_scenarios --circuits all --n-sims 50
 const DRIVERS = [
   { code: 'VER', name: 'Max Verstappen', team: 'red_bull', number: 1 },
   { code: 'PER', name: 'Sergio Perez', team: 'red_bull', number: 11 },

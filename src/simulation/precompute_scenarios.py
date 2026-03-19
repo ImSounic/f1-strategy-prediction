@@ -43,7 +43,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def load_drivers(path: str = "configs/drivers_2024.json") -> tuple:
+def load_drivers(path: str = "configs/drivers_2025.json") -> tuple:
     """Load driver database. Returns (drivers_list, teams_dict, overtaking_dict)."""
     with open(path) as f:
         data = json.load(f)
