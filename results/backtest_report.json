@@ -57,8 +57,8 @@
       "stopsMatchRate": 71.4,
       "compoundExactRate": 38.1,
       "compoundPartialRate": 76.2,
-      "top3Rate": 81.0,
-      "top5Rate": 85.7,
+      "top3Rate": 57.1,
+      "top5Rate": 57.1,
       "avgPitLapError": 7.0
     }
   ],
@@ -2277,10 +2277,10 @@
           "error": 14
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 5,
-      "closestMatchRank": 5,
-      "closestMatchName": "1-stop MEDIUM\u2192HARD (33/23)"
+      "actualStrategyRankByStops": 2,
+      "actualStrategyRankByCompounds": 2,
+      "closestMatchRank": 2,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (22/34)"
     },
     {
       "season": 2025,
@@ -2321,9 +2321,9 @@
           "error": 0
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 3,
-      "closestMatchRank": 3,
+      "actualStrategyRankByStops": 24,
+      "actualStrategyRankByCompounds": 29,
+      "closestMatchRank": 29,
       "closestMatchName": "1-stop MEDIUM\u2192HARD (29/24)"
     },
     {
@@ -2367,10 +2367,10 @@
           "error": 8
         }
       ],
-      "actualStrategyRankByStops": 5,
-      "actualStrategyRankByCompounds": 45,
-      "closestMatchRank": 45,
-      "closestMatchName": "2-stop SOFT\u2192MEDIUM\u2192MEDIUM (19/17/21)"
+      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByCompounds": 40,
+      "closestMatchRank": 40,
+      "closestMatchName": "2-stop SOFT\u2192MEDIUM\u2192MEDIUM (17/19/21)"
     },
     {
       "season": 2025,
@@ -2411,10 +2411,10 @@
           "error": 1
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 1,
-      "closestMatchRank": 1,
-      "closestMatchName": "1-stop MEDIUM\u2192HARD (30/20)"
+      "actualStrategyRankByStops": 2,
+      "actualStrategyRankByCompounds": 4,
+      "closestMatchRank": 4,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (20/30)"
     },
     {
       "season": 2025,
@@ -2455,9 +2455,9 @@
           "error": 1
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 3,
-      "closestMatchRank": 3,
+      "actualStrategyRankByStops": 29,
+      "actualStrategyRankByCompounds": 38,
+      "closestMatchRank": 38,
       "closestMatchName": "1-stop MEDIUM\u2192HARD (31/26)"
     },
     {
@@ -2501,9 +2501,9 @@
           "error": 2
         }
       ],
-      "actualStrategyRankByStops": 6,
+      "actualStrategyRankByStops": 1,
       "actualStrategyRankByCompounds": null,
-      "closestMatchRank": 6,
+      "closestMatchRank": 5,
       "closestMatchName": "2-stop HARD\u2192MEDIUM\u2192SOFT (22/18/23)"
     },
     {
@@ -2556,7 +2556,7 @@
       ],
       "actualStrategyRankByStops": 1,
       "actualStrategyRankByCompounds": null,
-      "closestMatchRank": 1,
+      "closestMatchRank": 6,
       "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192SOFT (23/27/28)"
     },
     {
@@ -2604,8 +2604,8 @@
       ],
       "actualStrategyRankByStops": null,
       "actualStrategyRankByCompounds": null,
-      "closestMatchRank": 1,
-      "closestMatchName": "1-stop SOFT\u2192MEDIUM (36/30)"
+      "closestMatchRank": 4,
+      "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192SOFT (19/23/24)"
     },
     {
       "season": 2025,
@@ -2697,9 +2697,9 @@
           "error": 13
         }
       ],
-      "actualStrategyRankByStops": 2,
-      "actualStrategyRankByCompounds": 2,
-      "closestMatchRank": 2,
+      "actualStrategyRankByStops": 3,
+      "actualStrategyRankByCompounds": 4,
+      "closestMatchRank": 4,
       "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192MEDIUM (24/21/26)"
     },
     {
@@ -2786,10 +2786,10 @@
           "error": 1
         }
       ],
-      "actualStrategyRankByStops": 1,
+      "actualStrategyRankByStops": 3,
       "actualStrategyRankByCompounds": null,
-      "closestMatchRank": 2,
-      "closestMatchName": "1-stop MEDIUM\u2192HARD (26/18)"
+      "closestMatchRank": 3,
+      "closestMatchName": "1-stop SOFT\u2192MEDIUM (22/22)"
     },
     {
       "season": 2025,
@@ -2830,10 +2830,10 @@
           "error": 7
         }
       ],
-      "actualStrategyRankByStops": 3,
-      "actualStrategyRankByCompounds": 4,
-      "closestMatchRank": 4,
-      "closestMatchName": "1-stop MEDIUM\u2192HARD (38/32)"
+      "actualStrategyRankByStops": 20,
+      "actualStrategyRankByCompounds": 20,
+      "closestMatchRank": 20,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (28/42)"
     },
     {
       "season": 2025,
@@ -2921,9 +2921,9 @@
         }
       ],
       "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 1,
-      "closestMatchRank": 1,
-      "closestMatchName": "1-stop MEDIUM\u2192HARD (26/27)"
+      "actualStrategyRankByCompounds": 2,
+      "closestMatchRank": 2,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (21/32)"
     },
     {
       "season": 2025,
@@ -2964,9 +2964,9 @@
           "error": 15
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 1,
-      "closestMatchRank": 1,
+      "actualStrategyRankByStops": 7,
+      "actualStrategyRankByCompounds": 7,
+      "closestMatchRank": 7,
       "closestMatchName": "1-stop HARD\u2192MEDIUM (22/29)"
     },
     {
@@ -3008,10 +3008,10 @@
           "error": 6
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 5,
-      "closestMatchRank": 5,
-      "closestMatchName": "1-stop MEDIUM\u2192HARD (31/31)"
+      "actualStrategyRankByStops": 48,
+      "actualStrategyRankByCompounds": 50,
+      "closestMatchRank": 50,
+      "closestMatchName": "1-stop MEDIUM\u2192HARD (24/38)"
     },
     {
       "season": 2025,
@@ -3053,9 +3053,9 @@
         }
       ],
       "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": null,
-      "closestMatchRank": 1,
-      "closestMatchName": "1-stop SOFT\u2192MEDIUM (28/28)"
+      "actualStrategyRankByCompounds": 37,
+      "closestMatchRank": 37,
+      "closestMatchName": "1-stop MEDIUM\u2192SOFT (28/28)"
     },
     {
       "season": 2025,
@@ -3096,10 +3096,10 @@
           "error": 5
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 2,
-      "closestMatchRank": 2,
-      "closestMatchName": "1-stop SOFT\u2192MEDIUM (42/29)"
+      "actualStrategyRankByStops": 20,
+      "actualStrategyRankByCompounds": 61,
+      "closestMatchRank": 61,
+      "closestMatchName": "1-stop SOFT\u2192MEDIUM (28/43)"
     },
     {
       "season": 2025,
@@ -3151,8 +3151,8 @@
       ],
       "actualStrategyRankByStops": 1,
       "actualStrategyRankByCompounds": null,
-      "closestMatchRank": 1,
-      "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192SOFT (24/21/26)"
+      "closestMatchRank": 6,
+      "closestMatchName": "2-stop HARD\u2192MEDIUM\u2192SOFT (23/23/25)"
     },
     {
       "season": 2025,
@@ -3193,9 +3193,9 @@
           "error": 0
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 4,
-      "closestMatchRank": 4,
+      "actualStrategyRankByStops": 9,
+      "actualStrategyRankByCompounds": 9,
+      "closestMatchRank": 9,
       "closestMatchName": "1-stop MEDIUM\u2192HARD (22/28)"
     },
     {
@@ -3246,9 +3246,9 @@
           "error": 1
         }
       ],
-      "actualStrategyRankByStops": 7,
+      "actualStrategyRankByStops": 18,
       "actualStrategyRankByCompounds": null,
-      "closestMatchRank": 8,
+      "closestMatchRank": 20,
       "closestMatchName": "2-stop MEDIUM\u2192HARD\u2192SOFT (11/22/24)"
     },
     {
@@ -3290,9 +3290,9 @@
           "error": 8
         }
       ],
-      "actualStrategyRankByStops": 1,
-      "actualStrategyRankByCompounds": 2,
-      "closestMatchRank": 2,
+      "actualStrategyRankByStops": 2,
+      "actualStrategyRankByCompounds": 18,
+      "closestMatchRank": 18,
       "closestMatchName": "1-stop MEDIUM\u2192HARD (31/27)"
     }
   ]

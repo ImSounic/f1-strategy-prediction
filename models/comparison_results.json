@@ -67,7 +67,7 @@
           "test_size": 801
         }
       ],
-      "train_time": 1.6609551906585693,
+      "train_time": 2.4418439865112305,
       "best_params": {
         "ridge__alpha": 1000.0
       },
@@ -111,7 +111,7 @@
           "test_size": 801
         }
       ],
-      "train_time": 3.226134777069092,
+      "train_time": 7.002722978591919,
       "best_params": {
         "colsample_bytree": 0.9868777594207296,
         "gamma": 0.029210748185657155,
@@ -185,7 +185,7 @@
           "test_size": 801
         }
       ],
-      "train_time": 35.91974496841431,
+      "train_time": 50.21198511123657,
       "best_params": {
         "mlp__alpha": "0.0015375920235481753",
         "mlp__batch_size": "64",
