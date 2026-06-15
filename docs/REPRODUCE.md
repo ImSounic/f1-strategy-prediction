@@ -82,16 +82,19 @@ The HPC value is **unattended batch jobs**, not GPU power (this workload is
 CPU-bound). Your cluster caps you at **2 parallel sbatch jobs**, which the RL
 array script already respects.
 
+The HPC uses **conda** (the env spec is `environment.yml`).
+
 ```bash
 git clone <repo-url> && cd f1-strategy-prediction
 
-# 1. Environment WITH the RL stack
+# 1. Environment WITH the RL stack (conda)
 #    (module load first if your cluster requires it)
-# module load python/3.10
-make setup-rl                       # core + torch + stable-baselines3
-#   For a smaller CPU-only torch:  bash scripts/setup_env.sh --rl --cpu-torch
-source venv/bin/activate
+# module load miniconda3
+conda env create -f environment.yml     # creates env "f1-strategy" (full stack)
+conda activate f1-strategy
 python scripts/verify_setup.py
+#   Update later with:  conda env update -f environment.yml --prune
+#   CPU-only torch:     pip install torch --index-url https://download.pytorch.org/whl/cpu
 
 # 2. Train all 24 PPO agents as a capped array job (2 at a time)
 sbatch scripts/hpc/train_rl.sbatch

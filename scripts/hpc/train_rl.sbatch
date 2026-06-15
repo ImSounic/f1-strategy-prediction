@@ -40,9 +40,10 @@ TIMESTEPS="${TIMESTEPS:-500000}"
 cd "$SLURM_SUBMIT_DIR"
 mkdir -p logs
 
-# Load your cluster's Python module if needed, then the project venv.
-# module load python/3.10
-source venv/bin/activate
+# Activate the conda env (adjust module name to your cluster).
+# module load miniconda3
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate "${CONDA_ENV:-f1-strategy}"
 
 echo "▸ Task $SLURM_ARRAY_TASK_ID → circuit=$CIRCUIT season=$SEASON timesteps=$TIMESTEPS"
 echo "▸ Node: $(hostname)  CPUs: ${SLURM_CPUS_PER_TASK:-?}"

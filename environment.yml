@@ -1,0 +1,21 @@
+# Conda environment for the HPC cluster (and anywhere conda is preferred).
+#
+#   module load miniconda3            # or anaconda3 — match your cluster
+#   conda env create -f environment.yml
+#   conda activate f1-strategy
+#   python scripts/verify_setup.py
+#
+# This installs the FULL stack (core + reinforcement learning) since HPC is
+# where the PPO agents train. torch will pull a CUDA build by default, which
+# is fine on the L40S nodes. For a CPU-only torch, see docs/REPRODUCE.md.
+#
+# Deps are installed via pip (reusing the requirements files) so there is a
+# single source of truth and no conda/pip version drift.
+name: f1-strategy
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -r requirements-rl.txt   # pulls in requirements.txt via its own -r
