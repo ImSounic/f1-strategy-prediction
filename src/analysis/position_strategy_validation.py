@@ -30,6 +30,8 @@ from src.simulation.regulation_profiles import get_profile
 from src.analysis.position_validation import load_config, reconstruct_field
 from src.analysis.position_strategy import dedupe_by_sequence, argmin_by
 from src.analysis.strategy_match import score_race
+from src.simulation.compound_prior import CompoundPrior
+from src.analysis.strategy_validation_rolling import _build_temporal_prior
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s",
                     datefmt="%H:%M:%S")
@@ -66,7 +68,7 @@ def _score_pick(pick, real):
     return bool(s["stop_match"]), bool(s["strategy_exact"])
 
 
-def evaluate_race(season, rnd, field, drivers, circuit, n_sims, profile):
+def evaluate_race(season, rnd, field, drivers, circuit, n_sims, profile, prior=None):
     code_to_driver = {d.code: d for d in drivers}
     field = [f for f in field if f["code"] in code_to_driver]
     winners = [f for f in field if f["finish"] == 1]
@@ -88,17 +90,36 @@ def evaluate_race(season, rnd, field, drivers, circuit, n_sims, profile):
     time_pick = argmin_by(stats, "mean_time")
     pos_pick = argmin_by(stats, "mean_pos")
 
+    # Position + compound prior: rerank candidates (best position first) through
+    # the historical prior, which fixes compound choice within the stop tier.
+    pos_prior_pick = pos_pick
+    if prior is not None and stats:
+        ranked = sorted(stats, key=lambda d: d["mean_pos"])
+        mc_results = [{
+            "compound_sequence": " → ".join(d["seq"]),
+            "num_stops": d["num_stops"],
+            "median_time": d["mean_pos"],
+            "_seq": d["seq"],
+        } for d in ranked]
+        reranked = prior.rerank_strategies(mc_results, circuit.circuit_key, blend_weight=0.3)
+        if reranked:
+            top = reranked[0]
+            pos_prior_pick = {"seq": top["_seq"], "num_stops": top["num_stops"]}
+
     real = {"compounds": [n for n, _ in winner["stints"]],
             "n_stops": len(winner["stints"]) - 1}
     t_stop, t_exact = _score_pick(time_pick, real)
     p_stop, p_exact = _score_pick(pos_pick, real)
+    pp_stop, pp_exact = _score_pick(pos_prior_pick, real)
 
     return {
         "season": season, "round": int(rnd), "winner": winner["code"],
         "actual_seq": real["compounds"], "actual_stops": real["n_stops"],
         "time_pick_seq": time_pick["seq"], "pos_pick_seq": pos_pick["seq"],
+        "pos_prior_pick_seq": pos_prior_pick["seq"],
         "time_stop_match": t_stop, "time_strat_exact": t_exact,
         "pos_stop_match": p_stop, "pos_strat_exact": p_exact,
+        "pos_prior_stop_match": pp_stop, "pos_prior_strat_exact": pp_exact,
     }
 
 
@@ -114,6 +135,8 @@ def _rates(races):
         "time_strat_rate": rate("time_strat_exact"),
         "pos_stop_rate": rate("pos_stop_match"),
         "pos_strat_rate": rate("pos_strat_exact"),
+        "pos_prior_stop_rate": rate("pos_prior_stop_match"),
+        "pos_prior_strat_rate": rate("pos_prior_strat_exact"),
     }
 
 
@@ -135,6 +158,19 @@ def run(seasons, n_sims, config_path="configs/config.yaml"):
     for season in seasons:
         profile = get_profile(season)
         drivers, _teams, overtaking = load_drivers(f"configs/drivers_{season}.json")
+
+        # Temporal compound prior from EARLIER seasons only (no leakage).
+        prior_seasons = [s for s in (2022, 2023, 2024, 2025) if s < season]
+        prior = None
+        if prior_seasons:
+            prior = _build_temporal_prior(
+                Path("data/features"),
+                Path(raw["supplementary"]) / "pirelli_circuit_characteristics.csv",
+                Path(raw["jolpica"]) / "results.parquet",
+                prior_seasons,
+            )
+            logger.info(f"  [{season}] compound prior from seasons {prior_seasons}")
+
         rounds = sorted(results_df[results_df["season"] == season]["round"].unique())
         races = []
         for rnd in rounds:
@@ -149,14 +185,15 @@ def run(seasons, n_sims, config_path="configs/config.yaml"):
             except Exception as e:  # noqa: BLE001
                 logger.warning(f"  {season} r{rnd} ({ckey}): circuit load failed: {e}")
                 continue
-            row = evaluate_race(season, rnd, field, drivers, circuit, n_sims, profile)
+            row = evaluate_race(season, rnd, field, drivers, circuit, n_sims, profile, prior)
             if row is None:
                 continue
             row["circuit"] = ckey
             races.append(row)
             logger.info(f"  {season} r{rnd:>2} {ckey:<14} "
-                        f"time[stop={row['time_stop_match']:d} exact={row['time_strat_exact']:d}] "
-                        f"pos[stop={row['pos_stop_match']:d} exact={row['pos_strat_exact']:d}]")
+                        f"time[s={row['time_stop_match']:d} e={row['time_strat_exact']:d}] "
+                        f"pos[s={row['pos_stop_match']:d} e={row['pos_strat_exact']:d}] "
+                        f"pos+prior[s={row['pos_prior_stop_match']:d} e={row['pos_prior_strat_exact']:d}]")
         season_reports.append({"season": season, **_rates(races), "races": races})
         all_races.extend(races)
         logger.info(f"=== {season}: {_rates(races)}")
