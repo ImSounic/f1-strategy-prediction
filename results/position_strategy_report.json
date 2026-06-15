@@ -1,0 +1,2058 @@
+{
+  "methodology": {
+    "description": "Per dry race, evaluate deduped candidate strategies for the winner (field on real strategies); pick by min expected time vs min expected finishing position from the same sim runs; score each pick vs the winner's actual strategy.",
+    "n_sims": 15,
+    "caveat": "time objective uses in-race target time (proxy); both picks share the same candidate set, equally capped by candidate coverage."
+  },
+  "overall": {
+    "n_races": 81,
+    "time_stop_rate": 0.519,
+    "time_strat_rate": 0.025,
+    "pos_stop_rate": 0.58,
+    "pos_strat_rate": 0.012
+  },
+  "seasons": [
+    {
+      "season": 2022,
+      "n_races": 18,
+      "time_stop_rate": 0.5,
+      "time_strat_rate": 0.056,
+      "pos_stop_rate": 0.5,
+      "pos_strat_rate": 0.056,
+      "races": [
+        {
+          "season": 2022,
+          "round": 1,
+          "winner": "LEC",
+          "actual_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 3,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "bahrain"
+        },
+        {
+          "season": 2022,
+          "round": 2,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "jeddah"
+        },
+        {
+          "season": 2022,
+          "round": 3,
+          "winner": "LEC",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "albert_park"
+        },
+        {
+          "season": 2022,
+          "round": 5,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "miami"
+        },
+        {
+          "season": 2022,
+          "round": 6,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "actual_stops": 3,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "barcelona"
+        },
+        {
+          "season": 2022,
+          "round": 8,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "baku"
+        },
+        {
+          "season": 2022,
+          "round": 9,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "montreal"
+        },
+        {
+          "season": 2022,
+          "round": 10,
+          "winner": "SAI",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "SOFT"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "silverstone"
+        },
+        {
+          "season": 2022,
+          "round": 11,
+          "winner": "LEC",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 3,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "spielberg"
+        },
+        {
+          "season": 2022,
+          "round": 12,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "paul_ricard"
+        },
+        {
+          "season": 2022,
+          "round": 13,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "hungaroring"
+        },
+        {
+          "season": 2022,
+          "round": 14,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "spa"
+        },
+        {
+          "season": 2022,
+          "round": 15,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "HARD",
+            "SOFT"
+          ],
+          "actual_stops": 3,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "zandvoort"
+        },
+        {
+          "season": 2022,
+          "round": 16,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": true,
+          "pos_stop_match": true,
+          "pos_strat_exact": true,
+          "circuit": "monza"
+        },
+        {
+          "season": 2022,
+          "round": 19,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "cota"
+        },
+        {
+          "season": 2022,
+          "round": 20,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "mexico"
+        },
+        {
+          "season": 2022,
+          "round": 21,
+          "winner": "RUS",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "interlagos"
+        },
+        {
+          "season": 2022,
+          "round": 22,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "yas_marina"
+        }
+      ]
+    },
+    {
+      "season": 2023,
+      "n_races": 20,
+      "time_stop_rate": 0.45,
+      "time_strat_rate": 0.0,
+      "pos_stop_rate": 0.7,
+      "pos_strat_rate": 0.0,
+      "races": [
+        {
+          "season": 2023,
+          "round": 1,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "SOFT",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "bahrain"
+        },
+        {
+          "season": 2023,
+          "round": 2,
+          "winner": "PER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "jeddah"
+        },
+        {
+          "season": 2023,
+          "round": 3,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "albert_park"
+        },
+        {
+          "season": 2023,
+          "round": 4,
+          "winner": "PER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "baku"
+        },
+        {
+          "season": 2023,
+          "round": 5,
+          "winner": "VER",
+          "actual_seq": [
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "miami"
+        },
+        {
+          "season": 2023,
+          "round": 7,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "SOFT"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "barcelona"
+        },
+        {
+          "season": 2023,
+          "round": 8,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "montreal"
+        },
+        {
+          "season": 2023,
+          "round": 9,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 3,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "spielberg"
+        },
+        {
+          "season": 2023,
+          "round": 10,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "silverstone"
+        },
+        {
+          "season": 2023,
+          "round": 11,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "hungaroring"
+        },
+        {
+          "season": 2023,
+          "round": 12,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "spa"
+        },
+        {
+          "season": 2023,
+          "round": 14,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "monza"
+        },
+        {
+          "season": 2023,
+          "round": 15,
+          "winner": "SAI",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "singapore"
+        },
+        {
+          "season": 2023,
+          "round": 16,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "suzuka"
+        },
+        {
+          "season": 2023,
+          "round": 17,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "MEDIUM",
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 3,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "lusail"
+        },
+        {
+          "season": 2023,
+          "round": 18,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "cota"
+        },
+        {
+          "season": 2023,
+          "round": 19,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "mexico"
+        },
+        {
+          "season": 2023,
+          "round": 20,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "interlagos"
+        },
+        {
+          "season": 2023,
+          "round": 21,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "las_vegas"
+        },
+        {
+          "season": 2023,
+          "round": 22,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "yas_marina"
+        }
+      ]
+    },
+    {
+      "season": 2024,
+      "n_races": 22,
+      "time_stop_rate": 0.591,
+      "time_strat_rate": 0.0,
+      "pos_stop_rate": 0.545,
+      "pos_strat_rate": 0.0,
+      "races": [
+        {
+          "season": 2024,
+          "round": 1,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "HARD",
+            "SOFT"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "bahrain"
+        },
+        {
+          "season": 2024,
+          "round": 2,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "jeddah"
+        },
+        {
+          "season": 2024,
+          "round": 3,
+          "winner": "SAI",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "albert_park"
+        },
+        {
+          "season": 2024,
+          "round": 4,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "suzuka"
+        },
+        {
+          "season": 2024,
+          "round": 5,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "shanghai"
+        },
+        {
+          "season": 2024,
+          "round": 6,
+          "winner": "NOR",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "miami"
+        },
+        {
+          "season": 2024,
+          "round": 7,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "imola"
+        },
+        {
+          "season": 2024,
+          "round": 8,
+          "winner": "LEC",
+          "actual_seq": [
+            "HARD"
+          ],
+          "actual_stops": 0,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "monaco"
+        },
+        {
+          "season": 2024,
+          "round": 10,
+          "winner": "VER",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "barcelona"
+        },
+        {
+          "season": 2024,
+          "round": 11,
+          "winner": "RUS",
+          "actual_seq": [
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "spielberg"
+        },
+        {
+          "season": 2024,
+          "round": 12,
+          "winner": "HAM",
+          "actual_seq": [
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "silverstone"
+        },
+        {
+          "season": 2024,
+          "round": 13,
+          "winner": "PIA",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "hungaroring"
+        },
+        {
+          "season": 2024,
+          "round": 14,
+          "winner": "HAM",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "spa"
+        },
+        {
+          "season": 2024,
+          "round": 15,
+          "winner": "NOR",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "zandvoort"
+        },
+        {
+          "season": 2024,
+          "round": 16,
+          "winner": "LEC",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "monza"
+        },
+        {
+          "season": 2024,
+          "round": 17,
+          "winner": "PIA",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "baku"
+        },
+        {
+          "season": 2024,
+          "round": 18,
+          "winner": "NOR",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "singapore"
+        },
+        {
+          "season": 2024,
+          "round": 19,
+          "winner": "LEC",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "cota"
+        },
+        {
+          "season": 2024,
+          "round": 20,
+          "winner": "SAI",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "mexico"
+        },
+        {
+          "season": 2024,
+          "round": 22,
+          "winner": "RUS",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "las_vegas"
+        },
+        {
+          "season": 2024,
+          "round": 23,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "lusail"
+        },
+        {
+          "season": 2024,
+          "round": 24,
+          "winner": "NOR",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "yas_marina"
+        }
+      ]
+    },
+    {
+      "season": 2025,
+      "n_races": 21,
+      "time_stop_rate": 0.524,
+      "time_strat_rate": 0.048,
+      "pos_stop_rate": 0.571,
+      "pos_strat_rate": 0.0,
+      "races": [
+        {
+          "season": 2025,
+          "round": 2,
+          "winner": "PIA",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "shanghai"
+        },
+        {
+          "season": 2025,
+          "round": 3,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "suzuka"
+        },
+        {
+          "season": 2025,
+          "round": 4,
+          "winner": "PIA",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "bahrain"
+        },
+        {
+          "season": 2025,
+          "round": 5,
+          "winner": "PIA",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "jeddah"
+        },
+        {
+          "season": 2025,
+          "round": 7,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "imola"
+        },
+        {
+          "season": 2025,
+          "round": 8,
+          "winner": "NOR",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "monaco"
+        },
+        {
+          "season": 2025,
+          "round": 9,
+          "winner": "PIA",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM",
+            "SOFT",
+            "SOFT"
+          ],
+          "actual_stops": 3,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "barcelona"
+        },
+        {
+          "season": 2025,
+          "round": 10,
+          "winner": "RUS",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "montreal"
+        },
+        {
+          "season": 2025,
+          "round": 11,
+          "winner": "NOR",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "spielberg"
+        },
+        {
+          "season": 2025,
+          "round": 13,
+          "winner": "PIA",
+          "actual_seq": [
+            "MEDIUM"
+          ],
+          "actual_stops": 0,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "spa"
+        },
+        {
+          "season": 2025,
+          "round": 14,
+          "winner": "NOR",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "hungaroring"
+        },
+        {
+          "season": 2025,
+          "round": 15,
+          "winner": "PIA",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "zandvoort"
+        },
+        {
+          "season": 2025,
+          "round": 16,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "monza"
+        },
+        {
+          "season": 2025,
+          "round": 17,
+          "winner": "VER",
+          "actual_seq": [
+            "HARD",
+            "MEDIUM"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "baku"
+        },
+        {
+          "season": 2025,
+          "round": 18,
+          "winner": "RUS",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "singapore"
+        },
+        {
+          "season": 2025,
+          "round": 19,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "SOFT"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "cota"
+        },
+        {
+          "season": 2025,
+          "round": 20,
+          "winner": "NOR",
+          "actual_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": true,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "mexico"
+        },
+        {
+          "season": 2025,
+          "round": 21,
+          "winner": "NOR",
+          "actual_seq": [
+            "MEDIUM",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "interlagos"
+        },
+        {
+          "season": 2025,
+          "round": 22,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": true,
+          "pos_strat_exact": false,
+          "circuit": "las_vegas"
+        },
+        {
+          "season": 2025,
+          "round": 23,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 2,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": true,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "lusail"
+        },
+        {
+          "season": 2025,
+          "round": 24,
+          "winner": "VER",
+          "actual_seq": [
+            "MEDIUM",
+            "HARD"
+          ],
+          "actual_stops": 1,
+          "time_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "pos_pick_seq": [
+            "SOFT",
+            "SOFT",
+            "MEDIUM"
+          ],
+          "time_stop_match": false,
+          "time_strat_exact": false,
+          "pos_stop_match": false,
+          "pos_strat_exact": false,
+          "circuit": "yas_marina"
+        }
+      ]
+    }
+  ]
+}
