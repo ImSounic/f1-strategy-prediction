@@ -25,19 +25,16 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 
+from src.simulation.regulation_profiles import RegulationProfile, DEFAULT_PROFILE
+
 # ── Constants ──────────────────────────────────────────────────
-
-COMPOUNDS = ["SOFT", "MEDIUM", "HARD"]
-COMPOUND_DEG_BASE = {"SOFT": 0.09, "MEDIUM": 0.06, "HARD": 0.04}
-COMPOUND_CLIFF = {"SOFT": 20, "MEDIUM": 30, "HARD": 40}
-
-# Base pace reference (same as RL env)
-BASE_PACE = 90.0
-START_FUEL_KG = 110.0
-FUEL_EFFECT_PER_KG = 0.035
-SC_PACE_FACTOR = 1.40
-VSC_PACE_FACTOR = 1.20
-PIT_STOP_STATIONARY = 2.5  # seconds stationary (added on top of pit_loss)
+# Era-specific physics now live in RegulationProfile (see regulation_profiles.py).
+# These module-level names are kept for backward compatibility (e.g.
+# precompute_scenarios imports COMPOUND_DEG_BASE) and derive from the default
+# (2022-25) profile so there is a single source of truth.
+COMPOUNDS = ["SOFT", "MEDIUM", "HARD"]            # compound NAMES (era-independent)
+COMPOUND_DEG_BASE = DEFAULT_PROFILE.compound_deg_base
+COMPOUND_CLIFF = DEFAULT_PROFILE.compound_cliff
 
 
 @dataclass
@@ -168,6 +165,7 @@ class MultiCarRaceSim:
         target_driver_idx: int,
         target_strategy: Strategy,
         greedy_sc: bool = True,
+        profile: RegulationProfile = None,
     ):
         self.circuit = circuit
         self.drivers = drivers
@@ -176,6 +174,7 @@ class MultiCarRaceSim:
         self.target_idx = target_driver_idx
         self.target_strategy = target_strategy
         self.greedy_sc = greedy_sc
+        self.profile = profile if profile is not None else DEFAULT_PROFILE
         
         # SC probabilities per lap
         tl = circuit.total_laps
@@ -189,11 +188,11 @@ class MultiCarRaceSim:
         )
         
         # Fuel
-        self.burn_rate = START_FUEL_KG / tl
+        self.burn_rate = self.profile.start_fuel_kg / tl
     
     def _get_deg_rate(self, compound: str, driver: DriverConfig, circuit: CircuitParams) -> float:
         """Get degradation rate, scaled by driver tyre management."""
-        base = circuit.deg_rates.get(compound, COMPOUND_DEG_BASE[compound])
+        base = circuit.deg_rates.get(compound, self.profile.compound_deg_base[compound])
         # Better tyre management (higher rating) = lower deg
         driver_factor = 1.0 + 0.3 * (1.0 - driver.tyre_management)
         return base * driver_factor
@@ -212,35 +211,37 @@ class MultiCarRaceSim:
         """Compute lap time for a single car."""
         
         if sc_active:
-            return BASE_PACE * SC_PACE_FACTOR
+            return self.profile.base_pace * self.profile.sc_pace_factor
         if vsc_active:
-            return BASE_PACE * VSC_PACE_FACTOR
-        
+            return self.profile.base_pace * self.profile.vsc_pace_factor
+
         # Base + driver delta
-        lap_time = BASE_PACE + driver.pace_delta
-        
+        lap_time = self.profile.base_pace + driver.pace_delta
+
         # Fuel effect
-        fuel_remaining = max(0, START_FUEL_KG - self.burn_rate * (lap - 1))
-        lap_time += fuel_remaining * FUEL_EFFECT_PER_KG
-        
+        fuel_remaining = max(0, self.profile.start_fuel_kg - self.burn_rate * (lap - 1))
+        lap_time += fuel_remaining * self.profile.fuel_effect_per_kg
+
         # Tyre degradation (quadratic model matching RL env)
         deg_rate = self._get_deg_rate(car.tyre_compound, driver, self.circuit)
         tyre_deg = deg_rate * car.tyre_age + 0.002 * (car.tyre_age ** 1.3)
         lap_time += tyre_deg
-        
-        # Dirty air penalty (within 1.5s of car ahead)
-        if dirty_air and gap_to_ahead < 1.5:
-            lap_time += 0.15 * (1.5 - gap_to_ahead) / 1.5
-        
-        # DRS benefit (within 1.0s of car ahead)
-        if gap_to_ahead > 0 and gap_to_ahead < 1.0:
-            drs_benefit = 0.3 * self.circuit.overtaking_difficulty
+
+        # Dirty air penalty (within the era's dirty-air window of car ahead)
+        if dirty_air and gap_to_ahead < self.profile.dirty_air_window:
+            lap_time += self.profile.dirty_air_penalty * (
+                self.profile.dirty_air_window - gap_to_ahead
+            ) / self.profile.dirty_air_window
+
+        # Overtaking aid (DRS / 2026 override) within the era's window of car ahead
+        if 0 < gap_to_ahead < self.profile.drs_window:
+            drs_benefit = self.profile.overtake_aid_benefit * self.circuit.overtaking_difficulty
             lap_time -= drs_benefit
-        
+
         # Random variation
-        lap_time += rng.normal(0, 0.3)
-        
-        return max(lap_time, BASE_PACE * 0.95)  # floor
+        lap_time += rng.normal(0, self.profile.lap_time_noise_std)
+
+        return max(lap_time, self.profile.base_pace * 0.95)  # floor
     
     def _should_pit_strategy(self, car: CarState, current_lap: int) -> bool:
         """Check if car should pit according to its fixed strategy."""
@@ -271,7 +272,7 @@ class MultiCarRaceSim:
         
         # Count how many cars around us are also pitting under SC
         # Heuristic: pit if tyre age is above threshold
-        cliff = COMPOUND_CLIFF.get(car.tyre_compound, 30)
+        cliff = self.profile.compound_cliff.get(car.tyre_compound, 30)
         tyre_urgency = car.tyre_age / cliff  # 0-1+, >0.5 means past halfway
         
         # Higher urgency = more likely to pit
@@ -544,7 +545,8 @@ class MultiCarRaceSim:
                         target_history["pit_laps"].append(lap)
                 
                 # ── Lap time ──
-                dirty_air = gaps[i] < 1.5 and not sc_active and not vsc_active
+                dirty_air = (gaps[i] < self.profile.dirty_air_window
+                             and not sc_active and not vsc_active)
                 lap_time = self._compute_lap_time(
                     car, driver, lap, sc_active, vsc_active, rng,
                     gap_to_ahead=gaps[i], dirty_air=dirty_air,
