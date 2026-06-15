@@ -31,7 +31,11 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(
                     datefmt="%H:%M:%S")
 logger = logging.getLogger(__name__)
 
-DRY_COVERAGE_MIN = 0.85
+# Stint laps naturally fall ~15-20% short of race distance (lap 1, pit in/out,
+# and cleaned/SC laps are excluded from stint_features), so dry races cluster
+# ~0.73-0.95 coverage while genuinely wet races (INTER/WET laps dropped) sit
+# below ~0.66. 0.70 separates them cleanly without discarding valid dry races.
+DRY_COVERAGE_MIN = 0.70
 
 
 def load_config(path="configs/config.yaml") -> dict:
