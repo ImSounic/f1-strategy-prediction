@@ -1,0 +1,483 @@
+{
+  "methodology": {
+    "description": "Real grid + real per-car strategies fed to MultiCarRaceSim; predicted vs actual finishing order over classified finishers, dry races.",
+    "n_sims": 30,
+    "dry_coverage_min": 0.85,
+    "limitations": [
+      "no DNF/retirement model (finishers only)",
+      "wet races skipped via stint coverage",
+      "grid from results.grid; season-aggregate driver form"
+    ]
+  },
+  "overall": {
+    "n_races": 54,
+    "mean_spearman": 0.7129799580650974,
+    "pooled_position_mae": 3.11534795042898
+  },
+  "seasons": [
+    {
+      "season": 2022,
+      "n_races": 4,
+      "mean_spearman": 0.7086466165413534,
+      "pooled_position_mae": 3.075,
+      "races": [
+        {
+          "spearman": 0.7383458646616541,
+          "position_mae": 2.6,
+          "n": 20,
+          "season": 2022,
+          "round": 6,
+          "circuit": "barcelona"
+        },
+        {
+          "spearman": 0.7548872180451128,
+          "position_mae": 3.0,
+          "n": 20,
+          "season": 2022,
+          "round": 13,
+          "circuit": "hungaroring"
+        },
+        {
+          "spearman": 0.7563909774436091,
+          "position_mae": 3.1,
+          "n": 20,
+          "season": 2022,
+          "round": 20,
+          "circuit": "mexico"
+        },
+        {
+          "spearman": 0.5849624060150376,
+          "position_mae": 3.6,
+          "n": 20,
+          "season": 2022,
+          "round": 22,
+          "circuit": "yas_marina"
+        }
+      ]
+    },
+    {
+      "season": 2023,
+      "n_races": 15,
+      "mean_spearman": 0.6779618163054695,
+      "pooled_position_mae": 3.296551724137931,
+      "races": [
+        {
+          "spearman": 0.518796992481203,
+          "position_mae": 4.2,
+          "n": 20,
+          "season": 2023,
+          "round": 1,
+          "circuit": "bahrain"
+        },
+        {
+          "spearman": 0.6887218045112782,
+          "position_mae": 3.7,
+          "n": 20,
+          "season": 2023,
+          "round": 2,
+          "circuit": "jeddah"
+        },
+        {
+          "spearman": 0.8150375939849624,
+          "position_mae": 2.9,
+          "n": 20,
+          "season": 2023,
+          "round": 4,
+          "circuit": "baku"
+        },
+        {
+          "spearman": 0.8466165413533835,
+          "position_mae": 2.5,
+          "n": 20,
+          "season": 2023,
+          "round": 5,
+          "circuit": "miami"
+        },
+        {
+          "spearman": 0.6601503759398496,
+          "position_mae": 3.6,
+          "n": 20,
+          "season": 2023,
+          "round": 7,
+          "circuit": "barcelona"
+        },
+        {
+          "spearman": 0.7097744360902256,
+          "position_mae": 2.9,
+          "n": 20,
+          "season": 2023,
+          "round": 8,
+          "circuit": "montreal"
+        },
+        {
+          "spearman": 0.7804511278195488,
+          "position_mae": 2.9,
+          "n": 20,
+          "season": 2023,
+          "round": 10,
+          "circuit": "silverstone"
+        },
+        {
+          "spearman": 0.8080495356037151,
+          "position_mae": 2.6666666666666665,
+          "n": 18,
+          "season": 2023,
+          "round": 11,
+          "circuit": "hungaroring"
+        },
+        {
+          "spearman": 0.707017543859649,
+          "position_mae": 3.1578947368421053,
+          "n": 19,
+          "season": 2023,
+          "round": 12,
+          "circuit": "spa"
+        },
+        {
+          "spearman": 0.7614035087719296,
+          "position_mae": 2.8421052631578947,
+          "n": 19,
+          "season": 2023,
+          "round": 14,
+          "circuit": "monza"
+        },
+        {
+          "spearman": 0.5252837977296181,
+          "position_mae": 4.333333333333333,
+          "n": 18,
+          "season": 2023,
+          "round": 15,
+          "circuit": "singapore"
+        },
+        {
+          "spearman": 0.3172932330827068,
+          "position_mae": 4.7,
+          "n": 20,
+          "season": 2023,
+          "round": 18,
+          "circuit": "cota"
+        },
+        {
+          "spearman": 0.8140350877192981,
+          "position_mae": 2.210526315789474,
+          "n": 19,
+          "season": 2023,
+          "round": 19,
+          "circuit": "mexico"
+        },
+        {
+          "spearman": 0.5220588235294118,
+          "position_mae": 3.8823529411764706,
+          "n": 17,
+          "season": 2023,
+          "round": 20,
+          "circuit": "interlagos"
+        },
+        {
+          "spearman": 0.6947368421052632,
+          "position_mae": 3.0,
+          "n": 20,
+          "season": 2023,
+          "round": 22,
+          "circuit": "yas_marina"
+        }
+      ]
+    },
+    {
+      "season": 2024,
+      "n_races": 19,
+      "mean_spearman": 0.7695248182375443,
+      "pooled_position_mae": 2.869565217391304,
+      "races": [
+        {
+          "spearman": 0.8210526315789474,
+          "position_mae": 2.4,
+          "n": 20,
+          "season": 2024,
+          "round": 1,
+          "circuit": "bahrain"
+        },
+        {
+          "spearman": 0.7526315789473683,
+          "position_mae": 2.8421052631578947,
+          "n": 19,
+          "season": 2024,
+          "round": 2,
+          "circuit": "jeddah"
+        },
+        {
+          "spearman": 0.619298245614035,
+          "position_mae": 3.3684210526315788,
+          "n": 19,
+          "season": 2024,
+          "round": 3,
+          "circuit": "albert_park"
+        },
+        {
+          "spearman": 0.8864809081527347,
+          "position_mae": 1.8888888888888888,
+          "n": 18,
+          "season": 2024,
+          "round": 4,
+          "circuit": "suzuka"
+        },
+        {
+          "spearman": 0.8195488721804511,
+          "position_mae": 2.9,
+          "n": 20,
+          "season": 2024,
+          "round": 6,
+          "circuit": "miami"
+        },
+        {
+          "spearman": 0.8360902255639098,
+          "position_mae": 2.6,
+          "n": 20,
+          "season": 2024,
+          "round": 7,
+          "circuit": "imola"
+        },
+        {
+          "spearman": 0.8911764705882353,
+          "position_mae": 1.75,
+          "n": 16,
+          "season": 2024,
+          "round": 8,
+          "circuit": "monaco"
+        },
+        {
+          "spearman": 0.7969924812030075,
+          "position_mae": 2.7,
+          "n": 20,
+          "season": 2024,
+          "round": 10,
+          "circuit": "barcelona"
+        },
+        {
+          "spearman": 0.4706766917293233,
+          "position_mae": 4.5,
+          "n": 20,
+          "season": 2024,
+          "round": 11,
+          "circuit": "spielberg"
+        },
+        {
+          "spearman": 0.924812030075188,
+          "position_mae": 1.8,
+          "n": 20,
+          "season": 2024,
+          "round": 13,
+          "circuit": "hungaroring"
+        },
+        {
+          "spearman": 0.7353383458646616,
+          "position_mae": 3.0,
+          "n": 20,
+          "season": 2024,
+          "round": 14,
+          "circuit": "spa"
+        },
+        {
+          "spearman": 0.7879699248120301,
+          "position_mae": 3.1,
+          "n": 20,
+          "season": 2024,
+          "round": 15,
+          "circuit": "zandvoort"
+        },
+        {
+          "spearman": 0.849624060150376,
+          "position_mae": 2.5,
+          "n": 20,
+          "season": 2024,
+          "round": 16,
+          "circuit": "monza"
+        },
+        {
+          "spearman": 0.49473684210526314,
+          "position_mae": 4.7,
+          "n": 20,
+          "season": 2024,
+          "round": 17,
+          "circuit": "baku"
+        },
+        {
+          "spearman": 0.8796992481203008,
+          "position_mae": 2.4,
+          "n": 20,
+          "season": 2024,
+          "round": 18,
+          "circuit": "singapore"
+        },
+        {
+          "spearman": 0.8631578947368419,
+          "position_mae": 2.3157894736842106,
+          "n": 19,
+          "season": 2024,
+          "round": 19,
+          "circuit": "cota"
+        },
+        {
+          "spearman": 0.6388028895768834,
+          "position_mae": 3.3333333333333335,
+          "n": 18,
+          "season": 2024,
+          "round": 20,
+          "circuit": "mexico"
+        },
+        {
+          "spearman": 0.8406015037593985,
+          "position_mae": 2.7,
+          "n": 20,
+          "season": 2024,
+          "round": 22,
+          "circuit": "las_vegas"
+        },
+        {
+          "spearman": 0.7122807017543858,
+          "position_mae": 3.473684210526316,
+          "n": 19,
+          "season": 2024,
+          "round": 24,
+          "circuit": "yas_marina"
+        }
+      ]
+    },
+    {
+      "season": 2025,
+      "n_races": 16,
+      "mean_spearman": 0.6797457798909037,
+      "pooled_position_mae": 3.247588424437299,
+      "races": [
+        {
+          "spearman": 0.41353383458646614,
+          "position_mae": 4.3,
+          "n": 20,
+          "season": 2025,
+          "round": 2,
+          "circuit": "shanghai"
+        },
+        {
+          "spearman": 0.9323308270676691,
+          "position_mae": 1.4,
+          "n": 20,
+          "season": 2025,
+          "round": 3,
+          "circuit": "suzuka"
+        },
+        {
+          "spearman": 0.7157894736842105,
+          "position_mae": 3.0,
+          "n": 20,
+          "season": 2025,
+          "round": 4,
+          "circuit": "bahrain"
+        },
+        {
+          "spearman": 0.9690402476780184,
+          "position_mae": 0.8888888888888888,
+          "n": 18,
+          "season": 2025,
+          "round": 5,
+          "circuit": "jeddah"
+        },
+        {
+          "spearman": 0.5428571428571428,
+          "position_mae": 4.3,
+          "n": 20,
+          "season": 2025,
+          "round": 8,
+          "circuit": "monaco"
+        },
+        {
+          "spearman": 0.4045112781954887,
+          "position_mae": 4.5,
+          "n": 20,
+          "season": 2025,
+          "round": 10,
+          "circuit": "montreal"
+        },
+        {
+          "spearman": 0.7303921568627452,
+          "position_mae": 2.4705882352941178,
+          "n": 17,
+          "season": 2025,
+          "round": 11,
+          "circuit": "spielberg"
+        },
+        {
+          "spearman": 0.6481203007518797,
+          "position_mae": 4.0,
+          "n": 20,
+          "season": 2025,
+          "round": 14,
+          "circuit": "hungaroring"
+        },
+        {
+          "spearman": 0.7964912280701753,
+          "position_mae": 2.736842105263158,
+          "n": 19,
+          "season": 2025,
+          "round": 16,
+          "circuit": "monza"
+        },
+        {
+          "spearman": 0.7859649122807016,
+          "position_mae": 2.9473684210526314,
+          "n": 19,
+          "season": 2025,
+          "round": 17,
+          "circuit": "baku"
+        },
+        {
+          "spearman": 0.881203007518797,
+          "position_mae": 2.5,
+          "n": 20,
+          "season": 2025,
+          "round": 18,
+          "circuit": "singapore"
+        },
+        {
+          "spearman": 0.7609022556390977,
+          "position_mae": 2.9,
+          "n": 20,
+          "season": 2025,
+          "round": 19,
+          "circuit": "cota"
+        },
+        {
+          "spearman": 0.7548872180451128,
+          "position_mae": 3.2,
+          "n": 20,
+          "season": 2025,
+          "round": 20,
+          "circuit": "mexico"
+        },
+        {
+          "spearman": 0.23013415892672856,
+          "position_mae": 4.666666666666667,
+          "n": 18,
+          "season": 2025,
+          "round": 22,
+          "circuit": "las_vegas"
+        },
+        {
+          "spearman": 0.7338345864661654,
+          "position_mae": 3.5,
+          "n": 20,
+          "season": 2025,
+          "round": 23,
+          "circuit": "lusail"
+        },
+        {
+          "spearman": 0.5759398496240602,
+          "position_mae": 4.4,
+          "n": 20,
+          "season": 2025,
+          "round": 24,
+          "circuit": "yas_marina"
+        }
+      ]
+    }
+  ]
+}
