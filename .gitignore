@@ -16,6 +16,9 @@ data/raw/fastf1/track_status/
 # Precomputed strategy JSONs (regeneratable)
 results/strategy_*.json
 
+# Driver-config generator review output (promoted copies live in configs/)
+configs/generated/
+
 # IDE / OS
 .vscode/
 .idea/
