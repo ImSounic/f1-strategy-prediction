@@ -59,7 +59,7 @@ source venv/bin/activate
 python scripts/verify_setup.py     # or: make verify
 
 # 3a. FAST PATH — rebuild models + results from committed features
-make all              # prepare → model → simulate → analyze → visualize
+make all              # model → simulate → analyze → visualize (no raw needed)
 
 # 3b. (optional) frontend
 cd frontend && npm install && npm run dev
@@ -68,11 +68,12 @@ cd frontend && npm install && npm run dev
 `make all` skips ingestion. If you only want to confirm existing artifacts work,
 `make verify` alone is enough.
 
-### Full path on JupyterLab (optional)
+### Full path — rebuild from raw (optional)
 ```bash
-make ingest           # ~648 MB download from FastF1 (needs internet; slow)
-make all              # now rebuilds from freshly ingested raw data
+make all-from-raw     # ingest (~648 MB FastF1 download) → prepare → model → … → visualize
 ```
+`make all-from-raw` runs ingestion + feature engineering before modeling. Use it
+only to verify end-to-end reproducibility or after changing the data pipeline.
 
 ---
 

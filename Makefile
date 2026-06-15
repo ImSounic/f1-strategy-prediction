@@ -1,5 +1,5 @@
-.PHONY: all setup setup-rl ingest prepare model simulate analyze visualize \
-        rl-train rl-eval precompute verify clean distclean
+.PHONY: all all-from-raw setup setup-rl ingest prepare model simulate analyze \
+        visualize rl-train rl-eval precompute verify clean distclean
 
 # ════════════════════════════════════════════════════════════════════
 #  F1 Race Strategy Optimizer — Build Pipeline
@@ -16,9 +16,15 @@
 
 PYTHON = python -m
 
-# Full pipeline from committed feature parquets (NO re-ingest, NO RL).
-all: prepare model simulate analyze visualize
-	@echo "✓ Full pipeline complete"
+# Fast path (default): rebuild models + results from the COMMITTED feature
+# parquets. Does NOT run ingest/prepare — those need the gitignored raw laps.
+all: model simulate analyze visualize
+	@echo "✓ Pipeline complete (from committed feature data)"
+
+# Full path: re-download raw data and rebuild EVERYTHING from scratch.
+# Only needed if you changed the data pipeline or want end-to-end repro.
+all-from-raw: ingest prepare model simulate analyze visualize
+	@echo "✓ Full pipeline complete (from raw data)"
 
 # ── Environment ──────────────────────────────────────────────────────
 setup:
