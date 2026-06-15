@@ -1,0 +1,16 @@
+# ── Reinforcement-learning stack (PPO pit-stop agents) ────────────
+# Install on top of the core deps:
+#     pip install -r requirements-rl.txt        (pulls in requirements.txt)
+#
+# torch defaults to a CUDA build on Linux. The RL here is CPU-bound
+# (tiny MLP policy; the bottleneck is environment stepping), so a
+# CPU-only wheel is fine and smaller:
+#     pip install torch --index-url https://download.pytorch.org/whl/cpu
+# Install that first if you want the CPU build, then this file.
+-r requirements.txt
+
+torch>=2.1.0
+gymnasium>=0.29.0
+stable-baselines3>=2.2.0
+sb3-contrib>=2.2.0     # RecurrentPPO (LSTM policy) — used by planned RL upgrades
+tqdm>=4.66.0           # progress bars for training/eval

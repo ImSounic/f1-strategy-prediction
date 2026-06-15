@@ -1,9 +1,24 @@
-# Core ML
+# ── Core ML / data ────────────────────────────────────────────────
 numpy>=1.24.0
 pandas>=2.0.0
-xgboost>=2.0.0
-scikit-learn>=1.3.0
 pyarrow>=14.0.0
+scipy>=1.11.0
+scikit-learn>=1.3.0
+xgboost>=2.0.0
 
-# Config
+# ── Interpretability & visualization ──────────────────────────────
+shap>=0.44.0
+matplotlib>=3.7.0
+
+# ── Data ingestion (external APIs) ────────────────────────────────
+fastf1>=3.3.0          # FastF1 laps / weather / track status
+requests>=2.31.0       # Jolpica (Ergast) + OpenF1 REST clients
+
+# ── Config ────────────────────────────────────────────────────────
 pyyaml>=6.0
+
+# NOTE: The reinforcement-learning stack (torch, stable-baselines3,
+# gymnasium, sb3-contrib) lives in requirements-rl.txt because torch
+# is large and only src/rl/* needs it. On JupyterLab for analysis you
+# usually only need this file; install requirements-rl.txt on the box
+# that trains/evaluates the PPO agents.
