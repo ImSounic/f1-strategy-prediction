@@ -11,10 +11,15 @@ A data-driven system for optimizing Formula 1 pit stop strategies using machine 
 
 | Metric | Value |
 |--------|-------|
-| Strategy prediction accuracy (dry, 2025) | **71% exact match** |
-| Top-5 accuracy (dry, 2025) | **86%** |
-| Tyre degradation model MAE | **0.079 s/lap** |
+| Stop-count accuracy — right number of stops (dry, 2025) | **71% exact** |
+| Full-strategy top-5 — sequence in top-5 candidates (dry, 2025) | **52%** |
+| Tyre degradation model MAE (2025 fold CV) | **0.082 s/lap** |
 | Monte Carlo simulation speed | **~9,000 sims/sec** |
+
+> *Two notions of accuracy:* **stop-count** (did we pick the right number of pit
+> stops?) and **full strategy** (did we pick the right ordered compound
+> sequence, e.g. MEDIUM → HARD?). Stop count is the easier target, so it scores
+> higher. See [`src/analysis/strategy_match.py`](src/analysis/strategy_match.py).
 
 ## System Architecture
 
@@ -56,11 +61,22 @@ Data Ingestion → Feature Engineering → Model Training → Monte Carlo Simula
 
 Rolling temporal validation with **zero data leakage**:
 
-| Fold | Training | CV MAE | Dry Exact | Dry Top 5 |
-|------|----------|--------|-----------|-----------|
-| 2022 → 2023 | 967 stints | 0.105s | 40% | 50% |
-| 2022-23 → 2024 | 1,982 stints | 0.087s | 52% | 71% |
-| 2022-24 → 2025 | 3,006 stints | 0.079s | **71%** | **86%** |
+| Fold | Training | CV MAE | Stops Correct | Strategy Top-5 |
+|------|----------|--------|---------------|----------------|
+| 2022 → 2023 | 967 stints | 0.109s | 47% | 37% |
+| 2022-23 → 2024 | 1,982 stints | 0.084s | 59% | 50% |
+| 2022-24 → 2025 | 3,006 stints | 0.082s | **71%** | **52%** |
+
+- **Stops Correct** = the top-ranked strategy has the right *number* of pit stops.
+- **Strategy Top-5** = the actual *compound sequence* appears in the top-5 distinct
+  candidates. These are different metrics, so Stops Correct can exceed Top-5.
+
+> An earlier version of this table reported a "Top-5" of 86%, which was an
+> artifact of a metric that compared only stop counts (top-k collapsed onto
+> exact match). The numbers above use corrected full-strategy matching
+> ([`strategy_match.py`](src/analysis/strategy_match.py), unit-tested). Full-strategy
+> accuracy is partly capped by candidate coverage — the generator does not yet
+> emit some real sequences (e.g. MEDIUM → HARD → HARD), a known improvement target.
 
 ## Quick Start
 

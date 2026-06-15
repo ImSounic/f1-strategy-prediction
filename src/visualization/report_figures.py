@@ -83,32 +83,39 @@ def fig_rolling_validation(output_dir):
     folds = report["folds"]
     labels = ["2022→2023", "2022-23→2024", "2022-24→2025"]
     n_train = [f["n_training_stints"] for f in folds]
-    dry_exact = [f["dry_races"]["exact_rate"] * 100 for f in folds]
-    dry_top5 = [f["dry_races"]["top5_rate"] * 100 for f in folds]
+    # Two distinct notions of accuracy (see src/analysis/strategy_match.py):
+    #   stop-count match  = predicted the right NUMBER of stops
+    #   strategy match    = predicted the right ordered COMPOUND SEQUENCE
+    # They are different metrics, so stop-count can exceed strategy top-5.
+    stop_exact = [f["dry_races"]["exact_rate"] * 100 for f in folds]
+    strat_exact = [f["dry_races"]["strategy_exact_rate"] * 100 for f in folds]
+    strat_top5 = [f["dry_races"]["top5_rate"] * 100 for f in folds]
     cv_mae = [f["cv_mae"] for f in folds]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.5))
 
-    # Left: accuracy
+    # Left: accuracy — three comparable series
     x = np.arange(len(labels))
-    w = 0.35
-    bars1 = ax1.bar(x - w/2, dry_exact, w, label="Exact Match", color=COLORS["primary"], zorder=3)
-    bars2 = ax1.bar(x + w/2, dry_top5, w, label="Top 5 Match", color=COLORS["accent1"], zorder=3)
+    w = 0.27
+    series = [
+        ("Stops correct", stop_exact, COLORS["primary"]),
+        ("Strategy exact", strat_exact, COLORS["accent3"]),
+        ("Strategy top-5", strat_top5, COLORS["accent1"]),
+    ]
+    for i, (label, vals, color) in enumerate(series):
+        bars = ax1.bar(x + (i - 1) * w, vals, w, label=label, color=color, zorder=3)
+        for bar in bars:
+            ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1.5,
+                     f"{bar.get_height():.0f}%", ha="center", va="bottom",
+                     fontsize=9, fontweight="bold")
 
     ax1.set_xlabel("Validation Fold")
     ax1.set_ylabel("Accuracy (%)")
-    ax1.set_title("Strategy Prediction Accuracy (Dry Races)")
+    ax1.set_title("Prediction Accuracy (Dry Races): stop count vs full strategy")
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels)
     ax1.set_ylim(0, 100)
-    ax1.legend(loc="upper left")
-
-    for bar in bars1:
-        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1.5,
-                f"{bar.get_height():.0f}%", ha="center", va="bottom", fontsize=10, fontweight="bold")
-    for bar in bars2:
-        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1.5,
-                f"{bar.get_height():.0f}%", ha="center", va="bottom", fontsize=10, fontweight="bold")
+    ax1.legend(loc="upper left", fontsize=9)
 
     # Right: MAE vs training size
     ax2.plot(n_train, cv_mae, "o-", color=COLORS["primary"], linewidth=2, markersize=10, zorder=3)
