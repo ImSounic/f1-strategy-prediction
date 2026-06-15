@@ -6,18 +6,18 @@
   },
   "overall": {
     "n_races": 81,
-    "time_stop_rate": 0.519,
-    "time_strat_rate": 0.025,
-    "pos_stop_rate": 0.58,
-    "pos_strat_rate": 0.012
+    "time_stop_rate": 0.531,
+    "time_strat_rate": 0.062,
+    "pos_stop_rate": 0.543,
+    "pos_strat_rate": 0.136
   },
   "seasons": [
     {
       "season": 2022,
       "n_races": 18,
-      "time_stop_rate": 0.5,
-      "time_strat_rate": 0.056,
-      "pos_stop_rate": 0.5,
+      "time_stop_rate": 0.333,
+      "time_strat_rate": 0.0,
+      "pos_stop_rate": 0.389,
       "pos_strat_rate": 0.056,
       "races": [
         {
@@ -32,8 +32,7 @@
           ],
           "actual_stops": 3,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
@@ -58,17 +57,16 @@
           "actual_stops": 1,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "jeddah"
         },
         {
@@ -81,14 +79,15 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
             "MEDIUM"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -105,14 +104,15 @@
           "actual_stops": 1,
           "time_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
+            "MEDIUM",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -131,11 +131,12 @@
           "actual_stops": 3,
           "time_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "time_stop_match": false,
@@ -155,14 +156,15 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
+            "HARD",
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -179,13 +181,13 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "SOFT"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -204,15 +206,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -230,13 +231,13 @@
           ],
           "actual_stops": 3,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -254,16 +255,18 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
+            "HARD",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
-          "pos_stop_match": true,
+          "pos_stop_match": false,
           "pos_strat_exact": false,
           "circuit": "paul_ricard"
         },
@@ -278,14 +281,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -304,12 +307,12 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -329,14 +332,14 @@
           ],
           "actual_stops": 3,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
+            "MEDIUM",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -354,17 +357,18 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": true,
-          "time_strat_exact": true,
+          "time_stop_match": false,
+          "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": true,
+          "pos_strat_exact": false,
           "circuit": "monza"
         },
         {
@@ -378,14 +382,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -403,16 +407,15 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -429,14 +432,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -454,16 +457,18 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
-          "pos_stop_match": true,
+          "pos_stop_match": false,
           "pos_strat_exact": false,
           "circuit": "yas_marina"
         }
@@ -472,10 +477,10 @@
     {
       "season": 2023,
       "n_races": 20,
-      "time_stop_rate": 0.45,
-      "time_strat_rate": 0.0,
-      "pos_stop_rate": 0.7,
-      "pos_strat_rate": 0.0,
+      "time_stop_rate": 0.7,
+      "time_strat_rate": 0.1,
+      "pos_stop_rate": 0.6,
+      "pos_strat_rate": 0.1,
       "races": [
         {
           "season": 2023,
@@ -488,18 +493,19 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "bahrain"
         },
         {
@@ -512,15 +518,15 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "time_stop_match": true,
-          "time_strat_exact": false,
+          "time_strat_exact": true,
           "pos_stop_match": true,
           "pos_strat_exact": false,
           "circuit": "jeddah"
@@ -535,14 +541,15 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD",
+            "SOFT"
           ],
           "pos_pick_seq": [
             "SOFT",
             "MEDIUM"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -558,18 +565,17 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "baku"
         },
         {
@@ -582,15 +588,14 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -608,14 +613,15 @@
           "actual_stops": 2,
           "time_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -632,14 +638,15 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
+            "HARD",
+            "MEDIUM",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
             "MEDIUM"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -658,12 +665,12 @@
           "actual_stops": 3,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
+            "MEDIUM",
             "MEDIUM"
           ],
           "time_stop_match": false,
@@ -682,16 +689,15 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -708,9 +714,9 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "SOFT"
           ],
           "pos_pick_seq": [
             "SOFT",
@@ -734,18 +740,17 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
             "SOFT",
             "MEDIUM"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
-          "pos_stop_match": true,
+          "pos_stop_match": false,
           "pos_strat_exact": false,
           "circuit": "spa"
         },
@@ -759,14 +764,15 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
             "MEDIUM"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -782,17 +788,18 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD",
+            "SOFT"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
-          "pos_stop_match": true,
+          "pos_stop_match": false,
           "pos_strat_exact": false,
           "circuit": "singapore"
         },
@@ -807,15 +814,16 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
+            "MEDIUM",
             "SOFT",
-            "MEDIUM"
+            "SOFT"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
+            "MEDIUM",
             "MEDIUM"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -834,7 +842,7 @@
           "actual_stops": 3,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
+            "MEDIUM",
             "MEDIUM"
           ],
           "pos_pick_seq": [
@@ -859,13 +867,13 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
+            "MEDIUM",
             "MEDIUM"
           ],
           "time_stop_match": true,
@@ -887,7 +895,7 @@
           "time_pick_seq": [
             "SOFT",
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
@@ -912,14 +920,13 @@
           "actual_stops": 2,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
             "MEDIUM"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -936,14 +943,15 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
+            "MEDIUM",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -960,17 +968,17 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "time_stop_match": true,
-          "time_strat_exact": false,
+          "time_strat_exact": true,
           "pos_stop_match": true,
           "pos_strat_exact": false,
           "circuit": "yas_marina"
@@ -980,10 +988,10 @@
     {
       "season": 2024,
       "n_races": 22,
-      "time_stop_rate": 0.591,
-      "time_strat_rate": 0.0,
-      "pos_stop_rate": 0.545,
-      "pos_strat_rate": 0.0,
+      "time_stop_rate": 0.545,
+      "time_strat_rate": 0.045,
+      "pos_stop_rate": 0.5,
+      "pos_strat_rate": 0.091,
       "races": [
         {
           "season": 2024,
@@ -1001,9 +1009,9 @@
             "MEDIUM"
           ],
           "pos_pick_seq": [
+            "MEDIUM",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1022,14 +1030,13 @@
           "actual_stops": 1,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
             "MEDIUM"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -1046,18 +1053,17 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
+            "MEDIUM",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
-          "pos_stop_match": true,
+          "pos_stop_match": false,
           "pos_strat_exact": false,
           "circuit": "albert_park"
         },
@@ -1073,16 +1079,16 @@
           "actual_stops": 2,
           "time_pick_seq": [
             "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
-          "pos_stop_match": true,
+          "pos_stop_match": false,
           "pos_strat_exact": false,
           "circuit": "suzuka"
         },
@@ -1097,13 +1103,13 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "SOFT"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1122,17 +1128,16 @@
           "actual_stops": 1,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "miami"
         },
         {
@@ -1145,17 +1150,17 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "SOFT"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
-          "pos_stop_match": false,
+          "pos_stop_match": true,
           "pos_strat_exact": false,
           "circuit": "imola"
         },
@@ -1169,12 +1174,11 @@
           "actual_stops": 0,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -1193,9 +1197,9 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
+            "HARD",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
@@ -1219,14 +1223,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
+            "MEDIUM",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1244,14 +1248,15 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -1268,14 +1273,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1294,14 +1299,15 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
+            "MEDIUM",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -1317,14 +1323,14 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -1342,13 +1348,13 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
+            "HARD",
             "SOFT",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -1366,17 +1372,18 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "SOFT"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "baku"
         },
         {
@@ -1389,12 +1396,12 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "SOFT"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1412,14 +1419,14 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
+            "HARD",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -1437,14 +1444,14 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
+            "MEDIUM",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -1463,15 +1470,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -1487,16 +1493,16 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
+            "MEDIUM",
             "MEDIUM"
           ],
           "time_stop_match": true,
-          "time_strat_exact": false,
+          "time_strat_exact": true,
           "pos_stop_match": false,
           "pos_strat_exact": false,
           "circuit": "lusail"
@@ -1511,15 +1517,16 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
+            "HARD",
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -1531,9 +1538,9 @@
       "season": 2025,
       "n_races": 21,
       "time_stop_rate": 0.524,
-      "time_strat_rate": 0.048,
-      "pos_stop_rate": 0.571,
-      "pos_strat_rate": 0.0,
+      "time_strat_rate": 0.095,
+      "pos_stop_rate": 0.667,
+      "pos_strat_rate": 0.286,
       "races": [
         {
           "season": 2025,
@@ -1546,13 +1553,13 @@
           "actual_stops": 1,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -1570,17 +1577,18 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "suzuka"
         },
         {
@@ -1594,15 +1602,16 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
           "pos_strat_exact": false,
@@ -1618,18 +1627,18 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
+            "HARD",
             "SOFT",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "jeddah"
         },
         {
@@ -1643,14 +1652,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
+            "HARD",
             "SOFT",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1669,14 +1678,15 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
+            "HARD",
+            "MEDIUM",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
-          "time_stop_match": false,
+          "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -1694,14 +1704,14 @@
           ],
           "actual_stops": 3,
           "time_pick_seq": [
+            "MEDIUM",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
+            "MEDIUM",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -1720,19 +1730,19 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
+            "MEDIUM",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "montreal"
         },
         {
@@ -1746,17 +1756,17 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "MEDIUM",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
-          "time_strat_exact": false,
+          "time_strat_exact": true,
           "pos_stop_match": true,
           "pos_strat_exact": false,
           "circuit": "spielberg"
@@ -1771,7 +1781,7 @@
           "actual_stops": 0,
           "time_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
@@ -1793,14 +1803,14 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
+            "HARD",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
@@ -1820,13 +1830,13 @@
           "actual_stops": 2,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1844,12 +1854,12 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1867,9 +1877,9 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
+            "HARD",
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
             "SOFT",
@@ -1891,17 +1901,17 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "singapore"
         },
         {
@@ -1914,18 +1924,17 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD",
+            "SOFT"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": false,
           "time_strat_exact": false,
-          "pos_stop_match": false,
+          "pos_stop_match": true,
           "pos_strat_exact": false,
           "circuit": "cota"
         },
@@ -1940,6 +1949,7 @@
           "actual_stops": 1,
           "time_pick_seq": [
             "SOFT",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
@@ -1947,8 +1957,8 @@
             "SOFT",
             "MEDIUM"
           ],
-          "time_stop_match": true,
-          "time_strat_exact": true,
+          "time_stop_match": false,
+          "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
           "circuit": "mexico"
@@ -1964,14 +1974,14 @@
           ],
           "actual_stops": 2,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
+            "MEDIUM",
+            "HARD",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
@@ -1990,16 +2000,16 @@
           "actual_stops": 1,
           "time_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "time_stop_match": true,
           "time_strat_exact": false,
           "pos_stop_match": true,
-          "pos_strat_exact": false,
+          "pos_strat_exact": true,
           "circuit": "las_vegas"
         },
         {
@@ -2014,14 +2024,13 @@
           "actual_stops": 2,
           "time_pick_seq": [
             "SOFT",
-            "SOFT",
             "MEDIUM"
           ],
           "pos_pick_seq": [
             "SOFT",
-            "MEDIUM"
+            "HARD"
           ],
-          "time_stop_match": true,
+          "time_stop_match": false,
           "time_strat_exact": false,
           "pos_stop_match": false,
           "pos_strat_exact": false,
@@ -2037,19 +2046,17 @@
           ],
           "actual_stops": 1,
           "time_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
           "pos_pick_seq": [
-            "SOFT",
-            "SOFT",
-            "MEDIUM"
+            "MEDIUM",
+            "HARD"
           ],
-          "time_stop_match": false,
-          "time_strat_exact": false,
-          "pos_stop_match": false,
-          "pos_strat_exact": false,
+          "time_stop_match": true,
+          "time_strat_exact": true,
+          "pos_stop_match": true,
+          "pos_strat_exact": true,
           "circuit": "yas_marina"
         }
       ]
