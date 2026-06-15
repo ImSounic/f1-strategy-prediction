@@ -74,11 +74,6 @@ def _solo_time(compound, laps, seed=42):
                            greedy_sc=False).run(seed=seed)["target_time"]
 
 
-def test_soft_faster_when_fresh_short_race():
-    # Over a short stint the pace offset dominates -> SOFT quicker than HARD.
-    assert _solo_time("SOFT", 8) < _solo_time("HARD", 8)
-
-
 def test_hard_faster_over_long_stint():
     # Over a long stint degradation dominates -> HARD quicker than SOFT.
     assert _solo_time("HARD", 45) < _solo_time("SOFT", 45)

@@ -56,10 +56,11 @@ def test_profiles_have_compound_pace_and_deg_fields():
     for p in (GROUND_EFFECT_2022_25, NEW_ERA_2026):
         assert set(p.compound_pace_offset) == {"SOFT", "MEDIUM", "HARD"}
         assert set(p.compound_deg_multiplier) == {"SOFT", "MEDIUM", "HARD"}
-        assert p.compound_pace_offset["SOFT"] < p.compound_pace_offset["HARD"]
+        # Deg differentiation is data-calibrated: SOFT degrades more than HARD.
         assert p.compound_deg_multiplier["SOFT"] > p.compound_deg_multiplier["HARD"]
-        assert p.compound_pace_offset["MEDIUM"] == 0.0
         assert p.compound_deg_multiplier["MEDIUM"] == 1.0
+        # Pace offset currently neutral (unsupported by confounded lap data).
+        assert p.compound_pace_offset["MEDIUM"] == 0.0
 
 
 def _run_all():

@@ -56,8 +56,13 @@ GROUND_EFFECT_2022_25 = RegulationProfile(
     vsc_pace_factor=1.20,
     compound_deg_base={"SOFT": 0.09, "MEDIUM": 0.06, "HARD": 0.04},
     compound_cliff={"SOFT": 20, "MEDIUM": 30, "HARD": 40},
-    compound_pace_offset={"SOFT": -0.7, "MEDIUM": 0.0, "HARD": 0.5},
-    compound_deg_multiplier={"SOFT": 1.6, "MEDIUM": 1.0, "HARD": 0.65},
+    # Pace offset left neutral: stint lap-time proxies are too confounded by
+    # fuel/usage to support a per-compound pace delta (a future clean-air,
+    # fuel-corrected calibration could populate it; Phase 4 may do so for 2026).
+    compound_pace_offset={"SOFT": 0.0, "MEDIUM": 0.0, "HARD": 0.0},
+    # Deg multiplier calibrated from data — median DegSlope by compound across
+    # 2022-25: SOFT 0.089 / MEDIUM 0.065 / HARD 0.058 -> ratios vs MEDIUM.
+    compound_deg_multiplier={"SOFT": 1.38, "MEDIUM": 1.0, "HARD": 0.89},
     dirty_air_window=1.5,
     dirty_air_penalty=0.15,
     drs_window=1.0,
@@ -81,8 +86,13 @@ NEW_ERA_2026 = RegulationProfile(
     vsc_pace_factor=1.20,
     compound_deg_base={"SOFT": 0.09, "MEDIUM": 0.06, "HARD": 0.04},
     compound_cliff={"SOFT": 20, "MEDIUM": 30, "HARD": 40},
-    compound_pace_offset={"SOFT": -0.7, "MEDIUM": 0.0, "HARD": 0.5},
-    compound_deg_multiplier={"SOFT": 1.6, "MEDIUM": 1.0, "HARD": 0.65},
+    # Pace offset left neutral: stint lap-time proxies are too confounded by
+    # fuel/usage to support a per-compound pace delta (a future clean-air,
+    # fuel-corrected calibration could populate it; Phase 4 may do so for 2026).
+    compound_pace_offset={"SOFT": 0.0, "MEDIUM": 0.0, "HARD": 0.0},
+    # Deg multiplier calibrated from data — median DegSlope by compound across
+    # 2022-25: SOFT 0.089 / MEDIUM 0.065 / HARD 0.058 -> ratios vs MEDIUM.
+    compound_deg_multiplier={"SOFT": 1.38, "MEDIUM": 1.0, "HARD": 0.89},
     dirty_air_window=1.0,
     dirty_air_penalty=0.07,
     drs_window=1.0,
