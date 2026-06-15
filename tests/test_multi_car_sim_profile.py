@@ -62,6 +62,28 @@ def test_finishing_positions_are_a_permutation():
     assert sorted(r["finishing_positions"]) == [1, 2, 3]
 
 
+def _solo_time(compound, laps, seed=42):
+    drivers = [DriverConfig("AAA", "A", "t1", 0.0, 0.5, 0.7, "")]
+    circuit = CircuitParams(
+        circuit_key="t", circuit_name="T", total_laps=laps,
+        pit_loss_seconds=20.0, sc_prob_per_race=0.0, vsc_prob_per_race=0.0,
+        overtaking_difficulty=0.5, deg_rates={},
+    )
+    strat = Strategy(stints=[(compound, laps)], name=compound)
+    return MultiCarRaceSim(circuit, drivers, [strat], 0, strat,
+                           greedy_sc=False).run(seed=seed)["target_time"]
+
+
+def test_soft_faster_when_fresh_short_race():
+    # Over a short stint the pace offset dominates -> SOFT quicker than HARD.
+    assert _solo_time("SOFT", 8) < _solo_time("HARD", 8)
+
+
+def test_hard_faster_over_long_stint():
+    # Over a long stint degradation dominates -> HARD quicker than SOFT.
+    assert _solo_time("HARD", 45) < _solo_time("SOFT", 45)
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
     failed = 0

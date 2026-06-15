@@ -52,6 +52,16 @@ def test_2026_profile_drops_c6_and_changes_overtaking():
     assert p.dirty_air_penalty < GROUND_EFFECT_2022_25.dirty_air_penalty
 
 
+def test_profiles_have_compound_pace_and_deg_fields():
+    for p in (GROUND_EFFECT_2022_25, NEW_ERA_2026):
+        assert set(p.compound_pace_offset) == {"SOFT", "MEDIUM", "HARD"}
+        assert set(p.compound_deg_multiplier) == {"SOFT", "MEDIUM", "HARD"}
+        assert p.compound_pace_offset["SOFT"] < p.compound_pace_offset["HARD"]
+        assert p.compound_deg_multiplier["SOFT"] > p.compound_deg_multiplier["HARD"]
+        assert p.compound_pace_offset["MEDIUM"] == 0.0
+        assert p.compound_deg_multiplier["MEDIUM"] == 1.0
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
     failed = 0

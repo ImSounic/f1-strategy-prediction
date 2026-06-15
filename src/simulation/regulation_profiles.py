@@ -35,6 +35,8 @@ class RegulationProfile:
     vsc_pace_factor: float      # lap-time multiplier under VSC
     compound_deg_base: dict     # {compound_name: base deg rate s/lap}
     compound_cliff: dict        # {compound_name: cliff lap}
+    compound_pace_offset: dict  # {compound_name: s/lap vs MEDIUM (SOFT faster fresh)}
+    compound_deg_multiplier: dict  # {compound_name: x base deg (SOFT degrades more)}
     dirty_air_window: float     # gap (s) within which dirty air bites
     dirty_air_penalty: float    # max s/lap lost in dirty air
     drs_window: float           # gap (s) within which DRS/override applies
@@ -54,6 +56,8 @@ GROUND_EFFECT_2022_25 = RegulationProfile(
     vsc_pace_factor=1.20,
     compound_deg_base={"SOFT": 0.09, "MEDIUM": 0.06, "HARD": 0.04},
     compound_cliff={"SOFT": 20, "MEDIUM": 30, "HARD": 40},
+    compound_pace_offset={"SOFT": -0.7, "MEDIUM": 0.0, "HARD": 0.5},
+    compound_deg_multiplier={"SOFT": 1.6, "MEDIUM": 1.0, "HARD": 0.65},
     dirty_air_window=1.5,
     dirty_air_penalty=0.15,
     drs_window=1.0,
@@ -77,6 +81,8 @@ NEW_ERA_2026 = RegulationProfile(
     vsc_pace_factor=1.20,
     compound_deg_base={"SOFT": 0.09, "MEDIUM": 0.06, "HARD": 0.04},
     compound_cliff={"SOFT": 20, "MEDIUM": 30, "HARD": 40},
+    compound_pace_offset={"SOFT": -0.7, "MEDIUM": 0.0, "HARD": 0.5},
+    compound_deg_multiplier={"SOFT": 1.6, "MEDIUM": 1.0, "HARD": 0.65},
     dirty_air_window=1.0,
     dirty_air_penalty=0.07,
     drs_window=1.0,

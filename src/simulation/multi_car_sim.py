@@ -193,6 +193,9 @@ class MultiCarRaceSim:
     def _get_deg_rate(self, compound: str, driver: DriverConfig, circuit: CircuitParams) -> float:
         """Get degradation rate, scaled by driver tyre management."""
         base = circuit.deg_rates.get(compound, self.profile.compound_deg_base[compound])
+        # Compound relativity: SOFT degrades faster, HARD slower (the XGBoost deg
+        # model is compound-insensitive, so we inject the relative ordering here).
+        base *= self.profile.compound_deg_multiplier.get(compound, 1.0)
         # Better tyre management (higher rating) = lower deg
         driver_factor = 1.0 + 0.3 * (1.0 - driver.tyre_management)
         return base * driver_factor
@@ -215,8 +218,9 @@ class MultiCarRaceSim:
         if vsc_active:
             return self.profile.base_pace * self.profile.vsc_pace_factor
 
-        # Base + driver delta
+        # Base + driver delta + compound pace offset (SOFT faster fresh)
         lap_time = self.profile.base_pace + driver.pace_delta
+        lap_time += self.profile.compound_pace_offset.get(car.tyre_compound, 0.0)
 
         # Fuel effect
         fuel_remaining = max(0, self.profile.start_fuel_kg - self.burn_rate * (lap - 1))
