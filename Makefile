@@ -1,5 +1,5 @@
 .PHONY: all all-from-raw setup setup-rl gen-configs ingest prepare model simulate \
-        analyze visualize rl-train rl-eval precompute verify clean distclean
+        analyze visualize position-validate rl-train rl-eval precompute verify clean distclean
 
 # ════════════════════════════════════════════════════════════════════
 #  F1 Race Strategy Optimizer — Build Pipeline
@@ -37,6 +37,11 @@ setup-rl:
 gen-configs:
 	$(PYTHON) src.preparation.generate_driver_configs --seasons 2022 2023 2024 2025
 	@echo "✓ Driver configs written to configs/generated/ (review before promoting)"
+
+# ── Position validation (multi-car sim vs real finishing order) ──────
+position-validate:
+	$(PYTHON) src.analysis.position_validation --seasons 2022 2023 2024 2025 --n-sims 30
+	@echo "✓ Position validation written to results/position_validation_report.json"
 
 # ── Phase 1: Data ingestion (downloads from FastF1/Jolpica/OpenF1) ────
 # Regenerates the gitignored raw lap/session/track-status parquets.
