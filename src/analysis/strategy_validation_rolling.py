@@ -41,6 +41,7 @@ from src.simulation.strategy_simulator import (
     COMPOUND_HARDNESS,
 )
 from src.simulation.compound_prior import CompoundPrior
+from src.analysis.strategy_match import score_race
 
 
 def load_config(config_path: str = "configs/config.yaml") -> dict:
@@ -252,9 +253,10 @@ def validate_fold(
     # Simulate
     races = []
     counts = {"all": 0, "dry": 0}
-    match = {"all": 0, "dry": 0}
-    top3 = {"all": 0, "dry": 0}
-    top5 = {"all": 0, "dry": 0}
+    stop_match = {"all": 0, "dry": 0}    # right NUMBER of stops (headline "exact")
+    strat_exact = {"all": 0, "dry": 0}   # exact compound SEQUENCE (top-1)
+    strat_top3 = {"all": 0, "dry": 0}    # actual sequence within top-3 distinct
+    strat_top5 = {"all": 0, "dry": 0}    # actual sequence within top-5 distinct
 
     for (s, rnd), real in sorted(actual.items()):
         try:
@@ -282,73 +284,72 @@ def validate_fold(
                 sim_results, real["circuit_key"], blend_weight=prior_blend,
             )
 
-        our_stops = sim_results[0]["num_stops"]
-        real_stops = real["n_stops"]
-        matched = our_stops == real_stops
-        in_top3 = any(r["num_stops"] == real_stops for r in sim_results[:3])
-        in_top5 = any(r["num_stops"] == real_stops for r in sim_results[:5])
+        # Score: stop-count match AND full-strategy match (top-1/3/5 over
+        # DISTINCT compound sequences). See src/analysis/strategy_match.py.
+        sc = score_race(sim_results, real, top_ks=(3, 5))
         is_wet = real["is_wet"]
 
-        counts["all"] += 1
-        if matched: match["all"] += 1
-        if in_top3: top3["all"] += 1
-        if in_top5: top5["all"] += 1
+        for scope in (["all"] if is_wet else ["all", "dry"]):
+            counts[scope] += 1
+            if sc["stop_match"]:     stop_match[scope] += 1
+            if sc["strategy_exact"]: strat_exact[scope] += 1
+            if sc["strategy_top3"]:  strat_top3[scope] += 1
+            if sc["strategy_top5"]:  strat_top5[scope] += 1
 
-        if not is_wet:
-            counts["dry"] += 1
-            if matched: match["dry"] += 1
-            if in_top3: top3["dry"] += 1
-            if in_top5: top5["dry"] += 1
-
-        marker = "✓" if matched else ("☁" if is_wet else "✗")
+        marker = "✓" if sc["stop_match"] else ("☁" if is_wet else "✗")
         logger.info(
             f"  {marker} {real['circuit_name']:<28} "
-            f"Actual: {real_stops}-stop ({real['compound_sequence'][:35]:<35}) | "
-            f"Ours: {our_stops}-stop{'  [WET]' if is_wet else ''}"
+            f"Actual: {real['n_stops']}-stop ({real['compound_sequence'][:35]:<35}) | "
+            f"Ours: {sc['recommended_stops']}-stop{'  [WET]' if is_wet else ''}"
         )
 
         races.append({
             "circuit": real["circuit_name"],
             "winner": real["winner"],
-            "actual_stops": real_stops,
+            "actual_stops": real["n_stops"],
             "actual_compounds": real["compound_sequence"],
-            "recommended_stops": our_stops,
+            "recommended_stops": sc["recommended_stops"],
             "recommended_strategy": sim_results[0]["strategy_name"],
-            "stops_match": matched,
-            "in_top3": in_top3,
-            "in_top5": in_top5,
+            "recommended_sequence": sc["recommended_sequence"],
+            "stops_match": sc["stop_match"],
+            "strategy_exact": sc["strategy_exact"],
+            "in_top3": sc["strategy_top3"],
+            "in_top5": sc["strategy_top5"],
             "is_wet": is_wet,
         })
 
     def rate(n, d):
         return round(n / max(d, 1), 3)
 
+    def block(scope):
+        # exact_* = stop-count match (headline). top3/top5 = full-strategy match
+        # over distinct compound sequences. strategy_exact_* = full top-1.
+        return {
+            "total": counts[scope],
+            "exact_match": stop_match[scope],
+            "exact_rate": rate(stop_match[scope], counts[scope]),
+            "strategy_exact_match": strat_exact[scope],
+            "strategy_exact_rate": rate(strat_exact[scope], counts[scope]),
+            "top3_match": strat_top3[scope],
+            "top3_rate": rate(strat_top3[scope], counts[scope]),
+            "top5_match": strat_top5[scope],
+            "top5_rate": rate(strat_top5[scope], counts[scope]),
+        }
+
     fold_result = {
         "train_seasons": train_seasons,
         "val_season": val_season,
         "n_training_stints": n_train,
         "cv_mae": round(cv_mae, 4),
-        "all_races": {
-            "total": counts["all"],
-            "exact_match": match["all"],
-            "exact_rate": rate(match["all"], counts["all"]),
-            "top3_rate": rate(top3["all"], counts["all"]),
-            "top5_rate": rate(top5["all"], counts["all"]),
-        },
-        "dry_races": {
-            "total": counts["dry"],
-            "exact_match": match["dry"],
-            "exact_rate": rate(match["dry"], counts["dry"]),
-            "top3_rate": rate(top3["dry"], counts["dry"]),
-            "top5_rate": rate(top5["dry"], counts["dry"]),
-        },
+        "all_races": block("all"),
+        "dry_races": block("dry"),
         "races": races,
     }
 
-    logger.info(f"\n  Summary — All: {match['all']}/{counts['all']} "
-                f"({100*rate(match['all'], counts['all']):.0f}%) | "
-                f"Dry: {match['dry']}/{counts['dry']} "
-                f"({100*rate(match['dry'], counts['dry']):.0f}%)")
+    logger.info(f"\n  Summary — All: {stop_match['all']}/{counts['all']} "
+                f"({100*rate(stop_match['all'], counts['all']):.0f}%) | "
+                f"Dry: {stop_match['dry']}/{counts['dry']} "
+                f"({100*rate(stop_match['dry'], counts['dry']):.0f}%)")
 
     return fold_result
 
@@ -504,9 +505,11 @@ def run_rolling_validation(config_path: str = "configs/config.yaml"):
     logger.info(f"  {'Fold':<25} {'Train':>8} {'CV MAE':>8} {'All':>10} {'Dry':>10} {'Dry Top5':>10}")
     logger.info(f"  {'─'*25} {'─'*8} {'─'*8} {'─'*10} {'─'*10} {'─'*10}")
 
-    total_match_dry = 0
+    total_stop_dry = 0
     total_dry = 0
-    total_top5_dry = 0
+    total_strat_exact_dry = 0
+    total_strat_top3_dry = 0
+    total_strat_top5_dry = 0
 
     for fold in all_folds:
         ts = fold["train_seasons"]
@@ -518,9 +521,13 @@ def run_rolling_validation(config_path: str = "configs/config.yaml"):
         a = fold["all_races"]
         d = fold["dry_races"]
 
-        total_match_dry += d["exact_match"]
+        # Sum raw integer counts (the old code rebuilt counts from rounded
+        # rates and truncated with int(), which made top5 < exact — impossible).
+        total_stop_dry += d["exact_match"]
         total_dry += d["total"]
-        total_top5_dry += int(d["top5_rate"] * d["total"])
+        total_strat_exact_dry += d["strategy_exact_match"]
+        total_strat_top3_dry += d["top3_match"]
+        total_strat_top5_dry += d["top5_match"]
 
         logger.info(
             f"  {label:<25} {n_train:>7,} {mae:>7.4f}s "
@@ -529,12 +536,13 @@ def run_rolling_validation(config_path: str = "configs/config.yaml"):
             f"({100*d['top5_rate']:>3.0f}%)"
         )
 
-    avg_dry_rate = total_match_dry / max(total_dry, 1)
-    avg_top5_rate = total_top5_dry / max(total_dry, 1)
+    def agg_rate(n):
+        return round(n / max(total_dry, 1), 3)
 
     logger.info(f"\n  AGGREGATE (dry races across all folds):")
-    logger.info(f"    Exact match: {total_match_dry}/{total_dry} ({100*avg_dry_rate:.0f}%)")
-    logger.info(f"    Top 5 match: {total_top5_dry}/{total_dry} ({100*avg_top5_rate:.0f}%)")
+    logger.info(f"    Stop-count exact: {total_stop_dry}/{total_dry} ({100*agg_rate(total_stop_dry):.0f}%)")
+    logger.info(f"    Strategy exact:   {total_strat_exact_dry}/{total_dry} ({100*agg_rate(total_strat_exact_dry):.0f}%)")
+    logger.info(f"    Strategy top-5:   {total_strat_top5_dry}/{total_dry} ({100*agg_rate(total_strat_top5_dry):.0f}%)")
     logger.info(f"\n  Total time: {elapsed:.1f}s")
 
     # Save
@@ -553,10 +561,15 @@ def run_rolling_validation(config_path: str = "configs/config.yaml"):
             "data_leakage": "none",
         },
         "aggregate_dry": {
-            "exact_match": total_match_dry,
             "total": total_dry,
-            "exact_rate": round(avg_dry_rate, 3),
-            "top5_rate": round(avg_top5_rate, 3),
+            "exact_match": total_stop_dry,
+            "exact_rate": agg_rate(total_stop_dry),
+            "strategy_exact_match": total_strat_exact_dry,
+            "strategy_exact_rate": agg_rate(total_strat_exact_dry),
+            "top3_match": total_strat_top3_dry,
+            "top3_rate": agg_rate(total_strat_top3_dry),
+            "top5_match": total_strat_top5_dry,
+            "top5_rate": agg_rate(total_strat_top5_dry),
         },
         "folds": all_folds,
     }
