@@ -51,6 +51,10 @@ def api_get(base_url: str, endpoint: str, params: dict = None) -> list:
                 logger.warning(f"  ⏳ OpenF1 rate limited. Waiting {wait}s...")
                 time.sleep(wait)
                 continue
+            if resp.status_code == 404:
+                # Session is on the schedule but has no data yet (future/recent
+                # race). Skip it gracefully instead of crashing.
+                return []
             resp.raise_for_status()
             time.sleep(0.3)
             return resp.json()
