@@ -284,13 +284,15 @@ class MultiCarRaceSim:
         return tyre_urgency > 0.4
     
     def _process_pit_stop(
-        self, car: CarState, driver: DriverConfig, 
+        self, car: CarState, driver: DriverConfig,
         current_lap: int, sc_active: bool, vsc_active: bool,
-        rng: np.random.Generator,
+        rng: np.random.Generator, forced_compound: str = None,
     ) -> float:
         """Execute pit stop. Returns time cost."""
         # Determine next compound
-        if car.next_pit_idx < len(car.strategy.stints) - 1:
+        if forced_compound is not None:
+            next_compound = forced_compound
+        elif car.next_pit_idx < len(car.strategy.stints) - 1:
             next_compound = car.strategy.stints[car.next_pit_idx + 1][0]
         else:
             # Emergency/SC pit — pick hardest unused
@@ -431,173 +433,141 @@ class MultiCarRaceSim:
             car.lap_delta_to_leader = (car.cumulative_time - leader_time) / max(lap_time_approx, 80)
             car.lapped = car.lap_delta_to_leader > 0.95  # nearly a full lap behind
     
-    def run(self, seed: int = 42) -> dict:
-        """
-        Run a full race simulation.
-        
-        Returns dict with:
-          - finishing_positions: array of final positions (1-indexed)
-          - position_history: (n_laps, n_cars) array of positions per lap
-          - target_position: final position of target driver
-          - sc_laps: list of SC lap numbers
-          - pit_events: list of {lap, driver_idx, compound} for all pit stops
-          - target_history: detailed lap-by-lap for target driver
-        """
-        rng = np.random.default_rng(seed)
-        n_laps = self.circuit.total_laps
-        
-        # ── Initialise cars ──
-        cars = []
+    def reset(self, seed: int = 42):
+        """Initialise a race; ready for step()."""
+        self.rng = np.random.default_rng(seed)
+        self.n_laps = self.circuit.total_laps
+        self.cars = []
         for i, driver in enumerate(self.drivers):
             s = self.strategies[i] if i != self.target_idx else self.target_strategy
-            car = CarState(
-                driver_idx=i,
-                tyre_compound=s.stints[0][0],
-                strategy=s,
-            )
+            car = CarState(driver_idx=i, tyre_compound=s.stints[0][0], strategy=s)
             car.compounds_used = {s.stints[0][0]}
-            # Starting gap based on grid position (0.8s per position)
             car.cumulative_time = i * 0.8
-            cars.append(car)
-        
-        # Sort cars by initial grid order (already in order by index for now)
-        positions = self._update_positions(cars)
-        
-        # ── Tracking ──
-        position_history = np.zeros((n_laps, self.n_cars), dtype=int)
-        sc_laps = []
-        vsc_laps = []
-        pit_events = []
-        target_history = {
-            "lap_times": [],
-            "compounds": [],
-            "tyre_ages": [],
-            "positions": [],
-            "pit_laps": [],
-            "sc_laps": [],
-        }
-        
-        sc_active = False
-        vsc_active = False
-        sc_remaining = 0
-        vsc_remaining = 0
+            self.cars.append(car)
+        self.positions = self._update_positions(self.cars)
+        self.position_history = np.zeros((self.n_laps, self.n_cars), dtype=int)
+        self.sc_laps, self.vsc_laps, self.pit_events = [], [], []
+        self.target_history = {"lap_times": [], "compounds": [], "tyre_ages": [],
+                               "positions": [], "pit_laps": [], "sc_laps": []}
+        self.sc_active = self.vsc_active = False
+        self.sc_remaining = self.vsc_remaining = 0
+        self.lap = 0
+        self.done = False
+        return self.positions
+
+    def step(self, pit_override: dict = None):
+        """Advance one lap. pit_override maps car_idx -> compound name (pit) or
+        None (stay). Cars absent from the dict use their own strategy / greedy SC
+        logic, which is how run() reproduces the original behaviour exactly."""
+        lap = self.lap + 1
+        self.lap = lap
+
         sc_just_started = False
-        
-        for lap in range(1, n_laps + 1):
-            # ── SC/VSC state ──
-            sc_just_started = False
-            if sc_remaining > 0:
-                sc_remaining -= 1
-                sc_active = True
-                sc_laps.append(lap)
-            elif vsc_remaining > 0:
-                vsc_remaining -= 1
-                vsc_active = True
-                vsc_laps.append(lap)
+        if self.sc_remaining > 0:
+            self.sc_remaining -= 1
+            self.sc_active = True
+            self.sc_laps.append(lap)
+        elif self.vsc_remaining > 0:
+            self.vsc_remaining -= 1
+            self.vsc_active = True
+            self.vsc_laps.append(lap)
+        else:
+            self.sc_active = False
+            self.vsc_active = False
+            if self.rng.random() < self.sc_prob_per_lap and 1 < lap < self.n_laps - 3:
+                self.sc_remaining = int(self.rng.integers(3, 7))
+                self.sc_active = True
+                sc_just_started = True
+                self.sc_laps.append(lap)
+            elif self.rng.random() < self.vsc_prob_per_lap and 1 < lap < self.n_laps - 2:
+                self.vsc_remaining = int(self.rng.integers(2, 5))
+                self.vsc_active = True
+                self.vsc_laps.append(lap)
+
+        if sc_just_started:
+            self._compress_field_sc(self.cars, self.positions)
+
+        gaps = self._compute_gaps(self.cars, self.positions)
+
+        for i, (car, driver) in enumerate(zip(self.cars, self.drivers)):
+            car.tyre_age += 1
+
+            forced_compound = None
+            if pit_override is not None and i in pit_override:
+                chosen = pit_override[i]
+                should_pit = (chosen is not None and car.stops_done < 3
+                              and car.tyre_age >= 3 and lap < self.n_laps)
+                forced_compound = chosen
+            elif i == self.target_idx and self.greedy_sc:
+                should_pit = self._should_pit_strategy(car, lap)
+                if not should_pit and (self.sc_active or self.vsc_active):
+                    should_pit = self._should_pit_greedy_sc(
+                        car, lap, self.sc_active or self.vsc_active,
+                        self.positions, gaps, self.rng)
             else:
-                sc_active = False
-                vsc_active = False
-                
-                # Check for new SC/VSC
-                if (rng.random() < self.sc_prob_per_lap and 
-                    1 < lap < n_laps - 3):
-                    sc_remaining = int(rng.integers(3, 7))
-                    sc_active = True
-                    sc_just_started = True
-                    sc_laps.append(lap)
-                elif (rng.random() < self.vsc_prob_per_lap and
-                      1 < lap < n_laps - 2):
-                    vsc_remaining = int(rng.integers(2, 5))
-                    vsc_active = True
-                    vsc_laps.append(lap)
-            
-            # ── Compress field under SC ──
-            if sc_just_started:
-                self._compress_field_sc(cars, positions)
-            
-            # ── Compute gaps ──
-            gaps = self._compute_gaps(cars, positions)
-            
-            # ── Process each car ──
-            for i, (car, driver) in enumerate(zip(cars, self.drivers)):
-                car.tyre_age += 1
-                
-                # ── Pit stop decision ──
-                should_pit = False
-                
-                if i == self.target_idx and self.greedy_sc:
-                    # Target driver: strategy + greedy SC reaction
-                    should_pit = self._should_pit_strategy(car, lap)
-                    if not should_pit and (sc_active or vsc_active):
-                        should_pit = self._should_pit_greedy_sc(
-                            car, lap, sc_active or vsc_active, positions, gaps, rng
-                        )
-                else:
-                    # AI drivers: follow fixed strategy
-                    should_pit = self._should_pit_strategy(car, lap)
-                
-                pit_cost = 0.0
-                if should_pit and lap < n_laps:
-                    pit_cost = self._process_pit_stop(
-                        car, driver, lap, sc_active, vsc_active, rng
-                    )
-                    pit_events.append({
-                        "lap": lap, "driver_idx": i, 
-                        "compound": car.tyre_compound,
-                    })
-                    if i == self.target_idx:
-                        target_history["pit_laps"].append(lap)
-                
-                # ── Lap time ──
-                dirty_air = (gaps[i] < self.profile.dirty_air_window
-                             and not sc_active and not vsc_active)
-                lap_time = self._compute_lap_time(
-                    car, driver, lap, sc_active, vsc_active, rng,
-                    gap_to_ahead=gaps[i], dirty_air=dirty_air,
-                )
-                lap_time += pit_cost
-                car.cumulative_time += lap_time
-                
-                # ── Target driver tracking ──
+                should_pit = self._should_pit_strategy(car, lap)
+
+            pit_cost = 0.0
+            if should_pit and lap < self.n_laps:
+                pit_cost = self._process_pit_stop(
+                    car, driver, lap, self.sc_active, self.vsc_active, self.rng,
+                    forced_compound=forced_compound)
+                self.pit_events.append({"lap": lap, "driver_idx": i,
+                                        "compound": car.tyre_compound})
                 if i == self.target_idx:
-                    target_history["lap_times"].append(round(lap_time, 2))
-                    target_history["compounds"].append(car.tyre_compound)
-                    target_history["tyre_ages"].append(car.tyre_age)
-                    if lap in sc_laps:
-                        target_history["sc_laps"].append(lap)
-            
-            # ── Update positions ──
-            positions = self._update_positions(cars)
-            position_history[lap - 1] = positions
-            
-            # ── Check lapped cars ──
-            self._check_lapped(cars, positions, lap)
-            
-            # ── Overtaking (not under SC) ──
-            if not sc_active and not vsc_active:
-                gaps = self._compute_gaps(cars, positions)
-                self._process_overtaking(cars, positions, gaps, lap, rng)
-                positions = self._update_positions(cars)
-                position_history[lap - 1] = positions
-            
-            # Record target position
-            target_history["positions"].append(int(positions[self.target_idx]))
-        
-        # ── Final results ──
-        final_positions = positions
-        target_pos = int(final_positions[self.target_idx])
-        
+                    self.target_history["pit_laps"].append(lap)
+
+            dirty_air = (gaps[i] < self.profile.dirty_air_window
+                         and not self.sc_active and not self.vsc_active)
+            lap_time = self._compute_lap_time(
+                car, driver, lap, self.sc_active, self.vsc_active, self.rng,
+                gap_to_ahead=gaps[i], dirty_air=dirty_air)
+            lap_time += pit_cost
+            car.cumulative_time += lap_time
+
+            if i == self.target_idx:
+                self.target_history["lap_times"].append(round(lap_time, 2))
+                self.target_history["compounds"].append(car.tyre_compound)
+                self.target_history["tyre_ages"].append(car.tyre_age)
+                if lap in self.sc_laps:
+                    self.target_history["sc_laps"].append(lap)
+
+        self.positions = self._update_positions(self.cars)
+        self.position_history[lap - 1] = self.positions
+        self._check_lapped(self.cars, self.positions, lap)
+        if not self.sc_active and not self.vsc_active:
+            gaps = self._compute_gaps(self.cars, self.positions)
+            self._process_overtaking(self.cars, self.positions, gaps, lap, self.rng)
+            self.positions = self._update_positions(self.cars)
+            self.position_history[lap - 1] = self.positions
+        self.target_history["positions"].append(int(self.positions[self.target_idx]))
+
+        if lap >= self.n_laps:
+            self.done = True
+        return self.positions
+
+    def results(self) -> dict:
+        """Assemble the result dict (same shape as the original run() return)."""
+        final_positions = self.positions
         return {
             "finishing_positions": final_positions.tolist(),
-            "position_history": position_history.tolist(),
-            "target_position": target_pos,
-            "target_time": round(cars[self.target_idx].cumulative_time, 1),
-            "sc_laps": sc_laps,
-            "vsc_laps": vsc_laps,
-            "pit_events": pit_events,
-            "target_history": target_history,
-            "n_sc_events": len(set(sc_laps)),
+            "position_history": self.position_history.tolist(),
+            "target_position": int(final_positions[self.target_idx]),
+            "target_time": round(self.cars[self.target_idx].cumulative_time, 1),
+            "sc_laps": self.sc_laps,
+            "vsc_laps": self.vsc_laps,
+            "pit_events": self.pit_events,
+            "target_history": self.target_history,
+            "n_sc_events": len(set(self.sc_laps)),
         }
+
+    def run(self, seed: int = 42) -> dict:
+        """Full race = reset() then step() every lap. Behaviour identical to the
+        original loop (same code path)."""
+        self.reset(seed)
+        while not self.done:
+            self.step()
+        return self.results()
 
 
 def build_grid(
