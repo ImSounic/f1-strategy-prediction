@@ -51,7 +51,7 @@ class F1MultiAgentEnv(MultiAgentEnv):
             tyre_age=car.tyre_age, compound_idx=_COMPOUND_IDX.get(car.tyre_compound, 1),
             cumulative_deg=0.0, position=int(self.sim.positions[i]), n_cars=self.n_cars,
             gap_ahead=float(gaps[i]), gap_behind=float(gap_behind),
-            fuel_frac=max(0.0, 1.0 - self.sim.burn_rate * self.sim.lap / max(self.profile.start_fuel, 1)),
+            fuel_frac=max(0.0, 1.0 - self.sim.burn_rate * self.sim.lap / max(self.profile.start_fuel_kg, 1)),
             sc_active=int(self.sim.sc_active or self.sim.vsc_active),
             stops_done=car.stops_done, max_stops=3, compounds_used=len(car.compounds_used),
             laps_since_sc=0,
