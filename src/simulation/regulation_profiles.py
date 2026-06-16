@@ -73,8 +73,11 @@ GROUND_EFFECT_2022_25 = RegulationProfile(
 
 # 2026 reset. Structural changes are known (C6 dropped; override boost replaces
 # DRS; closer following from -55% drag). Numeric physics constants are seeded
-# from 2022-25 and CALIBRATED against real 2026 data in Phase 4 — only the
-# dirty-air penalty is pre-reduced as a placeholder to reflect closer following.
+# from 2022-25. Phase 4 probe finding: 2026's measured per-compound DegSlopes are
+# too noisy/confounded to calibrate on (thin 7-race sample + the 2022-25 fuel
+# model over-corrects the lighter 2026 cars, driving SOFT slopes negative), so
+# the 2022-25 deg multipliers are kept rather than overfit. Dirty-air penalty is
+# pre-reduced as a placeholder for closer following (no 2026 calibration yet).
 NEW_ERA_2026 = RegulationProfile(
     name="new_era_2026",
     seasons=(2026,),

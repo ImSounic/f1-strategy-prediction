@@ -35,17 +35,17 @@ setup-rl:
 
 # ── Driver configs (reproducible, all seasons) ───────────────────────
 gen-configs:
-	$(PYTHON) src.preparation.generate_driver_configs --seasons 2022 2023 2024 2025
+	$(PYTHON) src.preparation.generate_driver_configs --seasons 2022 2023 2024 2025 2026
 	@echo "✓ Driver configs written to configs/generated/ (review before promoting)"
 
 # ── Position validation (multi-car sim vs real finishing order) ──────
 position-validate:
-	$(PYTHON) src.analysis.position_validation --seasons 2022 2023 2024 2025 --n-sims 30
+	$(PYTHON) src.analysis.position_validation --seasons 2022 2023 2024 2025 2026 --n-sims 30
 	@echo "✓ Position validation written to results/position_validation_report.json"
 
 # ── Position-aware strategy selection (time vs position objective) ────
 position-strategy:
-	$(PYTHON) src.analysis.position_strategy_validation --seasons 2022 2023 2024 2025 --n-sims 15
+	$(PYTHON) src.analysis.position_strategy_validation --seasons 2022 2023 2024 2025 2026 --n-sims 15
 	@echo "✓ Position-aware selection report written to results/position_strategy_report.json"
 
 # ── Phase 1: Data ingestion (downloads from FastF1/Jolpica/OpenF1) ────
