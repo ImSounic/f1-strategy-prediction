@@ -56,7 +56,9 @@ def main():
     )
     algo = config.build_algo() if hasattr(config, "build_algo") else config.build()
 
-    out = Path(args.out)
+    # RLlib's new save_to_path() runs the path through pyarrow's URI parser, which
+    # rejects relative paths ("URI has empty scheme"). Use an absolute path.
+    out = Path(args.out).resolve()
     out.mkdir(parents=True, exist_ok=True)
     for i in range(1, args.iters + 1):
         result = algo.train()
