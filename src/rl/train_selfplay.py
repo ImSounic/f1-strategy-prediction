@@ -39,6 +39,10 @@ def main():
     ap.add_argument("--iters", type=int, default=50)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--checkpoint-every", type=int, default=10)
+    ap.add_argument("--num-epochs", type=int, default=10,
+                    help="PPO SGD epochs per iter (RLlib default 30 is the learner "
+                         "bottleneck on CPU; 10 is the standard PPO value)")
+    ap.add_argument("--train-batch", type=int, default=4000)
     ap.add_argument("--out", type=str, default="models/rl_league/selfplay")
     args = ap.parse_args()
 
@@ -52,7 +56,8 @@ def main():
         .framework("torch")
         .multi_agent(policies={"main"}, policy_mapping_fn=policy_mapping_fn)
         .env_runners(num_env_runners=args.workers)
-        .training(train_batch_size=4000, gamma=0.99, lr=3e-4)
+        .training(train_batch_size=args.train_batch, num_epochs=args.num_epochs,
+                  gamma=0.99, lr=3e-4)
     )
     algo = config.build_algo() if hasattr(config, "build_algo") else config.build()
 
