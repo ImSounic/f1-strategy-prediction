@@ -37,6 +37,9 @@ class F1MultiAgentEnv(MultiAgentEnv):
 
         self.observation_space = spaces.Box(0.0, 1.5, shape=(OBS_DIM,), dtype=np.float32)
         self.action_space = spaces.Discrete(4)
+        # New-API-stack MultiAgentEnv wants per-agent space dicts (all agents share).
+        self.observation_spaces = {a: self.observation_space for a in self.agents}
+        self.action_spaces = {a: self.action_space for a in self.agents}
         self._default_strat = Strategy(stints=[("MEDIUM", self.circuit.total_laps)], name="x")
 
     def _obs_for(self, i: int) -> np.ndarray:
