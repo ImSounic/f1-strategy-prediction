@@ -36,6 +36,19 @@ def test_winrate_prior_when_unseen():
     assert m.rate("a", "b", prior=0.3) == 0.3
 
 
+def test_winrate_merge_counts_aggregates():
+    # Two runners each saw one race; the driver merges their raw counts.
+    r1, r2 = WinRateMatrix(), WinRateMatrix()
+    r1.record_race([("main_0", 1), ("anchor_x", 2)])   # main_0 ahead
+    r2.record_race([("main_0", 2), ("anchor_x", 1)])   # main_0 behind
+    driver = WinRateMatrix()
+    for r in (r1, r2):
+        w, g = r.raw_counts()
+        driver.merge_counts(w, g)
+    assert driver.games("main_0", "anchor_x") == 2
+    assert driver.rate("main_0", "anchor_x") == 0.5    # 1 win of 2
+
+
 # ── Task 2: PFSP ─────────────────────────────────────────────────────────────
 def test_pfsp_weights_sum_to_one_and_favor_losses():
     w = pfsp_weights([0.1, 0.9], p=2.0, eps=0.0)

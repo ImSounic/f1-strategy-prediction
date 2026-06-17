@@ -71,6 +71,18 @@ class WinRateMatrix:
     def games(self, a: str, b: str) -> int:
         return self._g.get((a, b), 0)
 
+    def merge_counts(self, wins: dict, games: dict) -> None:
+        """Add another matrix's raw (wins, games) counts into this one. Used on the
+        driver to aggregate per-env-runner matrices each iteration."""
+        for k, v in games.items():
+            self._g[k] = self._g.get(k, 0) + v
+        for k, v in wins.items():
+            self._w[k] = self._w.get(k, 0) + v
+
+    def raw_counts(self) -> tuple:
+        """(wins, games) dict copies — for pulling a runner's matrix to the driver."""
+        return dict(self._w), dict(self._g)
+
 
 def pfsp_weights(rates: list, p: float = 2.0, eps: float = 0.1) -> list:
     """Prioritized fictitious self-play weights. Lower win-rate (harder opponent)
