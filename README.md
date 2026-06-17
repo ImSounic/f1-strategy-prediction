@@ -7,6 +7,25 @@ A data-driven system for optimizing Formula 1 pit stop strategies using machine 
 
 ---
 
+## Development status
+
+Active "Step 2" effort: position modeling, 2026-regulation readiness, and a
+reinforcement-learning workstream.
+
+- **Done & validated:** Phases 0–3.6 (era-profile abstraction, reproducible driver
+  configs, finishing-order validation @ Spearman ~0.70, compound differentiation +
+  temporal prior) and **Phase 4** (2026 ingested & era-aware, position Spearman 0.71).
+- **RL-1 done:** `multi_car_sim` made step-able + RLlib multi-agent env on the
+  *validated* physics (`src/rl/`).
+- **RL-2 in progress:** AlphaStar-style **league self-play** training, staged
+  RL-2a → RL-2b → RL-2c.
+
+**Resume / handoff doc:** [`docs/superpowers/RL2-HANDOFF.md`](docs/superpowers/RL2-HANDOFF.md)
+(consolidated state, decisions, next action). Specs & plans live in
+`docs/superpowers/specs/` and `docs/superpowers/plans/`.
+
+---
+
 ## Key Results
 
 | Metric | Value |
