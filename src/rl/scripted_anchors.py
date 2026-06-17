@@ -16,9 +16,11 @@ import torch.nn as nn
 from ray.rllib.core.rl_module.torch import TorchRLModule
 from ray.rllib.core.rl_module.apis import InferenceOnlyAPI
 
+# Cars start on MEDIUM (env default), so a legal plan MUST switch compound at least
+# once (the dry two-compound rule; a single compound -> disqualification).
 ANCHOR_PLANS = {
-    "anchor_onestop": [(0.55, 2)],                 # one stop ~55% distance to MEDIUM
-    "anchor_twostop": [(0.35, 2), (0.70, 3)],      # two stops: MED then HARD
+    "anchor_onestop": [(0.55, 3)],                 # one stop ~55% distance: MED -> HARD
+    "anchor_twostop": [(0.30, 1), (0.65, 3)],      # two stops: MED -> SOFT -> HARD
 }
 
 

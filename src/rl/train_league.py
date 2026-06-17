@@ -22,7 +22,6 @@ from pathlib import Path
 
 import numpy as np
 import ray
-from gymnasium import spaces
 from ray.tune.registry import register_env
 from ray.rllib.algorithms.ppo import PPOConfig
 from ray.rllib.core.rl_module.rl_module import RLModuleSpec
@@ -30,7 +29,6 @@ from ray.rllib.core.rl_module.multi_rl_module import MultiRLModuleSpec
 
 from src.rl.multiagent_env import F1MultiAgentEnv
 from src.rl.build_env_config import build_env_config
-from src.rl.ma_obs import OBS_DIM
 from src.rl.league import (
     LeagueConfig, learner_ids, role_of, opponent_pool, focus_count,
     assemble_field, pfsp_weights, league_winrate, should_snapshot,
@@ -84,20 +82,31 @@ def pull_and_merge_winrates(algo, driver_matrix):
             driver_matrix.merge_counts(w, g)
 
 
-def _add_frozen_snapshot(algo, new_id, src_id, obs_space, act_space):
-    """Copy src_id's weights into a new frozen module new_id on driver + runners."""
-    src_state = algo.get_module(src_id).get_state()
-    algo.add_module(
-        module_id=new_id,
-        module_spec=RLModuleSpec(observation_space=obs_space, action_space=act_space),
-        add_to_learners=False,
+def _spec_like(module, inference_only):
+    """Build an RLModuleSpec matching an already-built module (class, spaces, model
+    config). add_module needs an explicit module_class — a bare RLModuleSpec fails
+    with 'RLModule class is not set'."""
+    return RLModuleSpec(
+        module_class=type(module),
+        observation_space=module.observation_space,
+        action_space=module.action_space,
+        model_config=getattr(module, "model_config", None),
+        catalog_class=getattr(module, "catalog_class", None),
+        inference_only=inference_only,
     )
-    algo.get_module(new_id).set_state(src_state)
+
+
+def _add_frozen_snapshot(algo, new_id, src_id):
+    """Copy src_id's current weights into a new frozen module new_id on the runners."""
+    src = algo.get_module(src_id)
+    src_state = src.get_state()
+    algo.add_module(module_id=new_id, module_spec=_spec_like(src, inference_only=True),
+                    add_to_learners=False)
     algo.env_runner_group.foreach_env_runner(
         lambda r, nid=new_id, s=src_state: r.module[nid].set_state(s))
 
 
-def manage_league(algo, driver_matrix, cfg, state, anchors, obs_space, act_space, counters):
+def manage_league(algo, driver_matrix, cfg, state, anchors, counters):
     """Snapshot dominant mains; reset successful/aged exploiters. Fully guarded."""
     learners, snaps = state["learners"], state["snapshots"]
     mains = [l for l in learners if role_of(l) == ROLE_MAIN]
@@ -108,7 +117,7 @@ def manage_league(algo, driver_matrix, cfg, state, anchors, obs_space, act_space
                            cfg.snapshot_threshold, cfg.snapshot_every_steps):
             new_id = f"snap_{len(snaps)}"
             try:
-                _add_frozen_snapshot(algo, new_id, main_id, obs_space, act_space)
+                _add_frozen_snapshot(algo, new_id, main_id)
                 snaps.append(new_id)
                 counters[main_id] = 0
                 print(f"  + snapshot {new_id} <- {main_id} "
@@ -123,14 +132,11 @@ def manage_league(algo, driver_matrix, cfg, state, anchors, obs_space, act_space
                                   cfg.exploiter_threshold, cfg.exploiter_max_steps):
             snap_id = f"snap_{len(snaps)}"
             try:
-                _add_frozen_snapshot(algo, snap_id, exp_id, obs_space, act_space)
+                train_spec = _spec_like(algo.get_module(exp_id), inference_only=False)
+                _add_frozen_snapshot(algo, snap_id, exp_id)
                 snaps.append(snap_id)
                 algo.remove_module(exp_id)
-                algo.add_module(
-                    module_id=exp_id,
-                    module_spec=RLModuleSpec(observation_space=obs_space, action_space=act_space),
-                    add_to_learners=True,
-                )
+                algo.add_module(module_id=exp_id, module_spec=train_spec, add_to_learners=True)
                 counters[exp_id] = 0
                 print(f"  ~ reset {exp_id} (snapshotted {snap_id})", flush=True)
             except Exception as e:  # noqa: BLE001
@@ -162,8 +168,6 @@ def main():
     learners = learner_ids(cfg)
     anchors = list(ANCHOR_PLANS.keys())
     rng = random.Random(0)
-    obs_space = spaces.Box(0.0, 1.5, shape=(OBS_DIM,), dtype=np.float32)
-    act_space = spaces.Discrete(4)
 
     ray.init(ignore_reinit_error=True, log_to_driver=False)
     env_config = build_env_config(args.season, args.circuit)
@@ -217,7 +221,7 @@ def main():
         for l in learners:
             counters[l] += steps
         if not args.no_manage_league:
-            manage_league(algo, driver_matrix, cfg, state, anchors, obs_space, act_space, counters)
+            manage_league(algo, driver_matrix, cfg, state, anchors, counters)
 
         mains = [l for l in learners if role_of(l) == ROLE_MAIN]
         wr_anchor = np.mean([league_winrate(driver_matrix, m, anchors) for m in mains])

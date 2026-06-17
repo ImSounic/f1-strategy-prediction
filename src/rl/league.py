@@ -21,9 +21,9 @@ class LeagueConfig:
     pfsp_p: float = 2.0
     pfsp_eps: float = 0.1
     snapshot_threshold: float = 0.70
-    snapshot_every_steps: int = 2_000_000
+    snapshot_every_steps: int = 200_000      # ~50 iters @ 4k steps -> periodic pool growth
     exploiter_threshold: float = 0.70
-    exploiter_max_steps: int = 4_000_000
+    exploiter_max_steps: int = 400_000       # ~100 iters -> exploiters reset a few times
 
 
 def role_of(policy_id: str) -> str:

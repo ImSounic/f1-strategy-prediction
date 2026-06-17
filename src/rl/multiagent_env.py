@@ -100,4 +100,10 @@ class F1MultiAgentEnv(MultiAgentEnv):
         terminateds["__all__"] = done
         truncateds = {a: False for a in self.agents}
         truncateds["__all__"] = False
-        return obs, rewards, terminateds, truncateds, {a: {} for a in self.agents}
+        # On the final lap, surface each car's finish position so the league
+        # callback can record pairwise win-rates (it can't reach the sim directly).
+        if done:
+            infos = {a: {"finish": int(self.sim.positions[i])} for i, a in enumerate(self.agents)}
+        else:
+            infos = {a: {} for a in self.agents}
+        return obs, rewards, terminateds, truncateds, infos
