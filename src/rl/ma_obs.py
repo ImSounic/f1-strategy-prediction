@@ -40,6 +40,20 @@ def reward_from_positions(grid: int, finish: int) -> float:
     return float(grid - finish)
 
 
+# Dry-race two-compound rule is enforced by DISQUALIFICATION, not a soft penalty.
+# A DSQ removes the car from classification, so it must be strictly worse than any
+# legal finish (worst legal positions-gained ~ -(field size)). -50 dominates.
+DSQ_PENALTY = -50.0
+
+
+def terminal_reward(grid: int, finish: int, used_two_compounds: bool = True) -> float:
+    """Terminal reward: positions gained if legal, else a DSQ-level penalty
+    (dry race run on a single compound -> disqualified)."""
+    if not used_two_compounds:
+        return DSQ_PENALTY
+    return reward_from_positions(grid, finish)
+
+
 def build_obs(state: dict) -> np.ndarray:
     """Build the normalised, driver-conditioned observation vector (OBS_DIM,)."""
     obs = np.array([

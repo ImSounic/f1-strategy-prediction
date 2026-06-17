@@ -15,7 +15,7 @@ from ray.rllib.env.multi_agent_env import MultiAgentEnv
 from src.simulation.multi_car_sim import MultiCarRaceSim, Strategy
 from src.simulation.regulation_profiles import get_profile
 from src.rl.ma_obs import (
-    action_to_compound, legal_action_mask, reward_from_positions, build_obs, OBS_DIM,
+    action_to_compound, legal_action_mask, terminal_reward, build_obs, OBS_DIM,
 )
 
 _COMPOUND_IDX = {"SOFT": 2, "MEDIUM": 1, "HARD": 0}
@@ -89,11 +89,10 @@ class F1MultiAgentEnv(MultiAgentEnv):
             rewards = {}
             for i, a in enumerate(self.agents):
                 finish = int(self.sim.positions[i])
-                r = reward_from_positions(self.grid[a], finish)
-                # FIA 2-compound rule: penalise illegal single-compound races
-                if len(self.sim.cars[i].compounds_used) < 2:
-                    r -= 10.0
-                rewards[a] = r
+                # Dry race on a single compound = disqualification (terminal_reward
+                # returns the DSQ penalty, strictly worse than any legal finish).
+                legal = len(self.sim.cars[i].compounds_used) >= 2
+                rewards[a] = terminal_reward(self.grid[a], finish, used_two_compounds=legal)
         terminateds = {a: done for a in self.agents}
         terminateds["__all__"] = done
         truncateds = {a: False for a in self.agents}

@@ -5,7 +5,10 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from src.rl.ma_obs import action_to_compound, legal_action_mask, reward_from_positions, build_obs, OBS_DIM
+from src.rl.ma_obs import (
+    action_to_compound, legal_action_mask, reward_from_positions, build_obs, OBS_DIM,
+    terminal_reward, DSQ_PENALTY,
+)
 
 
 def test_action_to_compound():
@@ -33,6 +36,14 @@ def test_legal_mask_blocks_late_and_young():
 def test_reward_positions_gained():
     assert reward_from_positions(grid=10, finish=4) == 6.0   # gained 6
     assert reward_from_positions(grid=1, finish=3) == -2.0   # lost 2
+
+
+def test_terminal_reward_dsq_dominates():
+    assert terminal_reward(5, 2, used_two_compounds=True) == 3.0      # legal: gained 3
+    assert terminal_reward(1, 1, used_two_compounds=True) == 0.0
+    assert terminal_reward(20, 1, used_two_compounds=False) == DSQ_PENALTY  # DSQ regardless of result
+    # DSQ must be strictly worse than the worst legal finish (pole -> last, big field)
+    assert DSQ_PENALTY < (1 - 22)
 
 
 def test_build_obs_shape_and_bounds():
