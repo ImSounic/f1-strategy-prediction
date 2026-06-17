@@ -88,12 +88,9 @@ def main():
 
     module_specs = {pid: RLModuleSpec() for pid in learners}
     for name in anchors:
-        # inference_only=True keeps anchors on the env-runners (they still race) but
-        # excludes them from the learner — they have no trainable params to optimize.
         module_specs[name] = RLModuleSpec(
             module_class=ScriptedAnchorModule,
             model_config={"plan": ANCHOR_PLANS[name]},
-            inference_only=True,
         )
 
     config = (

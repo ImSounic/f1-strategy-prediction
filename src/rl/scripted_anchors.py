@@ -12,6 +12,7 @@ Action ints match ma_obs._ACTION_COMPOUND: 0 stay, 1 SOFT, 2 MED, 3 HARD.
 from __future__ import annotations
 
 import torch
+import torch.nn as nn
 from ray.rllib.core.rl_module.torch import TorchRLModule
 from ray.rllib.core.rl_module.apis import InferenceOnlyAPI
 
@@ -27,6 +28,11 @@ class ScriptedAnchorModule(TorchRLModule, InferenceOnlyAPI):
     def setup(self):
         # model_config carries the plan; default to a no-op (always stay).
         self.plan = list(self.model_config.get("plan", [])) if self.model_config else []
+        # RLlib's learner builds an optimizer per module over its parameters; a
+        # parameter-less module yields an empty-optimizer error. This single unused
+        # param keeps the optimizer non-empty. The anchor is not in policies_to_train,
+        # so it is never updated and the param stays frozen; the forward ignores it.
+        self._unused = nn.Parameter(torch.zeros(1))
 
     def get_non_inference_attributes(self):
         # InferenceOnlyAPI hook: no training-only state to drop (scripted/frozen).
