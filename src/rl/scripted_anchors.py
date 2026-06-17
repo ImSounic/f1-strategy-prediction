@@ -28,6 +28,10 @@ class ScriptedAnchorModule(TorchRLModule, InferenceOnlyAPI):
         # model_config carries the plan; default to a no-op (always stay).
         self.plan = list(self.model_config.get("plan", [])) if self.model_config else []
 
+    def get_non_inference_attributes(self):
+        # InferenceOnlyAPI hook: no training-only state to drop (scripted/frozen).
+        return []
+
     def _action_for(self, obs_row) -> int:
         lap_frac = float(obs_row[0])
         act = 0
