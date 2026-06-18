@@ -62,6 +62,17 @@ def main():
     finishes = {k: [] for k in ["rl", *BASELINES]}
     paired = {b: ([], []) for b in BASELINES}
 
+    # Diagnostic: show what each controller type actually executes in race 0.
+    dbg_kinds = ["rl"] + [BASELINES[j % len(BASELINES)] for j in range(n - 1)]
+    dbg_ctrls = [make_controller(k) for k in dbg_kinds]
+    _, dbg = run_race(circuit, drivers, dbg_ctrls, profile, seed=0, detail=True)
+    seen = {}
+    for k, d in zip(dbg_kinds, dbg):
+        seen.setdefault(k, d)            # first car of each type
+    print("DEBUG executed strategies (race 0):", flush=True)
+    for k in ["rl", *BASELINES]:
+        print(f"  {k:16s} stops={seen[k]['stops']} compounds={seen[k]['compounds']}", flush=True)
+
     for s in range(args.races):
         rl_slot = s % n
         kinds = [None] * n

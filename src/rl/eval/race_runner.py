@@ -6,9 +6,10 @@ from src.rl.ma_obs import action_to_compound, legal_action_mask
 from src.rl.eval.obs_builder import car_obs
 
 
-def run_race(circuit, drivers, controllers, profile, seed: int):
+def run_race(circuit, drivers, controllers, profile, seed: int, detail: bool = False):
     """controllers: list aligned with drivers; each has .start_compound and .decide(obs).
-    Returns finishing position per car index (lower = better)."""
+    Returns finishing position per car index (lower = better). If detail=True, also
+    returns a per-car list of {stops, compounds} for inspecting executed strategies."""
     n = len(drivers)
     # single-stint strategies (no auto-pit); pits are driven entirely by controllers.
     strategies = [Strategy(stints=[(controllers[i].start_compound, circuit.total_laps)],
@@ -26,4 +27,9 @@ def run_race(circuit, drivers, controllers, profile, seed: int):
                                      sim.lap + 1, circuit.total_laps)
             pit_override[i] = action_to_compound(act) if mask[act] else None
         sim.step(pit_override)
-    return [int(p) for p in sim.positions]
+    positions = [int(p) for p in sim.positions]
+    if detail:
+        details = [{"stops": int(sim.cars[i].stops_done),
+                    "compounds": sorted(sim.cars[i].compounds_used)} for i in range(n)]
+        return positions, details
+    return positions

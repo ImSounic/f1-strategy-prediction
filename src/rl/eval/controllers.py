@@ -23,8 +23,10 @@ class ScriptedController:
 
 
 class RLController:
-    """Greedy controller wrapping a trained RLModule. start_compound matches training
-    (cars started on MEDIUM during training)."""
+    """Controller wrapping a trained RLModule. SAMPLES from the policy (matching how
+    it was trained/acted): pitting is a rare per-lap event, so greedy argmax would
+    pick 'stay' almost every lap and under-pit. start_compound matches training
+    (cars started on MEDIUM)."""
 
     def __init__(self, module, start_compound: str = "MEDIUM"):
         self.module = module
@@ -37,5 +39,6 @@ class RLController:
             out = self.module.forward_inference(batch)
             if "actions" in out:
                 return int(out["actions"][0])
-            logits = out["action_dist_inputs"]            # Discrete -> argmax = greedy
-            return int(torch.argmax(logits[0]).item())
+            logits = out["action_dist_inputs"][0]         # Discrete logits -> sample
+            probs = torch.softmax(logits, dim=-1)
+            return int(torch.multinomial(probs, 1).item())
