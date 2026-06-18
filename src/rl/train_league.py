@@ -86,7 +86,8 @@ def restore_learner_weights(algo, learners, path):
     failure just means we start fresh."""
     try:
         from ray.rllib.algorithms.algorithm import Algorithm
-        prev = Algorithm.from_checkpoint(path)
+        # from_checkpoint runs the path through pyarrow's URI parser -> needs absolute.
+        prev = Algorithm.from_checkpoint(str(Path(path).resolve()))
     except Exception as e:  # noqa: BLE001
         print(f"! restore failed, starting fresh: {type(e).__name__}: {e}", flush=True)
         return
