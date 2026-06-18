@@ -60,8 +60,9 @@ def build_assignment(cfg, focus, learners, snapshots, anchors, n_cars, matrix, r
     return assemble_field(n_cars, focus, focus_count(n_cars, cfg.focus_share), sample_opponent)
 
 
-def pull_and_merge_winrates(algo, driver_matrix):
-    """Pull each env-runner's WinRateMatrix counts to the driver and reset them."""
+def pull_winrates(algo):
+    """Pull each env-runner's WinRateMatrix counts to the driver and reset them.
+    Returns a list of (wins, games) dicts to merge into the driver-side matrices."""
     def _pull(runner):
         wr = getattr(runner, "_winrates", None)
         if wr is None:
@@ -75,11 +76,33 @@ def pull_and_merge_winrates(algo, driver_matrix):
     except TypeError:
         parts = algo.env_runner_group.foreach_env_runner(_pull)
     except Exception:  # noqa: BLE001
+        return []
+    return parts or []
+
+
+def restore_learner_weights(algo, learners, path):
+    """Best-effort resume: copy learner (main/mexp/lexp) weights from a prior
+    checkpoint into this fresh algo (snapshot pool starts empty). Guarded so a
+    failure just means we start fresh."""
+    try:
+        from ray.rllib.algorithms.algorithm import Algorithm
+        prev = Algorithm.from_checkpoint(path)
+    except Exception as e:  # noqa: BLE001
+        print(f"! restore failed, starting fresh: {type(e).__name__}: {e}", flush=True)
         return
-    for part in parts or []:
-        if part:
-            w, g = part
-            driver_matrix.merge_counts(w, g)
+    for pid in learners:
+        try:
+            state = prev.get_module(pid).get_state()
+            algo.get_module(pid).set_state(state)
+            algo.env_runner_group.foreach_env_runner(
+                lambda r, p=pid, s=state: r.module[p].set_state(s))
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! restore {pid} failed: {type(e).__name__}: {e}", flush=True)
+    try:
+        prev.stop()
+    except Exception:  # noqa: BLE001
+        pass
+    print(f"✓ restored learner weights from {path}", flush=True)
 
 
 def _spec_like(module, inference_only):
@@ -157,6 +180,10 @@ def main():
                     help="override main->snapshot win-rate threshold (set 0.0 to force in a smoke)")
     ap.add_argument("--exploiter-threshold", type=float, default=None,
                     help="override exploiter-reset win-rate threshold (set 0.0 to force in a smoke)")
+    ap.add_argument("--wr-window", type=int, default=30,
+                    help="iterations per rolling window for the reported recent win-rate")
+    ap.add_argument("--restore", type=str, default=None,
+                    help="path to a prior checkpoint; loads learner weights (fresh snapshot pool)")
     ap.add_argument("--out", type=str, default="models/rl_league/league")
     args = ap.parse_args()
 
@@ -207,27 +234,38 @@ def main():
         .training(train_batch_size=4000, num_epochs=args.num_epochs, gamma=0.99, lr=3e-4)
     )
     algo = config.build_algo() if hasattr(config, "build_algo") else config.build()
+    if args.restore:
+        restore_learner_weights(algo, learners, args.restore)
+
+    recent_matrix = WinRateMatrix()                  # rolling window for honest reporting
+    mains = [l for l in learners if role_of(l) == ROLE_MAIN]
 
     out = Path(args.out).resolve()
     out.mkdir(parents=True, exist_ok=True)
     for i in range(1, args.iters + 1):
+        if (i - 1) % args.wr_window == 0:            # start a fresh reporting window
+            recent_matrix = WinRateMatrix()
         focus = learners[(i - 1) % len(learners)]                    # round-robin coverage
         state["field"] = build_assignment(cfg, focus, learners, state["snapshots"],
                                            anchors, n_cars, driver_matrix, rng)
         result = algo.train()
 
-        pull_and_merge_winrates(algo, driver_matrix)
+        for w, g in pull_winrates(algo):
+            if w or g:
+                driver_matrix.merge_counts(w, g)     # cumulative: drives PFSP + snapshots
+                recent_matrix.merge_counts(w, g)     # windowed: reporting only
         steps = int(result.get("env_runners", {}).get("num_env_steps_sampled", 4000) or 4000)
         for l in learners:
             counters[l] += steps
         if not args.no_manage_league:
             manage_league(algo, driver_matrix, cfg, state, anchors, counters)
 
-        mains = [l for l in learners if role_of(l) == ROLE_MAIN]
-        wr_anchor = np.mean([league_winrate(driver_matrix, m, anchors) for m in mains])
+        wr_recent = np.mean([league_winrate(recent_matrix, m, anchors) for m in mains])
+        wr_life = np.mean([league_winrate(driver_matrix, m, anchors) for m in mains])
         er = result.get("env_runners", {})
         print(f"iter {i:>3} | return {er.get('episode_return_mean')} | focus {focus} "
-              f"| main-vs-anchor wr {wr_anchor:.3f} | snaps {len(state['snapshots'])}", flush=True)
+              f"| wr {wr_recent:.3f} (life {wr_life:.3f}) | snaps {len(state['snapshots'])}",
+              flush=True)
         if i % args.checkpoint_every == 0 or i == args.iters:
             print(f"  checkpoint -> {algo.save(str(out))}", flush=True)
 
