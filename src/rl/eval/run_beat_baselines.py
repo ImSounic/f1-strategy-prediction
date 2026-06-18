@@ -15,8 +15,6 @@ import json
 from copy import deepcopy
 from pathlib import Path
 
-import ray
-
 from src.rl.build_env_config import build_env_config
 from src.rl.eval.model_loader import load_main_module
 from src.rl.eval.controllers import ScriptedController, RLController
@@ -44,13 +42,12 @@ def main():
     ap.add_argument("--out", type=str, default="results/rl_eval/beat_baselines.json")
     args = ap.parse_args()
 
-    ray.init(ignore_reinit_error=True, log_to_driver=False)
     cfg = build_env_config(args.season, args.circuit)
     circuit, drivers = cfg["circuit"], _neutral_drivers(cfg["drivers"])
     profile = get_profile(args.season)
     n = len(drivers)
 
-    module, algo = load_main_module(args.checkpoint, args.module_id)
+    module = load_main_module(args.checkpoint, args.module_id)
     mc_start, mc_plan = load_mc_plan(
         f"results/scenarios_{args.circuit}_{args.season}.json", circuit.total_laps)
 
@@ -93,8 +90,6 @@ def main():
     json.dump(report, open(out, "w"), indent=2)
     print(json.dumps(report, indent=2), flush=True)
     print(f"✓ wrote {out}", flush=True)
-    algo.stop()
-    ray.shutdown()
 
 
 if __name__ == "__main__":
