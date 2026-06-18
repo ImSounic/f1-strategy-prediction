@@ -43,27 +43,9 @@ class F1MultiAgentEnv(MultiAgentEnv):
         self._default_strat = Strategy(stints=[("MEDIUM", self.circuit.total_laps)], name="x")
 
     def _obs_for(self, i: int) -> np.ndarray:
-        car = self.sim.cars[i]
-        driver = self.drivers[i]
-        gaps = self.sim._compute_gaps(self.sim.cars, self.sim.positions)
-        order = list(np.argsort(self.sim.positions))
-        pos_idx = order.index(i)
-        gap_behind = gaps[order[pos_idx + 1]] if pos_idx + 1 < self.n_cars else 999.0
-        state = dict(
-            lap=self.sim.lap, total_laps=self.circuit.total_laps,
-            tyre_age=car.tyre_age, compound_idx=_COMPOUND_IDX.get(car.tyre_compound, 1),
-            cumulative_deg=0.0, position=int(self.sim.positions[i]), n_cars=self.n_cars,
-            gap_ahead=float(gaps[i]), gap_behind=float(gap_behind),
-            fuel_frac=max(0.0, 1.0 - self.sim.burn_rate * self.sim.lap / max(self.profile.start_fuel_kg, 1)),
-            sc_active=int(self.sim.sc_active or self.sim.vsc_active),
-            stops_done=car.stops_done, max_stops=3, compounds_used=len(car.compounds_used),
-            laps_since_sc=0,
-            driver_pace=min(driver.pace_delta, 2.0) / 2.0,
-            driver_overtaking=driver.overtaking, driver_tyre=driver.tyre_management,
-            pit_loss=self.circuit.pit_loss_seconds, sc_prob=self.circuit.sc_prob_per_race,
-            overtaking_difficulty=self.circuit.overtaking_difficulty,
-        )
-        return build_obs(state)
+        # Delegates to the shared obs builder so training and eval produce identical inputs.
+        from src.rl.eval.obs_builder import car_obs
+        return car_obs(self.sim, self.circuit, self.profile, self.drivers, i)
 
     def reset(self, *, seed=None, options=None):
         strategies = [self._default_strat] * self.n_cars
