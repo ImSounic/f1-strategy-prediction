@@ -45,13 +45,20 @@ def reward_from_positions(grid: int, finish: int) -> float:
 # legal finish (worst legal positions-gained ~ -(field size)). -50 dominates.
 DSQ_PENALTY = -50.0
 
+# Reward penalty per pit stop BEYOND the mandatory first (a dry race needs >=1 stop to
+# use two compounds). Discourages over-pitting: the self-play meta otherwise converged
+# to a 3-stop strategy because the sim's pit-time loss alone gave no clear gradient to
+# minimise stops. A legal 1-stop pays 0; 2-stop pays -PIT_COST; 3-stop -2*PIT_COST; etc.
+PIT_COST = 1.0
 
-def terminal_reward(grid: int, finish: int, used_two_compounds: bool = True) -> float:
-    """Terminal reward: positions gained if legal, else a DSQ-level penalty
-    (dry race run on a single compound -> disqualified)."""
+
+def terminal_reward(grid: int, finish: int, used_two_compounds: bool = True,
+                    n_stops: int = 0) -> float:
+    """Terminal reward: positions gained minus a per-stop cost for stops beyond the
+    mandatory first; or a DSQ-level penalty if the dry two-compound rule was broken."""
     if not used_two_compounds:
         return DSQ_PENALTY
-    return reward_from_positions(grid, finish)
+    return reward_from_positions(grid, finish) - PIT_COST * max(0, n_stops - 1)
 
 
 def build_obs(state: dict) -> np.ndarray:

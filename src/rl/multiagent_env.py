@@ -77,7 +77,8 @@ class F1MultiAgentEnv(MultiAgentEnv):
                 # Dry race on a single compound = disqualification (terminal_reward
                 # returns the DSQ penalty, strictly worse than any legal finish).
                 legal = len(self.sim.cars[i].compounds_used) >= 2
-                rewards[a] = terminal_reward(self.grid[a], finish, used_two_compounds=legal)
+                rewards[a] = terminal_reward(self.grid[a], finish, used_two_compounds=legal,
+                                             n_stops=self.sim.cars[i].stops_done)
         terminateds = {a: done for a in self.agents}
         terminateds["__all__"] = done
         truncateds = {a: False for a in self.agents}

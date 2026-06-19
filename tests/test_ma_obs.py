@@ -46,6 +46,15 @@ def test_terminal_reward_dsq_dominates():
     assert DSQ_PENALTY < (1 - 22)
 
 
+def test_terminal_reward_per_stop_penalty():
+    from src.rl.ma_obs import PIT_COST
+    # gained 3 positions; 1-stop pays nothing, each extra stop costs PIT_COST
+    assert terminal_reward(5, 2, used_two_compounds=True, n_stops=1) == 3.0
+    assert terminal_reward(5, 2, used_two_compounds=True, n_stops=2) == 3.0 - PIT_COST
+    assert terminal_reward(5, 2, used_two_compounds=True, n_stops=3) == 3.0 - 2 * PIT_COST
+    assert terminal_reward(5, 2, used_two_compounds=False, n_stops=3) == DSQ_PENALTY
+
+
 def test_build_obs_shape_and_bounds():
     state = dict(lap=10, total_laps=50, tyre_age=8, compound_idx=2, cumulative_deg=1.2,
                  position=5, n_cars=20, gap_ahead=1.3, gap_behind=0.8, fuel_frac=0.6,
