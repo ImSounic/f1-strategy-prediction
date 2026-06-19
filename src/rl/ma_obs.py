@@ -49,7 +49,9 @@ DSQ_PENALTY = -50.0
 # use two compounds). Discourages over-pitting: the self-play meta otherwise converged
 # to a 3-stop strategy because the sim's pit-time loss alone gave no clear gradient to
 # minimise stops. A legal 1-stop pays 0; 2-stop pays -PIT_COST; 3-stop -2*PIT_COST; etc.
-PIT_COST = 1.0
+# PIT_COST=1.0 lowered reward but did NOT change the (diffuse) policy's ~3-stop behaviour;
+# raised to 3.0 as a decisive test of whether over-pitting is penalty-size or structural.
+PIT_COST = 3.0
 
 
 def terminal_reward(grid: int, finish: int, used_two_compounds: bool = True,
