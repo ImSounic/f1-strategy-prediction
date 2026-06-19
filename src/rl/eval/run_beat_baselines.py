@@ -69,10 +69,9 @@ def eval_field(field_name, drivers, circuit, profile, make_controller, races):
         for i, k in enumerate(kinds):
             finishes[k].append(pos[i])
         for b in BASELINES:
-            b_slots = [i for i, k in enumerate(kinds) if k == b]
-            if b_slots:
+            for i in [i for i, k in enumerate(kinds) if k == b]:   # all cars of this type
                 paired[b][0].append(pos[rl_slot])
-                paired[b][1].append(pos[b_slots[0]])
+                paired[b][1].append(pos[i])
 
     return {
         "executed_strategies": executed,
