@@ -15,7 +15,8 @@ from ray.rllib.env.multi_agent_env import MultiAgentEnv
 from src.simulation.multi_car_sim import MultiCarRaceSim, Strategy
 from src.simulation.regulation_profiles import get_profile
 from src.rl.ma_obs import (
-    action_to_compound, legal_action_mask, terminal_reward, build_obs, OBS_DIM,
+    action_to_compound, legal_action_mask, shaping_reward, build_obs, OBS_DIM,
+    PIT_COST, DSQ_PENALTY,
 )
 
 _COMPOUND_IDX = {"SOFT": 2, "MEDIUM": 1, "HARD": 0}
@@ -56,6 +57,10 @@ class F1MultiAgentEnv(MultiAgentEnv):
         return obs, {a: {} for a in self.agents}
 
     def step(self, action_dict: dict):
+        # Capture pre-step state for the dense per-lap reward (RL-2d).
+        prev_pos = [int(p) for p in self.sim.positions]
+        prev_stops = [c.stops_done for c in self.sim.cars]
+
         pit_override = {}
         for i, a in enumerate(self.agents):
             act = int(action_dict.get(a, 0))
@@ -68,17 +73,18 @@ class F1MultiAgentEnv(MultiAgentEnv):
 
         done = self.sim.done
         obs = {a: self._obs_for(i) for i, a in enumerate(self.agents)}
-        if not done:
-            rewards = {a: 0.0 for a in self.agents}
-        else:
-            rewards = {}
-            for i, a in enumerate(self.agents):
-                finish = int(self.sim.positions[i])
-                # Dry race on a single compound = disqualification (terminal_reward
-                # returns the DSQ penalty, strictly worse than any legal finish).
-                legal = len(self.sim.cars[i].compounds_used) >= 2
-                rewards[a] = terminal_reward(self.grid[a], finish, used_two_compounds=legal,
-                                             n_stops=self.sim.cars[i].stops_done)
+        # Dense reward: potential-based shaping (positions gained this lap), minus a
+        # per-stop cost for an extra (2nd+) stop completed this lap; DSQ added at done.
+        # Summed over the race this equals positions-gained - extra-stop costs (-50 if DSQ).
+        rewards = {}
+        for i, a in enumerate(self.agents):
+            car = self.sim.cars[i]
+            r = shaping_reward(prev_pos[i], int(self.sim.positions[i]))
+            if car.stops_done > prev_stops[i] and car.stops_done >= 2:
+                r -= PIT_COST
+            if done and len(car.compounds_used) < 2:
+                r += DSQ_PENALTY
+            rewards[a] = r
         terminateds = {a: done for a in self.agents}
         terminateds["__all__"] = done
         truncateds = {a: False for a in self.agents}

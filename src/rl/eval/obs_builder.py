@@ -24,7 +24,7 @@ def car_obs(sim, circuit, profile, drivers, i: int) -> np.ndarray:
         gap_ahead=float(gaps[i]), gap_behind=float(gap_behind),
         fuel_frac=max(0.0, 1.0 - sim.burn_rate * sim.lap / max(profile.start_fuel_kg, 1)),
         sc_active=int(sim.sc_active or sim.vsc_active),
-        stops_done=car.stops_done, max_stops=3, compounds_used=len(car.compounds_used),
+        stops_done=car.stops_done, max_stops=2, compounds_used=len(car.compounds_used),
         laps_since_sc=0,
         driver_pace=min(driver.pace_delta, 2.0) / 2.0,
         driver_overtaking=driver.overtaking, driver_tyre=driver.tyre_management,

@@ -12,7 +12,7 @@ import numpy as np
 # Discrete(4) action -> compound to switch to (None = stay out)
 _ACTION_COMPOUND = {0: None, 1: "SOFT", 2: "MEDIUM", 3: "HARD"}
 
-MIN_STINT_LAPS = 3   # no re-pit before the tyre has this many laps
+MIN_STINT_LAPS = 8   # longer post-pit cooldown (RL-2d): no re-pit before this many laps
 OBS_DIM = 18
 
 
@@ -22,7 +22,7 @@ def action_to_compound(action: int):
 
 
 def legal_action_mask(stops_done: int, tyre_age: int, current_lap: int,
-                      total_laps: int, max_stops: int = 3,
+                      total_laps: int, max_stops: int = 2,
                       min_stint: int = MIN_STINT_LAPS) -> list:
     """Boolean mask over [stay, pit-S, pit-M, pit-H]. Stay is always legal.
 
@@ -40,6 +40,14 @@ def reward_from_positions(grid: int, finish: int) -> float:
     return float(grid - finish)
 
 
+def shaping_reward(pos_prev: int, pos_now: int) -> float:
+    """Potential-based shaping with Phi(s) = -(race position): per-lap reward =
+    Phi(s') - Phi(s) = pos_prev - pos_now (positions gained this lap). Summed over a
+    race it telescopes to positions-gained (grid - finish), so the dense per-lap stream
+    has the same return as the terminal reward but gives credit to each pit decision."""
+    return float(pos_prev - pos_now)
+
+
 # Dry-race two-compound rule is enforced by DISQUALIFICATION, not a soft penalty.
 # A DSQ removes the car from classification, so it must be strictly worse than any
 # legal finish (worst legal positions-gained ~ -(field size)). -50 dominates.
@@ -49,9 +57,9 @@ DSQ_PENALTY = -50.0
 # use two compounds). Discourages over-pitting: the self-play meta otherwise converged
 # to a 3-stop strategy because the sim's pit-time loss alone gave no clear gradient to
 # minimise stops. A legal 1-stop pays 0; 2-stop pays -PIT_COST; 3-stop -2*PIT_COST; etc.
-# PIT_COST=1.0 lowered reward but did NOT change the (diffuse) policy's ~3-stop behaviour;
-# raised to 3.0 as a decisive test of whether over-pitting is penalty-size or structural.
-PIT_COST = 3.0
+# RL-2d: with max_stops capped at 2 (legality mask) bounding over-pitting and the dense
+# shaping reward giving per-pit credit, PIT_COST only needs to gently favour 1- over 2-stop.
+PIT_COST = 0.5
 
 
 def terminal_reward(grid: int, finish: int, used_two_compounds: bool = True,

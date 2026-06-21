@@ -7,7 +7,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.rl.ma_obs import (
     action_to_compound, legal_action_mask, reward_from_positions, build_obs, OBS_DIM,
-    terminal_reward, DSQ_PENALTY,
+    terminal_reward, DSQ_PENALTY, shaping_reward,
 )
 
 
@@ -30,7 +30,23 @@ def test_legal_mask_allows_pit_midrace():
 
 def test_legal_mask_blocks_late_and_young():
     assert legal_action_mask(0, 10, 49, 50)[1:] == [False, False, False]  # too late
-    assert legal_action_mask(0, 2, 20, 50)[1:] == [False, False, False]   # tyre too young
+    assert legal_action_mask(0, 2, 20, 50)[1:] == [False, False, False]   # tyre too young (min_stint=8)
+
+
+def test_legal_mask_caps_at_two_stops():
+    # RL-2d: max_stops default is now 2 -> a car that already pitted twice cannot pit again
+    assert legal_action_mask(stops_done=2, tyre_age=10, current_lap=20, total_laps=50)[1:] \
+        == [False, False, False]
+    # one stop done, healthy tyre, mid-race -> may still pit (its 2nd)
+    assert legal_action_mask(stops_done=1, tyre_age=10, current_lap=20, total_laps=50) \
+        == [True, True, True, True]
+
+
+def test_shaping_reward_telescopes_to_positions_gained():
+    # Per-lap shaping = pos_prev - pos_now; summed over a trajectory == grid - finish.
+    traj = [10, 8, 8, 5, 6, 4]          # grid P10 ... finish P4
+    total = sum(shaping_reward(traj[k], traj[k + 1]) for k in range(len(traj) - 1))
+    assert total == (traj[0] - traj[-1]) == 6.0
 
 
 def test_reward_positions_gained():
